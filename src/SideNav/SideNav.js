@@ -912,6 +912,9 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                           RM Stock Report
                         </Link>
                       )}
+                      <Link className="dropdown-item" to="/JobworkStockReport">
+                        Jobwork Stock Report
+                      </Link>
                       {permissions.Store.includes("Consumable Stock Report") && (
                         <Link className="dropdown-item" to="/ConsumableStock">
                           Consumable Stock Report

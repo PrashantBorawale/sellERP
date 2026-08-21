@@ -29,28 +29,23 @@ const MaterialIssueChallan = () => {
   };
 
   function filterItems(items, searchString) {
-    // split the input on whitespace, drop empty strings, lowercase
     const keywords = searchString
       .trim()
       .toLowerCase()
       .split(/\s+/)
       .filter(Boolean);
 
-    // if no keywords, hide list and return full list (or empty if you prefer)
     if (keywords.length === 0) {
       setShowItemList(false);
       return items;
     }
 
-    // filter
     const filtered = items.filter((item) => {
-      const partNo = item.part_no.toLowerCase();
-      const desc = item.Name_Description.toLowerCase();
-      // include this item if ANY keyword matches part_no OR description
+      const partNo = (item.part_no || item.item_code || "").toLowerCase();
+      const desc = (item.Name_Description || item.description || "").toLowerCase();
       return keywords.some((kw) => partNo.includes(kw) || desc.includes(kw));
     });
 
-    // hide when there’s nothing to show
     setShowItemList(filtered.length > 0);
 
     return filtered;
@@ -59,6 +54,9 @@ const MaterialIssueChallan = () => {
   const fetchItems = async () => {
     try {
       const token = localStorage.getItem("accessToken");
+      
+      /* 
+      // Old API
       const res = await fetch(
         "https://sellerp-backend.onrender.com/All_Masters/api/item/summary/",
         {
@@ -70,6 +68,23 @@ const MaterialIssueChallan = () => {
       const resData = await res.json();
       console.log(resData);
       setItems(resData);
+      */
+
+      // New API
+      const res = await fetch(
+        "https://sellerp-backend.onrender.com/Store/jobworkinward/rm/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const resData = await res.json();
+      console.log(resData);
+      
+      const newItems = Array.isArray(resData) ? resData : (resData.data || []);
+      setItems(newItems);
+
     } catch (err) {
       console.log(err);
     }
@@ -175,67 +190,62 @@ const MaterialIssueChallan = () => {
   const handleItemSelect = (item) => {
     setShowItemList(false);
 
+    const partNo = item.part_no || item.item_code || "";
+    const partCode = item.Part_Code || item.item_no || "";
+    const description = item.Name_Description || item.description || "";
+    const unitCode = item.Unit_Code || item.unit || "Pcs";
+
     setFormData((prev) => ({
       ...prev,
-      Item: `${item.part_no} - ${item.Part_Code} - ${item.Name_Description}`,
-      ItemDescription: item.Name_Description,
-      Unit: item.Unit_Code,
+      Item: `${partNo} - ${partCode} - ${description}`,
+      ItemDescription: description,
+      Unit: unitCode,
       AvailableStock: "",
     }));
 
     setHeatNoStock([]);
 
-    const fetchHeatNoData = async (selectedItem) => {
-      // Example : RMRM1004 - 53BPA00202 - 28X24.4
-      const combinedItemCode = `${selectedItem.part_no} - ${selectedItem.Part_Code} - ${selectedItem.Name_Description}`;
+    if (item.variants && Array.isArray(item.variants) && item.variants.length > 0) {
+      setHeatNoStock(item.variants);
+    } else {
+      const fetchHeatNoData = async (selectedItem) => {
+        const combinedItemCode = `${partNo} - ${partCode} - ${description}`;
+        console.log(`Fetching stock for combined item code: ${combinedItemCode}`);
 
-      console.log(`Fetching stock for combined item code: ${combinedItemCode}`);
+        try {
+          const token = localStorage.getItem("accessToken");
+          const apiUrl = `https://sellerp-backend.onrender.com/Store/heat-no/?item_code=${encodeURIComponent(combinedItemCode)}`;
+          console.log("Calling API URL:", apiUrl);
+          const res = await fetch(apiUrl, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
 
-      try {
-        const token = localStorage.getItem("accessToken");
-
-        const apiUrl = `https://sellerp-backend.onrender.com/Store/heat-no/?item_code=${encodeURIComponent(
-          combinedItemCode
-        )}`;
-
-        console.log("Calling API URL:", apiUrl);
-
-        const res = await fetch(apiUrl, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (res.ok) {
-          const resData = await res.json();
-          console.log("API Response Data:", resData);
-
-          if (
-            resData &&
-            Array.isArray(resData.data) &&
-            resData.data.length > 0
-          ) {
-            setHeatNoStock(resData.data);
-            console.log("Stock data updated in state.");
+          if (res.ok) {
+            const resData = await res.json();
+            console.log("API Response Data:", resData);
+            if (resData && Array.isArray(resData.data) && resData.data.length > 0) {
+              setHeatNoStock(resData.data);
+              console.log("Stock data updated in state.");
+            } else {
+              console.log("API returned no stock data in 'data' array.");
+              setHeatNoStock([]);
+              toast.warn(`No stock found for item: ${combinedItemCode}`);
+            }
           } else {
-            console.log("API returned no stock data in 'data' array.");
+            console.error("API request failed with status:", res.status);
+            toast.error(`API request failed with status: ${res.status}`);
             setHeatNoStock([]);
-            toast.warn(`No stock found for item: ${combinedItemCode}`);
           }
-        } else {
-          console.error("API request failed with status:", res.status);
-          toast.error(`API request failed with status: ${res.status}`);
+        } catch (err) {
+          console.error("Error fetching heat number stock:", err);
+          toast.error("An error occurred while fetching stock.");
           setHeatNoStock([]);
         }
-      } catch (err) {
-        console.error("Error fetching heat number stock:", err);
-        toast.error("An error occurred while fetching stock.");
-        setHeatNoStock([]);
-      }
-    };
+      };
 
-    if (item && item.part_no && item.Part_Code && item.Name_Description) {
-      fetchHeatNoData(item);
+      if (partNo && description) {
+        fetchHeatNoData(item);
+      }
     }
   };
 
@@ -620,7 +630,7 @@ const MaterialIssueChallan = () => {
                                     >
                                       {filteredItems.map((item) => (
                                         <li
-                                          key={item.part_no}
+                                          key={item.part_no || item.item_code}
                                           className="dropdown-item"
                                           onClick={() => handleItemSelect(item)}
                                           style={{
@@ -628,8 +638,8 @@ const MaterialIssueChallan = () => {
                                             cursor: "pointer",
                                           }}
                                         >
-                                          {item.part_no} - {item.Part_Code} -{" "}
-                                          {item.Name_Description}
+                                          {item.part_no || item.item_code} - {item.Part_Code || item.item_no || ""} -{" "}
+                                          {item.Name_Description || item.description}
                                         </li>
                                       ))}
                                     </ul>
@@ -667,15 +677,18 @@ const MaterialIssueChallan = () => {
                                       <option value="">
                                         Select Heat No / Stock
                                       </option>
-                                      {heatNoStock.map((stockItem, index) => (
-                                        // Option ki value me heat_no aur stock dono ko separator ke sath add karein
-                                        <option
-                                          key={index}
-                                          value={`${stockItem.heat_no}|${stockItem.stock}`}
-                                        >
-                                          {`${stockItem.heat_no} - Stock: ${stockItem.stock}`}
-                                        </option>
-                                      ))}
+                                      {heatNoStock.map((stockItem, index) => {
+                                        const hNo = stockItem.HeatNo || stockItem.heat_no;
+                                        const qty = stockItem.GRNQty !== undefined ? stockItem.GRNQty : stockItem.stock;
+                                        return (
+                                          <option
+                                            key={index}
+                                            value={`${hNo}|${qty}`}
+                                          >
+                                            {`${hNo} | Stock : ${qty}`}
+                                          </option>
+                                        );
+                                      })}
                                     </select>
                                   ) : (
                                     <input

@@ -255,6 +255,7 @@ const WIPStock = React.lazy(() => import("./StoreMaster/StockReport/WIPStockRepo
 const RMStock = React.lazy(() => import("./StoreMaster/StockReport/RMStockReport/RMStock.jsx"));
 const ConsumableStock = React.lazy(() => import("./StoreMaster/StockReport/ConsumableStockReport/ConsumableStock.jsx"));
 const FGStock = React.lazy(() => import("./StoreMaster/StockReport/FGStockReport/FGStock.jsx"));
+const JobworkStockReport = React.lazy(() => import("./StoreMaster/StockReport/JobworkStockReport/JobworkStockReport.jsx"));
 
 const SubcontractStock = React.lazy(() => import("./StoreMaster/SubconGRN/SubcontractStock/SubcontractStock.jsx"));
 const OurVendorStock = React.lazy(() => import("./StoreMaster/SubconGRN/SubcontractStock/OurVendorStock.jsx"));
@@ -783,6 +784,7 @@ function App() {
         <Route path="IndentStatus" element={<IndentStatus />} />
         <Route path="WIPStock" element={<WIPStock />} />
         <Route path="RMStock" element={<RMStock />} />
+        <Route path="JobworkStockReport" element={<JobworkStockReport />} />
         <Route path="ConsumableStock" element={<ConsumableStock />} />
         <Route path="FGStock" element={<FGStock />} />
 
