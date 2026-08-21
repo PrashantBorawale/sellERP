@@ -1,0 +1,333 @@
+/* JobworkInwardChallan.css - Matches project design standards */
+
+* {
+  box-sizing: border-box;
+}
+
+.NewStoreInwardJobwork {
+  width: 100%;
+}
+
+/* ── Header ── */
+.InwardJobwork-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.InwardJobwork-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+  margin: 0;
+}
+
+/* ── Item Entry Area ── */
+.InwardJobwork-main {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.InwardJobwork-main .table-responsive {
+  overflow-x: auto;
+}
+
+.InwardJobwork-main .table th {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.InwardJobwork-main .table td {
+  padding: 6px 8px;
+  vertical-align: middle;
+  font-size: 12px;
+  border: 1px solid #dee2e6;
+}
+
+/* ── Added Rows Table ── */
+.InwardJobworkstatus .table-responsive {
+  overflow-x: auto;
+}
+
+.InwardJobworkstatus .table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.InwardJobworkstatus .table th {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 8px;
+  border: 1px solid #dee2e6;
+}
+
+.InwardJobworkstatus .table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid #dee2e6;
+}
+
+.InwardJobworkstatus .table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.InwardJobworkstatus .table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* ── General Details Section ── */
+.StoreInwardJobworkFooter {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.StoreInwardJobworkFooter .nav-pills .nav-link {
+  background-color: #e9ecef;
+  color: #333;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+}
+
+.StoreInwardJobworkFooter .nav-pills .nav-link.active {
+  background-color: #16bfff;
+  color: white;
+}
+
+.StoreInwardJobworks .table th {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 8px;
+  border: 1px solid #dee2e6 !important;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.StoreInwardJobworks .table td {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.StoreInwardJobworks .form-control,
+.StoreInwardJobworks .form-select {
+  font-size: 12px;
+  padding: 3px 6px;
+  height: 28px;
+}
+
+/* ── Primary Button ── */
+.pobtn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.pobtn:hover {
+  background-color: #0056b3;
+}
+
+/* ── Jobwork List Button ── */
+.jobwork-list-btn {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid #ccc !important;
+  transition: all 0.2s ease-in-out;
+  font-size: 13px;
+}
+
+.jobwork-list-btn:hover,
+.jobwork-list-btn:active,
+.jobwork-list-btn:focus {
+  background-color: #0d6efd !important;
+  color: white !important;
+  border-color: #0d6efd !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767.98px) {
+  .InwardJobwork-header {
+    text-align: center;
+  }
+  .pobtn {
+    width: 100%;
+  }
+  .StoreInwardJobworks .table th,
+  .StoreInwardJobworks .table td {
+    font-size: 10px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 576px) {
+  .InwardJobworkstatus .table th,
+  .InwardJobworkstatus .table td {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Golden Standard Layout Adjustments */
+.NewStoreInwardJobwork .main-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background-color: #f1f5f9;
+  padding: 24px;
+}
+
+.NewStoreInwardJobwork .shifted {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+.NewStoreInwardJobwork .form-control,
+.NewStoreInwardJobwork .form-select {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.NewStoreInwardJobwork .form-control:focus,
+.NewStoreInwardJobwork .form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+}
+
+.NewStoreInwardJobwork .btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #4f46e5);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.NewStoreInwardJobwork .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #2563eb, #4338ca);
+}
+
+.NewStoreInwardJobwork .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.NewStoreInwardJobwork .table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.NewStoreInwardJobwork .table th {
+  white-space: nowrap !important;
+  font-size: 0.65rem !important;
+  padding: 10px !important;
+  text-transform: uppercase !important;
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.NewStoreInwardJobwork .table td {
+  padding: 12px 16px;
+  vertical-align: middle;
+  font-size: 0.85rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Tab Pills Styling */
+.NewStoreInwardJobwork .nav-pills .nav-link {
+  color: #64748b;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+}
+
+.NewStoreInwardJobwork .nav-pills .nav-link:hover {
+  color: #3b82f6;
+  background-color: #f8fafc;
+}
+
+.NewStoreInwardJobwork .nav-pills .nav-link.active {
+  color: #2563eb;
+  background-color: transparent;
+  border-bottom: 2px solid #2563eb;
+}
+
+
+.NewStoreInwardJobwork .btn-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3) !important;
+}
+
+.NewStoreInwardJobwork .btn-success:hover {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+.NewStoreInwardJobwork .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3) !important;
+}
+
+.NewStoreInwardJobwork .btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  box-shadow: 0 6px 8px -1px rgba(239, 68, 68, 0.4) !important;
+  transform: translateY(-1px);
+}

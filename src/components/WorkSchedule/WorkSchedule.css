@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.Workschedule1-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Workschedule1-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+.Workschedulemaster .Workschedulebtn {
+  border: none;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.Workschedulebtn:hover {
+  background-color: #0057b38d;
+}
+
+.WorkscheduleMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+
+.Workscheduleselect .btn i {
+  margin-right: 5px;
+}
+
+@media (max-width: 767.98px) {
+  .WorkscheduleMain {
+    padding: 10px;
+  }
+
+  .Workscheduleselect {
+    padding: 10px;
+  }
+}
+
+.WorkscheduleTable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.WorkscheduleTable .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.WorkscheduleTable .table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.WorkscheduleTable .table-primary th {
+  background-color: #007bff;
+  color: white;
+}
+
+.WorkscheduleTable .table th,
+.WorkscheduleTable .table td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.WorkscheduleTable .table .Workscheduletableww {
+  padding: 0.25rem 0.5rem;
+  align-items: center;
+  border: none;
+
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.WorkscheduleTable .record-count {
+  margin-top: 10px;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .WorkscheduleTable {
+    padding: 10px;
+  }
+
+  .WorkscheduleTable .table-responsive {
+    overflow-x: auto;
+  }
+}

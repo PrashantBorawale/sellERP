@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styling */
+.Shift-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Shift-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.ShiftMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+
+.Shifttable .table th,
+.Shifttable .table td {
+  white-space: nowrap;
+}
+.Shiftbtnicon {
+  border: none;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .Shiftbtn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .ShiftMainbtn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .ShiftMain .row {
+    flex-direction: column;
+  }
+
+  .ShiftMain .col-md-3,
+  .ShiftMain .col-md-6,
+  .ShiftMain .col-md-1,
+  .ShiftMain .col-md-2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ShiftMain .col-md-6 input {
+    width: 100%;
+  }
+}

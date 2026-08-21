@@ -1,0 +1,54 @@
+/* General Styles */
+.jobworkpoinfo {
+  padding: 20px 20px;
+  background-color: white;
+  margin: 20px 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.modal-content {
+  max-width: 100%;
+}
+
+.jobbtn {
+  border: none;
+  padding: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .jobworkpoinfo {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .modal-content {
+    margin: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0;
+    width: 100%;
+  }
+
+  .modal-body {
+    padding: 10px;
+  }
+}

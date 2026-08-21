@@ -1,0 +1,979 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import NavBar from "../../../NavBar/NavBar.js";
+import SideNav from "../../../SideNav/SideNav.js";
+import "./JobworkInwardChallan.css";
+
+import { toast, ToastContainer } from "react-toastify";
+import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
+
+const JobworkInwardChallan = () => {
+  const navigate = useNavigate();
+  const [sideNavOpen, setSideNavOpen] = useState(false);
+  const [gateEntryData, setGateEntryData] = useState([]);
+  const [selectedGateEntry, setSelectedGateEntry] = useState();
+  const [challanNumbers, setChallanNumbers] = useState([]);
+  const [PO, setPO] = useState([]);
+  const [itemSearchTerm, setItemSearchTerm] = useState("");
+  const [showItemDropdown, setShowItemDropdown] = useState(false);
+  const [selectedItemType, setSelectedItemType] = useState("All");
+
+  // BOM Items state
+  const [bomItems, setBomItems] = useState({}); // raw API response
+  const [itemCodeOptions, setItemCodeOptions] = useState([]); // ["FG001 - CAP OIL LOCK", ...]
+  const [fgPartCodeOptions, setFgPartCodeOptions] = useState([]); // PartCodes for selected item
+  const itemDropdownRef = React.useRef(null);
+
+  // Series & Plant state
+  const [selectedSeries, setSelectedSeries] = useState("Select");
+  const [inputNo, setInputNo] = useState("");
+
+  // Table rows state
+  const [tableRows, setTableRows] = useState([]);
+  const [editingRowIndex, setEditingRowIndex] = useState(null);
+
+  // Current row being filled
+  const [currentRow, setCurrentRow] = useState({
+    ItemCode: "",
+    FGPartCode: "",
+    ChallanQty: "",
+    GRNQty: "",
+    GRNUnit: "",
+    MaterialRateChallan: "",
+    MaterialRateGRN: "",
+    HeatNo: "",
+    CustHeatNo: "",
+    RMSpecification: "",
+    ParticularNatureOfProcess: "",
+  });
+
+  const toggleSideNav = () => {
+    setSideNavOpen((prevState) => !prevState);
+  };
+
+  const fetchGateEntryData = async () => {
+    try {
+      const res = await fetch("https://sellerp-backend.onrender.com/Store/general-details/");
+      const resData = await res.json();
+      setGateEntryData(resData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchItems = async () => {
+    if (selectedItemType === "RM") {
+      try {
+        const res = await fetch("https://sellerp-backend.onrender.com/All_Masters/api/rm-items/");
+        const resData = await res.json();
+        
+        const transformedData = {};
+        resData.forEach(item => {
+          const newKey = `${item.part_no} | ${item.Part_Code} | ${item.Name_Description}`;
+          transformedData[newKey] = item;
+        });
+        
+        setBomItems(transformedData);
+        setItemCodeOptions(Object.keys(transformedData));
+      } catch (err) {
+        console.log("Error fetching RM items:", err);
+      }
+    } else {
+      try {
+        const res = await fetch("https://sellerp-backend.onrender.com/All_Masters/api/bom-items/");
+        const resData = await res.json();
+
+        // Transform keys to "FGCode - Name - ID" instead of "ID - Name - FGCode"
+        const transformedData = {};
+        Object.keys(resData).forEach(key => {
+          const parts = key.split(" - ");
+          if (parts.length === 3) {
+            // parts are [ID, Name, FGCode] -> swap to [FGCode, Name, ID]
+            const [id, name, fgCode] = parts;
+            const newKey = `${fgCode} - ${name} - ${id}`;
+            transformedData[newKey] = resData[key];
+          } else {
+            transformedData[key] = resData[key];
+          }
+        });
+
+        setBomItems(transformedData);
+        setItemCodeOptions(Object.keys(transformedData));
+      } catch (err) {
+        console.log("Error fetching BOM items:", err);
+      }
+    }
+  };
+
+  const fetchChallanNo = async (series) => {
+    try {
+      const res = await fetch(`https://sellerp-backend.onrender.com/Store/jobwork-challan-no/?series=${series}`);
+      const resData = await res.json();
+      // Key from API is "InwardF4No"
+      const challanNo = resData.InwardF4No || "";
+      setFormData((prev) => ({ ...prev, InwardF4No: challanNo }));
+      setInputNo(challanNo);
+    } catch (err) {
+      console.log("Error fetching challan no:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (sideNavOpen) {
+      document.body.classList.add("side-nav-open");
+    } else {
+      document.body.classList.remove("side-nav-open");
+    }
+  }, [sideNavOpen]);
+
+  useEffect(() => {
+    fetchItems();
+  }, [selectedItemType]);
+
+  useEffect(() => {
+    fetchGateEntryData();
+
+    const handleClickOutside = (event) => {
+      if (itemDropdownRef.current && !itemDropdownRef.current.contains(event.target)) {
+        setShowItemDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const [formData, setFormData] = useState({
+    InwardF4No: "",
+    InwardDate: "",
+    InwardTime: "",
+    ChallanNo: "",
+    ChallanDate: "",
+    SubVendor: "",
+    DcNo: "",
+    DcDate: "",
+    EWayBillQty: "",
+    EWayBillNo: "",
+    VehicleNo: "",
+    LrNo: "",
+    Transporter: "",
+    PreparedBy: "",
+    CheckedBy: "",
+    VehicleTime: "",
+    TcNo: "",
+    TcDate: "",
+    Remark: "",
+    DeliveryInTime: "",
+    ClearingStatus: "",
+    VehicleOutTime: "",
+    GateEntryNo: "",
+    Customer: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCheckboxChange = (value) => {
+    setFormData((prev) => ({ ...prev, DeliveryInTime: value }));
+  };
+
+  const handleCurrentRowChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentRow((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // When Item Code is selected (via suggestion click), load its FG Part Codes from bom_items
+  const selectItemCode = (selectedKey) => {
+    setCurrentRow((prev) => ({ ...prev, ItemCode: selectedKey, FGPartCode: "" }));
+    setItemSearchTerm(selectedKey);
+    setShowItemDropdown(false);
+
+    if (selectedKey && bomItems[selectedKey]) {
+      const parts = bomItems[selectedKey].bom_items || [];
+      // Store full objects instead of just strings
+      setFgPartCodeOptions(parts);
+    } else {
+      setFgPartCodeOptions([]);
+    }
+  };
+
+  const handleFGPartCodeChange = (e) => {
+    const selectedFull = e.target.value;
+    if (!selectedFull) {
+      setCurrentRow(prev => ({ ...prev, FGPartCode: "", ParticularNatureOfProcess: "" }));
+      return;
+    }
+
+    // The value is "OPNo | PartCode | Operation"
+    const parts = selectedFull.split(" | ");
+    const partCode = parts[1] || "";
+    const operation = parts[2] || "";
+
+    setCurrentRow(prev => ({
+      ...prev,
+      FGPartCode: selectedFull, // Store the full string for display
+      FGPartCodeShort: partCode, // Keep a short version for internal logic if needed
+      ParticularNatureOfProcess: operation // Auto-fill Operation
+    }));
+  };
+
+  // Add or update row in the table
+  const handleAddRow = () => {
+    if (!currentRow.ItemCode) {
+      toast.error("Item Code is required to add a row.");
+      return;
+    }
+
+    if (editingRowIndex !== null) {
+      // Update existing row
+      const updatedRows = [...tableRows];
+      updatedRows[editingRowIndex] = { ...currentRow };
+      setTableRows(updatedRows);
+      setEditingRowIndex(null);
+      toast.success("Row updated successfully");
+    } else {
+      setTableRows((prev) => [...prev, { ...currentRow }]);
+      toast.success("Row added successfully");
+    }
+
+    // Reset current row
+    setCurrentRow({
+      ItemCode: "",
+      FGPartCode: "",
+      ChallanQty: "",
+      GRNQty: "",
+      GRNUnit: "",
+      MaterialRateChallan: "",
+      MaterialRateGRN: "",
+      HeatNo: "",
+      CustHeatNo: "",
+      RMSpecification: "",
+      ParticularNatureOfProcess: "",
+    });
+    setItemSearchTerm("");
+    setFgPartCodeOptions([]);
+  };
+
+  const handleEditRow = (index) => {
+    const row = tableRows[index];
+    setCurrentRow({ ...row });
+    setEditingRowIndex(index);
+    setItemSearchTerm(row.ItemCode);
+    // Restore FG Part Code options for the selected item
+    if (row.ItemCode && bomItems[row.ItemCode]) {
+      const parts = bomItems[row.ItemCode].bom_items || [];
+      setFgPartCodeOptions(parts);
+    }
+  };
+
+  const handleDeleteRow = (index) => {
+    setTableRows((prev) => prev.filter((_, i) => i !== index));
+    toast.info("Row deleted");
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.DeliveryInTime) {
+      newErrors.DeliveryInTime = "Please select Yes or No for Delivery In Time.";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChangeGateEntry = async (e) => {
+    const selectedGE_No = e.target.value;
+    const entryObj = gateEntryData.find(
+      (ent) => String(ent.GE_No) === selectedGE_No
+    );
+    setSelectedGateEntry(entryObj);
+    const customerName = entryObj?.Supp_Cust?.replace(/^\d+\s*-\s*/, "") || "";
+    setFormData((prev) => ({
+      ...prev,
+      GateEntryNo: selectedGE_No,
+      Customer: customerName,
+    }));
+
+    try {
+      const res = await fetch(
+        "https://sellerp-backend.onrender.com/Sales/supplierview/?supplier=" + customerName
+      );
+      const resData = await res.json();
+      setChallanNumbers(resData.challans);
+
+      const res2 = await fetch(
+        "https://sellerp-backend.onrender.com/Store/newjobworkpodetails/?supplier=" + customerName
+      );
+      const resData2 = await res2.json();
+      setPO(resData2.purchase_orders);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Build and POST the payload
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) {
+      toast.error("Please fill in the required fields");
+      return;
+    }
+
+    // Map tableRows to the API's JobworkInwardChallanTable format
+    const JobworkInwardChallanTable = tableRows.map((row) => ({
+      ItemCode: row.ItemCode,
+      Operation: row.ParticularNatureOfProcess,
+      ChallanQty: row.ChallanQty,
+      GRNQty: row.GRNQty,
+      MaterialRate: row.MaterialRateChallan,
+      HeatNo: row.HeatNo,
+      CustHeatNo: row.CustHeatNo,
+      ParticularNatureOfProcess: row.ParticularNatureOfProcess,
+      FGPartCode: (row.FGPartCode || "").toUpperCase(),
+    }));
+
+    const payload = {
+      Plant: "Produlink",
+      Series: selectedSeries,
+      NO: inputNo,
+      GateEntryNo: formData.GateEntryNo,
+      Customer: formData.Customer,
+      SelectItem: "",
+      ItemCode: tableRows[0]?.ItemCode || "",
+      FGPartCode: (tableRows[0]?.FGPartCode || "").toUpperCase(),
+      ChallanQty: tableRows[0]?.ChallanQty || "",
+      GRNQty: tableRows[0]?.GRNQty || "",
+      MaterialRate: tableRows[0]?.MaterialRateChallan || "",
+      HeatNo: tableRows[0]?.HeatNo || "",
+      CustHeatNo: tableRows[0]?.CustHeatNo || "",
+      RMSpecification: tableRows[0]?.RMSpecification || "",
+      PaticularNatureOfProcess: tableRows[0]?.ParticularNatureOfProcess || "",
+      InwardF4No: formData.InwardF4No,
+      InwardDate: formData.InwardDate,
+      InwardTime: formData.InwardTime,
+      ChallanNo: formData.ChallanNo,
+      ChallanDate: formData.ChallanDate,
+      SubVendor: formData.SubVendor,
+      DCNo: formData.DcNo,
+      DCDate: formData.DcDate,
+      WayBillQty: formData.EWayBillQty,
+      WayBillNo: formData.EWayBillNo,
+      VehicleNo: formData.VehicleNo,
+      LrNo: formData.LrNo,
+      Transporter: formData.Transporter,
+      PrepartedBy: formData.PreparedBy,
+      CheckedBy: formData.CheckedBy,
+      VehicleInTime: formData.VehicleTime,
+      TCNo: formData.TcNo,
+      TCDate: formData.TcDate,
+      Remark: formData.Remark,
+      DevileryInTime: formData.DeliveryInTime,
+      ClearingStatus: formData.ClearingStatus,
+      VehicleOutTime: formData.VehicleOutTime,
+      JobworkInwardChallanTable,
+    };
+
+    try {
+      const response = await fetch(
+        "https://sellerp-backend.onrender.com/Store/JobworkInwardChallan/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        const errData = await response.json();
+        console.error("API Error:", errData);
+        toast.error("Error submitting data: " + JSON.stringify(errData));
+        return;
+      }
+
+      const data = await response.json();
+      console.log("Submitted successfully:", data);
+      toast.success("Challan saved successfully!");
+
+      // Reset form after success
+      setFormData({
+        InwardF4No: "", InwardDate: "", InwardTime: "", ChallanNo: "",
+        ChallanDate: "", SubVendor: "", DcNo: "", DcDate: "",
+        EWayBillQty: "", EWayBillNo: "", VehicleNo: "", LrNo: "",
+        Transporter: "", PreparedBy: "", CheckedBy: "", VehicleTime: "",
+        TcNo: "", TcDate: "", Remark: "", DeliveryInTime: "",
+        ClearingStatus: "", VehicleOutTime: "", GateEntryNo: "", Customer: "",
+      });
+      setTableRows([]);
+      setSelectedGateEntry(null);
+
+      // Fetch new challan no for the currently selected series
+      if (selectedSeries !== "Select") {
+        await fetchChallanNo(selectedSeries);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      toast.error("Network error while submitting data");
+    }
+  };
+
+  return (
+    <div className="NewStoreInwardJobwork">
+      <ToastContainer />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="Main-NavBar">
+              <NavBar toggleSideNav={toggleSideNav} />
+              <SideNav sideNavOpen={sideNavOpen} toggleSideNav={toggleSideNav} />
+              <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
+                {/* ── Header ── */}
+                <div className="InwardJobwork-header mb-2 text-start">
+  <h5 className="header-title mb-0" style={{ fontWeight: 800, fontSize: '1.8rem', background: 'linear-gradient(90deg, #2563eb, #4f46e5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '16px' }}>Jobwork Inward Challan</h5>
+  <div className="d-flex flex-wrap align-items-center gap-3 w-100 mt-2" style={{ overflowX: "auto" }}>
+
+                    <select id="sharpSelect" className="form-select w-auto" style={{ minWidth: "90px", fontSize: "0.8rem", padding: "4px 25px 4px 8px" }}>
+                      <option defaultValue>Produlink</option>
+                    </select>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <label htmlFor="seriesSelect" className="mb-0" style={{ fontSize: "0.85rem" }}>Series:</label>
+                      <select
+                        id="seriesSelect"
+                        className="form-select w-auto"
+                        style={{ fontSize: "0.8rem", padding: "4px 25px 4px 8px" }}
+                        value={selectedSeries}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setSelectedSeries(val);
+                          if (val !== "Select") {
+                            fetchChallanNo(val);
+                          }
+                        }}
+                      >
+                        <option value="Select">Select</option>
+                        <option value="57F4">Jobwork 57F4 Inward</option>
+                        <option value="57F4 Return">Non Return Inward</option>
+                        <option value="Process Loss/Scrap">Cust Rework</option>
+                      </select>
+                      <input
+                        type="text"
+                        className="form-control ms-5"
+                        style={{ width: "110px", fontSize: "0.8rem", padding: "4px 8px" }}
+                        placeholder="Enter value"
+                        value={inputNo}
+                        onChange={(e) => setInputNo(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="mb-0" style={{ fontSize: "0.85rem" }}>Gate Entry No:</span>
+                      <select
+                        onChange={handleChangeGateEntry}
+                        className="form-select w-auto"
+                        style={{ maxWidth: "150px", fontSize: "0.8rem", padding: "4px 20px 4px 8px" }}
+                        value={formData.GateEntryNo}
+                      >
+                        <option value="">Select</option>
+                        {gateEntryData?.map((item) => (
+                          <option key={item.GE_No} value={item?.GE_No}>
+                            {item?.GE_No} | {item?.Supp_Cust}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="mb-0" style={{ fontSize: "0.85rem" }}>Customer:</span>
+                      <input
+                        type="text"
+                        className="form-control w-auto"
+                        style={{ maxWidth: "200px", fontSize: "0.8rem", padding: "4px 8px" }}
+                        placeholder="Customer"
+                        value={formData.Customer}
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <button type="button" className="btn btn-primary" style={{ fontSize: "0.8rem", padding: "4px 12px", }}>Search</button>
+                      <button type="button" className="btn btn-danger" style={{ fontSize: "0.8rem", padding: "4px 12px", }}>Cancel</button>
+                      <button type="button" className="btn btn-primary" style={{ fontSize: "0.8rem", padding: "4px 12px", }} onClick={() => navigate("/Jobwork-Inward-Challan-List")}>
+                        Jobwork List
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* ── Item Entry Table ── */}
+                <div className="InwardJobwork-main mt-2">
+                  <div className="container-fluid text-start">
+                    <div className="table-responsive" style={(showItemDropdown && itemSearchTerm) ? { overflow: "visible" } : {}}>
+                      <table className="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>
+                              Select Item:
+                              <div className="d-flex">
+                                <label className="me-2"><input type="checkbox" name="selectAll" checked={selectedItemType === "All"} onChange={() => setSelectedItemType("All")} /> All</label>
+                                <label className="me-2"><input type="checkbox" name="selectRM" checked={selectedItemType === "RM"} onChange={() => setSelectedItemType("RM")} /> RM</label>
+                                <label><input type="checkbox" name="selectFG" checked={selectedItemType === "FG"} onChange={() => setSelectedItemType("FG")} /> FG</label>
+                              </div>
+                            </th>
+                            <th>Inward Qty</th>
+                            <th>Material Rate</th>
+                            <th>Heat No</th>
+                            <th>Cust Heat No</th>
+                            <th>RM Specification</th>
+                            <th>Particular/Nature Of Process</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div className="d-flex mb-1 position-relative align-items-center" ref={itemDropdownRef}>
+                                <div className="input-group flex-nowrap" style={{ maxWidth: "200px" }}>
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Item Search..."
+                                    value={itemSearchTerm}
+                                    onChange={(e) => {
+                                      const val = e.target.value;
+                                      setItemSearchTerm(val);
+                                      setShowItemDropdown(true);
+                                      if (!val) {
+                                        setCurrentRow(prev => ({ ...prev, ItemCode: "" }));
+                                        setFgPartCodeOptions([]);
+                                      }
+                                    }}
+                                    onFocus={() => setShowItemDropdown(true)}
+                                    style={{ fontSize: "0.9rem" }}
+                                  />
+                                  <button className="btn btn-outline-secondary d-flex align-items-center" type="button" onClick={() => setShowItemDropdown(!showItemDropdown)}>
+                                    <FaSearch style={{ transform: "translateY(-1px)" }} />
+                                  </button>
+                                </div>
+
+                                {showItemDropdown && itemSearchTerm && (
+                                  <ul className="list-group position-absolute w-100 z-3" style={{ top: "100%", left: 0, maxHeight: "200px", overflowY: "auto", fontSize: "0.85rem", border: "1px solid #ddd" }}>
+                                    {itemCodeOptions
+                                      .filter(opt => opt.toLowerCase().includes(itemSearchTerm.toLowerCase()))
+                                      .map((opt, idx) => (
+                                        <li
+                                          key={idx}
+                                          className="list-group-item list-group-item-action py-1 px-2"
+                                          style={{ cursor: "pointer" }}
+                                          onClick={() => selectItemCode(opt)}
+                                        >
+                                          {opt}
+                                        </li>
+                                      ))}
+                                    {itemCodeOptions.filter(opt => opt.toLowerCase().includes(itemSearchTerm.toLowerCase())).length === 0 && (
+                                      <li className="list-group-item disabled py-1 px-2">No items found</li>
+                                    )}
+                                  </ul>
+                                )}
+                              </div>
+                              <div className="d-flex mt-1">
+                                <label className="me-1 text-nowrap">FG Part Code:</label>
+                                <select
+                                  name="FGPartCode"
+                                  className="form-select flex-grow-1"
+                                  value={currentRow.FGPartCode}
+                                  onChange={handleFGPartCodeChange}
+                                  disabled={fgPartCodeOptions.length === 0}
+                                  style={{ paddingRight: "25px", minWidth: "250px", fontSize: "0.85rem" }}
+                                >
+                                  <option value="">-- Select FG Part Code --</option>
+                                  {fgPartCodeOptions.map((pc, idx) => {
+                                    const fullVal = `${pc.OPNo} | ${pc.PartCode} | ${pc.Operation}`;
+                                    return (
+                                      <option key={idx} value={fullVal}>
+                                        {fullVal}
+                                      </option>
+                                    );
+                                  })}
+                                </select>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="d-flex mb-1">
+                                <label className="me-1 text-nowrap">Challan Qty:</label>
+                                <input
+                                  name="ChallanQty"
+                                  className="form-control"
+                                  value={currentRow.ChallanQty}
+                                  onChange={handleCurrentRowChange}
+                                />
+                              </div>
+                              <div className="d-flex">
+                                <label className="me-1 text-nowrap">GRN Qty:</label>
+                                <input
+                                  name="GRNQty"
+                                  className="form-control"
+                                  value={currentRow.GRNQty}
+                                  onChange={handleCurrentRowChange}
+                                />
+                                <select
+                                  name="GRNUnit"
+                                  className="form-select"
+                                  value={currentRow.GRNUnit}
+                                  onChange={handleCurrentRowChange}
+                                >
+                                  <option value=""></option>
+                                  <option value="KG">KG</option>
+                                  <option value="NOS">NOS</option>
+                                </select>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="d-flex mb-1">
+                                <label className="me-1 text-nowrap">Challan:</label>
+                                <input
+                                  name="MaterialRateChallan"
+                                  className="form-control"
+                                  value={currentRow.MaterialRateChallan}
+                                  onChange={handleCurrentRowChange}
+                                />
+                              </div>
+                              <div className="d-flex">
+                                <label className="me-1 text-nowrap">GRN:</label>
+                                <input
+                                  name="MaterialRateGRN"
+                                  className="form-control"
+                                  value={currentRow.MaterialRateGRN}
+                                  onChange={handleCurrentRowChange}
+                                />
+                                <span className="ms-1">KG</span>
+                              </div>
+                            </td>
+                            <td>
+                              <input
+                                name="HeatNo"
+                                className="form-control"
+                                value={currentRow.HeatNo}
+                                onChange={handleCurrentRowChange}
+                              />
+                            </td>
+                            <td>
+                              <input
+                                name="CustHeatNo"
+                                className="form-control"
+                                value={currentRow.CustHeatNo}
+                                onChange={handleCurrentRowChange}
+                              />
+                            </td>
+                            <td>
+                              <textarea
+                                name="RMSpecification"
+                                className="form-control"
+                                value={currentRow.RMSpecification}
+                                onChange={handleCurrentRowChange}
+                              ></textarea>
+                            </td>
+                            <td>
+                              <textarea
+                                name="ParticularNatureOfProcess"
+                                className="form-control"
+                                value={currentRow.ParticularNatureOfProcess}
+                                onChange={handleCurrentRowChange}
+                              ></textarea>
+                            </td>
+                            <td>
+                              <button type="button" className="btn btn-success" onClick={handleAddRow}
+                              >
+                                {editingRowIndex !== null ? "UPDATE" : "ADD"}
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* ── Added Rows Table ── */}
+                  <div className="InwardJobworkstatus">
+                    <div className="container-fluid text-start">
+                      <div className="table-responsive">
+                        <table className="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Sr no.</th>
+                              <th>Item Code</th>
+                              <th>Operation</th>
+                              <th>Challan Qty</th>
+                              <th>GRN Qty</th>
+                              <th>Material Rate</th>
+                              <th>Heat No</th>
+                              <th>Cust. Heat No</th>
+                              <th>Particular/Nature Of Process</th>
+                              <th>HC</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {tableRows.length === 0 ? (
+                              <tr>
+                                <td colSpan="12" className="text-center text-muted">
+                                  No items added yet. Use the form above to add items.
+                                </td>
+                              </tr>
+                            ) : (
+                              tableRows.map((row, index) => (
+                                <tr key={index}>
+                                  <td>{index + 1}</td>
+                                  <td>{row.ItemCode}</td>
+                                  <td>{row.ParticularNatureOfProcess}</td>
+                                  <td>{row.ChallanQty}</td>
+                                  <td>{row.GRNQty}</td>
+                                  <td>{row.MaterialRateChallan}</td>
+                                  <td>{row.HeatNo}</td>
+                                  <td>{row.CustHeatNo}</td>
+                                  <td>{row.ParticularNatureOfProcess}</td>
+                                  <td>{row.RMSpecification}</td>
+                                  <td>
+                                    <FaEdit
+                                      style={{ cursor: "pointer", color: "#0d6efd" }}
+                                      onClick={() => handleEditRow(index)}
+                                    />
+                                  </td>
+                                  <td>
+                                    <FaTrash
+                                      style={{ cursor: "pointer", color: "#dc3545" }}
+                                      onClick={() => handleDeleteRow(index)}
+                                    />
+                                  </td>
+                                </tr>
+                              ))
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── General Detail Form ── */}
+                <div className="StoreInwardJobworkFooter">
+                  <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li className="nav-item" role="presentation">
+                      <button
+                        className="nav-link active"
+                        id="pills-Gernal-Detail-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-Gernal-Detail"
+                        type="button"
+                        role="tab"
+                        aria-controls="pills-Gernal-Detail"
+                        aria-selected="true"
+                      >
+                        General Detail
+                      </button>
+                    </li>
+                  </ul>
+
+                  <div className="tab-content" id="pills-tabContent">
+                    <div
+                      className="tab-pane fade show active"
+                      id="pills-Gernal-Detail"
+                      role="tabpanel"
+                      aria-labelledby="pills-Gernal-Detail-tab"
+                      tabIndex="0"
+                    >
+                      <div className="StoreInwardJobworks text-start">
+                        <div className="container-fluid">
+                          <form onSubmit={handleSubmit}>
+                            <div className="row">
+                              {/* Column 1 */}
+                              <div className="col-md-4 text-start">
+                                <div className="container-fluid">
+                                  <div className="table-responsive">
+                                    <table className="table table-bordered">
+                                      <tbody>
+                                        {[
+                                          { label: "Inward F4 No:", name: "InwardF4No", type: "text", readOnly: true },
+                                          { label: "Inward Date:", name: "InwardDate", type: "date" },
+                                          { label: "Inward Time:", name: "InwardTime", type: "text" },
+                                          { label: "Challan No:", name: "ChallanNo", type: "text" },
+                                          { label: "Challan Date:", name: "ChallanDate", type: "date" },
+                                          { label: "Sub Vendor:", name: "SubVendor", type: "text" },
+                                          { label: "D. C. No:", name: "DcNo", type: "text" },
+                                        ].map(({ label, name, type, readOnly }) => (
+                                          <tr key={name}>
+                                            <th className="col-md-4">{label}</th>
+                                            <td>
+                                              <input
+                                                type={type}
+                                                className="form-control"
+                                                name={name}
+                                                value={formData[name] || ""}
+                                                onChange={handleInputChange}
+                                                readOnly={readOnly}
+                                                style={readOnly ? { backgroundColor: "#e9ecef" } : {}}
+                                              />
+                                              {errors[name] && <span className="text-danger">{errors[name]}</span>}
+                                            </td>
+                                          </tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Column 2 */}
+                              <div className="col-md-4 text-start">
+                                <div className="container-fluid">
+                                  <div className="table-responsive text-start">
+                                    <table className="table table-bordered">
+                                      <tbody>
+                                        {[
+                                          { label: "D.C. Date:", name: "DcDate", type: "date" },
+                                          { label: "Way Bill Qty:", name: "EWayBillQty", type: "text" },
+                                          { label: "Way Bill No:", name: "EWayBillNo", type: "text" },
+                                          { label: "Vehicle No:", name: "VehicleNo", type: "text" },
+                                          { label: "Lr No:", name: "LrNo", type: "text" },
+                                          { label: "Transporter:", name: "Transporter", type: "text" },
+                                          { label: "Prepared By:", name: "PreparedBy", type: "text" },
+                                          { label: "Checked By:", name: "CheckedBy", type: "text" },
+                                        ].map(({ label, name, type }) => (
+                                          <tr key={name}>
+                                            <th className="col-md-4">{label}</th>
+                                            <td>
+                                              <input
+                                                type={type}
+                                                className="form-control"
+                                                name={name}
+                                                value={formData[name]}
+                                                onChange={handleInputChange}
+                                              />
+                                              {errors[name] && <span className="text-danger">{errors[name]}</span>}
+                                            </td>
+                                          </tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Column 3 */}
+                              <div className="col-md-4 text-start">
+                                <div className="container-fluid">
+                                  <div className="table-responsive">
+                                    <table className="table table-bordered">
+                                      <tbody>
+                                        <tr>
+                                          <th className="col-md-4">Vehicle in Time:</th>
+                                          <td>
+                                            <input type="text" className="form-control" name="VehicleTime" value={formData.VehicleTime} onChange={handleInputChange} />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th className="col-md-4">Tc No:</th>
+                                          <td>
+                                            <input type="text" className="form-control" name="TcNo" value={formData.TcNo} onChange={handleInputChange} />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th className="col-md-4">Tc Date:</th>
+                                          <td>
+                                            <input type="date" className="form-control" name="TcDate" value={formData.TcDate} onChange={handleInputChange} />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th className="col-md-4">Remark:</th>
+                                          <td>
+                                            <textarea className="form-control" name="Remark" value={formData.Remark} onChange={handleInputChange} rows="2"></textarea>
+                                          </td>
+                                        </tr>
+
+                                        <tr>
+                                          <th className="col-md-4">Delivery in Time:</th>
+                                          <td>
+                                            <div className="d-flex align-items-center gap-3">
+                                              <div className="form-check mb-0">
+                                                <input
+                                                  className="form-check-input"
+                                                  type="checkbox"
+                                                  name="DeliveryInTime"
+                                                  id="deliveryYes"
+                                                  checked={formData.DeliveryInTime === "yes"}
+                                                  onChange={() => handleCheckboxChange("yes")}
+                                                />
+                                                <label className="form-check-label" htmlFor="deliveryYes">
+                                                  Yes
+                                                </label>
+                                              </div>
+                                              <div className="form-check mb-0">
+                                                <input
+                                                  className="form-check-input"
+                                                  type="checkbox"
+                                                  name="DeliveryInTime"
+                                                  id="deliveryNo"
+                                                  checked={formData.DeliveryInTime === "no"}
+                                                  onChange={() => handleCheckboxChange("no")}
+                                                />
+                                                <label className="form-check-label" htmlFor="deliveryNo">
+                                                  No
+                                                </label>
+                                              </div>
+                                            </div>
+                                            {errors.DeliveryInTime && <span className="text-danger" style={{ fontSize: "0.75rem" }}>{errors.DeliveryInTime}</span>}
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th className="col-md-4">Clearing Status:</th>
+                                          <td>
+                                            <select className="form-select" name="ClearingStatus" value={formData.ClearingStatus} onChange={handleInputChange}>
+                                              <option value="">Select</option>
+                                              <option value="Pending">Pending</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="No">No</option>
+                                            </select>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th className="col-md-4">Vehicle Out Time:</th>
+                                          <td>
+                                            <input type="text" className="form-control" name="VehicleOutTime" value={formData.VehicleOutTime} onChange={handleInputChange} />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td colSpan="2" className="text-center">
+                                            <button type="submit" className="btn btn-primary">
+                                              Save Challan
+                                            </button>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default JobworkInwardChallan;

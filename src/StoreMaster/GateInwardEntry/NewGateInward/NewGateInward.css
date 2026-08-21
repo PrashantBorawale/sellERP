@@ -1,0 +1,75 @@
+/* General Styles */
+.NewGateInward-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.NewGateInward-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+.NewGateInward1{
+    background-color: white;
+   
+}
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  display: block;
+  color: #dc3545;
+}
+
+
+/* Adjust layout for small screens */
+@media (max-width: 767px) {
+    .NewGateInward1 .container-fluid {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  
+    .NewGateInward1 .row {
+      margin-bottom: 10px;
+    }
+  
+    .NewGateInward1 .form-select,
+    .NewGateInward1 .form-control {
+      font-size: 14px;
+    }
+  
+    .NewGateInward1 .btn {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  
+    .NewGateInward1 .col-md-4,
+    .NewGateInward1 .col-md-8 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  
+  /* Adjust layout for medium and larger screens */
+  @media (min-width: 768px) {
+    .NewGateInward1 .container-fluid {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  
+    .NewGateInward1 .form-select,
+    .NewGateInward1 .form-control {
+      font-size: 16px;
+    }
+  
+    .NewGateInward1 .btn {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  

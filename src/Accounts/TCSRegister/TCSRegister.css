@@ -1,0 +1,115 @@
+/* TCSRegister.css - Standardized with ToolManagement UI */
+
+.tcs-register {
+  padding: 1rem;
+}
+
+.tcs-register .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.tcs-register .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.tcs-register .shifted {
+  margin-left: 250px;
+}
+
+/* User Management Section */
+.tcs-register .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.tcs-register .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1fb5ff; /* Branded Blue */
+}
+
+.tcs-register .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.tcs-register .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.tcs-register .header-section .form-control,
+.tcs-register .header-section .form-select,
+.tcs-register .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.tcs-register .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.tcs-register .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tcs-register .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+  font-size: 14px;
+}
+
+.tcs-register .table {
+  background-color: #fff;
+}
+
+.tcs-register .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.tcs-register .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Pagination Styling */
+.pagination-box {
+  background-color: #1fb5ff;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.pagination-link {
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 10px;
+}
+
+/* Footer Summary Section */
+.tcs-register .footer-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}

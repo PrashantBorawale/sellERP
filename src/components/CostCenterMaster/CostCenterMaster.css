@@ -1,0 +1,218 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Costcenter-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Costcenter-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+
+
+
+.CostcenterMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+.CostcenterTable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.CostcenterTable .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.CostcenterTable .table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+
+
+
+.CostcenterTable .table .Costcentertableww {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.CostcenterTable .record-count {
+  margin-top: 10px;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .centerMain,
+  .centerselect {
+    padding: 10px;
+  }
+
+  .CostcenterTable {
+    padding: 10px;
+  }
+
+  .CostcenterTable .table th,
+  .CostcenterTable .table td {
+    padding: 0.5rem;
+  }
+} /* Cost Type Overlay */
+.costtype-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+}
+
+.costtype-overlay .new-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+  max-width: 900px;
+}
+
+.costtype-overlay .card-title {
+  color: blue;
+}
+
+.costtype-overlay .card-body {
+  color: black;
+}
+
+.costtype-overlay .card-btn {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.costtype-overlay .card-btn1 {
+  border: none;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.costtype-overlay .card-btn2 {
+  border: none;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* Cost Type 2 Overlay */
+.costtype2-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+}
+
+.costtype2-overlay .new-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.costtype2-overlay .card-title {
+  color: blue;
+}
+
+.costtype2-overlay .card-body {
+  color: black;
+}
+
+.costtype2-overlay .card-btn {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.costtype2-overlay .card-btn1 {
+  border: none;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.costtype2-overlay .card-btn2 {
+  border: none;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+@media (max-width: 767.98px) {
+  /* Adjustments for smaller screens */
+  .costtype-overlay .new-card,
+  .costtype2-overlay .new-card {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .costtype-overlay .card-btn1,
+  .costtype2-overlay .card-btn1 {
+    width: 50%;
+  }
+
+  .costtype-overlay .card-btn2,
+  .costtype2-overlay .card-btn2 {
+    width: 30%;
+  }
+}

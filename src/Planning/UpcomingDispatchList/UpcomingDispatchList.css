@@ -1,0 +1,123 @@
+/* UpcomingDispatchList.css - Unified ERP Design */
+
+.UpcomingDispatchListMaster {
+    background-color: #f0f0f0;
+    min-height: 100vh;
+}
+
+.UpcomingDispatchList {
+    background-color: #ffffff;
+}
+
+/* Header Section */
+.UpcomingDispatchList-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 15px;
+}
+
+.header-title {
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Filter Section */
+.UpcomingDispatchList-Filters {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px;
+    font-size: 11px;
+}
+
+.filter-label {
+    font-weight: 600;
+    color: #444;
+}
+
+.form-control-xs, .form-select-xs {
+    font-size: 11px;
+    height: 28px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+/* Buttons */
+.erp-btn-cyan {
+    display: inline-block;
+    background-color: #16bfff;
+    padding: 4px 12px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.erp-btn-cyan:hover {
+    background-color: #0ea8e6;
+}
+
+.erp-btn-grey-sm {
+    display: inline-block;
+    background-color: rgba(235, 233, 233, 0.685);
+    padding: 3px 10px;
+    margin-left: 2px;
+    font-size: 11px;
+    color: #000;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.erp-btn-grey-sm:hover {
+    background-color: #16bfff;
+    color: white;
+}
+
+/* Table Styling */
+.UpcomingDispatchList .erp-table thead th {
+    background-color: #16bfff;
+    color: white;
+    font-size: 11px;
+    padding: 6px 4px;
+    white-space: nowrap;
+    font-weight: 600;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.UpcomingDispatchList .erp-table tbody td {
+    padding: 4px;
+    vertical-align: middle;
+    font-size: 11px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.UpcomingDispatchList .table-responsive {
+    overflow: hidden; /* As requested to remove scrollbars */
+}
+
+/* Footer Section */
+.UpcomingDispatchList-Footer {
+    background-color: #e9ecef;
+    padding: 6px 15px;
+    font-size: 10px;
+    font-weight: 700;
+    border-top: 2px solid #16bfff;
+}
+
+.UpcomingDispatchList-Footer span {
+    border-right: 1px solid #ced4da;
+    padding-right: 10px;
+}
+
+.UpcomingDispatchList-Footer span:last-child {
+    border-right: none;
+}

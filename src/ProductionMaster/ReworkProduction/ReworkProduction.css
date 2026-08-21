@@ -1,0 +1,53 @@
+.ReworkProductionMaster {
+  font-family: Arial, sans-serif;
+}
+  
+ .ReworkProduction-header{
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 15px; /* Padding around header */
+  border-radius: 5px;
+}
+  .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .table-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .table-section {
+    margin-top: 2rem;
+  }
+  
+  .table input {
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 768px) {
+    .table-section {
+      overflow-x: auto;
+    }
+  
+    .table th, .table td {
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .form-section .row > div {
+      margin-bottom: 1rem;
+    }
+  
+    .form-actions {
+      text-align: center;
+    }
+  
+    .ReworkProduction-header {
+      text-align: center;
+    }
+  }
+  

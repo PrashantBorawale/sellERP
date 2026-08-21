@@ -1,0 +1,36 @@
+/* Accounts Template Layout */
+.accounts-template {
+  padding: 1rem;
+}
+
+.accounts-template .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.accounts-template .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.accounts-template .shifted {
+  margin-left: 250px;
+}
+
+.accounts-template .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.accounts-template .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.accounts-template .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

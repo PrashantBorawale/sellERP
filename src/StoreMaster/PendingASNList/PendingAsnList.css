@@ -1,0 +1,124 @@
+
+.ArnList-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .ArnList-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+.ArnList-main {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+}
+
+
+
+.StoreArnList .table-responsive {
+    overflow-x: auto;
+}
+
+.StoreArnList .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.StoreArnList .table th,
+.StoreArnList .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .header-title {
+        text-align: center;
+    }
+
+    .ArnList-header .col-md-9,
+    .ArnList-header .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .ArnList-header .row {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .d-flex {
+        display: block !important;
+        text-align: center;
+    }
+
+    .align-items-end {
+        justify-content: center !important;
+    }
+
+    .form-check {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .pobtn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+        font-size: 0.875rem;
+    }
+
+    .header-title {
+        font-size: 1rem;
+    }
+
+    .align-items-end {
+        display: block !important;
+        margin-bottom: 10px;
+    }
+
+    .ArnList-header .row {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .ArnList-main .form-label {
+        font-size: 0.875rem;
+    }
+
+    .ArnList-main .form-control,
+    .ArnList-main .form-select {
+        font-size: 0.875rem;
+    }
+
+    .ArnList-main .btn {
+        font-size: 0.875rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 6px;
+        font-size: 0.75rem;
+    }
+
+    .pobtn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

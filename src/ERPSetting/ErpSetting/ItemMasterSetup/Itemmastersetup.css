@@ -1,0 +1,206 @@
+/* General Styling */
+.Itemmastersetup {
+    font-family: Arial, sans-serif;
+  }
+  
+  .Itemmaster .Main-NavBar {
+    margin-bottom: 20px;
+  }
+  
+  .ItemSetup-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+ .Itemmaster  .header-title {
+    margin-bottom: 0;
+  }
+  .ItemSetup-header{
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+
+
+
+
+/* Form container styles */
+.Itemmastersetup .form-container {
+  background-color: #fff;
+  border:none;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Form columns layout */
+.Itemmastersetup .form-columns {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.Itemmastersetup .form-column {
+  flex: 1;
+  padding: 10px;
+  min-width: 250px;
+}
+
+/* Form field styles */
+.Itemmastersetup .form-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Itemmastersetup .checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.Itemmastersetup .checkbox-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.Itemmastersetup .checkbox-group label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.Itemmastersetup .field-label {
+  font-size: 0.9rem;
+}
+
+/* Tab styles */
+.Itemmastersetup .nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+  
+   border: none;
+
+}
+
+.Itemmastersetup .nav-tabs .Itemmastersetup .nav-link {
+  border: 1px solid transparent; 
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: #495057; 
+ 
+}
+
+.Itemmastersetup .nav-tabs .Itemmastersetup .nav-link:hover,
+.Itemmastersetup .nav-tabs .Itemmastersetup .nav-link:focus {
+  border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.Itemmastersetup .nav-tabs .Itemmastersetup .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+/* Button styles */
+.Itemmastersetup .btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.Itemmastersetup .btn:hover {
+  color: #fff;
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Select styles */
+.Itemmastersetup select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .ItemSetup-header .row {
+    flex-direction: column;
+  }
+
+  .ItemSetup-header .col-md-2,
+  .ItemSetup-header .col-md-1,
+  .ItemSetup-header .col-md-6 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ItemSetup-header .text-end {
+    text-align: left !important;
+  }
+
+  .form-columns {
+    flex-direction: column;
+  }
+
+  .form-column {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-title {
+    font-size: 1.1rem;
+  }
+
+  .Itemmastersetup .btn {
+    width: 100%;
+  }
+
+  .form-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .checkbox-group {
+    margin-bottom: 5px;
+  }
+}
+
+
+
+@media (max-width: 992px) {
+  .side-nav-open .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Custom scrollbar for better UX */
+.Itemmastersetup .form-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.Itemmastersetup .form-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.Itemmastersetup .form-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.Itemmastersetup .form-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

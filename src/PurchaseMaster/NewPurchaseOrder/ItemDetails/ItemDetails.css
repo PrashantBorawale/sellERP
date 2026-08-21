@@ -1,0 +1,127 @@
+
+
+.item-details .table-container,
+.item-table .table-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.item-details .table {
+  width: 100%;
+  table-layout: auto;
+}
+.item-table .table {
+  width: 100%;
+  table-layout: auto; /* Allow table columns to resize based on content */
+}
+
+.item-details .table th,
+.item-details .table td,
+.item-table .table th,
+.item-table .table td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  border: 1px solid #bbbfc37b;
+}
+
+
+
+.item-details .table td input,
+.item-details .table td select,
+.item-details .table td textarea,
+.item-table .table td input,
+.item-table .table td select,
+.item-table .table td textarea {
+  width: 100%; /* Make inputs and selects full width */
+}
+
+.item-details .table td label,
+.item-table .table td label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.item-details .table td,
+.item-table .table td {
+  min-width: 100px; /* Ensure each cell has a minimum width */
+}
+
+
+
+.item-table .table td button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dc3545; /* Red color for delete button */
+}
+
+.item-table .table td button:hover {
+  color: #c82333; /* Darker red on hover */
+}
+
+@media (max-width: 768px) {
+  .item-details .table-container,
+  .item-table .table-container {
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+  }
+
+  .item-details .table th,
+  .item-details .table td,
+  .item-table .table th,
+  .item-table .table td {
+    font-size: 12px; /* Adjust font size for small screens */
+    padding: 5px; /* Reduce padding for small screens */
+  }
+}
+
+@media (max-width: 520px) {
+  .item-details .table-container,
+  .item-table .table-container {
+    overflow-x: auto; /* Ensure horizontal scrolling on very small screens */
+  }
+
+  .item-details .table th,
+  .item-details .table td,
+  .item-table .table th,
+  .item-table .table td {
+    font-size: 10px; /* Further adjust font size for very small screens */
+    padding: 3px; /* Further reduce padding for very small screens */
+  }
+}
+.itemdetailsMain .pagination {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+
+.itemdetailsMain .pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.itemdetailsMain .pagination button.active {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.itemdetailsMain .pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive table wrapping and dropdown adjustments for Item Details */
+.item-details-wrapper .table th,
+.item-details-wrapper .table td {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  vertical-align: middle !important;
+}
+
+.item-details-wrapper .table-responsive {
+  overflow: visible !important;
+}

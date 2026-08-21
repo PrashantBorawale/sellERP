@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.InvoiceListMaster {
+  width: 100%;
+  height: 100vh;
+}
+
+.InvoiceList-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+}
+
+.InvoiceList-Main {
+  background-color: #f8f9fa;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.InvoiceList-footer {
+  background-color: #e9ecef;
+  padding: 6px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  border-top: 2px solid #16bfff;
+}
+
+.InvoiceList-footer span {
+  margin-right: 20px;
+}
+
+.InvoiceList .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+  margin: 0;
+}
+
+.InvoiceList .vndrbtn {
+  display: inline-block;
+  background-color: rgba(235, 233, 233, 0.685);
+  padding: 5px 10px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.InvoiceList .vndrbtn:hover {
+  background-color: #16bfff;
+  color: white;
+}
+
+.InvoiceList .form-select,
+.InvoiceList .form-control {
+  font-size: 12px;
+  height: 30px;
+  padding: 2px 8px;
+}
+
+.InvoiceList label {
+  font-size: 12px;
+}
+
+.InvoiceList .table-responsive {
+  overflow-x: auto;
+}
+
+.InvoiceList .table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0;
+  background-color: transparent;
+}
+
+.InvoiceList .table th {
+  background-color: #16bfff;
+  color: white;
+  font-size: 12px;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
+.InvoiceList .table td {
+  padding: 4px 8px;
+  vertical-align: middle;
+  font-size: 11px;
+  border-top: 1px solid #dee2e6;
+}
+
+.InvoiceList .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.InvoiceList .table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.InvoiceList .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.InvoiceList .table-hover tbody tr:hover {
+  background-color: rgba(22, 191, 255, 0.08);
+}
+
+.InvoiceList .badge-true {
+  background-color: #28a745;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.InvoiceList .badge-false {
+  background-color: #dc3545;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.InvoiceList .action-btn {
+  padding: 2px 6px;
+  font-size: 11px;
+  margin: 0 1px;
+  border: none;
+  cursor: pointer;
+}
+
+.InvoiceList .loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #16bfff;
+  font-size: 14px;
+}
+
+/* Mobile devices (up to 576px) */
+@media (max-width: 576px) {
+  .InvoiceList .header-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .InvoiceList .vndrbtn {
+    padding: 4px 8px;
+    margin: 5px 0;
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+
+  .InvoiceList .form-select,
+  .InvoiceList .form-control,
+  .InvoiceList label {
+    font-size: 10px;
+  }
+
+  .InvoiceList .table th,
+  .InvoiceList .table td {
+    font-size: 10px;
+    padding: 0.4rem;
+  }
+}
+
+/* Tablets (577px to 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+  .InvoiceList .header-title {
+    font-size: 18px;
+  }
+
+  .InvoiceList .vndrbtn {
+    padding: 5px 10px;
+  }
+
+  .InvoiceList .form-select,
+  .InvoiceList .form-control,
+  .InvoiceList label {
+    font-size: 11px;
+  }
+
+  .InvoiceList .table th,
+  .InvoiceList .table td {
+    font-size: 11px;
+  }
+}
+
+/* Laptops and desktops (769px and above) */
+@media (min-width: 769px) {
+  .InvoiceList .header-title {
+    font-size: 20px;
+  }
+
+  .InvoiceList .form-select,
+  .InvoiceList .form-control,
+  .InvoiceList label {
+    font-size: 12px;
+  }
+
+  .InvoiceList .table th,
+  .InvoiceList .table td {
+    font-size: 12px;
+  }
+}

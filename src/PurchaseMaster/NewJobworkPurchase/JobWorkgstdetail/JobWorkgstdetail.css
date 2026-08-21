@@ -1,0 +1,99 @@
+.JobworkGStDetails {
+  padding: 15px;
+  background-color: white;
+  margin: 10px;
+}
+
+/* Table layout */
+.JobworkGStDetails .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Ensure responsive scrolling for wide tables */
+.JobworkGStDetails .table-responsive {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Header styling */
+.fixed-table th {
+  background-color: #00bfff;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+/* Cell alignment */
+.fixed-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+/* Input styling inside table */
+.fixed-table td input {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 0 6px;
+  outline: none;
+  margin: auto;
+  display: block;
+}
+
+/* Table column sizing */
+.fixed-table th,
+.fixed-table td {
+  min-width: 150px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Better look on smaller screens */
+@media (max-width: 768px) {
+  .fixed-table td input {
+    height: 28px;
+    font-size: 12px;
+  }
+  .fixed-table th, .fixed-table td {
+    min-width: 90px;
+  }
+}
+
+/* Lower section tables */
+.jobworkgsttable {
+  padding: 15px;
+}
+
+.jobworkgsttable .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jobworkgsttable .table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+.jobworkgsttable .table input[type="text"] {
+  width: 100%;
+  height: 32px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+
+.jobworkgsttable .table label {
+  font-weight: 500;
+  margin: 0;
+}

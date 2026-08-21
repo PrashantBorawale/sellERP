@@ -1,0 +1,117 @@
+.PaddingSalesQCMaster {
+  margin-top: -10px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+.PaddingSalesQC-header {
+  background-color: #f8f9fa;
+  /* Light background for header */
+  border-bottom: 1px solid #dee2e6;
+  /* Border for header */
+  padding: 15px;
+  /* Padding around header */
+  border-radius: 5px;
+}
+
+.PaddingSalesQC-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.PaddingSalesQC-filter {
+  background-color: #f8f9fa;
+  /* Light background for header */
+  border-bottom: 1px solid #dee2e6;
+  /* Border for header */
+  padding: 15px;
+  /* Padding around header */
+  border-radius: 5px;
+}
+
+/* Filter Section */
+.PaddingSalesQC-filter {
+  padding: 20px;
+}
+
+.PaddingSalesQC-filter .form-label {
+  font-weight: bold;
+}
+
+/* Table Styling */
+.PaddingSalesQC-Main .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table th {
+
+  font-weight: bold;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .PaddingSalesQC-header {
+    text-align: center;
+  }
+
+  .PaddingSalesQC-filter .row>div {
+    margin-bottom: 15px;
+  }
+
+  .PaddingSalesQC-header .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .PaddingSalesQC-filter .form-select,
+  .PaddingSalesQC-filter .form-control {
+    width: 100%;
+  }
+}
+
+/* Save Report Button Right Side */
+.save-report-container {
+  display: flex;
+  justify-content: flex-end;
+  /* Move to right */
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+/* Remove extra table spacing */
+.table {
+  margin-bottom: 0 !important;
+}
+
+.table thead,
+.table tbody {
+  border: 0 !important;
+}
+
+.table tr {
+  margin: 0;
+}
+
+.table td,
+.table th {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}

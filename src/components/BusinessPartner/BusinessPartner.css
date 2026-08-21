@@ -1,0 +1,170 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent scrolling when needed */
+body.no-scroll {
+  overflow: hidden;
+}
+
+
+/* Business Section Styling */
+.Bussiness {
+  width: 100%;
+  
+  min-height: 100vh; /* Ensures full viewport height */
+}
+
+.bussiness1 {
+ margin-top: 40px;
+}
+
+.bussiness1-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.bussiness1-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.bussiness-main {
+  /* background-color: #f8f9fa;; */
+  padding: 10px 15px;
+  margin: 10px 15px;
+  text-align: left;
+}
+
+.bussiness-main .form-control,
+.bussiness-main .form-select {
+  margin-bottom: 10px;
+}
+
+/* Button Styles */
+.btn-bus {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-bus:hover {
+  background-color: rgba(220, 220, 220, 0.8);
+}
+
+.btn-fg,
+.btn-ty,
+.bsi-btn {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-fg {
+  padding: 5px 10px;
+}
+
+.btn-ty,
+.bsi-btn {
+  padding: 8px 16px;
+}
+
+.btn-fg:hover,
+.btn-ty:hover,
+.bsi-btn:hover {
+  background-color: rgba(220, 220, 220, 0.8);
+  
+}
+
+/* Bottom Section */
+.bus-bottom {
+  padding: 20px 30px;
+  margin-top: 30px;
+}
+
+.bus-bottom .form-check {
+  margin-bottom: 10px;
+}
+
+.bus-bottom .form-check-label {
+  font-size: 16px;
+}
+
+/* Responsive Design */
+
+/* Tablets and Small Screens */
+@media (max-width: 767px) {
+  .bussiness-main .form-control,
+  .bussiness-main .form-select {
+    margin-bottom: 15px;
+  }
+
+  .btn-ty,
+  .bsi-btn {
+    width: 100%;
+    margin-top: 10px;
+
+  }
+
+  .bus-bottom .form-check-label {
+    font-size: 14px;
+  }
+
+  .btn-fg {
+    margin: 2px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 360px) {
+  .bussiness-main .form-control,
+  .bussiness-main .form-select {
+    margin-bottom: 15px;
+  }
+
+  .btn-ty,
+  .bsi-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .bus-bottom .form-check-label {
+    font-size: 14px;
+  }
+
+  .btn-fg {
+    margin: 2px;
+  }
+}
+:root {
+  --primary-bg-color:  #f8f9fa;
+  --secondary-bg-color: rgb(241, 242, 244);
+  --button-bg-color: rgba(235, 233, 233, 0.685);
+  --button-hover-bg-color: rgba(220, 220, 220, 0.8);
+}
+
+.bussiness-main {
+  background-color: var(--primary-bg-color);
+  /* other styles */
+}
+
+.btn-bus {
+  background-color: var(--button-bg-color);
+  /* other styles */
+}
+
+.btn-bus:hover {
+  background-color: var(--button-hover-bg-color);
+}

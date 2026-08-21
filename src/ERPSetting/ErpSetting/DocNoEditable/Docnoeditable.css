@@ -1,0 +1,88 @@
+.Docnoeditable .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .Docnoeditable-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .Docnoeditable {
+    font-family: Arial, sans-serif;
+  }
+
+  
+  
+  .Docnoeditable .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .Docnoeditable .header-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .Docnoeditable .button-group .btn {
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+  .Docnoeditable .button-group .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .Docnoeditable-section label {
+    font-weight: bold;
+  }
+  
+  .Docnoeditable-section .form-control {
+    margin-bottom: 10px;
+  }
+  
+  .Docnoeditable .table-section {
+    margin-top: 20px;
+  }
+  
+  .Docnoeditable .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .Docnoeditable .table .form-control {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .Docnoeditable   .main-content {
+      margin-left: 0;
+    }
+  
+    .Docnoeditable  .header-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .Docnoeditable   .Docnoeditable-section .row {
+      flex-direction: column;
+    }
+  
+    .Docnoeditable  .Docnoeditable-section .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .Docnoeditable  .button-group .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

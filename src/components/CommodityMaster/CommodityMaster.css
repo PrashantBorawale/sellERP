@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.Commodity-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Commodity-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+
+
+
+.CommodityMainerty {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+.CommodityTable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.CommodityTable .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.CommodityTable .table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.CommodityTable .table-primary th {
+  background-color: #007bff7e;
+  color: white;
+}
+
+.CommodityTable .table th {
+  text-align: start;
+  vertical-align: middle;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.CommodityTable .table td {
+  height: 200px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.CommodityTable .table .Commoditytableww {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.CommodityTable .record-count {
+  margin-top: 10px;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .centerMain,
+  .centerselect {
+    padding: 10px;
+  }
+
+  .CommodityTable {
+    padding: 10px;
+  }
+
+  .CommodityTable .table th,
+  .CommodityTable .table td {
+    padding: 0.5rem;
+  }
+}

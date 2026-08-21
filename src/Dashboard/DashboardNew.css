@@ -1,0 +1,2160 @@
+/* ════════════════════════════════════════
+   DashboardNew.css  –  Modern Analytics UI
+   ════════════════════════════════════════ */
+
+/* Layout overrides for new design */
+.dn-main {
+  padding: 0 32px !important;
+  background: #f0f4fc;
+  gap: 0;
+}
+
+/* ─── Department Cards Row ─── */
+.dn-dept-cards-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* ─── Department Card ─── */
+.dn-dept-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 8px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  border: 1px solid #eef2f8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  min-width: 0;
+}
+
+.dn-dept-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(80, 120, 220, 0.1);
+  border-color: #dbe4f0;
+}
+
+.dn-dept-card.active {
+  border: 2.5px solid #007bff;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+  background: #f8fbff;
+}
+
+.dn-dept-card.active .dn-dept-label {
+  color: #007bff;
+}
+
+.dn-dept-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dn-dept-label {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.05px;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+  color: #334155;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Stat Cards Row (legacy) ─── */
+.dn-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.dn-stat-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 22px 20px 22px;
+  box-shadow: 0 2px 14px rgba(80, 120, 220, 0.07);
+  border: 1px solid #e9eef8;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: default;
+}
+
+.dn-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 28px rgba(80, 120, 220, 0.14);
+}
+
+.dn-stat-icon {
+  width: 52px;
+  height: 52px;
+  background: #eef3ff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.dn-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a2340;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.dn-stat-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.dn-stat-label {
+  font-size: 13px;
+  color: #8fa3c0;
+  font-weight: 500;
+}
+
+.dn-stat-change {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dn-stat-change.up {
+  color: #22c55e;
+}
+
+.dn-stat-change.down {
+  color: #ef4444;
+}
+
+/* ─── Main Content Grid ─── */
+.dn-content-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 10px;
+}
+
+/* ─── Side Column & Cards ─── */
+.dn-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dn-side-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dn-side-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.dn-side-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+}
+
+.dn-side-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.dn-side-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── Filter Strips ─── */
+.dn-filter-strip {
+  padding: 10px 16px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.dn-alerts-card .dn-filter-strip label {
+  color: #007bff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dn-filter-strip.row-gap {
+  justify-content: space-between;
+}
+
+.dn-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dn-mini-select {
+  padding: 4px 12px;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  background: #ffffff;
+  cursor: pointer;
+  min-width: 95px;
+  outline: none;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.dn-action-group {
+  display: flex;
+  gap: 6px;
+}
+
+.dn-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dn-icon-btn:hover {
+  background: #f8fafc;
+  color: #4f46e5;
+  border-color: #cbd5e1;
+}
+
+.dn-icon-btn.excel {
+  color: #16a34a;
+}
+
+/* ─── Alerts List ─── */
+.dn-alert-list {
+  padding: 8px 0;
+}
+
+.dn-alert-item {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.dn-alert-item:hover {
+  background: #f8fafc;
+}
+
+.dn-alert-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.dn-alert-badge {
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 20px;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* ─── Records Table ─── */
+.dn-records-table-container {
+  overflow-x: auto;
+}
+
+.dn-records-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dn-records-table th {
+  text-align: left;
+  padding: 10px 16px;
+  background: #f8fafc;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #007bff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dn-records-table td {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.dn-records-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── Chart Card override ─── */
+.dn-chart-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px 24px 16px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+}
+
+/* ─── Chart Header ─── */
+.dn-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Legends */
+.dn-chart-legends {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dn-legend-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.blue-dot  { background: #4f8ef7; }
+.teal-dot  { background: #38c5c5; }
+
+.dn-legend-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.blue-text { color: #4f8ef7; }
+.teal-text { color: #38c5c5; }
+
+.dn-legend-sub {
+  font-size: 11px;
+  color: #a0b0cc;
+  margin-top: 2px;
+}
+
+/* Day / Week / Month toggle */
+.dn-range-btns {
+  display: flex;
+  background: #f0f4fc;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.dn-range-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8fa3c0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.dn-range-btn.active,
+.dn-range-btn:hover {
+  background: #fff;
+  color: #4f8ef7;
+  box-shadow: 0 2px 8px rgba(80, 120, 220, 0.12);
+}
+
+/* ─── Right sidebar chart ─── */
+.dn-chart-side .dn-chart-header {
+  align-items: center;
+}
+
+.dn-profit-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1a2340;
+  line-height: 1.25;
+}
+
+.dn-week-select {
+  display: flex;
+  align-items: center;
+  background: #f0f4fc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f8ef7;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s;
+}
+
+.dn-week-select:hover {
+  background: #e2eaf8;
+}
+
+.dn-bar-legends {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.dn-bar-legend-label {
+  font-size: 12px;
+  color: #8fa3c0;
+  font-weight: 600;
+}
+
+/* ─── Sidebar Records Card overrides ─── */
+.dn-records-table-container.scrollable {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+/* ─── Sales & Purchase Card specialized styling ─── */
+.dn-sales-purchase-card {
+  height: auto;
+}
+
+.dn-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dn-header-toggle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #007bff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dn-header-toggle span {
+  font-size: 9px;
+  color: #64748b;
+}
+
+.dn-filter-bar-complex {
+  background: #f8fafc;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dn-f-left, .dn-f-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dn-f-item {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2340;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.dn-f-item.sm {
+  font-size: 12px;
+}
+
+.dn-f-item.note {
+  color: #1a2340;
+  font-style: italic;
+  font-size: 11px;
+}
+
+.dn-f-item.link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dn-radio-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.dn-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+/* ─── Sales & Purchase Content ─── */
+.dn-sp-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dn-sp-chart-area {
+  padding: 16px;
+  background: #fff;
+}
+
+/* ─── ERP High-Density Table ─── */
+.dn-sp-table-area {
+  padding: 0;
+  border-top: 1px solid #f1f5f9;
+}
+
+.dn-erp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: inherit;
+}
+
+.dn-erp-table th {
+  background: #f1f5f9;
+  color: #007bff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.dn-erp-table td {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a2340;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dn-erp-table tr:nth-child(even) {
+  background: #fcfdfe;
+}
+
+.dn-erp-table tr:not(thead tr):hover {
+  background: #f8fafc;
+}
+
+.dn-erp-table td.val-cell {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #334155;
+}
+
+.dn-erp-table td.type-cell {
+  color: #007bff;
+}
+
+/* ─── Accordion Row Styling ─── */
+.dn-accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between accordion items */
+}
+
+.dn-accordion-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.erp-header {
+  background: #f1f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #1a2340;
+}
+
+.dn-accordion-row {
+  background: #f1f5f9;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.dn-accordion-row:hover {
+  background: #e2e8f0;
+}
+
+.dn-acc-left {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2340;
+  display: flex;
+  align-items: center;
+}
+
+.dn-acc-right-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dn-acc-toggle-btn {
+  width: 24px;
+  height: 24px;
+  background: #cbd5e1;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a2340;
+}
+
+.dn-acc-right span {
+  text-transform: capitalize;
+}
+
+.erp-style-content .dn-mini-select:focus {
+  outline: none;
+}
+
+.erp-report-area {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ─── Daily Sales Card Body Styling ─── */
+.dn-daily-sales-body {
+  padding: 0;
+  background: #fff;
+}
+
+.erp-th-gradient {
+  background: #007bff !important;
+  color: #fff !important;
+}
+
+.erp-th-gradient:hover {
+  background: #007bff !important;
+}
+
+.erp-th-gradient th {
+  color: #fff !important;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.erp-summary-table td {
+  border: 1px solid #e2e8f0;
+}
+
+.dn-f-left, .dn-f-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dn-f-item.red {
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.dn-link-sm {
+  font-size: 11px;
+  font-weight: 700;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* ─── Chart Area ─── */
+.dn-chart-content {
+  padding: 16px;
+  padding-bottom: 0;
+}
+
+.dn-card-footer-info {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #f1f5f9;
+  background: #fff;
+  position: relative;
+}
+
+.dn-footer-notes {
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  align-self: flex-start;
+}
+
+.dn-footer-notes .blue-link {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.dn-status-badge-orange {
+  background: #f97316;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+}
+
+/* ─── Legend & Chart Fixes ─── */
+.recharts-cartesian-axis-line {
+  stroke: #333 !important;
+}
+
+.recharts-cartesian-axis-tick-line {
+  stroke: #333 !important;
+}
+
+/* ─── Monthly Sales Specialized Styling ─── */
+.dn-monthly-table-wrapper {
+  padding: 0 16px 16px;
+  overflow-x: auto;
+}
+
+.dn-monthly-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #cbd5e1;
+}
+
+.dn-monthly-grid th, .dn-monthly-grid td {
+  border: 1px solid #cbd5e1;
+  padding: 6px 4px;
+  text-align: center;
+  min-width: 50px;
+}
+
+.dn-monthly-grid th {
+  background: #f1f5f9;
+  color: #007bff;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.dn-monthly-grid th.total-col, .dn-monthly-grid td.total-col {
+  background: #e2e8f0;
+  color: #1a2340;
+  font-weight: 900;
+  min-width: 70px;
+}
+
+.dn-monthly-grid td {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 700;
+}
+
+/* ─── Status Badge Blue ─── */
+.dn-status-badge-blue {
+  background: #007bff;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.dn-status-badge-red-text {
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* ─── Mini Controls (Radios/Checkboxes) ─── */
+.dn-radio-group.mini, .dn-checkbox-group.mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.dn-radio-group.mini label, .dn-checkbox-group.mini label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a2340;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.dn-radio-group.mini input, .dn-checkbox-group.mini input {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ─── Top 5 Specialized Tabular Filters ─── */
+.dn-tabular-filters-wrapper {
+  background: #fff;
+  padding: 0 16px 8px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+}
+
+.dn-tabular-flex {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.dn-filter-grid {
+  width: auto;
+  border-collapse: collapse;
+}
+
+.dn-filter-grid th {
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+}
+
+.dn-filter-grid td {
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.dn-mini-input {
+  height: 28px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a2340;
+  outline: none;
+}
+
+.dn-mini-select.full {
+  width: 100%;
+}
+
+/* ─── Item wise Dispatch specialized styling ─── */
+.dn-table-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 16px 16px;
+  background: #fff;
+}
+
+.dn-erp-table.high-density th, .dn-erp-table.high-density td {
+  padding: 8px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.dn-dispatch-summary-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.dn-summary-row {
+  display: flex;
+  gap: 8px;
+}
+
+.dn-summary-badge.blue {
+  background: #007bff;
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.dn-btn-search {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1a2340;
+  padding: 4px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dn-btn-search:hover {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.dispatch-filters .dn-filter-grid th label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ─── Global Layout Safety ─── */
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+}
+
+.dn-main {
+  padding: 0 32px !important;
+  background: #f0f4fc;
+  gap: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ─── Item wise Dispatch specialized styling ─── */
+.dn-table-scroll-container {
+  width: 100%;
+  overflow-x: hidden; /* No scroll requested */
+  padding: 0 16px 16px;
+  background: #fff;
+}
+
+.dispatch-filters-scroll {
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 8px;
+  overflow-x: hidden;
+}
+
+.dn-erp-table.high-density th, .dn-erp-table.high-density td {
+  padding: 6px 8px;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: normal !important; /* Force wrap even for headers */
+  word-break: break-word;
+}
+
+.dn-dispatch-summary-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  gap: 8px;
+}
+
+.dn-dispatch-body {
+  background: #fff;
+  width: 100%;
+  overflow-x: hidden;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Ensure filter table inside doesn't force parent expansion */
+.dispatch-filters {
+  width: 100%;
+  padding: 0 0 8px 0;
+}
+
+.dispatch-filters .dn-filter-grid {
+  width: 100%;
+  table-layout: fixed; /* Force constraint */
+}
+
+/* ─── Business Plan specialized styling ─── */
+.dn-bp-filters {
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dn-bp-left, .dn-bp-center, .dn-bp-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dn-bp-search-by {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dn-bp-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.dn-bp-chart-wrapper {
+  padding: 24px 16px;
+  background: #fff;
+}
+
+.bp-table th.highlight-col {
+  background: #fdf2f8; /* Light pink/tan highlight */
+}
+
+.bp-table td.highlight-col {
+  background: #fffafa;
+}
+
+.dn-bp-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dn-footer-link {
+  font-size: 11px;
+  font-weight: 700;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.dn-footer-link:hover {
+  text-decoration: underline;
+}
+
+.dn-btn-search.primary {
+  background: #e2e8f0;
+  color: #1a2340;
+}
+
+.dn-btn-search.primary:hover {
+  background: #cbd5e1;
+}
+
+.dn-bp-body {
+  background: #fff;
+}
+
+/* ─── State Wise Sales specialized styling ─── */
+.dn-state-filters {
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dn-state-chart-wrapper {
+  padding: 20px 16px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dn-state-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.state-table {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.state-table th {
+  background: #f1f5f9;
+  color: #007bff;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.dn-state-body {
+  background: #fff;
+}
+
+/* ─── PPC View Styles ─── */
+.dn-ppc-view {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.dn-ppc-body {
+  background: #fff;
+  padding: 16px;
+}
+
+.dn-summary-badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dn-summary-badge.blue {
+  background: #eff6ff;
+  color: #007bff;
+  border: 1px solid #dbeafe;
+}
+
+.dn-summary-badge.green {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #dcfce7;
+}
+
+.dn-status-badge-red {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fee2e2;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dn-status-badge-green {
+  background: #16a34a;
+  color: #fff;
+  padding: 4px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.dn-ppc-charts-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.dn-ppc-main-pie {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.dn-ppc-class-pies {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  min-width: 400px;
+}
+
+.dn-class-pie-box {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* PPC Table High Density */
+.dn-ppc-body .dn-erp-table th {
+  background: #007bff;
+  color: #fff;
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+.dn-ppc-body .dn-erp-table td {
+  font-size: 13px;
+  padding: 8px 12px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.dn-ppc-body .dn-erp-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+/* Ensure PPC filter inputs match style */
+.dn-mini-input {
+  padding: 4px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  outline: none;
+}
+
+.dn-mini-input:focus {
+  border-color: #007bff;
+}
+
+/* Side-by-Side Layout for Monthly Production */
+.dn-side-by-side-layout {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.dn-chart-half {
+  flex: 1.4;
+  min-width: 350px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eef2f8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.dn-table-half {
+  flex: 1;
+  min-width: 300px;
+}
+
+.dn-footer-filter-bar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #334155;
+}
+
+.dn-footer-filter-bar select {
+  height: 28px;
+  min-width: 80px;
+}
+
+/* ─── ERP Modern Modal ─── */
+.dn-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.dn-modal-container {
+  background: white;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dn-modal-header {
+  background: #f1f5f9;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dn-modal-header span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.dn-modal-close-x {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.dn-modal-body {
+  padding: 20px;
+  flex: 1;
+  background: #fff;
+}
+
+.dn-modal-footer {
+  padding: 10px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dn-modal-btn-close {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 6px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+}
+
+.dn-modal-btn-close:hover {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+/* Animations */
+.scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Legend Color Helpers */
+.dn-bg-min { background: #fecaca; }
+.dn-bg-min-re { background: #fef08a; }
+.dn-bg-re-max { background: #d9f99d; }
+.dn-bg-above { background: #bfdbfe; }
+
+.dn-legend-status {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a2340;
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── Stores Dashboard Extensions ─── */
+
+/* Radio Button Styling */
+.dn-radio-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dn-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.dn-radio-item input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Tabs Styling */
+.dn-tabs-container {
+  display: flex;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 16px;
+}
+
+.dn-tab-item {
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s;
+}
+
+.dn-tab-item.active {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Footer Totals Bar */
+.dn-footer-totals {
+  background: #f1f5f9;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.dn-btn-clear {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* ─── Financial Dashboard Extensions ─── */
+
+.dn-chart-with-sidebar {
+  display: flex;
+  height: 300px;
+}
+
+.dn-chart-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 5px;
+  background: #fff;
+  border-right: 1px solid #e2e8f0;
+}
+
+.dn-sidebar-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dn-sidebar-btn.active {
+  background: #f1f5f9;
+  border-color: #007bff;
+  color: #007bff;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.dn-y-axis-label {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* ─── Subcon Ageing Buckets Styling ─── */
+.dn-ageing-buckets-row {
+  background: white !important;
+}
+
+.dn-ageing-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+  flex: 1;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.dn-ageing-box.all {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.count-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  min-width: 30px;
+  text-align: center;
+}
+
+.count-badge.blue {
+  background: #3b82f6;
+}
+
+.count-badge.dark-blue {
+  background: #1d4ed8;
+}
+
+.count-badge.red {
+  background: #ef4444;
+}
+
+.count-badge.light-blue {
+  background: #0ea5e9;
+}
+
+/* ─── Subcon High-Density Table Styling ─── */
+.dn-subcon-body .dn-erp-table th {
+  padding: 10px 12px !important;
+  font-size: 11px !important;
+  border-right: 1px solid rgba(255,255,255,0.1) !important;
+  text-transform: none !important;
+  background: transparent !important;
+}
+
+.dn-subcon-body .dn-erp-table td {
+  padding: 8px 12px !important;
+  font-size: 11px !important;
+}
+
+.dn-subcon-body .dn-erp-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.dn-subcon-body .dn-erp-table tr:hover {
+  background: #f1f5f9;
+}
+
+/* ─── OEE Specific Styling ─── */
+.dn-badge-orange {
+  display: inline-block;
+  background: #d35400;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(211, 84, 0, 0.2);
+}
+
+.dn-oee-chart-box h3 {
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.dn-oee-chart-box h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background: #16a34a;
+  border-radius: 2px;
+}
+
+.dn-oee-legend {
+  background: #f8fafc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  display: inline-flex !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Custom Scrollbar for OEE Area */
+.dn-oee-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dn-oee-scroll-area::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.dn-oee-scroll-area::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.dn-oee-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Horizontal Scrollbar for Operator Efficiency */
+.dn-oee-scroll-x::-webkit-scrollbar {
+  height: 8px;
+}
+
+.dn-oee-scroll-x::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.dn-oee-scroll-x::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.dn-oee-scroll-x::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dn-average-badge {
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.dn-average-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,123,255,0.3) !important;
+}
+
+/* OEE Graph Quadrants */
+.dn-quadrant-header {
+  border-left: 3px solid #cbd5e1;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.dn-graph-quadrant {
+  transition: background 0.2s;
+}
+
+.dn-graph-quadrant:hover {
+  background: #fdfdfd;
+}
+
+.dn-btn-search:hover {
+  background: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+
+.dn-mini-select:focus {
+  border-color: #007bff !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+}
+
+/* ─── Shiftwise OEE Scrollbar Customization ─── */
+.oee-shift-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.oee-shift-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.oee-shift-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  border: 2px solid #f1f5f9;
+}
+
+.oee-shift-scroll::-webkit-scrollbar-thumb:hover {
+  background: #007bff;
+}
+
+
+/* ─── Purchase Dashboard Design Elements ─── */
+
+.dn-title-accent {
+  color: #6366f1;
+  font-weight: 900;
+  font-size: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.dn-chart-title-sm {
+  display: flex !important;
+  align-items: center !important;
+}
+
+
+
+/* --- Hero Section Precision Styling --- */
+
+.dn-hero-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 28px 32px !important;
+  border: 1px solid #eef2f8 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  margin-bottom: 30px !important;
+}
+
+.dn-hero-title {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #1e293b !important;
+  margin-bottom: 6px !important;
+  letter-spacing: -0.02em !important;
+  font-family: "Outfit", sans-serif !important;
+}
+
+.dn-hero-subtitle {
+  font-size: 14.5px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  max-width: 80% !important;
+  line-height: 1.5 !important;
+}
+
+.dn-master-export-btn {
+  background: #6366f1 !important;
+  padding: 12px 24px !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dn-master-export-btn:hover {
+  background: #4f46e5 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35) !important;
+}
+
+
+
+/* --- Purchase View Integration --- */
+
+.dn-purchase-view {
+  background: #f0f4fc !important;
+  padding: 20px 0 !important;
+  border-radius: 20px !important;
+}
+
+.dn-top-chart-card {
+  border-radius: 16px !important;
+  border: 1px solid #eef2f8 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  background: #fff !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.dn-top-chart-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06) !important;
+}
+
+
+
+/* --- Hero Subtitle One-Line Refinement --- */
+
+.dn-hero-subtitle {
+  white-space: nowrap !important;
+  max-width: none !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+
+
+/* --- Export Button Size Adjustment --- */
+
+.dn-master-export-btn {
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+}
+
+
+
+/* --- Export Button Height Adjustment --- */
+
+.dn-master-export-btn {
+  padding: 5px 16px !important;
+}
+
+
+
+/* --- Purchase Grid Layout (Side-by-Side) --- */
+
+.dn-purchase-top-charts {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  margin-top: 24px !important;
+  width: 100% !important;
+}
+
+.dn-chart-header-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
+}
+
+.dn-chart-title-sm {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #334155 !important;
+  margin: 0 !important;
+}
+
+.dn-chart-select-sm {
+  padding: 4px 10px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+}
+
+
+
+/* --- High-Density Table & Tags --- */
+
+.high-density {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.high-density th {
+  padding: 12px 15px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #64748b !important;
+  border-bottom: 2px solid #f1f5f9 !important;
+}
+
+.high-density td {
+  padding: 10px 15px !important;
+  font-size: 12px !important;
+  color: #1e293b !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.dn-tag-pill {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.dn-tag-pill.red {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+.dn-tag-pill.yellow {
+  background: #fef9c3 !important;
+  color: #a16207 !important;
+}
+
+.dn-tag-pill.blue {
+  background: #e0f2fe !important;
+  color: #0369a1 !important;
+}
+
+.dn-search-pill input:focus {
+  outline: none !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+}
+
+
+
+/* --- Chart Select Compactness --- */
+
+.dn-chart-select-sm {
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+  height: auto !important;
+}
+
+
+
+/* --- Dropdown Width Refinement --- */
+
+.dn-chart-select-sm {
+  width: 100px !important;
+  padding: 4px 6px !important;
+}
+
+
+
+/* --- Blue Table Headings --- */
+
+.high-density th {
+  color: #1e40af !important;
+  background: #f1f5ff !important;
+}
+
+/* --- Full Screen Width View for Non-Financial Dashboards --- */
+.mainContent.dn-full-width-view {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.mainContent.dn-full-width-view.shifted {
+  width: calc(100% - 260px) !important;
+  margin-left: 260px !important;
+}
+
+.mainContent.dn-full-width-view:not(.shifted) {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+
+/* --- Responsive layout adjustments for Purchase, PPC, OEE, Quality, Stores, Subcon --- */
+
+/* 1. Prevent parent container clipping on horizontal scrollable items */
+.mainContent.dn-full-width-view {
+  overflow-x: clip !important;
+  min-width: 0 !important;
+}
+
+/* 2. Constrain direct children (dashboard root Boxes) to prevent tables from stretching the parent */
+.mainContent.dn-full-width-view > div {
+  min-width: 0 !important;
+  max-width: 1600px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 3. Prevent closed SideNav wrapper from occupying flex container space */
+.blueside-Nav:not(.open) {
+  display: none !important;
+}
+
+/* 4. Force horizontal scroll on tables when they exceed container width */
+.mainContent.dn-full-width-view div:has(> table),
+.mainContent.dn-full-width-view div:has(> div > table),
+.mainContent.dn-full-width-view .overflow-hidden:has(table) {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  scrollbar-width: thin !important;
+}
+
+/* Scrollbar styling for Chrome/Safari/Edge */
+.mainContent.dn-full-width-view div:has(> table)::-webkit-scrollbar,
+.mainContent.dn-full-width-view div:has(> div > table)::-webkit-scrollbar,
+.mainContent.dn-full-width-view .overflow-hidden:has(table)::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.mainContent.dn-full-width-view div:has(> table)::-webkit-scrollbar-thumb,
+.mainContent.dn-full-width-view div:has(> div > table)::-webkit-scrollbar-thumb,
+.mainContent.dn-full-width-view .overflow-hidden:has(table)::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 3px !important;
+}
+
+/* 5. Make all flex filter rows wrap nicely on small screens to prevent right side clipping */
+.mainContent.dn-full-width-view .flex:has(input, select, .MuiSelect-select, button) {
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+/* 6. Fix hardcoded grids to be responsive */
+/* Machine utilization grid in OEE: change grid-cols-4 to be responsive */
+.mainContent.dn-full-width-view .grid-cols-4 {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+}
+
+/* Ageing summary cards in Subcon: change grid-cols-8 to be responsive */
+.mainContent.dn-full-width-view .grid-cols-8 {
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)) !important;
+}
+
+/* Machine Graphs in OEE: stack 2-column layouts on tablets/mobiles */
+@media (max-width: 1024px) {
+  .mainContent.dn-full-width-view .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 7. Handle Quality Dashboard split flex columns (40% / 60% sections) */
+@media (max-width: 1024px) {
+  .mainContent.dn-full-width-view .flex:has(> .w-\[40\%\]) {
+    flex-direction: column !important;
+  }
+  .mainContent.dn-full-width-view .w-\[40\%\] {
+    width: 100% !important;
+  }
+  .mainContent.dn-full-width-view .w-\[60\%\] {
+    width: 100% !important;
+  }
+}
+
+/* --- Subcontracting Ageing summary Cards Styling --- */
+.dn-ageing-card {
+  padding: 8px 6px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  border: none !important;
+  background: #2563eb !important; /* Original solid blue color */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dn-ageing-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.dn-ageing-card .dn-ageing-label {
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important; /* White text */
+  opacity: 0.8;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  font-family: 'Outfit', 'Inter', sans-serif !important;
+}
+
+.dn-ageing-card .dn-ageing-val {
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important; /* White text */
+  line-height: 1 !important;
+  margin: 0 !important;
+  font-family: 'Outfit', 'Inter', sans-serif !important;
+}
+
+/* Original slate styling for VIEW ALL card */
+.dn-ageing-card.dn-view-all {
+  background: #1e293b !important; /* Original slate background */
+}
+
+.dn-ageing-card.dn-view-all .dn-ageing-label {
+  color: #ffffff !important;
+}
+
+.dn-ageing-card.dn-view-all .dn-ageing-val {
+  color: #ffffff !important;
+}
+
+
+
+
+

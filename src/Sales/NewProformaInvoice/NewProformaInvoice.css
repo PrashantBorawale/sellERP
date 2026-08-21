@@ -1,0 +1,241 @@
+/* Apply borders to the table and row containers */
+.table-container {
+    padding: 10px;
+}
+
+.table-container .col-md-3 {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.table-container input[type="text"], .table-container select {
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.table-container label {
+    display: block;
+}
+
+.NewProformaInvoiceMaster {
+    margin-top: -10px;
+}
+
+/* Header Styling */
+.NewProformaInvoice-header {
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  margin-top: 15px;
+}
+
+.NewProformaInvoice-header .header-title {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(90deg, #2563eb, #4f46e5) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  letter-spacing: 0.5px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Screen-Fit Squished Table Setup */
+.NewProformaInvoiceMaster .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; 
+  background: transparent;
+  display: block;
+}
+
+.NewProformaInvoiceMaster .table {
+  width: 100% !important;
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.NewProformaInvoiceMaster .table th,
+.NewProformaInvoiceMaster .table td {
+  white-space: normal !important; 
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 0.65rem !important; 
+  padding: 6px 4px !important; 
+  text-align: center;
+  vertical-align: middle;
+}
+
+.NewProformaInvoiceMaster .table th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.NewProformaInvoiceMaster .table td {
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Adjust icon button sizes for consistent appearance */
+.NewProformaInvoiceMaster .btn-outline-secondary {
+    padding: 4px 8px;
+    font-size: 1rem;
+}
+
+/* Responsive font and padding adjustments */
+.NewProformaInvoice-main label {
+    font-size: 0.875rem;
+}
+
+/* General Styling */
+.NewProformaInvoice-main {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.NewProformaInvoice-bottom {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.NewProformaInvoice .nav-tabs {
+  border-bottom: 2px solid #e2e8f0;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.NewProformaInvoice .nav-tabs .nav-link {
+  font-weight: 600;
+  color: #64748b;
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  background: transparent;
+  border-radius: 0;
+}
+
+.NewProformaInvoice .nav-tabs .nav-link:hover {
+  color: #2563eb;
+  border-bottom: 2px solid #93c5fd;
+  background: transparent;
+}
+
+.NewProformaInvoice .nav-tabs .nav-link.active {
+  color: #2563eb;
+  background-color: transparent;
+  border-bottom: 2px solid #2563eb;
+}
+
+.NewProformaInvoice .tab-content {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: none;
+    border-radius: 0 0 10px 10px;
+}
+
+.NewProformaInvoice-main label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.NewProformaInvoice-main input, select {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.NewProformaInvoice-main input.form-control,
+.NewProformaInvoice-main select.form-control {
+    padding: 8px;
+}
+
+/* Table Styling */
+.NewProformaInvoice-main .table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.NewProformaInvoice-main .table th,
+.NewProformaInvoice-main .table td {
+    text-align: left;
+    padding: 8px;
+}
+
+.NewProformaInvoice-main .table th {
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tab-content .row {
+        flex-direction: column;
+    }
+
+    .row .col-md-4 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        width: auto;
+        margin: 0 5px;
+    }
+
+    .NewProformaInvoice-tabs .nav-tabs .nav-link {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .NewProformaInvoice-main {
+        padding: 10px;
+    }
+
+    .table th, .table td {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+/* Fix label stacking for checkboxes, radio buttons, and flex containers */
+.NewProformaInvoice-main .form-check-label {
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+}
+
+.NewProformaInvoice-main .d-flex label {
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+}
+
+/* Force table labels to stay inline-block and prevent stacking */
+.NewProformaInvoice-main table label {
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+    font-weight: bold;
+}
+
+/* Prevent checkboxes and radio buttons from stretching to 100% width */
+.NewProformaInvoice-main input[type="radio"],
+.NewProformaInvoice-main input[type="checkbox"] {
+    width: 14px !important;
+    height: 14px !important;
+    display: inline-block !important;
+    margin: 0 !important;
+    vertical-align: middle;
+}
+

@@ -1,0 +1,116 @@
+.JobWorkitemdetailsMain {
+  margin-top: -20px;
+}
+
+.JobWorkitem-details .table-container,
+.JobWorkitem-table .table-container {
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+}
+
+.JobWorkitem-details .table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.JobWorkitem-table .table {
+  width: 100%;
+  table-layout: auto;
+  /* Allow table columns to resize based on content */
+}
+
+.JobWorkitem-details .table th,
+.JobWorkitem-details .table td,
+.JobWorkitem-table .table th,
+.JobWorkitem-table .table td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  border: 1px solid #bbbfc37b;
+}
+
+
+
+.JobWorkitem-details .table td input,
+.JobWorkitem-details .table td select,
+.JobWorkitem-details .table td textarea,
+.JobWorkitem-table .table td input,
+.JobWorkitem-table .table td select,
+.JobWorkitem-table .table td textarea {
+  width: 100%;
+  /* Make inputs and selects full width */
+}
+
+.JobWorkitem-details .table td label,
+.JobWorkitem-table .table td label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.JobWorkitem-details .table td,
+.JobWorkitem-table .table td {
+  min-width: 100px;
+  /* Ensure each cell has a minimum width */
+}
+
+.btnpurchase {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.JobWorkitem-table .table td button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dc3545;
+  /* Red color for delete button */
+}
+
+.JobWorkitem-table .table td button:hover {
+  color: #c82333;
+  /* Darker red on hover */
+}
+
+@media (max-width: 768px) {
+
+  .JobWorkitem-details .table-container,
+  .JobWorkitem-table .table-container {
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .JobWorkitem-details .table th,
+  .JobWorkitem-details .table td,
+  .JobWorkitem-table .table th,
+  .JobWorkitem-table .table td {
+    font-size: 11px;
+    padding: 4px;
+    min-width: 120px;
+  }
+
+  .JobWorkitem-details .table td input,
+  .JobWorkitem-details .table td select,
+  .JobWorkitem-details .table td textarea {
+    padding: 2px 4px;
+    font-size: 11px;
+  }
+
+  .btnpurchase {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .JobWorkitem-details .table th,
+  .JobWorkitem-details .table td,
+  .JobWorkitem-table .table th,
+  .JobWorkitem-table .table td {
+    font-size: 10px;
+    padding: 3px;
+    min-width: 100px;
+  }
+}

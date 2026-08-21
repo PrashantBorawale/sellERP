@@ -1,0 +1,113 @@
+/* GL Master Layout */
+.gl-master {
+  padding: 1rem;
+}
+
+.gl-master .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.gl-master .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+  /* Ensure that the navbar and sidenav are flex items */
+}
+
+.gl-master .shifted {
+  margin-left: 250px;
+  /* Adjust based on the size of your SideNav */
+}
+
+/* User Management Section */
+.gl-master .WorkOrderEntry-header {
+  background-color: transparent; /* Removed light background */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
+.gl-master .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.gl-master .header-section .form-control,
+.gl-master .header-section .form-select,
+.gl-master .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.gl-master .table-responsive {
+  max-height: 450px;
+  /* Approximately 8 rows + header */
+  overflow-y: auto;
+  margin-top: 20px;
+  border: 1px solid #dee2e6;
+}
+
+/* Custom scrollbar for table responsive wrapper */
+.gl-master .table-responsive::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.gl-master .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.gl-master .table-responsive::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 3px;
+}
+
+.gl-master .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #999999;
+}
+
+.gl-master .user-list-table {
+  width: 100%;
+  min-width: 800px;
+  /* Standard for Master tables */
+  margin-top: 0;
+}
+
+.gl-master .user-list-table th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.gl-master .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.gl-master .table {
+  background-color: #fff;
+}
+
+.gl-master .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.gl-master .btn-sm {
+  font-size: 0.8rem;
+}
+.gl-master .form-label {
+  font-size: 0.85rem !important;
+}
+

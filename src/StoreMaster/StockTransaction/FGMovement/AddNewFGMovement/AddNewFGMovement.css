@@ -1,0 +1,71 @@
+/* General Styles */
+.NewStoreFgMoventAdd {
+    /* background-color: white; */
+    height: auto;
+    font-family: Arial, sans-serif;
+}
+
+.FgMoventAdd-header {
+    margin-top: 20px;
+     background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.FgMoventAdd-main {
+     background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+    height: auto;
+}
+
+/* Button Styling */
+.FGBtn {
+    margin: 5px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.FGBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Form Inputs */
+.FgMoventAdd-main input, select, textarea {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .FgMoventAdd-header h5 {
+        font-size: 18px;
+    }
+
+ .FgMoventAdd-main   .row {
+        margin-bottom: 10px;
+    }
+
+  .FgMoventAdd-main  .col-md-4, .col-md-8 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .FgMoventAdd-main {
+        padding: 10px;
+    }
+
+   
+}

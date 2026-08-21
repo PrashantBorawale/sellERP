@@ -1,0 +1,101 @@
+/* WorkOrderEntryV2.css */
+
+.WorkOrderEntryV2Master {
+    background-color: #f4f7f6;
+    min-height: 100vh;
+}
+
+.WorkOrderEntryV2 {
+    background-color: #ffffff;
+}
+
+.WorkOrderEntryV2-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 6px 12px;
+}
+
+.form-control-xs, .form-select-xs, .input-group-xs > .form-control, .input-group-xs > .btn {
+    font-size: 11px;
+    height: 22px;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.erp-btn-grey-sm {
+    display: inline-block;
+    background-color: #f8f9fa;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #333;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.erp-btn-grey-sm:hover {
+    background-color: rgb(22, 191, 255);
+    color: white;
+}
+
+.form-label-width {
+    min-width: 120px;
+    white-space: nowrap;
+}
+
+.erp-action-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.erp-action-btn:hover {
+    background-color: rgb(22, 191, 255);
+    color: white;
+}
+
+.erp-table {
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.erp-table thead th {
+    background-color: rgb(22, 191, 255);
+    color: white;
+    padding: 5px 8px;
+    border: 1px solid #dee2e6;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.erp-table tbody td {
+    padding: 4px 8px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main-content {
+    transition: all 0.3s;
+}
+
+.main-content.shifted {
+    margin-left: 250px;
+}
+
+.WorkOrderEntryV2-TableContainer {
+    height: calc(100vh - 350px);
+    overflow-y: auto;
+}
+
+.WorkOrderEntryV2-Bottom {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}

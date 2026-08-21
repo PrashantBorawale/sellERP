@@ -1,0 +1,38 @@
+.ItemDetailsOther {
+    padding: 15px 15px;
+    background-color: white;
+    margin: 10px 10px;
+  }
+  
+  .ItemDetailsOther .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ItemDetailsOther .table th, .table td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .ItemDetailsOther .table .form-control {
+    width: 100%;
+  }
+  
+  .ItemDetailsOther .table-responsive {
+    overflow-x: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .ItemDetailsOther .table th, .table td {
+      padding: 4px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .ItemDetailsOther .table th, .table td {
+      font-size: 12px;
+      padding: 2px;
+    }
+  }
+  

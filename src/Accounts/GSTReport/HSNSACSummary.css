@@ -1,0 +1,239 @@
+/* HSNSACSummary.css - Standardized Report UI */
+
+.hsn-summary {
+  padding: 1rem;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.hsn-summary .main-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.hsn-summary .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.hsn-summary .shifted {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* Header Section */
+.hsn-summary .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.hsn-summary .header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1fb5ff;
+  margin: 0;
+}
+
+/* Filter Section */
+.hsn-summary .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.hsn-summary .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.hsn-summary .form-control-sm,
+.hsn-summary .form-select-sm {
+  font-size: 0.8rem;
+  border-color: #ced4da;
+  height: 32px;
+}
+
+/* Button Styling - No Hover Color */
+.hsn-summary .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.hsn-summary .excel-icon {
+  color: #217346;
+  font-size: 16px;
+}
+
+.hsn-summary .search-icon {
+  color: #16bfff;
+  font-size: 14px;
+}
+
+/* Table Container */
+.hsn-summary .table-container {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.hsn-summary .table-responsive {
+  max-height: 340px;
+  /* Exactly 8 rows + header at standard density */
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.hsn-summary .custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+}
+
+.hsn-summary .custom-table thead th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 8px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.hsn-summary .custom-table tbody td {
+  padding: 8px 8px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.hsn-summary .custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.hsn-summary .custom-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* Footer Totals Styling - Sticky and Aligned */
+.hsn-summary .table-footer-totals td {
+  background-color: #f8f9fa !important;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  font-weight: 700;
+  color: #333;
+  border: 1px solid #dee2e6;
+  padding: 8px;
+}
+
+/* Numeric alignment */
+.hsn-summary .text-right {
+  text-align: right !important;
+}
+
+.hsn-summary .text-center {
+  text-align: center !important;
+}
+
+/* Specific column min-widths for stability */
+.hsn-summary .custom-table th,
+.hsn-summary .custom-table td {
+  min-width: 100px;
+}
+
+.hsn-summary .custom-table th:nth-child(2),
+.hsn-summary .custom-table td:nth-child(2) {
+  min-width: 120px;
+  /* HSN/SAC */
+}
+
+.hsn-summary .custom-table th:nth-child(3),
+.hsn-summary .custom-table td:nth-child(3) {
+  min-width: 180px;
+  /* Description */
+}
+
+/* Custom scrollbar - Size 8px, No Hover Change */
+.hsn-summary .table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.hsn-summary .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.hsn-summary .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+  border-radius: 4px;
+}
+
+.hsn-summary .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #ccc !important;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+  .hsn-summary .main-content { flex: 1; min-width: 0; width: 100%; overflow: hidden;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hsn-summary .main-content { flex: 1; min-width: 0; width: 100%; overflow: hidden;
+    padding: 10px;
+  }
+
+  .hsn-summary .header-title {
+    font-size: 1rem;
+  }
+
+  .hsn-summary .header-section .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+
+  .hsn-summary .form-control-sm,
+  .hsn-summary .form-select-sm {
+    width: 100% !important;
+  }
+}
+
+.hsn-summary label {
+  font-size: 0.85rem !important;
+}
+
+/* Force table to fit */
+.hsn-summary table {
+  table-layout: auto !important;
+  width: 100% !important;
+}
+
+.hsn-summary table th,
+.hsn-summary table td {
+  white-space: normal !important;
+  min-width: auto !important;
+  word-break: break-word;
+  padding: 4px !important;
+  font-size: 0.7rem !important;
+}

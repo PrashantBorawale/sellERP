@@ -1,0 +1,181 @@
+
+  
+  /* Header Styles */
+  .NewMaterialGernal-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .NewMaterialGernal-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  
+  /* Main Content Styles */
+  .NewMaterialGernal-main {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  /* Table Styles */
+  .NewMaterialGernaltable {
+    background-color: #f8f9fa;;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .NewMaterialGernaltable .table-bordered {
+    border: 1px solid #ddd;
+  }
+  
+  .NewMaterialGernaltable .table-bordered th, 
+  .NewMaterialGernaltable .table-bordered td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .NewMaterialGernaltable .table thead th {
+    background-color: #3e7fc0bc;
+    font-weight: bold;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .NewMaterialGernal-header, 
+    .NewMaterialGernal-main, 
+    .NewMaterialGernaltable {
+      padding: 10px;
+    }
+  
+    .NewMaterialGernaltable .table thead th, 
+    .NewMaterialGernaltable .table-bordered th, 
+    .NewMaterialGernaltable .table-bordered td {
+      font-size: 0.875rem;
+    }
+  
+    .d-flex {
+      flex-direction: column;
+    }
+  
+    .d-flex.align-items-center {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .form-select, .form-control, .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .header-title {
+      font-size: 1rem;
+    }
+  
+    .col-md-1, .col-md-2, .col-md-6 {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .pobtn, .newbtn {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Modal Overlay */
+  .modal.show {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-dialog {
+    margin: 1.75rem auto;
+  }
+  
+  .modal-content {
+    border-radius: 0.3rem;
+    margin-top: auto;
+  }
+  
+  .modal-header .btn-close {
+    padding: 0.5rem;
+  }
+  
+  /* Button Styles */
+  .newbtn, .newbtn1 {
+    background-color: #582ae4a9;
+    color: #ffffff;
+    border: 1px solid #582ae4a9;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newbtn:hover, .newbtn1:hover {
+    background-color: #3e21a6;
+    border-color: #3e21a6;
+  }
+  
+  /* Footer Styles */
+  .NewMaterialGernalFooter {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Labels and Input Elements */
+  label {
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  textarea, 
+  input,
+  select {
+    font-size: 0.875rem;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    label {
+      font-size: 0.75rem;
+    }
+  
+    .form-control,
+    .form-select {
+      font-size: 0.75rem;
+    }
+  
+    .btn {
+      padding: 8px 12px;
+      font-size: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    label {
+      font-size: 0.675rem;
+    }
+  
+    .form-control,
+    .form-select {
+      font-size: 0.675rem;
+    }
+  
+    .btn {
+      padding: 6px 10px;
+      font-size: 0.675rem;
+    }
+  }
+  

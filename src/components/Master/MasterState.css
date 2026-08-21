@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  margin-top: 60px;
+  transition: margin-left 0.3s;
+}
+.main-content.shifted {
+  margin-left: 260px;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.masterState {
+  width: 100%;
+  background-color: rgb(241, 242, 244);
+  height: 100vh;
+}
+.Main {
+  background-color: rgb(241, 242, 244);
+  height: 107vh;
+  width: 100%;
+  text-align: start;
+}
+.masterState1 {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.masterState1icon {
+  border: none;
+  background-color: white;
+}
+
+.form-container {
+  margin-top: 30px;
+}
+
+.table-container {
+  margin-top: 50px;
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+  .main-content.shifted {
+    margin-left: 0;
+  }
+  .masterState {
+    height: auto;
+  }
+
+  .form-container {
+    flex-direction: column;
+  }
+
+  .form-container .mb-3 {
+    width: 100%;
+  }
+  #search-input {
+    width: 100%;
+  }
+  .table-container .table {
+    font-size: 0.9rem;
+  }
+
+  .masterState1 {
+    width: 100%;
+  }
+  .masterState1icon {
+    width: 20%;
+    margin-top: 10px;
+  }
+}
+.masterState1icon {
+  background-color: white; /* Ensure background color is explicitly set */
+}

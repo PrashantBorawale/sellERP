@@ -1,0 +1,188 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(241, 242, 244); 
+}
+
+
+
+/* Vendor Section */
+.Vendor {
+ margin-top: 20px;
+}
+
+.Vender-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.top-but {
+  margin-top: -12px;
+  /* display: flex; */
+}
+
+.top-but .btnv {
+  border: none;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+
+
+.VendorGeneral,
+.Vendordata2,
+.VendorLogoImages,
+.VendorEinvoice .form,
+.date-2,
+.logo-image,
+.einvoice {
+  background-color: white;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  text-align: start;
+}
+
+.gernal-update,
+.date-update {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+}
+
+.gernal-update:hover,
+.date-update:hover {
+  background-color: rgba(0, 0, 255, 0.7);
+}
+
+/* Navbar Tabs */
+#pills-tab {
+  margin-top: 20px;
+  text-align: start;
+  border: none;
+}
+
+.nav-pills .nav-link {
+  color: grey;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.nav-pills .nav-link:hover {
+  color: gray;
+  border: none;
+}
+
+.nav-pills .nav-link.active {
+  background-color: blueviolet !important;
+  color: white !important;
+  border: none;
+}
+
+.nav-item button {
+  background-color: white;
+  color: grey;
+  padding: 12px;
+  margin: 10px;
+
+}
+
+.tab-content{
+  border: none;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1400px) {
+  .Vendorpage1 {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+ 
+
+  .Vendorpage1 {
+    margin-top: 10px;
+    height: auto;
+  }
+ 
+   
+  .top-but {
+    margin-left: 0;
+    text-align: center;
+    /* flex-direction: column; */
+    align-items: center;
+  }
+  
+}
+
+@media (max-width: 576px) {
+  .main-content.shifted {
+    margin-left: 60px;
+  }
+
+  .Vendorpage1 {
+    padding: 20px;
+    height: auto;
+  }
+
+  .top-but {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .form {
+    height: auto;
+    padding: 10px;
+  }
+
+  .vendor {
+    height: auto;
+  }
+
+  .gernala {
+    height: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .Vendorpage1 {
+    padding: 5px;
+  }
+
+  .top-but {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .form,
+  .vendor,
+  .gernala {
+    height: auto;
+    padding: 10px;
+  }
+}
+
+/* Form Validation */
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  display: block;
+  color: #dc3545;
+}
+
+

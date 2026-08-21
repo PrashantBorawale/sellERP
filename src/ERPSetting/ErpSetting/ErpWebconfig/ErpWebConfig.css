@@ -1,0 +1,105 @@
+.Webconfigfile {
+    margin-top: 20px;
+  }
+.config-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+}
+
+.Webconfigfile  .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+  
+  .Webconfigfile .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .Webconfigfile .plant-table .table {
+    width: 100%;
+  }
+  
+  .Webconfigfile .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* When the side nav is open, shift the content */
+  .Webconfigfile .main-content.shifted {
+    margin-left: 250px; /* Adjust based on side nav width */
+  }
+  
+  /* Styling for the table select dropdown */
+  .Webconfigfile .table select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  /* Responsive Styling for Tablets and Mobile Devices */
+  @media (max-width: 991px) {
+    .Webconfigfile .main-content {
+      margin-left: 0;
+    }
+  
+    .Webconfigfile .prod-header {
+      text-align: center;
+    }
+  
+    .Webconfigfile .prod-header .col-md-4 {
+      margin-bottom: 10px;
+    }
+  
+    /* Make the table responsive */
+    .Webconfigfile .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .Webconfigfile .table thead th {
+      font-size: 0.85rem;
+    }
+  
+    .Webconfigfile .table tbody td {
+      font-size: 0.9rem;
+    }
+  
+    .Webconfigfile .table select {
+      width: 100%;
+    }
+  }
+  
+  /* Mobile specific adjustments */
+  @media (max-width: 576px) {
+    .Webconfigfile .prod-header {
+      text-align: center;
+    }
+  
+    .Webconfigfile .prod-header .col-md-4 {
+      margin-bottom: 10px;
+    }
+  
+    .Webconfigfile .table thead th {
+      font-size: 0.75rem;
+    }
+  
+    .Webconfigfile .table tbody td {
+      font-size: 0.8rem;
+    }
+  
+    .Webconfigfile .table select {
+      width: 100%;
+    }
+  
+    .Webconfigfile .plant-table .table th,
+    .plant-table .table td {
+      white-space: nowrap;
+    }
+  
+    .Webconfigfile .table-responsive {
+      overflow-x: auto;
+    }
+  }
+  

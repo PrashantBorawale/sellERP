@@ -1,0 +1,367 @@
+
+  
+.Purchasegrn-header {
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  margin-bottom: 0 !important;
+}
+
+.Purchasegrn-header .header-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+  .Purchasegrn-main{
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+
+
+  .Purchasegrntable .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .Purchasegrntable .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .Purchasegrntable .table th,
+  .Purchasegrntable .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+  
+
+
+.StorePurchasegrn1, .StorePurchasegrn2, .StorePurchasegrn3 {
+    margin-top: 20px;
+}
+
+/* Screen-Fit Squished Table Setup */
+.NewStorePurchasegrn .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; 
+  background: transparent;
+  display: block;
+}
+
+.NewStorePurchasegrn .table {
+  width: 100% !important;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.NewStorePurchasegrn .table th,
+.NewStorePurchasegrn .table td {
+  white-space: normal !important; 
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 0.65rem !important; 
+  padding: 6px 4px !important; 
+  text-align: center;
+  vertical-align: middle;
+}
+
+.NewStorePurchasegrn .table th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.NewStorePurchasegrn .table td {
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Form Control Styles */
+.StorePurchasegrn1, .StorePurchasegrn2, .StorePurchasegrn3 .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.StorePurchasegrn1, .StorePurchasegrn2, .StorePurchasegrn3 .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    text-align: center;
+   
+}
+
+/* Button Styles */
+.pobtn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #007bff;
+}
+
+
+
+.btn:hover, .pobtn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .table-responsive {
+        overflow-x: scroll;
+    }
+
+    .table thead th {
+        font-size: 0.875rem;
+    }
+
+    .table td, .table th {
+        padding: 0.5rem;
+    }
+
+    .form-control {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .btn, .pobtn {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
+.storenewmrn-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  }
+  
+  .storenewmrn-overlay .new-card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+  }
+  
+  .storenewmrn-overlay .card-title {
+    color: blue;
+  }
+  
+  .storenewmrn-overlay .card-body {
+    color: black;
+  }
+  
+  .storenewmrn-overlay .card-btn {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .storenewmrn-overlay .card-btn1 {
+    border: none;
+    background-color: rgba(235, 233, 233, 0.685);
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .storenewmrn-overlay .card-btn2 {
+    border: none;
+    background-color: rgba(235, 233, 233, 0.685);
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+/* Golden Standard Layout Adjustments */
+.NewStorePurchasegrn .main-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden; overflow-y: auto;
+  transition: margin-left 0.3s ease;
+  background-color: #f1f5f9;
+  padding: 24px;
+}
+
+.NewStorePurchasegrn .shifted {
+  margin-left: 250px;
+}
+
+.NewStorePurchasegrn .form-control,
+.NewStorePurchasegrn .form-select {
+  border-radius: 8px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.NewStorePurchasegrn label {
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Gradient Buttons */
+.NewStorePurchasegrn .btn-primary {
+  background: linear-gradient(to right, #3b82f6, #4f46e5) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.NewStorePurchasegrn .btn-primary:hover {
+  background: linear-gradient(to right, #2563eb, #4338ca) !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+.NewStorePurchasegrn .btn-secondary, 
+.NewStorePurchasegrn .btn-dark {
+  background: linear-gradient(to right, #64748b, #475569) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3) !important;
+}
+
+/* Table tight fitting */
+.NewStorePurchasegrn .table {
+  width: 100% !important;
+}
+.NewStorePurchasegrn .table th {
+  white-space: normal !important;
+  word-break: break-word;
+  font-size: 0.65rem !important;
+  padding: 10px !important;
+  text-transform: uppercase !important;
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+}
+.NewStorePurchasegrn .table td {
+  white-space: normal !important;
+  word-break: break-word;
+  font-size: 0.7rem !important;
+  padding: 8px !important;
+}
+
+/* Modern Tabs */
+.NewStorePurchasegrn .nav-pills {
+  border-bottom: 2px solid #e2e8f0;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.NewStorePurchasegrn .nav-pills .nav-link {
+  border-radius: 8px 8px 0 0 !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+}
+.NewStorePurchasegrn .nav-pills .nav-link:hover {
+  color: #3b82f6 !important;
+  background-color: #f8fafc !important;
+}
+.NewStorePurchasegrn .nav-pills .nav-link.active {
+  color: #2563eb !important;
+  background-color: transparent !important;
+  border-bottom: 3px solid #2563eb !important;
+}

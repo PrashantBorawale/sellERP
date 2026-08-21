@@ -1,0 +1,194 @@
+/* GSTR3B.css - Standardized Report UI */
+
+.gstr3b-page {
+  padding: 1rem;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+.gstr3b-page .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.gstr3b-page .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.gstr3b-page .shifted {
+  margin-left: 250px;
+}
+
+/* Header Section */
+.gstr3b-page .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.gstr3b-page .header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1fb5ff;
+  margin: 0;
+}
+
+/* Filter Section */
+.gstr3b-page .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.gstr3b-page .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0;
+}
+
+.gstr3b-page .checkbox-group-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #333;
+  /* Changed to Black */
+  margin-bottom: 5px;
+  padding-bottom: 2px;
+}
+
+.gstr3b-page .filter-divider {
+  width: 1px;
+  height: 40px;
+  background-color: #dee2e6;
+  margin: 0 5px;
+  align-self: flex-end;
+}
+
+.gstr3b-page .form-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.gstr3b-page .form-check-input {
+  margin-top: 0;
+  /* Reset default bootstrap margin */
+  cursor: pointer;
+}
+
+.gstr3b-page .form-check-label {
+  font-size: 0.8rem;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Button Styling - No Hover Color */
+.gstr3b-page .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.gstr3b-page .search-icon {
+  color: #16bfff;
+  font-size: 14px;
+}
+
+/* Table Section */
+.gstr3b-page .table-label-header {
+  background-color: #f1f8ff;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1fb5ff;
+  border: 1px solid #dee2e6;
+  border-bottom: none;
+  margin-top: 15px;
+}
+
+.gstr3b-page .table-responsive {
+  max-height: 260px;
+  /* Exactly 5 rows + header */
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+}
+
+.gstr3b-page .custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+}
+
+.gstr3b-page .custom-table thead th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 8px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.gstr3b-page .custom-table tbody td {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gstr3b-page .custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.gstr3b-page .custom-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* Numeric alignment */
+.gstr3b-page .text-right {
+  text-align: right !important;
+}
+
+.gstr3b-page .text-center {
+  text-align: center !important;
+}
+
+/* Custom scrollbar - Size 8px, No Hover Change */
+.gstr3b-page .table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.gstr3b-page .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.gstr3b-page .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+  border-radius: 4px;
+}
+
+.gstr3b-page .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #ccc !important;
+}
+
+@media (max-width: 992px) {
+  .gstr3b-page .header-section .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+}

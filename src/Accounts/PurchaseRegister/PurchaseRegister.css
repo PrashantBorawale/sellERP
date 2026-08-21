@@ -1,0 +1,236 @@
+/* PurchaseRegister.css - Standardized Report UI */
+
+.purchase-register {
+  padding: 1rem;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+
+
+/* Header Section */
+.purchase-register .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.purchase-register .header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1fb5ff;
+  margin: 0;
+}
+
+/* Filter Section */
+.purchase-register .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.purchase-register .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.purchase-register .form-control-sm,
+.purchase-register .form-select-sm {
+  font-size: 0.8rem;
+  border-color: #ced4da;
+  height: 32px;
+}
+
+/* Button Styling */
+.purchase-register .btn {
+  margin-left: 5px;
+  font-size: 13px;
+  padding: 5px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.purchase-register .excel-icon {
+  color: #217346;
+  font-size: 16px;
+}
+
+.purchase-register .search-icon {
+  color: #16bfff;
+  font-size: 14px;
+}
+
+/* Table Container */
+.purchase-register .table-container {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.purchase-register .table-responsive {
+  max-height: 420px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.purchase-register .custom-register-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+}
+
+.purchase-register .custom-register-table thead th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 8px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.purchase-register .custom-register-table tbody td {
+  padding: 8px 8px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.purchase-register .custom-register-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.purchase-register .custom-register-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* Footer Summary */
+.purchase-register .register-footer {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* Custom scrollbar - Size 8px, No Hover Change */
+.purchase-register .table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.purchase-register .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.purchase-register .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+  border-radius: 4px;
+}
+
+.purchase-register .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #ccc !important;
+}
+
+/* Badge & Action icons */
+.purchase-register .custom-register-table .badge {
+  font-size: 0.7rem;
+  padding: 4px 6px;
+}
+
+.purchase-register .custom-register-table .btn-sm {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purchase-register .view-icon {
+  cursor: pointer;
+  color: #333;
+  font-size: 15px;
+  transition: transform 0.2s;
+}
+
+.purchase-register .view-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Modals */
+.purchase-register .query-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.purchase-register .query-modal-content {
+  background: #ffffff;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 850px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.purchase-register .query-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.purchase-register .modal-title {
+  color: #1fb5ff;
+  font-size: 1rem;
+}
+
+.purchase-register .tab-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: #f8f9fa;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.purchase-register .tab-btn.active {
+  background: #fff;
+  color: #1fb5ff;
+  border-bottom-color: #1fb5ff;
+}
+
+@media (max-width: 768px) {
+  .purchase-register .header-section .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+}

@@ -1,0 +1,125 @@
+/* GSTSalesReturnList.css - Standardized with ToolManagement UI */
+
+.gst-sales-return-list {
+  padding: 1rem;
+}
+
+
+
+/* User Management Section */
+.gst-sales-return-list .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.gst-sales-return-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1fb5ff;
+}
+
+.gst-sales-return-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.gst-sales-return-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.gst-sales-return-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.gst-sales-return-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.gst-sales-return-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+  font-size: 14px;
+}
+
+.gst-sales-return-list .view-eye-btn {
+  color: #1fb5ff;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gst-sales-return-list .view-eye-btn:hover {
+  color: #0056b3;
+  transform: scale(1.2);
+}
+
+.gst-sales-return-list .table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.gst-sales-return-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.gst-sales-return-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Footer Section Bar */
+.gst-sales-return-list .footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+
+.gst-sales-return-list label {
+  font-size: 0.85rem !important;
+}
+
+/* Custom Scrollbar for responsive table */
+.gst-sales-return-list .table-responsive::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.gst-sales-return-list .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.gst-sales-return-list .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.gst-sales-return-list .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #1fb5ff;
+}

@@ -1,0 +1,119 @@
+.GStDetails {
+    padding: 15px 15px;
+    background-color: white;
+    margin: 10px 10px;
+  }  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table td input {
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding does not exceed cell width */
+  }
+  
+  .table td div {
+    margin-bottom: 5px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .table th, .table td {
+      padding: 4px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .table th, .table td {
+      font-size: 12px;
+      padding: 2px;
+    }
+  }
+
+
+   .gsttable {
+    padding: 15px;
+  }
+
+  .gsttable .table-responsive {
+    overflow-x: auto; /* Horizontal scrolling */
+  }
+  
+  
+  .gsttable .table {
+    width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  } 
+  
+   .gsttable  .table td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .gsttable .table input[type="text"] {
+    width: 150%;
+    box-sizing: border-box; 
+  }
+  
+  .gsttable .table input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .gsttable .table label {
+    margin-left: 5px;
+  }
+  
+  .gsttable .table-responsive {
+    overflow-x: auto;
+  }
+  .gsttable  .table .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+  .gsttable  input.form-control {
+    width: 100%; /* Ensures it fills the entire column width */
+    height: 40px; /* Adjust the height for bigger inputs */
+    font-size: 16px; /* Increase font size */
+    padding: 10px; /* Add padding for better readability */
+    box-sizing: border-box; /* Prevent overflow */
+  }
+  
+  /* Optional: Increase the height of the table rows */
+  .gsttable  table td {
+    vertical-align: middle; /* Vertically center the content in each cell */
+  }
+  
+  
+  /* Wrapper for the table to make it scrollable */
+  .gsttable .table-wrapper {
+  overflow-x: auto; /* Enable horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* For smoother scrolling on mobile */
+  max-width: 100%; /* Ensure it fills available space */
+}
+
+/* Optionally, set a max height for the table to make it vertically scrollable as well */
+.gsttable .table-wrapper table {
+  width: 100%; /* Ensure the table width takes the full container width */
+  min-width: 1200px; /* Ensure the table is wide enough, adjust if needed */
+}
+
+  @media (max-width: 768px) {
+    .gsttable  .table td {
+      padding: 4px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+  .gsttable   .table td {
+      font-size: 12px;
+      padding: 2px;
+    }
+  }
+   

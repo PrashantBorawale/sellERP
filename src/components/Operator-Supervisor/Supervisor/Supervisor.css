@@ -1,0 +1,306 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.Supervisorupper-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Supervisorupper-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.Supbtn {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  margin: 5px;
+}
+.adddepbtn {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+
+.SupervisorMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Supervisorbottom {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+/* Add this at the end of your existing CSS */
+/* Modal Container */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Card */
+.modal-container .card {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px; /* Reduced max width */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 80%; /* Reduced max height */
+}
+
+.modal-container .card-header {
+  
+  padding: 10px; /* Reduced padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-container .card-title {
+  margin: 0;
+  font-size: 1.2rem; /* Slightly smaller font size */
+}
+
+.modal-container .btn-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem; /* Slightly smaller icon size */
+  cursor: pointer;
+}
+
+.modal-container .card-body {
+  padding: 15px; /* Reduced padding */
+  overflow-y: auto;
+}
+
+
+
+
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-container .card {
+    width: 100%;
+    max-width: 85%; /* Adjusted width for smaller screens */
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* category */
+
+.Category-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.Category-container .card {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px; /* Reduced max width */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 80%; /* Reduced max height */
+}
+
+.Category-container .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Category-container .card-title {
+  margin: 0;
+}
+
+.Category-container .card-body {
+  padding: 20px 0;
+}
+
+.Category-container .btn-close {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.Category-container .btn-close:focus {
+  outline: none;
+}
+
+.Category-container .table-responsive {
+  margin-top: 20px;
+}
+
+/* designation */
+
+.designation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.designation-container .card {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px; /* Reduced max width */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 80%; /* Reduced max height */
+}
+
+.designation-container .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.designation-container .card-title {
+  margin: 0;
+}
+
+.designation-container .card-body {
+  padding: 20px 0;
+}
+
+.designation-container .btn-close {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.designation-container .btn-close:focus {
+  outline: none;
+}
+
+.designation-container .table-responsive {
+  margin-top: 20px;
+}
+
+/* Contractor */
+
+.Contractor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.Contractor-container .card {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px; /* Reduced max width */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 80%; /* Reduced max height */
+}
+
+.Contractor-container .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Contractor-container .card-title {
+  margin: 0;
+}
+
+.Contractor-container .card-body {
+  padding: 20px 0;
+}
+
+.Contractor-container .btn-close {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.Contractor-container .btn-close:focus {
+  outline: none;
+}
+
+.Contractor-container .table-responsive {
+  margin-top: 20px;
+}

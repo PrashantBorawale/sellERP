@@ -1,0 +1,101 @@
+/* General Styles */
+.NewStoreStockTranscation {
+    background-color: white;
+    height: auto;
+    font-family: Arial, sans-serif;
+}
+
+.StockTranscation-header {
+    margin-top: 20px;
+    background-color: #f8f9fa;;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.StockTranscation-main {
+    background-color: #f8f9fa;;
+    padding: 20px;
+    margin-top: 20px;
+    height: auto;
+}
+
+/* Buttons */
+.pobtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.pobtn:hover {
+    background-color: #0056b3;
+}
+
+/* Form Labels */
+.StockTranscation-main .form-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Responsive Table */
+.StockTranscation-main .table-responsive {
+    overflow-x: auto;
+}
+
+.StockTranscation-main .table thead th {
+    
+    font-weight: bold;
+}
+
+.StockTranscation-main .table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .pobtn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .StockTranscation-main .form-label {
+        font-size: 12px;
+    }
+
+    .StockTranscation-main .col-md-1, .col-md-2 {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .StockTranscation-header h5 {
+        font-size: 16px;
+    }
+
+    .StockTranscation-main  .table thead th, .table tbody td {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pobtn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .StockTranscation-main .form-label {
+        font-size: 10px;
+    }
+
+    .StockTranscation-header h5 {
+        font-size: 14px;
+    }
+
+    .table thead th, .table tbody td {
+        font-size: 10px;
+    }
+}

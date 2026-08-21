@@ -1,0 +1,383 @@
+/* Confirm GST Bill - styled to match Pending Bill Inward Challan List */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.confirm-gst-bill {
+  background: linear-gradient(135deg, #f6f8fd 0%, #f1f5f9 100%);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1e293b;
+}
+
+.confirm-gst-bill .main-content {
+  padding: 0 32px 40px;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.confirm-gst-bill .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.confirm-gst-bill .bill-register-container {
+  padding-top: 4px;
+  margin-top: -30px;
+}
+
+.confirm-gst-bill .WorkOrderEntry-header {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  border: 1px solid #c7d2fe;
+  border-left: 5px solid #4f46e5;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 16px !important;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.08);
+}
+
+.confirm-gst-bill .header-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #312e81;
+  background: linear-gradient(90deg, #1e1b4b, #4f46e5, #7c3aed);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: confirmTitleShimmer 5s ease infinite;
+}
+
+@keyframes confirmTitleShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.confirm-gst-bill .WorkOrderEntry-header .d-flex {
+  row-gap: 10px;
+}
+
+.confirm-gst-bill .WorkOrderEntry-header .text-black {
+  color: #1e293b !important;
+}
+
+.confirm-gst-bill .info-badge {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);
+}
+
+.confirm-gst-bill .form-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.confirm-gst-bill .form-control,
+.confirm-gst-bill .form-select,
+.confirm-gst-bill .form-control-sm,
+.confirm-gst-bill .form-select-sm {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-size: 0.82rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.confirm-gst-bill .form-control:hover,
+.confirm-gst-bill .form-select:hover,
+.confirm-gst-bill .form-control-sm:hover,
+.confirm-gst-bill .form-select-sm:hover {
+  border-color: #a5b4fc;
+  background-color: #fafbff;
+}
+
+.confirm-gst-bill .form-control:focus,
+.confirm-gst-bill .form-select:focus,
+.confirm-gst-bill .form-control-sm:focus,
+.confirm-gst-bill .form-select-sm:focus {
+  border-color: #6366f1;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+  outline: none;
+}
+
+.confirm-gst-bill .btn-secondary,
+.confirm-gst-bill .btn-primary {
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.confirm-gst-bill .WorkOrderEntry-header .btn-secondary,
+.confirm-gst-bill .footer-section .btn-secondary {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.22);
+}
+
+.confirm-gst-bill .WorkOrderEntry-header .btn-secondary:hover,
+.confirm-gst-bill .footer-section .btn-secondary:hover,
+.confirm-gst-bill .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.confirm-gst-bill .WorkOrderEntry-header .ms-auto .btn-secondary {
+  background: #ffffff;
+  border: 1px solid #c7d2fe;
+  color: #312e81;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.08);
+}
+
+.confirm-gst-bill .table-responsive {
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 12px !important;
+  overflow: visible !important;
+  max-height: none !important;
+  scroll-behavior: smooth;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.confirm-gst-bill .table-responsive::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.confirm-gst-bill .table-responsive::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.confirm-gst-bill .table-responsive::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 10px;
+}
+
+.confirm-gst-bill .custom-bill-table {
+  font-size: 0.62rem;
+  margin-bottom: 0;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.confirm-gst-bill .custom-bill-table thead th {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  padding: 10px 3px;
+  border: none !important;
+  border-bottom: 2px solid #3730a3 !important;
+  text-align: center;
+  vertical-align: middle;
+  white-space: normal;
+  position: static;
+  min-width: 0 !important;
+  z-index: 10;
+  line-height: 1.15;
+}
+
+.confirm-gst-bill .custom-bill-table tbody td {
+  padding: 8px 3px;
+  vertical-align: middle;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  background-color: #ffffff;
+  color: #334155;
+  font-weight: 500;
+  white-space: normal;
+  min-width: 0 !important;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+}
+
+.confirm-gst-bill .custom-bill-table th:nth-child(1),
+.confirm-gst-bill .custom-bill-table td:nth-child(1) { width: 3%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(2),
+.confirm-gst-bill .custom-bill-table td:nth-child(2) { width: 7%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(3),
+.confirm-gst-bill .custom-bill-table td:nth-child(3) { width: 7%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(4),
+.confirm-gst-bill .custom-bill-table td:nth-child(4) { width: 6%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(5),
+.confirm-gst-bill .custom-bill-table td:nth-child(5) { width: 18%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(6),
+.confirm-gst-bill .custom-bill-table td:nth-child(6) { width: 6%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(7),
+.confirm-gst-bill .custom-bill-table td:nth-child(7),
+.confirm-gst-bill .custom-bill-table th:nth-child(8),
+.confirm-gst-bill .custom-bill-table td:nth-child(8),
+.confirm-gst-bill .custom-bill-table th:nth-child(9),
+.confirm-gst-bill .custom-bill-table td:nth-child(9) { width: 5%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(10),
+.confirm-gst-bill .custom-bill-table td:nth-child(10),
+.confirm-gst-bill .custom-bill-table th:nth-child(11),
+.confirm-gst-bill .custom-bill-table td:nth-child(11),
+.confirm-gst-bill .custom-bill-table th:nth-child(12),
+.confirm-gst-bill .custom-bill-table td:nth-child(12),
+.confirm-gst-bill .custom-bill-table th:nth-child(13),
+.confirm-gst-bill .custom-bill-table td:nth-child(13),
+.confirm-gst-bill .custom-bill-table th:nth-child(14),
+.confirm-gst-bill .custom-bill-table td:nth-child(14) { width: 6%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(15),
+.confirm-gst-bill .custom-bill-table td:nth-child(15) { width: 7%; }
+.confirm-gst-bill .custom-bill-table th:nth-child(16),
+.confirm-gst-bill .custom-bill-table td:nth-child(16),
+.confirm-gst-bill .custom-bill-table th:nth-child(17),
+.confirm-gst-bill .custom-bill-table td:nth-child(17) { width: 3%; }
+
+.confirm-gst-bill .custom-bill-table th[style],
+.confirm-gst-bill .custom-bill-table td[style] {
+  min-width: 0 !important;
+}
+
+.confirm-gst-bill .custom-bill-table .form-control,
+.confirm-gst-bill .custom-bill-table .form-select,
+.confirm-gst-bill .custom-bill-table .form-control-sm,
+.confirm-gst-bill .custom-bill-table .form-select-sm {
+  width: 100% !important;
+  min-width: 0;
+  max-width: 100%;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-size: 0.62rem;
+}
+
+.confirm-gst-bill .custom-bill-table td:nth-child(15) .form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: none !important;
+}
+
+.confirm-gst-bill .custom-bill-table tbody tr:hover td {
+  background-color: #f5f3ff;
+}
+
+.confirm-gst-bill .custom-bill-table input[type="checkbox"],
+.confirm-gst-bill .custom-bill-table .form-check-input,
+.confirm-gst-bill .footer-section .form-check-input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  border-color: #cbd5e1;
+}
+
+.confirm-gst-bill .custom-bill-table .btn-primary {
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  color: #3b82f6;
+}
+
+.confirm-gst-bill .custom-bill-table .btn-primary:hover {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.confirm-gst-bill .totals-bar {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.18) !important;
+  color: #ffffff;
+  overflow-x: auto;
+  padding: 10px 8px !important;
+}
+
+.confirm-gst-bill .totals-bar .label {
+  font-weight: 800;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  opacity: 0.95;
+}
+
+.confirm-gst-bill .totals-bar .value {
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+.confirm-gst-bill .footer-section {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+.confirm-gst-bill .footer-section label {
+  font-weight: 700;
+  color: #334155;
+  font-size: 0.72rem;
+}
+
+.confirm-gst-bill .footer-section textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.confirm-gst-bill .footer-section .btn-secondary.px-5 {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.confirm-gst-bill .footer-section .btn-secondary.px-5:hover {
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.36);
+}
+
+.confirm-gst-bill .btn-excel-style {
+  background-color: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.confirm-gst-bill .btn-excel-style:hover {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+}
+
+.confirm-gst-bill .btn-enterprise {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 20px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-gst-bill .btn-enterprise:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+}
+
+.confirm-gst-bill label {
+  font-size: 0.85rem !important;
+}
+

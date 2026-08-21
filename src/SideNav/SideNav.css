@@ -1,0 +1,336 @@
+/* Base styles for side navigation */
+.blueside-Nav .side-nav {
+  height: 100%;
+  width: 250px;
+  background-color: #1e293b;
+  color: #ecf0f1;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  transition: left 0.3s;
+  padding-top: 60px;
+  z-index: 1000;
+  overflow-y: auto;
+  overflow-x: visible;
+}
+
+.blueside-Nav .side-nav.open {
+  left: 0;
+}
+
+/* Header styling */
+.blueside-Nav .side-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #2c3e50;
+  margin-top: -70px;
+  padding-top: 20px;
+}
+
+.blueside-Nav .logo-light {
+  margin: 0;
+  font-size: 20px;
+  padding: 11px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.blueside-Nav .close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin: 0;
+  position: relative;
+}
+
+.blueside-Nav .side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.blueside-Nav .side-nav ul li {
+  padding: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.blueside-Nav .side-nav ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+
+.vdnrbbnns{
+  border: none;
+}
+
+.blueside-Nav .side-nav ul li a:hover {
+  background-color: #34495e;
+  padding: 10px 15px;
+}
+
+/* Dropdown container */
+.blueside-Nav .dropdown-container {
+  position: relative;
+}
+
+.blueside-Nav .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #ecf0f1;
+  width: 100%;
+}
+
+.blueside-Nav .dropdown-toggle:hover {
+  background-color: #34495e;
+  /* border-radius: 4px; */
+}
+
+/* Dropdown arrow animation */
+.blueside-Nav .dropdown-arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.blueside-Nav .dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Custom dropdown menu */
+.blueside-Nav .custom-dropdown-menu {
+  display: none;
+  background-color: #34495e;
+  margin-left: 15px;
+  position: static !important;
+  height: auto !important;
+}
+
+.blueside-Nav .custom-dropdown-menu.show {
+  display: block;
+}
+
+.blueside-Nav .custom-dropdown-menu .dropdown-item {
+  color: #ecf0f1;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.blueside-Nav .custom-dropdown-menu .dropdown-item:hover {
+  background-color: #16BFFF;
+  color: white;
+}
+
+.blueside-Nav .custom-dropdown-menu .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+/* Dropdown item headers */
+.blueside-Nav .dropdown-item-header {
+  color: #bdc3c7;
+  padding: 8px 15px;
+  font-size: 12px;
+  background-color: #34495e;
+  border-bottom: 1px solid #34495e;
+}
+
+/* Nested dropdown styles - make consistent with main dropdowns */
+.blueside-Nav .nested-dropdown {
+  position: relative;
+}
+
+.blueside-Nav .nested-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #ecf0f1;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.blueside-Nav .nested-toggle:hover {
+  background-color: #16BFFF;
+  color: white;
+}
+
+.blueside-Nav .nested-toggle .arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.blueside-Nav .nested-toggle .arrow.open {
+  transform: rotate(90deg);
+}
+
+.blueside-Nav .nested-dropdown-menu {
+  display: none;
+  background-color: #34495e;
+  margin-left: 15px;
+  position: static !important;
+  height: auto !important;
+}
+
+.blueside-Nav .nested-dropdown-menu.show {
+  display: block;
+}
+
+.blueside-Nav .nested-dropdown-menu .dropdown-item {
+  padding: 10px 15px;
+  font-size: 13px;
+  background-color: #34495e;
+  transition: background-color 0.2s;
+}
+
+.blueside-Nav .nested-dropdown-menu .dropdown-item:hover {
+  background-color: #16BFFF;
+
+}
+
+/* Scrollbar styling */
+.blueside-Nav .side-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.blueside-Nav .side-nav::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.blueside-Nav .side-nav::-webkit-scrollbar-thumb {
+  background: #34495e;
+  border-radius: 3px;
+}
+
+.blueside-Nav .side-nav::-webkit-scrollbar-thumb:hover {
+  background: #2c3e50;
+}
+
+.blueside-Nav .custom-dropdown-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.blueside-Nav .custom-dropdown-menu::-webkit-scrollbar-track {
+  background: #34495e;
+}
+
+.blueside-Nav .custom-dropdown-menu::-webkit-scrollbar-thumb {
+  background: #2c3e50;
+  border-radius: 2px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .blueside-Nav .side-nav {
+    width: 220px;
+  }
+}
+
+@media (max-width: 992px) {
+  .blueside-Nav .side-nav {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blueside-Nav .side-nav {
+    width: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .blueside-Nav .side-nav {
+    width: 100%;
+    transform: translateX(-100%);
+  }
+
+  .blueside-Nav .side-nav.open {
+    transform: translateX(0);
+  }
+
+  .blueside-Nav .side-nav .logo-light {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 400px) {
+  .blueside-Nav .side-nav .dropdown-toggle {
+    padding: 10px;
+  }
+
+  .blueside-Nav .side-nav ul li {
+    padding: 8px;
+  }
+}
+
+/* Animation for smooth dropdown transitions */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fix for icons spacing */
+.blueside-Nav .dropdown-toggle svg,
+.blueside-Nav .side-nav ul li a svg {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Prevent text selection on dropdown toggles */
+.blueside-Nav .dropdown-toggle,
+.blueside-Nav .nested-toggle {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Ensure proper spacing for nested items */
+.blueside-Nav .nested-dropdown-menu .dropdown-item {
+  margin-left: 0;
+  padding-left: 20px;
+}
+
+/* Fix for long text wrapping */
+.blueside-Nav .dropdown-item,
+.blueside-Nav .dropdown-toggle span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal !important;
+}
+
+/* Removed transparent zero-width scrollbars to make scrolling visible */

@@ -1,0 +1,139 @@
+
+  /* Header Styling */
+  .InprocessInspectionList-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .InprocessInspectionList-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .InprocessInspectionList-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .InprocessInspectionList-Main {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  /* Inputs and buttons for all screen sizes */
+  .InprocessInspectionList-Main label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .InprocessInspectionList-Main .form-control,
+  .InprocessInspectionList-Main .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .InprocessInspectionList-Main .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .InprocessInspectionList-header .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .InprocessInspectionList-header .d-flex {
+      justify-content: center;
+    }
+  
+    .InprocessInspectionList-Main .col-6,
+    .InprocessInspectionList-Main .col-md-3,
+    .InprocessInspectionList-Main .col-md-2 {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .InprocessInspectionList-Main .btn {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .InprocessInspectionList-header {
+      text-align: center;
+    }
+  }
+  
+.erp-header {
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.erp-header .header-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.vndrbtn {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.vndrbtn:hover {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  transform: translateY(-1px);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Table cell wrapping - works with table-layout: fixed */
+.InprocessInspectionListMaster .table th,
+.InprocessInspectionListMaster .table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  vertical-align: middle;
+  padding: 8px 6px;
+  font-size: 0.82rem;
+}
+
+.InprocessInspectionListMaster .table thead th {
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+
+
+
+
+
+
+

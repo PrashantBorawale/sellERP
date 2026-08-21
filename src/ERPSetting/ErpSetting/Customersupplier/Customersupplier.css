@@ -1,0 +1,109 @@
+.Customersupplier .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .Customersupplier-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  /* Customersupplier.css */
+
+
+ 
+  
+  .Customersupplier .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .Customersupplier .form-info {
+    font-size: 0.85rem;
+    color: #6c757d;
+  }
+  
+  /* Button Styling */
+  .Customersupplier .btn-primary {
+    background-color: #0056b3;
+    border: none;
+    font-weight: bold;
+  }
+  
+  .Customersupplier .btn-primary:hover {
+    background-color: #004085;
+  }
+  
+  /* Tabs Styling */
+  .Customersupplier .nav-tabs .nav-link {
+    color: #0056b3;
+    font-weight: bold;
+  }
+  
+  .Customersupplier .nav-tabs .nav-link.active {
+    color: #004085;
+    border-color: #0056b3 #0056b3 transparent;
+  }
+  
+  .Customersupplier .setting-list-content {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 50px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .Customersupplier   .header-title {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .main-content.shifted {
+      margin-left: 200px;
+    }
+  
+    .Customersupplier   .header-title {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .main-content.shifted {
+      margin-left: 0;
+    }
+  
+    .Customersupplier   .header-title {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  
+    .Customersupplier   .form-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .Customersupplier   .form-group label {
+      margin-bottom: 0.5rem;
+    }
+  
+    .Customersupplier   .btn-primary {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  
+    .Customersupplier   .setting-list-content {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .Customersupplier  .header-title {
+      font-size: 1.1rem;
+    }
+  
+    .Customersupplier   .btn-primary {
+      font-size: 0.9rem;
+    }
+  }
+  

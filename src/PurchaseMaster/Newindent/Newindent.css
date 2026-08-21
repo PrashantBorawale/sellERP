@@ -1,0 +1,129 @@
+.NewindentMaster {
+ margin-top: 30px;
+}
+.newindent-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+.newindent2 {
+  background-color: #f8f9fa;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.newindent2 .container {
+  max-width: 100%;
+}
+
+.newindent2 .form-group {
+  flex: 1;
+  min-width: 10px;
+}
+
+.newindent2 .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+
+.newindent2 .form-group .form-control {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .newindent2 .form-group {
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.newindentmain {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.newindentmainbtn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+
+.newindenttable {
+  background-color: #f8f9fa;
+ 
+
+  margin-top: 20px;
+}
+
+.indenttablebtn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table th {
+  background-color: rgba(0, 0, 255, 0.323);
+}
+
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem;
+}
+
+.BomRouteBottom h6 {
+  color: blue;
+}
+
+.newindentbottom {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.newindentbottombtn {
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+
+  background-color: rgba(235, 233, 233, 0.685);
+}

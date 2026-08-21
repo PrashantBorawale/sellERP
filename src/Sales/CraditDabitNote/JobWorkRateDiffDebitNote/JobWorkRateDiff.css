@@ -1,0 +1,119 @@
+.JobWorkRateDiffMaster {
+    margin-top: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+}
+
+/* Header Styling */
+.JobWorkRateDiff-header {
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    color: #0088ff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Compact Filter Bar */
+.filter-bar-erp {
+    background-color: #eee;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.filter-bar-erp label {
+    font-weight: 600;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.filter-bar-erp input, .filter-bar-erp select {
+    font-size: 11px;
+    padding: 1px 5px;
+    height: 22px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+/* Table Styling - Blue Gradient Headers */
+.table-erp {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table-erp th {
+    background-color: rgb(22, 191, 255);
+    color: white;
+    font-size: 11px;
+    padding: 4px;
+    border: 1px solid #00a8e6;
+    text-align: center;
+    font-weight: 600;
+}
+
+.table-erp td {
+    border: 1px solid #dee2e6;
+    padding: 3px 6px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+/* Footer Summary Section */
+.footer-summary {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+.footer-summary-header {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 13px;
+    border-bottom: 1px solid #ccc;
+}
+
+.footer-table th {
+    background-color: rgb(22, 191, 155);
+    background-color: rgb(22, 191, 255);
+    color: white;
+    font-size: 11px;
+    border: 1px solid #00a8e6;
+    padding: 4px;
+    text-align: center;
+}
+
+.footer-table td {
+    padding: 2px 5px;
+    border: 1px solid #ddd;
+}
+
+/* Shifting fix */
+.main-content {
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+    margin-left: 250px;
+}
+
+@media (max-width: 1200px) {
+    .filter-bar-erp {
+        flex-wrap: wrap;
+    }
+}
+
+  

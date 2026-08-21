@@ -1,0 +1,184 @@
+/* Apply borders to the table and row containers */
+.table-container {
+    /* border: 1px solid #000; */
+    padding: 10px;
+}
+
+/* Add border to each column (cell) */
+.table-container .col-md-3 {
+    border: 1px solid #ccc;
+    padding: 5px;
+    /* margin: 5px; */
+}
+
+/* Style the input fields */
+.table-container input[type="text"], .table-container select {
+    border: 1px solid #ccc;
+    /* padding: 5px; */
+    width: 100%;
+}
+
+/* Add a little spacing between labels and inputs */
+.table-container label {
+    display: block;
+    /* margin-bottom: 5px; */
+}
+
+.DabitNoteListMaster {
+    margin-top: -10px;
+  }
+  
+  /* Header Styling */
+  .DabitNoteList-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .DabitNoteList-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Form and Inputs */
+/* Additional spacing for table cells */
+.DabitNoteListMaster .table-bordered td, .table-bordered th {
+    padding: 8px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Adjust icon button sizes for consistent appearance */
+ .DabitNoteListMaster .btn-outline-secondary {
+    padding: 4px 8px;
+    font-size: 1rem;
+  }
+  
+  /* Responsive font and padding adjustments */
+  .DabitNoteList-main label {
+    font-size: 0.875rem;
+  }
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+   
+    margin: 0;
+    padding: 0;
+  }
+  
+  .DabitNoteList-main {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .DabitNoteList-bottom{
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .DabitNoteList-tabs .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .DabitNoteList-tabs .nav-tabs .nav-link {
+    font-weight: bold;
+    color: #495057;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .DabitNoteList-tabs .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .DabitNoteList .tab-content {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: none;
+    
+    border-radius: 0 0 10px 10px;
+
+  }
+  
+ .DabitNoteList-main label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+.DabitNoteList-main  input, select {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+ 
+  
+ .DabitNoteList-main input.form-control,
+ .DabitNoteList-main select.form-control {
+    padding: 8px;
+ 
+  }
+  
+ 
+  
+  /* Table Styling */
+  .DabitNoteList-main .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .DabitNoteList-main   .table th,
+  .DabitNoteList-main .table td {
+    text-align: left;
+    padding: 8px;
+    
+  }
+  
+  .DabitNoteList-main .table th {
+  
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tab-content .row {
+      flex-direction: column;
+    }
+  
+    .row .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .btn {
+      width: auto;
+      margin: 0 5px;
+    }
+  
+    .DabitNoteList-tabs .nav-tabs .nav-link {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .DabitNoteList-main {
+      padding: 10px;
+    }
+  
+    .table th, .table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  

@@ -1,0 +1,64 @@
+/* General Styles */
+.NewStoreRMToTransaction {
+    /* background-color: #fff; */
+    font-family: Arial, sans-serif;
+  }
+  
+  .RMToTransaction-header {
+    margin-top: 20px;
+     background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .RMToTransaction-main {
+     background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .RMToTransactionSelect{
+     margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+  .RMToTransactionSelect1{
+    margin-top: 20px;
+   background-color: white;
+   padding: 10px;
+   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+ }
+  .header-title {
+    font-weight: bold;
+  }
+  
+  .RMToTransaction-main  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .RMToTransaction-main  input, select, textarea {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .header-title {
+      font-size: 18px;
+    }
+  
+    .RMToTransaction-main  .form-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .RMToTransaction-main  .col-form-label {
+      width: 100%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .RMToTransaction-main   .col-form-label {
+      text-align: right;
+    }
+  }
+  

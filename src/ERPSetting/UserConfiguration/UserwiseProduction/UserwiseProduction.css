@@ -1,0 +1,98 @@
+/* General container styling */
+.userwise-production .container-fluid {
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+  
+  .userwise-production .main-navbar {
+    position: relative;
+  }
+  
+  .userwise-production .main-content {
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+  }
+  
+  .userwise-production .main-content.shifted {
+    margin-left: 250px;
+  }
+  
+  /* Header styles */
+
+   .prod-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px; /* Rounded corners for the header */
+  }
+
+  .userwise-production .header-title {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .userwise-production .export-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .userwise-production .export-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Operations and user selection */
+  .userwise-production .prod-main .form-label {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .userwise-production .prod-main .operation-list {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .userwise-production .prod-main .list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+  }
+  
+  /* Operations checkbox */
+  .userwise-production .prod-main .list-group-item input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  /* Styling for selected operations */
+  .userwise-production .prod-main .list-group-item {
+    background-color: #f8f9fa;
+  }
+  
+  .userwise-production .prod-main .list-group-item:hover {
+    background-color: #e2e6ea;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .userwise-production .main-content {
+      margin-left: 0;
+      padding: 15px;
+    }
+  
+    .userwise-production .prod-main .list-group-item {
+      font-size: 0.9rem;
+    }
+  
+    .userwise-production .prod-header .header-title {
+      font-size: 1rem;
+    }
+  
+    .userwise-production .export-btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+  

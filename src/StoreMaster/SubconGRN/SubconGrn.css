@@ -1,0 +1,90 @@
+
+  
+  .NewPurchaseReport-header {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .NewPurchaseReport-main {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+.NewPurchaseReport-main  .table-responsive {
+    width: 100%;
+  }
+  
+.NewPurchaseReport-main  .table th,
+.NewPurchaseReport-main  .table td {
+    vertical-align: middle;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .NewPurchaseReport-header .row {
+      flex-direction: column;
+    }
+  
+    .NewPurchaseReport-header .col-md-2 {
+      margin-bottom: 10px;
+    }
+  
+    .NewPurchaseReport-main .col-md-4 {
+      margin-bottom: 20px;
+    }
+  
+    .NewPurchaseReport-main .table th,
+    .NewPurchaseReport-main .table td {
+      font-size: 14px;
+    }
+  
+    .NewPurchaseReport-main .NewPurchaseReport-main .table-responsive {
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .NewPurchaseReport-header .col-md-2 {
+      width: 100%;
+    }
+  
+    .NewPurchaseReport-main .col-md-4 {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+.NewPurchaseReport-main    .table th,
+.NewPurchaseReport-main    .table td {
+      font-size: 12px;
+    }
+  
+    .NewPurchaseReport-main .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 360px) {
+    .NewPurchaseReport-header h5 {
+      font-size: 16px;
+    }
+  
+    .NewPurchaseReport-main {
+      padding: 5px;
+    }
+  
+.NewPurchaseReport-main    .table th,
+.NewPurchaseReport-main    .table td {
+      padding: 8px;
+      font-size: 11px;
+    }
+  
+    .NewPurchaseReport-main .btn {
+      font-size: 14px;
+    }
+  }
+  

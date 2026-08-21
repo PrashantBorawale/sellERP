@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.Contractor-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Contractor-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.ContractorMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Contractortable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+
+
+.contractorbtnicon {
+  border: none;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .Contractor .text-end {
+    text-align: start !important;
+    margin-top: 10px;
+  }
+
+  .Contractorbtn {
+    width: 100%;
+    text-align: center;
+  }
+  .ContractorMainbtn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .ContractorMain .row {
+    flex-direction: column;
+  }
+
+  .ContractorMain .col-md-3,
+  .ContractorMain .col-md-6,
+  .ContractorMain .col-md-1,
+  .ContractorMain .col-md-2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ContractorMain .col-md-6 input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .Contractor h5 {
+    font-size: 1.2rem;
+  }
+
+  .Contractorbtn {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .Contractor .btn {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}

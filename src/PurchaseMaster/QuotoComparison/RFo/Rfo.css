@@ -1,0 +1,76 @@
+.RFO-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.RFO-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+  
+  .RFO-main {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+ 
+  .RFO-main .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .RFO-main .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .RFO-main .table th,
+  .RFO-main .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+  
+
+  
+  .RFO-main .table th input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .RFO-main .table th label {
+    vertical-align: middle;
+  }
+  
+  .RFO-main .table th label.ml-2 {
+    margin-left: 8px;
+  }
+  
+  /* Header title styling */
+  .header-title {
+    font-size: 1.25rem; /* Adjust size as needed */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+    .RFO-main-header {
+      text-align: center; /* Center text on smaller screens */
+    }
+  
+    .pobtn {
+      width: 100%; /* Full width buttons on small screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .RFO-main .table th,
+    .RFO-main .table td {
+      padding: 8px;
+      font-size: 0.875rem;
+    }
+  }
+  

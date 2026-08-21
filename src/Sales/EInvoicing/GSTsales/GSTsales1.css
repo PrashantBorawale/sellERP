@@ -1,0 +1,230 @@
+.GSTsalesMaster {
+    margin-top: -10px;
+  }
+  
+  .GSTsales-header {
+    background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+  
+  .GSTsales-header .header-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+  }
+
+  
+  /* Form and Inputs */
+  /* Additional spacing for table cells */
+  .GSTsalesMaster .table-bordered td, .table-bordered th {
+    padding: 8px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Adjust icon button sizes for consistent appearance */
+  .GSTsalesMaster .btn-outline-secondary {
+    padding: 4px 8px;
+    font-size: 1rem;
+  }
+  
+  /* Responsive font and padding adjustments */
+  .GSTsales-main label {
+    font-size: 0.875rem;
+  }
+  /* General Styling */
+  body {
+    font-family: Arial, sans-serif;
+   
+    margin: 0;
+    padding: 0;
+  }
+  
+  .GSTsales-main {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .GSTsales-bottom{
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .GSTsalesMaster .nav-tabs {
+    border-bottom: 2px solid #e2e8f0;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .GSTsalesMaster .nav-tabs .nav-link {
+    font-weight: 600;
+    color: #64748b;
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .GSTsalesMaster .nav-tabs .nav-link:hover {
+    color: #2563eb;
+    border-bottom: 2px solid #93c5fd;
+  }
+  
+  .GSTsalesMaster .nav-tabs .nav-link.active {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+    background: transparent;
+  }
+  
+  .GSTsales .tab-content {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
+  
+  .GSTsales-main label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .GSTsales-main  input, select {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  
+  
+  .GSTsales-main input.form-control,
+  .GSTsales-main select.form-control {
+    padding: 8px;
+  
+  }
+  
+  /* Screen-Fit Squished Table Setup */
+  .GSTsalesMaster .table-responsive {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important; 
+    background: transparent;
+    display: block;
+  }
+  
+  .GSTsalesMaster .table {
+    width: 100% !important;
+    table-layout: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+  }
+  
+  .GSTsalesMaster .table th,
+  .GSTsalesMaster .table td {
+    white-space: normal !important; 
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: 0.65rem !important; 
+    padding: 6px 4px !important; 
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .GSTsalesMaster .table th {
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  .GSTsalesMaster .table td {
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tab-content .row {
+      flex-direction: column;
+    }
+  
+    .row .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .btn {
+      width: auto;
+      margin: 0 5px;
+    }
+  
+    .GSTsales-tabs .nav-tabs .nav-link {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  .generateirn, .generateirn label {
+    color: #16a34a !important;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .generateirn input[type="radio"] {
+    accent-color: #16a34a;
+    margin-right: 4px;
+  }
+
+  .cancelirn, .cancelirn label {
+    color: #dc2626 !important;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .cancelirn input[type="radio"] {
+    accent-color: #dc2626;
+    margin-right: 4px;
+  }
+  .cllllr{
+    background-color: #007bff;
+    color: white;
+    padding: 5px;
+  }
+
+  @media (max-width: 576px) {
+    .GSTsales-main {
+      padding: 10px;
+    }
+  
+    .table th, .table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  
+.GSTsales-main { margin-top: 20px; }
+
+.GSTsalesMaster .vndrbtn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  border: none !important;
+  border-radius: 8px;
+  color: white !important;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}

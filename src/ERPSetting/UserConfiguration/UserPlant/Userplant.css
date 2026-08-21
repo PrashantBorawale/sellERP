@@ -1,0 +1,97 @@
+/* General Styles */
+.Userplant {
+  margin-top: 20px;
+}
+
+.Userplant .header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.Userplant .table-responsive {
+  overflow-x: auto;
+}
+
+.Userplant .plant-table .table {
+  width: 100%;
+}
+
+.Userplant .main-content {
+  transition: margin-left 0.3s ease;
+}
+
+/* When the side nav is open, shift the content */
+.Userplant .main-content.shifted {
+  margin-left: 250px; /* Adjust based on side nav width */
+}
+
+/* Styling for the table select dropdown */
+.Userplant .table select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Responsive Styling for Tablets and Mobile Devices */
+@media (max-width: 991px) {
+  .Userplant .main-content {
+    margin-left: 0;
+  }
+
+  .Userplant .prod-header {
+    text-align: center;
+  }
+
+  .Userplant .prod-header .col-md-4 {
+    margin-bottom: 10px;
+  }
+
+  /* Make the table responsive */
+  .Userplant .table-responsive {
+    overflow-x: auto;
+  }
+
+  .Userplant .table thead th {
+    font-size: 0.85rem;
+  }
+
+  .Userplant .table tbody td {
+    font-size: 0.9rem;
+  }
+
+  .Userplant .table select {
+    width: 100%;
+  }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 576px) {
+  .Userplant .prod-header {
+    text-align: center;
+  }
+
+  .Userplant .prod-header .col-md-4 {
+    margin-bottom: 10px;
+  }
+
+  .Userplant .table thead th {
+    font-size: 0.75rem;
+  }
+
+  .Userplant .table tbody td {
+    font-size: 0.8rem;
+  }
+
+  .Userplant .table select {
+    width: 100%;
+  }
+
+  .Userplant .plant-table .table th,
+  .plant-table .table td {
+    white-space: nowrap;
+  }
+
+  .Userplant .table-responsive {
+    overflow-x: auto;
+  }
+}

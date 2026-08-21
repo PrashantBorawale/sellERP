@@ -1,0 +1,126 @@
+/* GSTJobworkDCReturnList.css - Standardized Report UI */
+
+.GSTJobworkDCReturnListMaster {
+  width: 100%;
+}
+
+.GSTJobworkDCReturnList-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+}
+
+.GSTJobworkDCReturnList-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+  margin: 0;
+  text-align: left;
+}
+
+.GSTJobworkDCReturnList-header .vndrbtn {
+  display: inline-block;
+  background-color: rgba(235, 233, 233, 0.685);
+  padding: 5px 10px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.GSTJobworkDCReturnList-header .vndrbtn:hover {
+  background-color: #16bfff;
+  color: white;
+}
+
+.GSTJobworkDCReturnList-Main {
+  background-color: #f8f9fa;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.GSTJobworkDCReturnList-Main .form-select {
+  font-size: 12px;
+  height: 35px;
+  padding: 5px 10px;
+}
+
+.GSTJobworkDCReturnList-Main .form-control {
+  font-size: 12px;
+  height: 35px;
+  padding: 5px 10px;
+}
+
+.GSTJobworkDCReturnList-Main label {
+  font-size: 12px;
+}
+
+.GSTJobworkDCReturnList-Main .table-responsive {
+  overflow-x: auto;
+}
+
+.GSTJobworkDCReturnList-Main .table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.GSTJobworkDCReturnList-Main .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.GSTJobworkDCReturnList-Main .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+  border-radius: 4px;
+}
+
+.GSTJobworkDCReturnList-Main .custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+}
+
+.GSTJobworkDCReturnList-Main .custom-table thead th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 8px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.GSTJobworkDCReturnList-Main .custom-table tbody td {
+  padding: 8px 8px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.GSTJobworkDCReturnList-Main .custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.GSTJobworkDCReturnList-Main .custom-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+.GSTJobworkDCReturnList-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .GSTJobworkDCReturnList-Main .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+}

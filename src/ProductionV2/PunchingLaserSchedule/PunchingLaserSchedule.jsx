@@ -1,0 +1,80 @@
+import React, { useState, useEffect } from "react";
+import NavBar from "../../NavBar/NavBar.js";
+import SideNav from "../../SideNav/SideNav.js";
+import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./PunchingLaserSchedule.css";
+
+const PunchingLaserSchedule = () => {
+  const navigate = useNavigate();
+  const [sideNavOpen, setSideNavOpen] = useState(false);
+  const toggleSideNav = () => setSideNavOpen((p) => !p);
+
+  useEffect(() => {
+    document.body.classList.toggle("side-nav-open", sideNavOpen);
+  }, [sideNavOpen]);
+
+  return (
+    <div className="PunchingLaserScheduleMaster">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="Main-NavBar">
+              <NavBar toggleSideNav={toggleSideNav} />
+              <SideNav sideNavOpen={sideNavOpen} toggleSideNav={toggleSideNav} />
+              <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
+                <div className="PunchingLaserSchedule p-2">
+                  <ToastContainer position="top-right" autoClose={2000} />
+                  
+                  {/* Header */}
+                  <div className="PunchingLaserSchedule-header d-flex justify-content-between align-items-center mb-0 p-1 bg-white border-bottom">
+                    <h6 className="header-title mb-0" style={{ color: 'blue', fontSize: '18px', fontWeight: 'bold', paddingLeft: '10px' }}>Punching & Laser Schedule List</h6>
+                    <button 
+                      className="erp-btn-grey-sm border"
+                      onClick={() => navigate("/PunchingLaserScheduleNew")}
+                    >
+                       New Punching And Laser Schedule
+                    </button>
+                  </div>
+
+                  {/* Filter Section */}
+                  <div className="PunchingLaserSchedule-Filters p-2 border-bottom bg-white shadow-sm mt-1">
+                    <div className="d-flex align-items-center gap-3 flex-wrap" style={{ fontSize: '11px' }}>
+                      <div className="d-flex align-items-center gap-1">
+                        <label className="fw-bold">From :</label>
+                        <input type="date" className="form-control form-control-xs" style={{ width: '105px' }} defaultValue="2026-04-27" />
+                      </div>
+                      <div className="d-flex align-items-center gap-1">
+                        <label className="fw-bold">To Date :</label>
+                        <input type="date" className="form-control form-control-xs" style={{ width: '105px' }} defaultValue="2026-05-12" />
+                      </div>
+                      <button className="erp-btn-grey-sm border px-3 py-0 d-flex align-items-center gap-1">
+                         Search
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Content Area */}
+                  <div className="PunchingLaserSchedule-Content bg-white border mt-1" style={{ height: 'calc(100vh - 250px)' }}>
+                    <div className="p-2 text-danger fw-bold" style={{ fontSize: '12px' }}>
+                      No Data Found !!
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="PunchingLaserSchedule-Footer p-1 bg-light border-top mt-1" style={{ fontSize: '11px', fontWeight: 'bold' }}>
+                    Total Record: 0
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PunchingLaserSchedule;

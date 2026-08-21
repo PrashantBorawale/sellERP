@@ -1,0 +1,53 @@
+/* Global settings */
+.dashboardp {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.dash-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+   
+}
+
+.dash-main {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dashboardp .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.dashboardp .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.dashboardp .form-check-input {
+    width: 20px;
+    height: 20px;
+}
+
+.dashboardp .btn {
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+ .dashboardp   .table-responsive {
+        overflow-x: auto;
+    }
+
+    .dash-main .row {
+        flex-direction: column;
+    }
+
+ .dashboardp   .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

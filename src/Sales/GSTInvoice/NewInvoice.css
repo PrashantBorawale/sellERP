@@ -1,0 +1,231 @@
+/* Apply borders to the table and row containers */
+.table-container {
+    /* border: 1px solid #000; */
+    padding: 10px;
+}
+
+/* Add border to each column (cell) */
+.table-container .col-md-3 {
+    border: 1px solid #ccc;
+    padding: 5px;
+    /* margin: 5px; */
+}
+
+/* Style the input fields */
+.table-container input[type="text"], .table-container select {
+    border: 1px solid #ccc;
+    /* padding: 5px; */
+    width: 100%;
+}
+
+/* Add a little spacing between labels and inputs */
+.table-container label {
+    display: block;
+    /* margin-bottom: 5px; */
+}
+
+.NewInvoice {
+    margin-top: -10px;
+  }
+  
+  /* Header Styling */
+  .NewInvoice-header {
+    background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    margin-top: 15px;
+  }
+  
+  .NewInvoice-header .header-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Form and Inputs */
+/* Additional spacing for table cells */
+.NewInvoice .table-bordered td, .table-bordered th {
+    padding: 8px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Adjust icon button sizes for consistent appearance */
+ .NewInvoice .btn-outline-secondary {
+    padding: 4px 8px;
+    font-size: 1rem;
+  }
+  
+  /* Responsive font and padding adjustments */
+  .NewInvoice-main label {
+    font-size: 0.875rem;
+  }
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+   
+    margin: 0;
+    padding: 0;
+  }
+  
+  .NewInvoice-main {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .NewInvoice-bottom{
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .NewInvoice .nav-tabs {
+    border-bottom: 2px solid #e2e8f0;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .NewInvoice .nav-tabs .nav-link {
+    font-weight: 600;
+    color: #64748b;
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .NewInvoice .nav-tabs .nav-link:hover {
+    color: #2563eb;
+    border-bottom: 2px solid #93c5fd;
+  }
+  
+  .NewInvoice .nav-tabs .nav-link.active {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+    background: transparent;
+  }
+  
+  .NewInvoice .tab-content {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
+  
+ .NewInvoice-main label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+.NewInvoice-main  input, select {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+ 
+  
+ .NewInvoice-main input.form-control,
+ .NewInvoice-main select.form-control {
+    padding: 8px;
+ 
+  }
+  
+ 
+  
+  /* Screen-Fit Squished Table Setup */
+  .NewInvoice .table-responsive {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important; 
+    background: transparent;
+    display: block;
+  }
+  
+  .NewInvoice .table {
+    width: 100% !important;
+    table-layout: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+  }
+  
+  .NewInvoice .table th,
+  .NewInvoice .table td {
+    white-space: normal !important; 
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: 0.65rem !important; 
+    padding: 6px 4px !important; 
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .NewInvoice .table th {
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  .NewInvoice .table td {
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tab-content .row {
+      flex-direction: column;
+    }
+  
+    .row .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .btn, .vndrbtn {
+      width: auto;
+      margin: 0 5px;
+    }
+  
+    .NewInvoice-tabs .nav-tabs .nav-link {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .NewInvoice-main {
+      padding: 10px;
+    }
+  
+    .table th, .table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  
+
+.NewInvoice .vndrbtn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  border: none !important;
+  border-radius: 8px;
+  color: white !important;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}

@@ -1,0 +1,30 @@
+.ContractorListMaster {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .ContractorList-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .ContractorList-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .ContractorList-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ContractorList-Main {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }

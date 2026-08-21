@@ -1,0 +1,205 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.Project1-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Project1-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+.Projectmaster {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+
+.ProjectMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.Projectselect .btnProjectkk {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: rgba(0, 0, 255, 0.692);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.Projectselect .btn i {
+  margin-right: 5px;
+}
+
+@media (max-width: 767.98px) {
+  .ProjectMain {
+    padding: 10px;
+  }
+
+  .Projectselect {
+    padding: 10px;
+  }
+}
+
+.ProjectTable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.ProjectTable .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ProjectTable .table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+.ProjectTable .table .btn-tableww {
+  padding: 0.25rem 0.5rem;
+  align-items: center;
+  border: none;
+
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.ProjectTable .record-count {
+  margin-top: 10px;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .ProjectTable {
+    padding: 10px;
+  }
+
+  .ProjectTable .table-responsive {
+    overflow-x: auto;
+  }
+}
+.Addcardoverlay,
+.Addcard1overlay1,
+.viewalloverlay,
+.systemcardoverlay,
+.Projectqueryoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+  align-items: center;  /* Centers vertically */
+}
+
+.Addcardoverlay .card,
+.Addcard1overlay1 .card,
+.viewalloverlay .card,
+.systemcardoverlay .card,
+.Projectqueryoverlay .card {
+  position: relative;
+  z-index: 1060;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 60%;  /* Adjust width */
+  max-width: 400px;  /* Adjust max-width */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Addcardoverlay .card-body,
+.Addcard1overlay1 .card-body,
+.viewalloverlay .card-body,
+.systemcardoverlay .card-body,
+.Projectqueryoverlay .card-body {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.Addcardoverlay .card-header,
+.Addcard1overlay1 .card-header,
+.viewalloverlay .card-header,
+.systemcardoverlay .card-header,
+.Projectqueryoverlay .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: white;
+  color: blue;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Addcardoverlay .close,
+.Addcard1overlay1 .close,
+.viewalloverlay .close,
+.systemcardoverlay .close,
+.Projectqueryoverlay .close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+}
+
+/* Styling for tabs in Projectqueryoverlay */
+.Projectqueryoverlay .nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.Projectqueryoverlay .nav-tabs .nav-item {
+  margin-bottom: 0;
+}
+
+.Projectqueryoverlay .nav-tabs .nav-link {
+  padding: 10px 15px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #495057;
+}
+
+.Projectqueryoverlay .nav-tabs .nav-link.active {
+  background-color: transparent;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.Projectqueryoverlay .nav-tabs .nav-link:hover {
+  background-color: #f8f9fa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .Projectqueryoverlay .SideNav {
+    width: 100%;
+  }
+
+  .Projectqueryoverlay .main-content.shifted {
+    margin-left: 0;
+  }
+}

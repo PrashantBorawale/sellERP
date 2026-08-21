@@ -1,0 +1,121 @@
+.ProductionWorkOrderEntry{
+  margin-top: 20px;
+}
+
+/* Header Styling */
+.WorkOrderEntry-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.WorkOrderEntry-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Form and Inputs */
+.WorkOrderEntry-main label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.WorkOrderEntry-main .form-control {
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.WorkOrderEntry-main select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.WorkOrderEntry-main button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.WorkOrderEntry-main button:hover {
+  background-color: #0056b3;
+}
+
+/* Table Styling */
+.WorkOrderEntry-table .table-responsive {
+  overflow-x: auto;
+  margin-top: 20px;
+  
+
+}
+
+.WorkOrderEntry-table .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.WorkOrderEntry-table .table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+
+/* Button for Edit and Delete */
+.WorkOrderEntry-table .table .btn-link {
+  font-size: 18px;
+  color: #007bff;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.WorkOrderEntry-table .table .btn-link:hover {
+  color: #0056b3;
+}
+
+.WorkOrderEntry-table .table .btn-link.text-danger:hover {
+  color: #d9534f;
+}
+
+/* Responsive Styling */
+@media (max-width: 991px) {
+  .WorkOrderEntry-main .col-md-1,
+  .WorkOrderEntry-main .col-md-2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+  }
+
+  .PRoWorkorderList-header .header-title {
+      text-align: center;
+      font-size: 18px;
+  }
+
+  .WorkOrderEntry-table   .table th, .table td {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .PRoWorkorderList-header .header-title {
+      font-size: 16px;
+  }
+
+  .WorkOrderEntry-table   .table th, .table td {
+      font-size: 12px;
+  }
+
+  .WorkOrderEntry-table  .table-responsive {
+      overflow-x: scroll;
+  }
+}

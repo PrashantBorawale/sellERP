@@ -1,0 +1,153 @@
+/* Main Operation Container */
+.Operation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: fixed; /* Ensures it stays in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Light overlay */
+    z-index: 999; /* Ensures it stays on top */
+  }
+  
+  /* Card Styling */
+ .Operation .card {
+    width: 90%;
+    max-width: 900px;
+    height: 80vh; /* Set height to enable scrolling */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    position: relative;
+    z-index: 1000; /* Ensures it stays above overlay */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Scrollable Card Body */
+ .Operation .card-body {
+    flex-grow: 1;
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding-right: 10px;
+    
+    
+  }
+  
+  /* Custom Scrollbar */
+ .Operation .card-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+ .Operation .card-body::-webkit-scrollbar-thumb {
+    
+    border-radius: 10px;
+  }
+  
+ .Operation .card-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Card Header */
+ .Operation .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1001;
+  }
+  
+  /* Close Button */
+ .Operation .Closebom {
+    background: red;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 1002;
+  }
+  
+ .Operation .Closebom:hover {
+    background: darkred;
+  }
+  
+
+  
+  /* Validation Error Styling */
+  input.is-invalid,
+  select.is-invalid {
+    border-color: red;
+  }
+  
+ .Operation .invalid-feedback {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  /* Buttons */
+ .Operation .bomButton {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+ .Operation .bomButton:hover {
+    background: #0056b3;
+  }
+  
+
+  
+
+  
+  /* Icons */
+ .Operation .text-primary {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+ .Operation .text-danger {
+    color: red;
+    cursor: pointer;
+  }
+  
+ .Operation .text-primary:hover,
+ .Operation .text-danger:hover {
+    opacity: 0.8;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+   .Operation .card {
+      max-width: 95%;
+      height: 90vh;
+    }
+  
+   .Operation .row {
+      flex-direction: column;
+    }
+  
+   .Operation .col-md-4,
+   .Operation .col-md-8 {
+      width: 100%;
+    }
+  
+   .Operation .bomButton {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  

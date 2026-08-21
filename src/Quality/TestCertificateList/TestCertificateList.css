@@ -1,0 +1,78 @@
+.TestCertificateListMaster {
+    margin-top: -10px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Styling */
+  .TestCertificateList-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .TestCertificateList-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Filter Section */
+  .TestCertificateList-filter {
+   
+    padding: 20px;
+   
+   
+   
+  }
+  
+  .TestCertificateList-filter .form-label {
+    font-weight: bold;
+  }
+  
+  /* Table Styling */
+  .TestCertificateList-Main .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+   
+    font-weight: bold;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .TestCertificateList-header {
+      text-align: center;
+    }
+  
+    .TestCertificateList-filter .row > div {
+      margin-bottom: 15px;
+    }
+  
+    .TestCertificateList-header .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .TestCertificateList-filter .form-select,
+    .TestCertificateList-filter .form-control {
+      width: 100%;
+    }
+  }
+  

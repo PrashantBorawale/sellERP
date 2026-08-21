@@ -1,0 +1,60 @@
+/* General Styles */
+.NewStoreShopFloor {
+    /* background-color: white; */
+    height: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .ShopFloor-header {
+    margin-top: 20px;
+     background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ShopFloor-main {
+     background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .pobtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .pobtn:hover {
+    background-color: #0056b3;
+  }
+  
+  .ShopFloor-main textarea {
+    width: 100%;
+    min-height: 100px;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .ShopFloor-header {
+      text-align: center;
+    }
+  
+    .ShopFloor-main .row {
+      flex-direction: column;
+    }
+  
+    .ShopFloor-main .col-md-4, .ShopFloor-main .col-md-8 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .pobtn {
+      width: 100%;
+    }
+  }
+  

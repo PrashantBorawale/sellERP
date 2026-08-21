@@ -1,0 +1,65 @@
+.NewIdleMasterMaster {
+    margin-top: 20px;
+  }
+  
+  /* Header Styling */
+  .NewIdleMaster-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .NewIdleMaster-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+ .NewIdleMaster .form-label {
+    font-weight: 600;
+    color: #555;
+  }
+  
+ .NewIdleMaster .card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button Styling */
+.NewIdleMaster  .btn-warning {
+    color: #fff;
+    background-color: #ffc107;
+    border: none;
+  }
+  
+ .NewIdleMaster .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+ .NewIdleMaster   .MachineIdle-header .header-title {
+      font-size: 16px;
+    }
+  
+ .NewIdleMaster   .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+ .NewIdleMaster   .main-content {
+      margin-left: 0 !important;
+    }
+  
+ .NewIdleMaster   .form-check {
+      justify-content: center;
+    }
+  }

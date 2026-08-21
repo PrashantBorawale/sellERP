@@ -1,0 +1,1071 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.SupplierC {
+  width: 100%;
+  background-color: rgb(241, 242, 244);
+  height: 230vh;
+}
+.SupplierC1 {
+  
+  height: auto;
+  margin-top: 20px;
+}
+.SupplierCus-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.SupplierCus-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.Suppliermain {
+  background-color: white;
+  height: auto;
+}
+.subGernalbtn1 {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+/* Buyer */
+.Buyertable .table {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.Buyertable .table th,
+.table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.Buyertable .table th.blue-th {
+  background-color: rgba(137, 43, 226, 0.547);
+  color: white;
+}
+
+.Buyertable .table .form-control {
+  width: 100%;
+}
+
+.Buyertable .table .btn-primary {
+  display: flex;
+  align-items: center;
+}
+
+.Buyertable .table .btn-primary .fas {
+  margin-right: 5px;
+}
+.buyerbtn {
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+}
+.buyerbtn2 {
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+}
+.Buyertable1 {
+  margin-top: 40px;
+}
+
+.Buyertable1 .table th,
+.table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.Buyertable1 .table th.blue-th {
+  background-color: rgba(137, 43, 226, 0.547);
+  color: white;
+}
+
+.Buyertable1 .table .form-control {
+  width: 100%;
+}
+
+.Buyertable1 .table .btn-danger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.Buyertable1 .table .btn-danger .fas {
+  margin-right: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .Buyertable1 .table-responsive {
+    overflow-x: auto;
+  }
+
+  .Buyertable1 .table th,
+  .table td {
+    white-space: nowrap;
+  }
+}
+
+/* Bank Detail */
+
+.Banktable .table {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.Banktable .table th,
+.table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.Banktable .table th.blue-th {
+  background-color: rgba(137, 43, 226, 0.547);
+  color: white;
+}
+
+.Banktable .table .form-control {
+  width: 100%;
+}
+
+.Banktable .table .btn-primary {
+  display: flex;
+  align-items: center;
+}
+
+.Banktable .table .btn-primary .fas {
+  margin-right: 5px;
+}
+.bankbtn {
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+}
+.bankbtn2 {
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+}
+.Banktable1 {
+  margin-top: 40px;
+}
+
+.Banktable1 .table th,
+.table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.Banktable1 .table th.blue-th {
+  background-color: rgba(137, 43, 226, 0.547);
+
+  color: white;
+}
+
+.Banktable1 .table .form-control {
+  width: 100%;
+}
+
+.Banktable1 .table .btn-danger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.Banktable1 .table .btn-danger .fas {
+  margin-right: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .Banktable1 .table-responsive {
+    overflow-x: auto;
+  }
+
+  .Banktable1 .table th,
+  .table td {
+    white-space: nowrap;
+  }
+  .SupplierCus {
+    height: auto;
+  }
+}
+
+/* card new button */
+.container {
+  position: relative;
+}
+
+.card-custom {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-custom {
+    top: 70px;
+  }
+}
+
+/* region */
+
+.card-region {
+  position: absolute;
+  top: 500px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-region .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-region .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-region .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-region .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+
+.card-region .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-region .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-region .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-region .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-region .card-custom {
+    top: 70px;
+  }
+}
+.regionbtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+/* card-State */
+
+.card-State {
+  position: absolute;
+  top: 500px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-State .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-State .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-State .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-State .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-State .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-State .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-State .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-State .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-State .card-custom {
+    top: 70px;
+  }
+}
+.Statebtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+/* card-Payemnt */
+.container {
+  position: relative;
+}
+
+.card-Payment {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-Payment .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-Payment .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+.card-Payment1 .table-responsive {
+  border: 1px solid #ddd; /* Optional border for better visibility */
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.card-Payment1 .table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* Keeps the header visible while scrolling */
+  z-index: 2;
+}
+
+
+.card-Payment .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-Payment .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-Payment .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-Payment .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-Payment .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-Payment .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-Payment .card-custom {
+    top: 70px;
+  }
+}
+.Paymentbtn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+
+/* Card-Country */
+
+.container {
+  position: relative;
+}
+
+.card-Country {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-Country .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-Country .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-Country .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-Country .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-Country .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-Country .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-Country .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-Country .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-Country .card-custom {
+    top: 70px;
+  }
+}
+.Countrybtn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+/* Currency */
+
+.container {
+  position: relative;
+}
+
+.card-Currency {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-Currency .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-Currency .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-Currency .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-Currency .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-Currency .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-Currency .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-Currency .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-Currency .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-Currency .card-custom {
+    top: 70px;
+  }
+}
+.Currencybtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+/* city */
+
+.container {
+  position: relative;
+}
+
+.card-City {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-City .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-City .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-City .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-City .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-City .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-City .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-City .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-City .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-City .card-custom {
+    top: 70px;
+  }
+}
+.Citybtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+
+/* Sector */
+
+.container {
+  position: relative;
+}
+
+.card-Sector {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-Sector .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-Sector .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-Sector .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-Sector .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-Sector .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-Sector .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-Sector .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-Sector .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-Sector .card-custom {
+    top: 70px;
+  }
+}
+.Sectorbtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+
+/* Group */
+
+.container {
+  position: relative;
+}
+
+.card-Group {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-Group .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-Group .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-Group .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-Group .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-Group .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-Group .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-Group .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-Group .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-Group .card-custom {
+    top: 70px;
+  }
+}
+.Groupbtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}
+.card11 {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  border: none;
+  background-color: none;
+}
+
+/* Group */
+
+.container {
+  position: relative;
+}
+
+.card-QMSCCode {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 50%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other content */
+  background-color: #fff;
+}
+
+.card-QMSCCode .card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-QMSCCode .card-body {
+  padding: 15px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.card-QMSCCode .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 10px;
+}
+
+.card-QMSCCode .table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: rgb(173, 173, 173);
+}
+.card-QMSCCode .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.card-QMSCCode .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card-QMSCCode .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #000;
+}
+
+.card-QMSCCode .btn-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .card-QMSCCode .card-custom {
+    top: 70px;
+  }
+}
+.Groupbtn {
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(235, 233, 233, 0.685);
+}

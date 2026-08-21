@@ -1,0 +1,82 @@
+.DocPrintFormat {
+    font-family: Arial, sans-serif;
+  }
+
+  .DataSeries-header{
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .DocPrintFormat .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .DocPrintFormat .header-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .DocPrintFormat .button-group .btn {
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+  .DocPrintFormat .button-group .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .filter-section label {
+    font-weight: bold;
+  }
+  
+  .filter-section .form-control {
+    margin-bottom: 10px;
+  }
+  
+  .DocPrintFormat .table-section {
+    margin-top: 20px;
+  }
+  
+  .DocPrintFormat .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .DocPrintFormat .table .form-control {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .DocPrintFormat   .main-content {
+      margin-left: 0;
+    }
+  
+    .DocPrintFormat  .header-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .DocPrintFormat   .filter-section .row {
+      flex-direction: column;
+    }
+  
+    .DocPrintFormat  .filter-section .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .DocPrintFormat  .button-group .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

@@ -1,0 +1,92 @@
+
+  .PendingIndent-header {
+    background-color: transparent; /* Removed light background */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .PendingIndent-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .Pendingindent{
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+.Pendingindent .table-responsive {
+    overflow-x: auto;
+  }
+  
+
+ .Pendingindent .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+ .Pendingindent .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+  }
+  .pobtn {
+  
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pobtn:hover {
+    background-color: #0056b3;
+  }
+  .pobtn.mb-3 {
+    margin-bottom: 15px;
+  }
+.Pendingindent .table th input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+  }
+ .Pendingindent .table th label {
+    vertical-align: middle;
+  }
+  
+  .Pendingindent .table th label.ml-2 {
+    margin-left: 8px;
+  }
+ 
+.header-title {
+    font-size: 1.25rem; 
+  }
+
+  .newpurchase-btn {
+
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.875rem; 
+    margin: 5px;
+    
+   
+  }
+  
+  .newpurchase-btn:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+    .Pendingindent-header {
+      text-align: center; /* Center text on smaller screens */
+    }
+  
+    .newpurchase-btn {
+      width: 100%; /* Full width buttons on small screens */
+    }
+  }
+  

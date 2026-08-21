@@ -1,0 +1,128 @@
+.submenu{
+  background-color: #f8f9fa;
+  font-size: 12px;
+  padding: 10px;
+}
+
+/* Base Styles for All Components */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.delete-container {
+    display: flex;
+    flex: 1;
+}
+
+.delete-content {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.delete-container .submenu {
+    padding: 20px;
+}
+
+.submenu-links {
+    list-style-type: none;
+    padding: 0;
+}
+
+.delete-container .submenu-links li {
+    margin-bottom: 10px;
+}
+
+.delete-container .submenu-links li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.delete-container .submenu-links li a:hover {
+    text-decoration: underline;
+}
+
+.delete-container .table-responsive-sm {
+    overflow-x: auto;
+}
+
+.delete-container .table th, .table td {
+    text-align: left;
+    padding: 10px;
+}
+/* Order List Component */
+.delete-container .order-list {
+  
+    height: 100vh;
+}
+
+.delete-container .order-header {
+    margin-top: 30px;
+    padding-bottom: 10px;
+}
+
+/* User List Component */
+.delete-container .user-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* View Stock Component */
+.delete-container .view-stock {
+    display: flex;
+}
+
+.delete-container .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.delete-container .export-btn, .stock-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-container .export-btn:hover, .stock-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .delete-container {
+        flex-direction: column;
+    }
+    .submenu {
+        display: none;
+    }
+    .side-nav-active .submenu {
+        display: block;
+        position: absolute;
+        width: 60%;
+        background-color: #f8f9fa;
+        z-index: 1000;
+    }
+    .shifted {
+        margin-left: 0;
+    }
+    .submenu-toggle {
+        display: block;
+    }
+}
+
+.order-header {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .order-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  

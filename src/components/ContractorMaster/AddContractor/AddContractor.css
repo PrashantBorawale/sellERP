@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.AddContractor-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.AddContractor-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.AddContractorMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+.AddContractorMainbtn {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: -5px;
+  margin-right: 10px;
+}

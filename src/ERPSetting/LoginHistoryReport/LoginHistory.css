@@ -1,0 +1,101 @@
+.LoginHistory {
+ margin-left: 10px;
+  }
+  
+  .LoginHistory .main-wrapper {
+    
+    min-height: 100vh;
+  }
+  
+  .LoginHistory .main-content {
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    padding: 20px;
+    border: none;
+  }
+  
+
+  
+  .LoginHistory .password-header {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 80px;
+    text-align: start;
+  }
+  
+  .LoginHistory .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .LoginHistory  .nav-tabs {
+    margin-bottom: 15px;
+    border: none;
+  }
+  
+  .LoginHistory .table {
+    width: 100%;
+  }
+  
+  .LoginHistory input.form-control, select.form-control {
+    width: 100%;
+  }
+  
+  .LoginHistory button.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .LoginHistory   .main-content {
+      margin-left: 0;
+    }
+  
+    .LoginHistory   .shifted {
+      margin-left: 0;
+    }
+  
+    .LoginHistory   .table {
+      font-size: 0.9rem;
+    }
+  
+    .LoginHistory   .SideNav {
+      width: 100%;
+      left: -100%;
+    }
+  
+    .LoginHistory   .side-nav-open .SideNav {
+      transform: translateX(100%);
+    }
+  
+    .LoginHistory  .nav-tabs {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .LoginHistory  .table th, .table td {
+      padding: 10px;
+      text-align: left;
+    }
+  
+    .LoginHistory .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .LoginHistory  .form-control {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .LoginHistory  .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .LoginHistory  .table th, .table td {
+      padding: 8px;
+      font-size: 0.85rem;
+    }
+  }
+  

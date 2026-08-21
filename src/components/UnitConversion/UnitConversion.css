@@ -1,0 +1,104 @@
+/* General Reset and Box Sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.UniConversion1-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.UniConversion1-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+/* Unit Section */
+.Unit {
+  background-color: #f8f9fa;;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Form Section */
+.UnitMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+/* Button Style */
+.UnitMainbtn {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-right: 10px;
+}
+
+/* Responsive Table Container */
+.Unittable table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  
+}
+
+.Unittable th,
+.Unittable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.Unittable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  color: black;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 992px) {
+  .UnitMainbtn {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Unit {
+    padding: 15px;
+  }
+
+  .UnitMain {
+    padding: 15px;
+  }
+
+  .UnitMainbtn {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .Unit {
+    padding: 10px;
+  }
+
+  .UnitMain {
+    padding: 10px;
+  }
+
+  .UnitMainbtn {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

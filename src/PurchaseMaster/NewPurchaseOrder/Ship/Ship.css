@@ -1,0 +1,36 @@
+.shiptoadd {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .shiptoadd .form-check-label {
+    margin-left: 5px;
+  }
+  
+  .shiptoadd .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .shiptoadd .form-control {
+    width: 100%;
+  }
+  
+  .shiptoadd textarea.form-control {
+    resize: vertical; /* Allows vertical resizing only */
+  }
+  
+  @media (max-width: 768px) {
+    .shiptoadd .form-group {
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .shiptoadd textarea.form-control {
+      font-size: 14px;
+    }
+  }
+  
+  

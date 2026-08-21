@@ -1,0 +1,127 @@
+/* ScheduleSetup.css - Exact match for Vendor Schedule Setup screenshot */
+
+.ScheduleSetupMaster {
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+.VendorSchedule-Container {
+  background-color: #fff;
+  margin: 0 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.VendorSchedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  border-bottom: 1px solid #ced4da;
+}
+
+.VendorSchedule-header .header-title {
+  color: blue;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-export {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #333;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-export svg {
+  color: #1d6f42; /* Excel Green */
+  font-size: 14px;
+}
+
+/* Form Section */
+.VendorSchedule-FormSection {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ced4da;
+}
+
+.VendorSchedule-FormSection .form-label {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.form-control-xs {
+  height: 25px;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+}
+
+.btn-save {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-save svg {
+  color: #6c757d;
+}
+
+/* Grid Section */
+.VendorSchedule-GridSection {
+  min-height: 400px;
+  position: relative;
+}
+
+.grid-separator {
+  height: 2px;
+  background-color: #00bcd4; /* Cyan/Teal line from screenshot */
+  width: 100%;
+}
+
+.grid-content {
+  padding: 10px 15px;
+}
+
+.no-data {
+  color: #ff0000;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Footer */
+.VendorSchedule-Footer {
+  background-color: #e9ecef;
+  padding: 5px 15px;
+  border-top: 1px solid #ced4da;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Main Content Shift for SideNav */
+.main-content {
+  transition: margin-left 0.3s ease;
+  padding-top: 60px; /* Space for NavBar */
+}
+
+.main-content.shifted {
+  margin-left: 250px;
+}
