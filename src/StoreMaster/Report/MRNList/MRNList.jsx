@@ -71,7 +71,7 @@ const MRNList = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Plant</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -121,7 +121,7 @@ const MRNList = () => {
                          <div className="col-md-2 col-sm-6">
                             <label className="form-label">Issue Status</label>
                             <select className="form-select">
-                              <option value="Produlink">All</option>
+                              <option value="VISHWA S.I.">All</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -129,7 +129,7 @@ const MRNList = () => {
                            <div className="col-md-2 col-sm-6">
                             <label className="form-label">Auth Status</label>
                             <select className="form-select">
-                              <option value="Produlink">All</option>
+                              <option value="VISHWA S.I.">All</option>
                               {/* Add more options here */}
                             </select>
                           </div>

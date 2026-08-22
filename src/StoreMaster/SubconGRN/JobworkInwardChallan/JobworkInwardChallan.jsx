@@ -337,7 +337,7 @@ const JobworkInwardChallan = () => {
     }));
 
     const payload = {
-      Plant: "Produlink",
+      Plant: "VISHWA S.I.",
       Series: selectedSeries,
       NO: inputNo,
       GateEntryNo: formData.GateEntryNo,
@@ -438,7 +438,7 @@ const JobworkInwardChallan = () => {
   <div className="d-flex flex-wrap align-items-center gap-3 w-100 mt-2" style={{ overflowX: "auto" }}>
 
                     <select id="sharpSelect" className="form-select w-auto" style={{ minWidth: "90px", fontSize: "0.8rem", padding: "4px 25px 4px 8px" }}>
-                      <option defaultValue>Produlink</option>
+                      <option defaultValue>VISHWA S.I.</option>
                     </select>
 
                     <div className="d-flex align-items-center gap-2">
@@ -688,7 +688,7 @@ const JobworkInwardChallan = () => {
                               ></textarea>
                             </td>
                             <td>
-                              <button type="button" className="btn btn-success" onClick={handleAddRow}
+                              <button type="button" className="btn btn-success btn-sm text-nowrap" onClick={handleAddRow}
                               >
                                 {editingRowIndex !== null ? "UPDATE" : "ADD"}
                               </button>

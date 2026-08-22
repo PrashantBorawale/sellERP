@@ -106,7 +106,7 @@ const GSTSalesReturnList    = () => {
                         <div className="col-sm-6 col-md-2 col-lg-1">
                         <label htmlFor="">Plant:</label>
                         <select name="" className="form-control" id="">
-                            <option value="">Produlink</option>
+                            <option value="">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-sm-6 col-md-2 col-lg-2">

@@ -374,7 +374,7 @@ const NewMrn = () => {
                               onChange={handleChange}
                             >
                               <option value="">Select</option>
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 

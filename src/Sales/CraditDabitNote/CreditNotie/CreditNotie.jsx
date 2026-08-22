@@ -73,7 +73,7 @@ const CreditNotie = () => {
     }, []);
 
     const [formData, setFormData] = useState({
-      plant: "ProduLink",
+      plant: "VISHWA S.I.",
       series: "Credit Note",
       type: "Direct",
       sub_type: "Select",
@@ -181,7 +181,7 @@ const CreditNotie = () => {
 
         // Clear the form
         setFormData({
-          plant: "ProduLink",
+          plant: "VISHWA S.I.",
           series: "Credit Note",
           type: "Direct",
           sub_type: "Select",
@@ -303,7 +303,7 @@ const CreditNotie = () => {
                       <div className="d-flex align-items-center me-3 flex-shrink-0">
                          <label htmlFor="" className="mb-0 me-2 text-nowrap">Plant:</label>
                          <select name="plant" value={formData.plant} onChange={handleChange} className="form-control" id="" style={{ width: "auto" }}>
-                            <option value="ProduLink">ProduLink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                          </select>
                       </div>
                       <div className="d-flex align-items-center me-3 flex-shrink-0">

@@ -43,7 +43,7 @@ const NewSalesOrder = () => {
   // API  state
   const [formData, setFormData] = useState({
     cust_date: "",
-    plant: "ProduLink",
+    plant: "VISHWA S.I.",
     order_type: "",
     order_status: "",
     customer: "",
@@ -376,7 +376,7 @@ const NewSalesOrder = () => {
       setTimeout(() => {
         setFormData({
           cust_date: "",
-          plant: "ProduLink",
+          plant: "VISHWA S.I.",
           order_type: "",
           order_status: "",
           customer: "",
@@ -574,7 +574,7 @@ const NewSalesOrder = () => {
                           onChange={handleChange}
                           className="form-control"
                         >
-                          <option value="ProduLink">ProduLink</option>
+                          <option value="VISHWA S.I.">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-md-2">

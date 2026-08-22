@@ -44,7 +44,7 @@ const NewGateInward = () => {
   const currentTime = now.toTimeString().slice(0, 5);
 
   const [formData, setFormData] = useState({
-    Plant: "Produlink",
+    Plant: "VISHWA S.I.",
     Series: "GateInward",
     Type: "",
     Supp_Cust: "",
@@ -95,7 +95,7 @@ const NewGateInward = () => {
       getNewGateInward(yr).then((nextGE_No) => {
         setFormData((prev) => ({
           ...prev,
-          Plant: prev.Plant || "Produlink",
+          Plant: prev.Plant || "VISHWA S.I.",
           Series: prev.Series || "GateInward",
           GE_Date: prev.GE_Date || new Date().toISOString().split("T")[0],
           GE_Time: prev.GE_Time || new Date().toTimeString().slice(0, 5),
@@ -399,7 +399,7 @@ const NewGateInward = () => {
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '50px' }}>Plant:</Typography>
                                 <TextField select size="small" name="Plant" value={formData.Plant} onChange={handleChange} required sx={{ width: '150px', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }}>
                                   <MenuItem value="">Select Plant</MenuItem>
-                                  <MenuItem value="Produlink">Produlink</MenuItem>
+                                  <MenuItem value="VISHWA S.I.">VISHWA S.I.</MenuItem>
                                 </TextField>
                               </Box>
                               

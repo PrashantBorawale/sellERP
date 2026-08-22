@@ -119,7 +119,7 @@ const IndentReport = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Indent Series</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 
@@ -147,7 +147,7 @@ const IndentReport = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Plant</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 

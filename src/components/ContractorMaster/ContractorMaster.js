@@ -130,7 +130,7 @@ const handleSave = async () => {
                                 Plant:
                               </label>
                               <select id="plantSelect" className="form-select" style={{marginTop:"-1px"}}>
-                                <option value="Produlink">Produlink</option>
+                                <option value="VISHWA S.I.">VISHWA S.I.</option>
                                 
                               </select>
                             </div>

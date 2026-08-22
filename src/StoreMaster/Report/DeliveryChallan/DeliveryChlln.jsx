@@ -117,7 +117,7 @@ const DeliveryChlln = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">DC Series</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 
@@ -125,7 +125,7 @@ const DeliveryChlln = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">DC Type</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 
@@ -153,7 +153,7 @@ const DeliveryChlln = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Plant</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 

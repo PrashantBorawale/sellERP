@@ -571,7 +571,7 @@ const GSTSalesReturn = () => {
                              value={plant}
                              onChange={(e) => setPlant(e.target.value)}
                            >
-                                <option value="">ProduLink</option>
+                                <option value="">VISHWA S.I.</option>
                             </select>
                         </div>
                         <div style={{position: 'relative'}}>

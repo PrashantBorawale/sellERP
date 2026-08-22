@@ -120,7 +120,7 @@ const IssueMaterial = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Plant</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
                           <div className="col-md-2 col-sm-6 mt-1 align-self-end">
@@ -183,7 +183,7 @@ const IssueMaterial = () => {
                                 <tr key={issue.id}>
                                   <td>{index + 1}</td>
                                   <td>{new Date(issue.MaterialIssueDate).getFullYear()}</td>
-                                  <td>{issue.Plant || "Produlink"}</td>
+                                  <td>{issue.Plant || "VISHWA S.I."}</td>
                                   <td>{issue.ChallanNo}</td>
                                   <td>
                                     {issue.MaterialIssueDate ? issue.MaterialIssueDate : "N/A"} <br/>

@@ -59,7 +59,7 @@ const IndentList = () => {
                             <div className="col-md-2 col-sm-4">
                               <label className="form-label fw-bold text-secondary" style={{ fontSize: "0.75rem", marginBottom: "4px" }}>Plant</label>
                               <select className="form-select form-select-sm">
-                                <option value="Produlink">Produlink</option>
+                                <option value="VISHWA S.I.">VISHWA S.I.</option>
                               </select>
                             </div>
                             <div className="col-md-2 col-sm-4">

@@ -184,7 +184,7 @@ const Newindent = () => {
                           <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Plant</label>
                           <select className="form-select" name="Plant" value={formData.Plant} onChange={handleChange}>
                             <option value="">Select</option>
-                            <option value="Produlink">Produlink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-md-2">

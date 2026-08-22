@@ -69,7 +69,7 @@ const RMStockTransaction = () => {
       <div className="col-md-2 col-sm-6">
         <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Plant</label>
         <select className="form-select form-select-sm">
-          <option value="Produlink">Produlink</option>
+          <option value="VISHWA S.I.">VISHWA S.I.</option>
           {/* Add more options here */}
         </select>
       </div>

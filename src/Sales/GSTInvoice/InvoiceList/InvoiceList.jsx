@@ -317,7 +317,7 @@ const InvoiceList = () => {
                             onChange={(e) => setPlant(e.target.value)}
                           >
                             <option value="">SHARP</option>
-                            <option value="ProduLink">ProduLink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-sm-6 col-md-3 col-lg-1">

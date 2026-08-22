@@ -41,7 +41,7 @@ const ShopFloor = () => {
                       <div className="row">
                         <div className="col-md-4 col-6 d-flex flex-wrap">
                           <select className="form-select">
-                            <option>Produlink</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
                       </div>

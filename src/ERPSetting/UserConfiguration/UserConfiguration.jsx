@@ -14,7 +14,7 @@ import SaveIcon from "@mui/icons-material/SaveOutlined";
 const UserConfiguration = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [formData, setFormData] = useState({
-    plant: "Produlink",
+    plant: "VISHWA S.I.",
     department: "",
     fullName: "",
     username: "",

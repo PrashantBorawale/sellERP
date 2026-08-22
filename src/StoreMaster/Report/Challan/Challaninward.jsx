@@ -199,7 +199,7 @@ const Challaninward = () => {
                               onChange={handleFilterChange}
                             >
                               <option value="">All Plants</option>
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 

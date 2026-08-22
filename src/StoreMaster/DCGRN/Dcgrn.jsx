@@ -120,7 +120,7 @@ const Dcgrn = () => {
                       <div className="row mb-3">
                         <div className="col-md-2">
                           <select id="sharpSelect" className="form-select">
-                            <option selected>Produlink</option>
+                            <option selected>VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-md-2">

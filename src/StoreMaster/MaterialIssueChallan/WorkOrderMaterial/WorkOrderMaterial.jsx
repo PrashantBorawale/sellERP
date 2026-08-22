@@ -86,7 +86,7 @@ const WorkOrderMaterial = () => {
                       <div className="col-sm-6 col-md-2 col-lg-1">
                         <label className="fw-bold text-secondary small mb-1">Plant</label>
                         <select className="form-select form-select-sm">
-                          <option value="">Produlink</option>
+                          <option value="">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-sm-6 col-md-2 col-lg-1">

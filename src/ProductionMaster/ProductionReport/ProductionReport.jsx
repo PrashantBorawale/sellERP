@@ -87,7 +87,7 @@ const ProductionReport = () => {
       const normalizedData = data.map(item => ({
         ...item,
         id: item.id || item.prod_id || item.production_id || item.pk, // Fallback for different ID names
-        Plant: "Produlink", // Hardcoded or derive from unit_machine if needed
+        Plant: "VISHWA S.I.", // Hardcoded or derive from unit_machine if needed
         Prod_no: item.Prod_no || "-",
         Date: item.Date || "-",
         Time: item.Time || "-",
@@ -273,7 +273,7 @@ const ProductionReport = () => {
                           <div className="col-md-2">
                             <label>Plant</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                               {/* Add more options as needed */}
                             </select>
                           </div>

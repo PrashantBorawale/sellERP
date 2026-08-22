@@ -72,7 +72,7 @@ const ScrapMovement = () => {
                         <div className="col-md-2 col-sm-6">
                           <label className="form-label">Plant:</label>
                           <select className="form-select">
-                            <option value="">Produlink</option>
+                            <option value="">VISHWA S.I.</option>
                             {/* Add more options here */}
                           </select>
                         </div>

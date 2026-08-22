@@ -83,7 +83,7 @@ const BusinessPlan = () => {
                             onChange={(e) => setPlant(e.target.value)}
                           >
                             <option>Select</option>
-                            <option>ProduLink</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-auto">

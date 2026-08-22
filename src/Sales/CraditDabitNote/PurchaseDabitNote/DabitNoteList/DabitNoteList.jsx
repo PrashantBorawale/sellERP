@@ -69,7 +69,7 @@
 //                           <div className="col-md-2">
 //                              <label htmlFor="">Plant:</label>
 //                                 <select name="" id="" className="form-control">
-//                                     <option value="">Produlink</option>
+//                                     <option value="">VISHWA S.I.</option>
 //                                 </select>         
 //                          </div>
 //                           <div className="col-md-2">
@@ -396,7 +396,7 @@ const DabitNoteList = () => {
                                   value={plant}
                                   onChange={(e) => setPlant(e.target.value)}
                                 >
-                                    <option value="">Produlink</option>
+                                    <option value="">VISHWA S.I.</option>
                                 </select>         
                          </div>
                           <div className="col-md-2">
@@ -522,7 +522,7 @@ const DabitNoteList = () => {
                                                 <tr key={index}>
                                                   <td>{index + 1}</td>
                                                   <td>{createdYear}</td>
-                                                  <td>{item.plant || "ProduLink"}</td>
+                                                  <td>{item.plant || "VISHWA S.I."}</td>
                                                   <td>{item.debit_note_no || "-"}</td>
                                                   <td>{item.debit_note_date || "-"}</td>
                                                   <td>{item.notetype || item.type || (item.customer ? "Rate Diff." : "-")}</td>

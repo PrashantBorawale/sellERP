@@ -128,7 +128,7 @@ const AddContractor = () => {
                                 onChange={handleChange}
                               >
                                 <option value="">Select Plant</option>
-                                <option value="Produlink">Produlink</option>
+                                <option value="VISHWA S.I.">VISHWA S.I.</option>
                                 <option value="plant2">Plant 2</option>
                                 <option value="plant3">Plant 3</option>
                               </select>

@@ -23,7 +23,7 @@ const GSTJobworkInvoice = () => {
   };
 
   const [formData, setFormData] = useState({
-    plant: "ProduLink",
+    plant: "VISHWA S.I.",
     series: "Labour Invoice",
     type: "",
     gst_type: "",
@@ -529,7 +529,7 @@ const GSTJobworkInvoice = () => {
                       <div className="d-flex flex-column gap-1 align-items-start">
                           <label className="mb-0 fw-bold text-nowrap" style={{ fontSize: "12px" }}>Plant:</label>
                           <select className="form-select form-select-sm header-plant-select" style={{ width: "100px" }} name="plant" value={formData.plant} onChange={handleChange}>
-                              <option>ProduLink</option>
+                              <option>VISHWA S.I.</option>
                           </select>
                       </div>
 

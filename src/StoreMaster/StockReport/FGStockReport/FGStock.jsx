@@ -14,7 +14,7 @@ const FGStock = () => {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
-    location: "Produlink",
+    location: "VISHWA S.I.",
     store: "Main Store",
     group: "FG",
     subGroup: "All",
@@ -168,7 +168,7 @@ const FGStock = () => {
                               value={filters.location}
                               onChange={handleFilterChange}
                             >
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
 

@@ -74,7 +74,7 @@ const JobWorkSalesRegister = () => {
                         <div className="col-sm-6 col-md-3 col-lg-2">
                           <label htmlFor="">Plant:</label>
                           <select name="" className="form-control mt-2" id="">
-                            <option value="">Produlink</option>
+                            <option value="">VISHWA S.I.</option>
                           </select>
                         </div>
 

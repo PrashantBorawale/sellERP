@@ -37,7 +37,7 @@ const GrnList = () => {
   // Filter States
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [plant, setPlant] = useState("Produlink");
+  const [plant, setPlant] = useState("VISHWA S.I.");
   const [supplierName, setSupplierName] = useState("");
   const [itemName, setItemName] = useState("");
   const [mainGroup, setMainGroup] = useState("");
@@ -205,7 +205,7 @@ const GrnList = () => {
                             onChange={(e) => setPlant(e.target.value)}
                             sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' } }}
                           >
-                            <MenuItem value="Produlink" sx={{ fontSize: '0.75rem' }}>Produlink</MenuItem>
+                            <MenuItem value="VISHWA S.I." sx={{ fontSize: '0.75rem' }}>VISHWA S.I.</MenuItem>
                           </TextField>
                         </Box>
 

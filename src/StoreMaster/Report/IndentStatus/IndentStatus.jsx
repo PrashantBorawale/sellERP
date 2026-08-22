@@ -75,7 +75,7 @@ const IndentStatus = () => {
                             <div className="col-md-2 col-sm-6">
                             <label className="form-label">Plant</label>
                             <select className="form-select">
-                              <option value="Produlink">Produlink</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -93,7 +93,7 @@ const IndentStatus = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Type</label>
                             <select className="form-select">
-                              <option value="Produlink">Critical</option>
+                              <option value="VISHWA S.I.">Critical</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -101,7 +101,7 @@ const IndentStatus = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Status</label>
                             <select className="form-select">
-                              <option value="Produlink">All</option>
+                              <option value="VISHWA S.I.">All</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -109,7 +109,7 @@ const IndentStatus = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Main Group</label>
                             <select className="form-select">
-                              <option value="Produlink">All</option>
+                              <option value="VISHWA S.I.">All</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -117,7 +117,7 @@ const IndentStatus = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Item Group</label>
                             <select className="form-select">
-                              <option value="Produlink">All</option>
+                              <option value="VISHWA S.I.">All</option>
                               {/* Add more options here */}
                             </select>
                           </div>
@@ -125,7 +125,7 @@ const IndentStatus = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Users Name</label>
                             <select className="form-select">
-                              <option value="Produlink">All</option>
+                              <option value="VISHWA S.I.">All</option>
                               {/* Add more options here */}
                             </select>
                           </div>

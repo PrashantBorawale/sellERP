@@ -520,7 +520,7 @@ const ImportPO = () => {
                                                         </label>
                                                       </div>
                                                       <div className="col-sm-3">
-                                                        <input  type="text" placeholder="ProduLink Engineers" className="form-control"  id=""  name=""/>
+                                                        <input  type="text" placeholder="ProdNomics Engineers" className="form-control"  id=""  name=""/>
                                                       </div>
                                                   </div>
                                               </div>

@@ -77,7 +77,7 @@ const DebitNoteList  = () => {
                         <div className="col-sm-6 col-md-3 col-lg-3">
                         <label htmlFor="">Plant:</label>
                         <select name="" className="form-control" style={{marginTop:"-0px"}} id="">
-                            <option value="">Produlink</option>
+                            <option value="">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-sm-6 col-md-3 col-lg-3">

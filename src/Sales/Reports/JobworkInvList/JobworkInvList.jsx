@@ -259,7 +259,7 @@ const JobworkInvList = () => {
                       <div>
                         <label className="fw-bold mb-1" style={{fontSize: '12px'}}>Plant :</label>
                         <select className="form-control form-control-sm">
-                          <option value="">Produlink</option>
+                          <option value="">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div>

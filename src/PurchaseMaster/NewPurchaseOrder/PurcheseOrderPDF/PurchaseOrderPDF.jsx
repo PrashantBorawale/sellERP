@@ -77,7 +77,7 @@ const PurchaseOrderPDF = () => {
        <div className="container purchasepdf">
             <div className="row purchasepdf-header">
               <div className="col-md-3">
-                        <span className="rednhk">Produlink</span>    
+                        <span className="rednhk">ProdNomics</span>    
               </div>
               <div className="col-md-7  mt-3">
                         <h5 className="nhkadd1">NHK AUTOMOTIVE COMPONENTS INDIA PVT. LTD.</h5>

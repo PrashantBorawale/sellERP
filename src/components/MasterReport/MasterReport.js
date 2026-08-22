@@ -74,7 +74,7 @@ const MasterReport = () => {
                           <div className="col-md-4">
                             <label htmlFor="selectReport1" className="form-label mb-1">Select Report Name :</label>
                             <select id="selectReport1" className="form-select">
-                              <option defaultValue="Produlink">Produlink</option>
+                              <option defaultValue="VISHWA S.I.">VISHWA S.I.</option>
                               <option value="1">One</option>
                               <option value="2">Two</option>
                               <option value="3">Three</option>
@@ -113,7 +113,7 @@ const MasterReport = () => {
                           <div className="col-md-4">
                             <label htmlFor="selectReport2" className="form-label mb-1">Select Report Name :</label>
                             <select id="selectReport2" className="form-select">
-                              <option defaultValue="Produlink">Produlink</option>
+                              <option defaultValue="VISHWA S.I.">VISHWA S.I.</option>
                               <option value="1">One</option>
                               <option value="2">Two</option>
                               <option value="3">Three</option>

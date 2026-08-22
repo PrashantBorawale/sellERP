@@ -122,9 +122,9 @@ const handleEdit = async (id) => {
                     <div className="card-body">
                       <div className="row g-3 align-items-end text-start">
                         <div className="col-md-2 col-6">
-                          <label htmlFor="Produlink" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Plant</label>
-                          <select id="Produlink" className="form-select">
-                            <option value="">Produlink</option>
+                          <label htmlFor="VISHWA S.I." className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Plant</label>
+                          <select id="VISHWA S.I." className="form-select">
+                            <option value="">VISHWA S.I.</option>
                             {/* Add options here */}
                           </select>
                         </div>

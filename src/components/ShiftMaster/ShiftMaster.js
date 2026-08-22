@@ -59,7 +59,7 @@ const ShiftMaster = () => {
 
     if (name === "Plant") {
       setSelectedOption(value);
-      if (value === "Produlink") {
+      if (value === "VISHWA S.I.") {
         setShowTable(true);
       } else {
         setShowTable(false);
@@ -126,7 +126,7 @@ const ShiftMaster = () => {
                             onChange={handleChange1}
                           >
                             <option value="">Select...</option>
-                            <option value="Produlink">Produlink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                           </select>

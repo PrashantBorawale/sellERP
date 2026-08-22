@@ -102,7 +102,7 @@ const PurchaseGrn = () => {
     VehicleNo: "",
     LrNo: "",
     Transporter: "",
-    Plant: "Produlink",
+    Plant: "VISHWA S.I.",
     GrnDate: "",
     GrnTime: "",
     PreparedBy: "",
@@ -144,7 +144,7 @@ const PurchaseGrn = () => {
               VehicleNo: data.VehicleNo || "",
               LrNo: data.LrNo || "",
               Transporter: data.Transporter || "",
-              Plant: data.Plant || "Produlink",
+              Plant: data.Plant || "VISHWA S.I.",
               GrnDate: data.GrnDate || "",
               GrnTime: data.GrnTime || "",
               PreparedBy: data.PreparedBy || "",
@@ -431,7 +431,7 @@ const PurchaseGrn = () => {
 
         RefTC: refTcDetails || [],
 
-        Plant: "Produlink",
+        Plant: "VISHWA S.I.",
         Series: formData.Series,
         GateEntryNo: formData.GE_No,
         SelectSupplier: formData.Supp_Cust,
@@ -543,7 +543,7 @@ const PurchaseGrn = () => {
                               })
                             }
                           >
-                            <option value="Produlink">Produlink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
 

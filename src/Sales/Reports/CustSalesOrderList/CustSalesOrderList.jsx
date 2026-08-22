@@ -15,7 +15,7 @@ import * as XLSX from "xlsx";
 const defaultOrderList = [
   {
     year: "24-25",
-    plant: "Produlink",
+    plant: "VISHWA S.I.",
     so_no: "SO24250001",
     so_date: "24-12-02",
     cust_po_no: "PO-9921",
@@ -30,7 +30,7 @@ const defaultOrderList = [
   },
   {
     year: "24-25",
-    plant: "Produlink",
+    plant: "VISHWA S.I.",
     so_no: "SO24250002",
     so_date: "24-12-05",
     cust_po_no: "PO-8541",
@@ -189,7 +189,7 @@ const CustSalesOrderList = () => {
                       <div>
                         <label className="fw-bold mb-1" style={{fontSize: '12px'}}>Plant:</label>
                         <select className="form-control form-control-sm" value={plant} onChange={(e) => setPlant(e.target.value)}>
-                            <option value="">Produlink</option>
+                            <option value="">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div>

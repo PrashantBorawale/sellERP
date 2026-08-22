@@ -494,7 +494,7 @@ const MaterialIssueChallan = () => {
               setFormData({ ...formData, Plant: e.target.value });
             }}
           >
-            <option value="Produlink">Produlink</option>
+            <option value="VISHWA S.I.">VISHWA S.I.</option>
           </select>
         </div>
         
@@ -865,7 +865,7 @@ const MaterialIssueChallan = () => {
                                 <td>
                                   <button
                                     type="button"
-                                    className="pobtn"
+                                    className="btn btn-success btn-sm text-nowrap"
                                     onClick={handleAddEntry}
                                   >
                                     Add

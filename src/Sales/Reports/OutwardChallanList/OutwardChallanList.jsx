@@ -108,7 +108,7 @@ const OutwardChallanList = () => {
                       <div>
                         <label className="fw-bold mb-1" style={{fontSize: '12px'}}>Plant :</label>
                         <select className="form-select form-select-sm">
-                          <option value="">Produlink</option>
+                          <option value="">VISHWA S.I.</option>
                         </select>
                       </div>
 

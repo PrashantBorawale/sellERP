@@ -55,7 +55,7 @@ const MaterialIssue = () => {
   <div className="d-flex flex-wrap align-items-center gap-3 w-100 mt-2">
     <div className="d-flex align-items-center gap-2">
       <label htmlFor="sharpSelect" className="form-label mb-0">Plant:</label>
-      <select id="sharpSelect" className="form-select w-auto"><option selected>Produlink</option></select>
+      <select id="sharpSelect" className="form-select w-auto"><option selected>VISHWA S.I.</option></select>
     </div>
     <div className="d-flex align-items-center gap-2">
       <input type="text" id="inputField" className="form-control" placeholder="Enter value" style={{width: 'auto'}} />

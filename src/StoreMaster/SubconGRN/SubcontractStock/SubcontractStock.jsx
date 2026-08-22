@@ -153,7 +153,7 @@ const SubcontractStock = () => {
                           <div className="col-md-2">
                             <label htmlFor="series" className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Plant</label>
                             <select id="series" name="series" className="form-select form-select-sm">
-                              <option value="">ProduLink</option>
+                              <option value="">VISHWA S.I.</option>
                             </select>
                           </div>
 

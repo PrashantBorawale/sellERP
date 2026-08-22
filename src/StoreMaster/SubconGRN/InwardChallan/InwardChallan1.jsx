@@ -757,7 +757,7 @@ const InwardChallan1 = () => {
                         </div>
                         <div className="col-auto mb-2">
                           <select id="sharpSelect" className="form-select">
-                            <option selected>Produlink</option>
+                            <option selected>VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-auto text-end px-0 mb-2">

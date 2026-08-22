@@ -91,7 +91,7 @@ const GEIQuery = () => {
                         </div>
                         <div className="col-md-3">
                         <select className="form-select" id="status">
-                            <option value="">Produlink</option>
+                            <option value="">VISHWA S.I.</option>
                             <option value="active"></option>
                           </select>
                         </div>

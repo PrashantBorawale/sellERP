@@ -60,7 +60,7 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
       <div className={`side-nav ${sideNavOpen ? "open" : ""}`}>
         {/* Header */}
         <div className="side-nav-header">
-          <h6 className="logo-light">Produlink</h6>
+          <h6 className="logo-light">ProdNomics</h6>
           <button className="close-button" onClick={toggleSideNav}>
             &times;
           </button>

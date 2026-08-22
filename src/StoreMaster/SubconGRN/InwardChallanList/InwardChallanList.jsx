@@ -118,7 +118,7 @@ const InwardChallanList = () => {
                       <div className="col-12 col-md">
                         <label className="form-label mb-1" htmlFor="plant">Plant</label>
                         <select className="form-control" id="plant">
-                          <option>Produlink</option>
+                          <option>VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-12 col-md">

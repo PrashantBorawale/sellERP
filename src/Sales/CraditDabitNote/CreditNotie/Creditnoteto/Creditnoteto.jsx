@@ -53,7 +53,7 @@ const Creditnoteto = () => {
                               </div>
                               <div className="col-md-8">
                                 <select>
-                                   <option>Produlink</option>
+                                   <option>VISHWA S.I.</option>
                                 </select>
                               </div>
                           </div>

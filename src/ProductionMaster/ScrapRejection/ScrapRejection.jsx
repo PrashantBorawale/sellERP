@@ -295,7 +295,7 @@ const handleSubmit = async (e) => {
                                 disabled={isEditing}
                               >
                                 <option value="">Select Plant</option>
-                                <option value="Produlink">Produlink</option>
+                                <option value="VISHWA S.I.">VISHWA S.I.</option>
                                 <option value="FactoryA">Factory A</option>
                               </select>
                             </div>

@@ -41,7 +41,7 @@ const GSTJobworkDCreturn = () => {
                       <div className="col-md-1">Plant</div>
                       <div className="col-md-1">
                         <select>
-                          <option>ProduLink</option>
+                          <option>VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-md-1">Series</div>

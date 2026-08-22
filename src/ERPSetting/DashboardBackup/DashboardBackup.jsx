@@ -57,7 +57,7 @@ const DashboardBackup = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>ERP\Produlink20240225_30Mar2024_14_27_16.bak</td>
+                  <td>ERP\ProdNomics20240225_30Mar2024_14_27_16.bak</td>
                   <td>66 MB</td>
                   <td>
                     <Link href="#" className="download-link">
@@ -72,7 +72,7 @@ const DashboardBackup = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td>ERP\Produlink_LIVE_01042024.bak</td>
+                  <td>ERP\ProdNomics_LIVE_01042024.bak</td>
                   <td>53 MB</td>
                   <td>
                     <Link href="#" className="download-link">
@@ -87,7 +87,7 @@ const DashboardBackup = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td>ERP\Produlink_Live_2582024_15_42_48.bak</td>
+                  <td>ERP\ProdNomics_Live_2582024_15_42_48.bak</td>
                   <td>63 MB</td>
                   <td>
                     <Link href="#" className="download-link">

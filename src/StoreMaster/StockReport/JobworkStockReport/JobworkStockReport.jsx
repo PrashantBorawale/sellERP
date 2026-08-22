@@ -15,7 +15,7 @@ const JobworkStockReport = () => {
 
   // Filter form fields
   const [filters, setFilters] = useState({
-    plant: "Produlink",
+    plant: "VISHWA S.I.",
     store: "Main Store",
     group: "All",
     itemGrade: "All",
@@ -242,7 +242,7 @@ const JobworkStockReport = () => {
                           <div className="col-md-2 col-sm-6">
                             <label className="form-label">Plant</label>
                             <select className="form-select" name="plant" value={filters.plant} onChange={handleChange}>
-                              <option>Produlink</option>
+                              <option>VISHWA S.I.</option>
                             </select>
                           </div>
                           <div className="col-md-2 col-sm-6">

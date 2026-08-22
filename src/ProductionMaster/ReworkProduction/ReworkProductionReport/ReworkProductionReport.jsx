@@ -142,7 +142,7 @@ const ReworkProductionReport = () => {
                         <tr>
                           <td>1</td>
                           <td>24-25</td>
-                          <td>Produlink</td>
+                          <td>VISHWA S.I.</td>
                           <td>REWPROD242509014</td>
                           <td>20/09/2024</td>
                           <td>520DU00102</td>
@@ -165,7 +165,7 @@ const ReworkProductionReport = () => {
               <tr key={item.id}>
                 <td>{index + 1}</td>
                 <td>24-25</td>
-                <td>Produlink</td>
+                <td>VISHWA S.I.</td>
                 <td>{item.rework_no}</td>
                 <td>{item.rework_date}</td>
                 <td>{item.item_code}</td>

@@ -327,7 +327,7 @@ const ReworkProductionEntry = () => {
                         </div>
                         <div className="col-md-1">
                           <select>
-                            <option>Produlink</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-md-1">

@@ -310,7 +310,7 @@ const WorkOrderEntry = () => {
                         </label>
                         <div className="col-md-2">
                           <select id="seriesSelect" className="form-select">
-                            <option>Produlink</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
                       </div>

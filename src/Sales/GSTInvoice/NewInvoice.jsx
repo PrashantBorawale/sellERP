@@ -56,7 +56,7 @@ const NewInvoice = () => {
     d_c_no: "",
     d_c_Date: "",            // ✅ was: d_c_date
     delivery_terms: "",
-    plant: "ProduLink",      // ✅ added missing plant state
+    plant: "VISHWA S.I.",      // ✅ added missing plant state
   });
 
   // Tax Data State
@@ -467,7 +467,7 @@ const NewInvoice = () => {
     try {
       // --- FIX 2: Map frontend fields to backend ---
       const mappedItems = tableData.map((row) => ({
-        plant: formData.plant || row.plant || "ProduLink",
+        plant: formData.plant || row.plant || "VISHWA S.I.",
         series: formData.series_type || "",
         invoice_type: formData.invoice_type || "GST",
         invoice_no: formData.invoice_no || "",
@@ -729,7 +729,7 @@ const NewInvoice = () => {
                           onChange={handleChange}
                           style={{ width: "100px" }}
                         >
-                          <option value="ProduLink">ProduLink</option>
+                          <option value="VISHWA S.I.">VISHWA S.I.</option>
                         </select>
                       </div>
 

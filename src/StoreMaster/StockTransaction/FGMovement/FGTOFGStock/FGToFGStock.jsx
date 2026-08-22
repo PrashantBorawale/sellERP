@@ -40,7 +40,7 @@ const FGToFGStock = () => {
                     </h5>
                     <div className="d-flex flex-wrap gap-2 align-items-center">
                       <select className="form-select" style={{ height: "34px", width: "auto" }}>
-                        <option>Produlink</option>
+                        <option>VISHWA S.I.</option>
                       </select>
                       <Link className="btn btn-success" to="/AddNewFGMovent" style={{ height: "34px", display: "flex", alignItems: "center" }}>
                         Add New FG Movement

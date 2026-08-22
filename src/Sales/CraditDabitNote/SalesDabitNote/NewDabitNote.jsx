@@ -13,7 +13,7 @@ const NewDabitNote = () => {
   const today = new Date().toISOString().split("T")[0];
 
   // Filter states
-  const [plant, setPlant] = useState("ProduLink");
+  const [plant, setPlant] = useState("VISHWA S.I.");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [customer, setCustomer] = useState("");
@@ -493,7 +493,7 @@ const NewDabitNote = () => {
                                             value={plant}
                                             onChange={(e) => setPlant(e.target.value)}
                                         >
-                                            <option value="ProduLink">ProduLink</option>
+                                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                                         </select>
                                     </div> 
                                     <div style={{minWidth: '120px'}}>

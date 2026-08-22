@@ -223,7 +223,7 @@ const WIPStock = () => {
                             <div className="col-md-2 col-sm-6">
                               <label className="form-label">Store</label>
                               <select className="form-select">
-                                <option value="Produlink">Main Store</option>
+                                <option value="VISHWA S.I.">Main Store</option>
                               </select>
                             </div>
 
@@ -283,7 +283,7 @@ const WIPStock = () => {
                                 </label>
                               </div>
                               <select className="form-select">
-                                <option value="Produlink"> </option>
+                                <option value="VISHWA S.I."> </option>
                               </select>
                             </div>
 

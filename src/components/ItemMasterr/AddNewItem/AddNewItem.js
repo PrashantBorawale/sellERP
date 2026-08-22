@@ -264,14 +264,17 @@ const AddNewItem = () => {
                                               <option value="">
                                                 Select ..
                                               </option>
-                                              {unitCodes.map((unit, index) => (
+                                              {/* {unitCodes.map((unit, index) => (
                                                 <option
                                                   key={index}
                                                   value={unit.name}
                                                 >
                                                   {unit.name}
                                                 </option>
-                                              ))}
+                                              ))} */}
+                                              <option value="PCS">PCS</option>
+                                              <option value="KGS">KGS</option>
+                                              <option value="MT">MT</option>
                                             </select>
                                           </div>
                                           <div className="col-sm-2">

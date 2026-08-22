@@ -127,7 +127,7 @@ const AddNewCard = () => {
                     onChange={handleChange}
                   >
                     <option value="">Select</option>
-                    <option value="Produlink">Produlink</option>
+                    <option value="VISHWA S.I.">VISHWA S.I.</option>
                   </select>
                   {errors.Plant && (
                     <div className="text-danger">{errors.Plant}</div>

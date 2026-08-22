@@ -156,7 +156,7 @@ const ErpSetting = () => {
                         <label className="form-label mb-1">Plant:</label>
                         <select className="form-select">
                           <option value="">Select Plant</option>
-                          <option value="Produlink">Produlink</option>
+                          <option value="VISHWA S.I.">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-md-2">

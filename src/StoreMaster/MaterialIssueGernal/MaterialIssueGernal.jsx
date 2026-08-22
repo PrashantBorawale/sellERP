@@ -235,7 +235,7 @@ const MaterialIssueGernal = () => {
                         </div>
                         <div className="col-auto">
                           <select id="plantSelect" className="form-select">
-                            <option selected>Produlink</option>
+                            <option selected>VISHWA S.I.</option>
                           </select>
                         </div>
 

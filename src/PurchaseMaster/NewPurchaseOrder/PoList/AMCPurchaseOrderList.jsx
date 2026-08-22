@@ -146,7 +146,7 @@ const AMCPurchaseOrderList = () => {
                           {/* <tr key={order.id}>
                             <td>{index + 1}</td>
                             <td>{order.PoDate ? new Date(order.PoDate).getFullYear() : "N/A"}</td>
-                            <td>{order.Plant || "Produlink"}</td>
+                            <td>{order.Plant || "VISHWA S.I."}</td>
                             <td>{order.PoNo}</td>
                             <td>{order.PoDate}</td>
                             <td>{order.EnquiryNo}</td>

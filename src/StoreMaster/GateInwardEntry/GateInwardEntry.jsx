@@ -39,7 +39,7 @@ const GateInwardEntry = () => {
   // Filter States
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [plant, setPlant] = useState("Produlink");
+  const [plant, setPlant] = useState("VISHWA S.I.");
   const [type, setType] = useState("");
   const [status, setStatus] = useState("");
   const [supplierName, setSupplierName] = useState("");
@@ -222,7 +222,7 @@ const GateInwardEntry = () => {
                             onChange={(e) => setPlant(e.target.value)}
                             sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%', display: 'flex', alignItems: 'center' } }}
                           >
-                            <MenuItem value="Produlink" sx={{ fontSize: '0.75rem' }}>Produlink</MenuItem>
+                            <MenuItem value="VISHWA S.I." sx={{ fontSize: '0.75rem' }}>VISHWA S.I.</MenuItem>
                           </TextField>
                         </Box>
 

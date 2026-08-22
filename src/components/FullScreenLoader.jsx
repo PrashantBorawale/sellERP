@@ -66,7 +66,7 @@ const FullScreenLoader = () => {
             mb: 0.3,
           }}
         >
-          Produlink ERP
+          ProdNomics ERP
         </Typography>
         <Typography
           variant="body2"

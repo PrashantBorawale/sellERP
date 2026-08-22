@@ -890,7 +890,7 @@ const ItemMasterGernal = () => {
                                                   <option value="">
                                                     Select ..
                                                   </option>
-                                                  {unitCodes.map(
+                                                  {/* {unitCodes.map(
                                                     (unit, index) => (
                                                       <option
                                                         key={index}
@@ -899,7 +899,10 @@ const ItemMasterGernal = () => {
                                                         {unit.name}
                                                       </option>
                                                     )
-                                                  )}
+                                                  )} */}
+                                                  <option value="PCS">PCS</option>
+                                                  <option value="KGS">KGS</option>
+                                                  <option value="MT">MT</option>
                                                 </select>
                                                 {errors.Unit_Code && (
                                                   <div className="text-danger">

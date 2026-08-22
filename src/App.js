@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
+import Footer from "./Footer/Footer";
 import FullScreenLoader from "./components/FullScreenLoader.jsx";
 const InprocessInspectionDetails = React.lazy(() => import("./Quality/InprocessQC/InprocessInspection/InprocessInspectionDetails"));
 const RejectionMaterialQC = React.lazy(() => import("./Quality/SalesReturnQC/RejectionMaterialQC"));
@@ -1030,6 +1031,7 @@ function App() {
 
       </Routes>
     </React.Suspense>
+      <Footer />
     </div>
   );
 }

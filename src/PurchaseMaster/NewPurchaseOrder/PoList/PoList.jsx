@@ -128,7 +128,7 @@ const PoList = () => {
                           <label>Plant:</label>
                           <select className="form-select">
                             <option value="select">Select All</option>
-                            <option value="Produlink">Produlink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
 

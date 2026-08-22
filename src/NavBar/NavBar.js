@@ -66,7 +66,7 @@ const NavBar = ({ toggleSideNav }) => {
           onClick={handleHomeClick} 
           style={{ cursor: "pointer" }}
         >
-          Produlink
+          ProdNomics
         </h6>
       </div>
 

@@ -212,7 +212,7 @@ const Newindent = () => {
                       <div className="col-12 col-md">
                         <label htmlFor="plant">Plant</label>
                         <select className="form-control" id="plant">
-                          <option>Produlink</option>
+                          <option>VISHWA S.I.</option>
                         </select>
                       </div>
 

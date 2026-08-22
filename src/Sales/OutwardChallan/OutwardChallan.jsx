@@ -859,7 +859,7 @@ const OutwardChallan = () => {
                             className="form-select form-select-sm header-plant-select"
                             style={{ width: "100px" }}
                           >
-                            <option>ProduLink</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
 

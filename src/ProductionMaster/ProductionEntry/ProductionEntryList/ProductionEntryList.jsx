@@ -124,7 +124,7 @@ const ProductionEntryList = () => {
                           <label className="fw-bold mb-1" style={{fontSize: '12px'}}>Plant:</label>
                           <select className="form-select form-select-sm">
                             <option>Select All</option>
-                            <option value="Produlink">Produlink</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
 

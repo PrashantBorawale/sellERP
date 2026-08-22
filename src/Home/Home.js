@@ -37,7 +37,7 @@ function Home() {
           <div className="col-md-4">
             <div className="home-form">
               <form onSubmit={handleSubmit}>
-                <h6>Produlink</h6>
+                <h6>ProdNomics</h6>
                 <p>
                   Enter your email address and <br /> password to access the
                   admin panel.
