@@ -186,6 +186,14 @@ const PendingPo = () => {
     crNameFilter,
   ]);
 
+  const handleViewPdf = (orderId, orderNo) => {
+    if (orderId) {
+      window.open(`https://sellerp-backend.onrender.com/Purchase/PoOrder/pdf/${orderId}/`, "_blank", "noopener,noreferrer");
+    } else {
+      alert(`No PDF available for PO: ${orderNo || "this order"}`);
+    }
+  };
+
   return (
     <div className="erp-page NewPendingpoMaster">
       <div className="container-fluid p-0">
@@ -323,6 +331,7 @@ const PendingPo = () => {
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>PO DATE</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CREATED BY</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>ITEMS</th>
+                              <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>VIEW</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>APPROVE</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>REJECT</th>
                             </tr>
@@ -330,7 +339,7 @@ const PendingPo = () => {
                           <tbody>
                             {filteredList.length === 0 ? (
                               <tr>
-                                <td colSpan="12" className="text-center py-4 text-muted" style={{ fontSize: '0.85rem' }}>
+                                <td colSpan="13" className="text-center py-4 text-muted" style={{ fontSize: '0.85rem' }}>
                                   No pending purchase orders.
                                 </td>
                               </tr>
@@ -350,6 +359,16 @@ const PendingPo = () => {
                                     {(po.item_details || [])
                                       .map((it) => `${it.Item} – ${it.ItemDescription}`)
                                       .join(", ")}
+                                  </td>
+                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-info border-0"
+                                      title="View PO PDF"
+                                      onClick={() => handleViewPdf(po.id, po.PoNo)}
+                                    >
+                                      <i className="fas fa-eye" style={{ fontSize: '1.25rem' }}></i>
+                                    </button>
                                   </td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
                                     <button 
