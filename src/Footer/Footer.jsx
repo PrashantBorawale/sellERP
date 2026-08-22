@@ -15,8 +15,11 @@ const Footer = () => {
     <footer className="global-footer">
       <div className="footer-content">
         <div className="footer-section company-info">
-          <div className="company-title">Clumpcoder</div>
-          <a href="https://clumpcoder.com" target="_blank" rel="noreferrer" className="company-link">clumpcoder.com</a>
+          <img src="/clumpcoder_logo.jfif" alt="Clumpcoder Logo" className="footer-logo" />
+          <div className="company-details">
+            <div className="company-title">ClumpCoder</div>
+            <a href="https://clumpcoder.com" target="_blank" rel="noreferrer" className="company-link">clumpcoder.com</a>
+          </div>
         </div>
         
         <div className="footer-section contact-info">
@@ -25,8 +28,8 @@ const Footer = () => {
         </div>
 
         <div className="footer-section date-time">
-          <div>{currentDateTime.toLocaleDateString()}</div>
-          <div>{currentDateTime.toLocaleTimeString()}</div>
+          <div className="time-text">{currentDateTime.toLocaleDateString()} &nbsp; {currentDateTime.toLocaleTimeString()}</div>
+          <div className="powered-by">Powered by ClumpCoder</div>
         </div>
       </div>
     </footer>

@@ -336,6 +336,10 @@ const JobworkStockReport = () => {
                               <th>Desc</th>
                               <th>QC Stock</th>
                               <th>Heat No</th>
+                              <th>Shopfloor</th>
+                              <th>Bar</th>
+                              <th>Wirerod</th>
+                              <th>Total</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -372,18 +376,22 @@ const JobworkStockReport = () => {
                                     )}
                                   </div>
                                 </td>
+                                <td>{r.ShopFloor ?? 0}</td>
+                                <td>{r.bar ?? 0}</td>
+                                <td>{r.wire_rod ?? 0}</td>
+                                <td>{r.total ?? 0}</td>
                               </tr>
                             ))}
                             {rows.length === 0 && !loading && (
                               <tr>
-                                <td colSpan="6" className="text-center py-4 text-muted">
+                                <td colSpan="10" className="text-center py-4 text-muted">
                                   No data to display. Use 'View All' or search for an item.
                                 </td>
                               </tr>
                             )}
                             {loading && (
                                 <tr>
-                                    <td colSpan="6" className="text-center py-4 text-muted">Loading...</td>
+                                    <td colSpan="10" className="text-center py-4 text-muted">Loading...</td>
                                 </tr>
                             )}
                           </tbody>
@@ -403,12 +411,12 @@ const JobworkStockReport = () => {
                     style={{ zIndex: 1040 }}
                   ></div>
                   <div
-                    className="modal fade show d-flex align-items-center justify-content-center"
-                    style={{ display: "flex", zIndex: 1050 }}
+                    className="modal fade show"
+                    style={{ display: "block", zIndex: 1050 }}
                     tabIndex="-1"
                     onClick={handleBackdropClick}
                   >
-                    <div className="modal-dialog modal-dialog-centered modal-xl" style={{ width: "100%", maxWidth: "1140px", margin: "auto" }} onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-dialog modal-dialog-centered modal-xl" style={{ maxWidth: "1140px", margin: "1.75rem auto" }} onClick={(e) => e.stopPropagation()}>
                       <div className="modal-content" style={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
                         <div className="modal-header border-bottom-0 pb-0 pt-4 px-4">
                           <div>
@@ -421,17 +429,17 @@ const JobworkStockReport = () => {
                           </div>
                           <button type="button" className="btn-close" onClick={closeModal} aria-label="Close"></button>
                         </div>
-                        <div className="modal-body p-4">
+                        <div className="modal-body p-4" style={{ maxHeight: "70vh", overflowY: "auto" }}>
                            <div className="table-responsive">
                             <table className="table table-bordered table-hover text-center mb-0">
                               <thead className="table-light">
                                 <tr>
                                   <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Sr No.</th>
                                   <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Heat No</th>
-                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Stock (KG)</th>
                                   <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>GRN Qty (KG)</th>
-                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Challan Qty (KG)</th>
-                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Short/Excess Qty (KG)</th>
+                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Bar</th>
+                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Wirerod</th>
+                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Total</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -445,10 +453,10 @@ const JobworkStockReport = () => {
                                           : <span className="text-muted">-</span>
                                         }
                                       </td>
-                                      <td className="fw-medium">{variant.stock ?? 0}</td>
                                       <td className="fw-medium">{variant.GRNQty ?? 0}</td>
-                                      <td className="fw-medium">{variant.challan_qty ?? 0}</td>
-                                      <td className="fw-medium">{variant.short_excess_qty ?? 0}</td>
+                                      <td className="fw-medium">{variant.bar ?? 0}</td>
+                                      <td className="fw-medium">{variant.wire_rod ?? 0}</td>
+                                      <td className="fw-medium">{(parseFloat(variant.GRNQty || 0) + parseFloat(variant.bar || 0) + parseFloat(variant.wire_rod || 0)).toFixed(2)}</td>
                                     </tr>
                                   ))
                                 ) : (
@@ -458,13 +466,13 @@ const JobworkStockReport = () => {
                                     </td>
                                   </tr>
                                 )}
-                                {modalData.total && (
+                                {modalData.length > 0 && (
                                   <tr className="table-secondary fw-bold">
                                     <td colSpan="2" className="text-end">Total:</td>
-                                    <td className="text-end">{modalData.total.stock ?? 0}</td>
-                                    <td className="text-end">{modalData.total.GRNQty ?? 0}</td>
-                                    <td className="text-end">{modalData.total.challan_qty ?? 0}</td>
-                                    <td className="text-end">{modalData.total.short_excess_qty ?? 0}</td>
+                                    <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.GRNQty) || 0), 0).toFixed(2)}</td>
+                                    <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.bar) || 0), 0).toFixed(2)}</td>
+                                    <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.wire_rod) || 0), 0).toFixed(2)}</td>
+                                    <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.GRNQty) || 0) + (parseFloat(v.bar) || 0) + (parseFloat(v.wire_rod) || 0), 0).toFixed(2)}</td>
                                   </tr>
                                 )}
                               </tbody>
