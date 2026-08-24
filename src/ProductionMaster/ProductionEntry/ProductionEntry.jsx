@@ -628,6 +628,7 @@ const ProductionEntry = () => {
       lot_heat_no: formData.lot_heat_no || "N/A", // "FG001"
       lot_qty: formData.lot_qty || "0",
       rework_qty: formData.rework_qty || "0",
+      raw_material: formData.BomPartCode || "",
       MachineIdleTime_Detail_Enter: idleTimeRecords,
     }
 
