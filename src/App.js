@@ -202,6 +202,7 @@ const StockTransaction = React.lazy(() => import("./StoreMaster/StockTransaction
 const OpeningStock = React.lazy(() => import('./StoreMaster/StockTransaction/OpeningStock/OpeningStock.jsx'));
 const AddWipStock = React.lazy(() => import('./StoreMaster/StockTransaction/OpeningStock/AddWipStock.jsx'));
 const OpeningWIPReport = React.lazy(() => import('./StoreMaster/StockTransaction/OpeningStock/OpeningWIPReport.jsx'));
+const AddRM_CONStock = React.lazy(() => import('./StoreMaster/StockTransaction/OpeningStock/AddRM_CONStock.jsx'));
 const FGMovement = React.lazy(() => import("./StoreMaster/StockTransaction/FGMovement/FGMovement.jsx"));
 const AddNewFGMovent = React.lazy(() => import("./StoreMaster/StockTransaction/FGMovement/AddNewFGMovement/AddNewFGMovent.jsx"));
 const FGTOFGMovement = React.lazy(() => import("./StoreMaster/StockTransaction/FGMovement/FGTOFGMovement/FGTOFGMovement.jsx"));
@@ -730,6 +731,7 @@ function App() {
         <Route path="Stock-Transaction" element={<StockTransaction />} />
         <Route path="Opening-Stock" element={<OpeningStock />} />
         <Route path="/AddWipStock" element={<AddWipStock />} />
+        <Route path="/AddRM_CONStock" element={<AddRM_CONStock />} />
         <Route path="/OpeningWIPReport" element={<OpeningWIPReport />} />
         <Route path="RM-Stock-Transaction" element={<RMStockTransaction />} />
         <Route path="FG-Movement" element={<FGMovement />} />

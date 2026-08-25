@@ -134,99 +134,80 @@ const VendorPage = () => {
   };
 
   return (
-    <>
-      <NavBar toggleSideNav={toggleSideNav} />
-      <div className="Vendor">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="VendorPage">
-                <SideNav
-                  sideNavOpen={sideNavOpen}
-                  toggleSideNav={toggleSideNav}
-                />
-                <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
-                  <div className="Vendorpage1">
-                    <div className="container-fluid">
-                      <div className="Vender-header mb-4 text-start">
-                        <div className="row align-items-center">
-                          <div className="col-md-8 text-start">
-                            <button className="btn" type="button">
-                              Company Setup
-                            </button>
-                            <button className="btn" type="button">
-                              Last Updated By Admin
-                            </button>
-                            <button className="btn" type="button">
-                              On D1 12/07/2022 2:57 PM
-                            </button>
-                          </div>
-                          <div className="col-md-4 col-12 text-end">
-                            <button className="btn">General Setting</button>
-                          </div>
-                        </div>
+    <div className="erp-page VendorPage">
+      <div className="container-fluid p-0">
+        <div className="row m-0">
+          <div className="col-md-12 p-0">
+            <div className="Main-NavBar">
+              <NavBar toggleSideNav={toggleSideNav} />
+              <SideNav sideNavOpen={sideNavOpen} toggleSideNav={toggleSideNav} />
+
+              <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
+                <div className="Vendorpage1 p-4">
+                  
+                  {/* Header */}
+                  <div className="erp-header mb-4 text-start">
+                    <div className="row align-items-center">
+                      <div className="col-md-8 text-start">
+                        <h5 className="header-title mb-0">Company Setup</h5>
+                        <small className="text-muted d-block mt-1">Last Updated By Admin On D1 12/07/2022 2:57 PM</small>
+                      </div>
+                      <div className="col-md-4 col-12 text-end">
+                        <button className="btn btn-outline-primary btn-sm rounded-pill fw-bold" style={{ fontSize: '0.75rem' }}>General Setting</button>
                       </div>
                     </div>
-                    <div className="VendorPageMain">
-                      <div className="container-fluid text-start" id="shivi">
-                        <div className="row">
-                          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  </div>
+
+                  {/* Tabs Section */}
+                  <div className="VendorPageMain">
+                    <div className="container-fluid text-start p-0">
+                      <div className="card shadow-sm border-0" style={{ borderRadius: '12px' }}>
+                        <div className="card-body p-4">
+                          <ul className="nav nav-tabs nav-tabs-custom mb-4" id="pills-tab" role="tablist">
                             <li className="nav-item" role="presentation">
                               <button
-                                className={`nav-link ${activeTab === "general" ? "active" : ""}`}
+                                className={`nav-link ${activeTab === "general" ? "active fw-bold" : ""}`}
                                 id="pills-general-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-general"
                                 type="button"
                                 role="tab"
-                                aria-controls="pills-general"
-                                aria-selected={activeTab === "general"}
                                 onClick={() => setActiveTab("general")}
+                                style={{ fontSize: '0.85rem' }}
                               >
                                 General
                               </button>
                             </li>
                             <li className="nav-item" role="presentation">
                               <button
-                                className={`nav-link ${activeTab === "data2" ? "active" : ""}`}
+                                className={`nav-link ${activeTab === "data2" ? "active fw-bold" : ""}`}
                                 id="pills-data2-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-data2"
                                 type="button"
                                 role="tab"
-                                aria-controls="pills-data2"
-                                aria-selected={activeTab === "data2"}
                                 onClick={() => setActiveTab("data2")}
+                                style={{ fontSize: '0.85rem' }}
                               >
                                 Data-2
                               </button>
                             </li>
                             <li className="nav-item" role="presentation">
                               <button
-                                className={`nav-link ${activeTab === "logoImage" ? "active" : ""}`}
+                                className={`nav-link ${activeTab === "logoImage" ? "active fw-bold" : ""}`}
                                 id="pills-logoImage-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-logoImage"
                                 type="button"
                                 role="tab"
-                                aria-controls="pills-logoImage"
-                                aria-selected={activeTab === "logoImage"}
                                 onClick={() => setActiveTab("logoImage")}
+                                style={{ fontSize: '0.85rem' }}
                               >
                                 Logo/Images
                               </button>
                             </li>
                             <li className="nav-item" role="presentation">
                               <button
-                                className={`nav-link ${activeTab === "eInvoice" ? "active" : ""}`}
+                                className={`nav-link ${activeTab === "eInvoice" ? "active fw-bold" : ""}`}
                                 id="pills-Invoice-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-Invoice"
                                 type="button"
                                 role="tab"
-                                aria-controls="pills-Invoice"
-                                aria-selected={activeTab === "eInvoice"}
                                 onClick={() => setActiveTab("eInvoice")}
+                                style={{ fontSize: '0.85rem' }}
                               >
                                 E-Invoice
                               </button>
@@ -283,14 +264,14 @@ const VendorPage = () => {
                       </div>
                     </div>
                   </div>
-                </main>
-                <ToastContainer position="top-right" autoClose={5000} />
-              </div>
+                </div>
+              </main>
+              <ToastContainer position="top-right" autoClose={5000} />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

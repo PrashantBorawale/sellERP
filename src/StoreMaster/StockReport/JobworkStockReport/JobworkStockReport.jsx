@@ -334,12 +334,12 @@ const JobworkStockReport = () => {
                               <th>Item Code</th>
                               <th>Item No.</th>
                               <th>Desc</th>
-                              <th>QC Stock</th>
+                              <th>Stock</th>
                               <th>Heat No</th>
                               <th>Shopfloor</th>
                               <th>Bar</th>
                               <th>Wirerod</th>
-                              <th>Total</th>
+                              
                             </tr>
                           </thead>
                           <tbody>
@@ -379,7 +379,7 @@ const JobworkStockReport = () => {
                                 <td>{r.ShopFloor ?? 0}</td>
                                 <td>{r.bar ?? 0}</td>
                                 <td>{r.wire_rod ?? 0}</td>
-                                <td>{r.total ?? 0}</td>
+                                
                               </tr>
                             ))}
                             {rows.length === 0 && !loading && (
@@ -439,7 +439,6 @@ const JobworkStockReport = () => {
                                   <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>GRN Qty (KG)</th>
                                   <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Bar</th>
                                   <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Wirerod</th>
-                                  <th style={{ background: '#f8fafc', color: '#475569', fontWeight: '600' }}>Total</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -456,12 +455,11 @@ const JobworkStockReport = () => {
                                       <td className="fw-medium">{variant.GRNQty ?? 0}</td>
                                       <td className="fw-medium">{variant.bar ?? 0}</td>
                                       <td className="fw-medium">{variant.wire_rod ?? 0}</td>
-                                      <td className="fw-medium">{(parseFloat(variant.GRNQty || 0) + parseFloat(variant.bar || 0) + parseFloat(variant.wire_rod || 0)).toFixed(2)}</td>
                                     </tr>
                                   ))
                                 ) : (
                                   <tr>
-                                    <td colSpan="6" className="text-center text-muted py-4">
+                                    <td colSpan="5" className="text-center text-muted py-4">
                                       No variant details available
                                     </td>
                                   </tr>
@@ -472,7 +470,6 @@ const JobworkStockReport = () => {
                                     <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.GRNQty) || 0), 0).toFixed(2)}</td>
                                     <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.bar) || 0), 0).toFixed(2)}</td>
                                     <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.wire_rod) || 0), 0).toFixed(2)}</td>
-                                    <td className="fw-bold">{modalData.reduce((sum, v) => sum + (parseFloat(v.GRNQty) || 0) + (parseFloat(v.bar) || 0) + (parseFloat(v.wire_rod) || 0), 0).toFixed(2)}</td>
                                   </tr>
                                 )}
                               </tbody>

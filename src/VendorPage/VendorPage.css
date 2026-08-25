@@ -44,64 +44,50 @@ body {
 .date-2,
 .logo-image,
 .einvoice {
-  background-color: white;
-  padding: 20px;
-  margin: 10px 0;
-  border-radius: 10px;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
   text-align: start;
 }
 
 .gernal-update,
 .date-update {
   border: none;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: blueviolet;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  background-color: #0d6efd; /* Bootstrap primary blue */
   color: white;
   cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease-in-out;
 }
 
 .gernal-update:hover,
 .date-update:hover {
-  background-color: rgba(0, 0, 255, 0.7);
+  background-color: #0b5ed7; /* Bootstrap primary blue hover */
 }
 
-/* Navbar Tabs */
-#pills-tab {
-  margin-top: 20px;
-  text-align: start;
-  border: none;
+/* ERP Form Font Resizing */
+.VendorPageMain label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
 }
 
-.nav-pills .nav-link {
-  color: grey;
-  background-color: white;
-  transition: background-color 0.3s ease;
-  border: none;
+.VendorPageMain .form-control,
+.VendorPageMain .form-select {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+  min-height: 32px;
 }
 
-.nav-pills .nav-link:hover {
-  color: gray;
-  border: none;
+.VendorPageMain .btn {
+  font-size: 0.85rem;
 }
 
-.nav-pills .nav-link.active {
-  background-color: blueviolet !important;
-  color: white !important;
-  border: none;
-}
-
-.nav-item button {
-  background-color: white;
-  color: grey;
-  padding: 12px;
-  margin: 10px;
-
-}
-
-.tab-content{
-  border: none;
-}
+/* Navbar Tabs styles removed to use global standard ERP tabs */
 
 /* Responsive Media Queries */
 @media (max-width: 1400px) {

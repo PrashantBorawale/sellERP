@@ -85,7 +85,7 @@ const OpeningStock = () => {
                             Opening: RM | Con | Other Group
                           </div>
                           <div className="card-body">
-                            <Link className="btn btn-success w-100 mb-2">
+                            <Link className="btn btn-success w-100 mb-2" to="/AddRM_CONStock">
                               Add New
                             </Link>
                              <br/>
