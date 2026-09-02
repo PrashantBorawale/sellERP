@@ -552,6 +552,24 @@ const NewinvoiceGST = () => {
                                 </div>
                               </div>
 
+                              <div className="row mb-2">
+                                <div className="col-4">
+                                  <label>Transport Doc No.:</label>
+                                </div>
+                                <div className="col-8 d-flex">
+                                    <input type="text" className="form-control" />
+                                </div>
+                              </div>
+
+                              <div className="row mb-2">
+                                <div className="col-4">
+                                  <label>Transport K.M.:</label>
+                                </div>
+                                <div className="col-8 d-flex">
+                                    <input type="text" className="form-control" />
+                                </div>
+                              </div>
+
                             </div>
 
                           </div>

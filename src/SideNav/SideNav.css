@@ -1,4 +1,3 @@
-/* Base styles for side navigation */
 .blueside-Nav .side-nav {
   height: 100%;
   width: 250px;
@@ -9,9 +8,11 @@
   left: -250px;
   transition: left 0.3s;
   padding-top: 60px;
-  z-index: 1000;
+  padding-bottom: 80px; /* Space for footer */
+  z-index: 1100; /* Higher than footer's 1050 */
   overflow-y: auto;
   overflow-x: visible;
+  box-sizing: border-box;
 }
 
 .blueside-Nav .side-nav.open {
@@ -51,6 +52,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  padding-bottom: 100px; /* Added to clear the footer */
 }
 
 .nav-list li {

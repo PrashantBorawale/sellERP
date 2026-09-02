@@ -57,6 +57,8 @@ const NewInvoice = () => {
     d_c_Date: "",            // ✅ was: d_c_date
     delivery_terms: "",
     plant: "VISHWA S.I.",      // ✅ added missing plant state
+    trans_doc_no: "",
+    trans_distance_km: "",
   });
 
   // Tax Data State
@@ -1433,6 +1435,32 @@ const NewInvoice = () => {
                                   <input
                                     name="d_c_no"
                                     value={formData.d_c_no}
+                                    onChange={handleChange}
+                                    className="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div className="row mb-2">
+                                <div className="col-4">
+                                  <label className="fw-bold mb-0 text-nowrap" style={{ fontSize: "12px" }}>Transport Doc No.:</label>
+                                </div>
+                                <div className="col-8">
+                                  <input
+                                    name="trans_doc_no"
+                                    value={formData.trans_doc_no}
+                                    onChange={handleChange}
+                                    className="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div className="row mb-2">
+                                <div className="col-4">
+                                  <label className="fw-bold mb-0 text-nowrap" style={{ fontSize: "12px" }}>Transport K.M.:</label>
+                                </div>
+                                <div className="col-8">
+                                  <input
+                                    name="trans_distance_km"
+                                    value={formData.trans_distance_km}
                                     onChange={handleChange}
                                     className="form-control"
                                   />
