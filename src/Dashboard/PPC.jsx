@@ -320,8 +320,8 @@ const PPC = () => {
         <div className="bg-[#f8fafc] border border-[#eef2f6] rounded-[16px] p-5 mb-8 flex items-center flex-wrap gap-6 shadow-sm">
           <div className="flex items-center gap-2">
             <Typography className="text-[12px] font-black text-[#64748b] uppercase">Plant:</Typography>
-            <Select value="sharp" size="small" sx={{ height: '36px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '100px', bgcolor: 'white' }}>
-              <MenuItem value="sharp">Sharp</MenuItem>
+            <Select value="VISHWA S.I" size="small" sx={{ height: '36px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '100px', bgcolor: 'white' }}>
+              <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
             </Select>
           </div>
           <div className="flex items-center gap-3">
@@ -951,8 +951,8 @@ const PPC = () => {
         <div className="bg-[#f8fafc] border border-[#eef2f6] rounded-[16px] p-5 mb-8 flex items-center flex-wrap gap-4 shadow-sm">
           <div className="flex items-center gap-2">
             <Typography className="text-[12px] font-black text-[#64748b] uppercase">Plant:</Typography>
-            <Select value="sharp" size="small" sx={{ height: '36px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '100px', bgcolor: 'white' }}>
-              <MenuItem value="sharp">Sharp</MenuItem>
+            <Select value="VISHWA S.I" size="small" sx={{ height: '36px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '100px', bgcolor: 'white' }}>
+              <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
             </Select>
           </div>
           <div className="flex items-center gap-2">

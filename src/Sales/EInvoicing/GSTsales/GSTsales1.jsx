@@ -10,6 +10,18 @@ const GSTsales1 = () => {
     const [sideNavOpen, setSideNavOpen] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [invoices, setInvoices] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
+
+    // Pagination logic
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentInvoices = invoices.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(invoices.length / itemsPerPage);
+
+    const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
 
     useEffect(() => {
       fetchInvoices();
@@ -260,7 +272,7 @@ const GSTsales1 = () => {
                               </thead>
 
                               <tbody>
-                                {invoices.map((inv, index) => {
+                                {currentInvoices.map((inv, index) => {
                                   const firstItem = inv.items && inv.items.length > 0 ? inv.items[0] : {};
                                   const gstDetail = inv.GSTdetails && inv.GSTdetails.length > 0 ? inv.GSTdetails[0] : {};
                                   
@@ -270,7 +282,7 @@ const GSTsales1 = () => {
 
                                   return (
                                     <tr key={inv.id || index}>
-                                      <td>{index + 1}</td>
+                                      <td>{indexOfFirstItem + index + 1}</td>
                                       <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "100px" }}>{firstItem.plant || "-"}</td>
                                       <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{inv.invoice_no || "-"}</td>
                                       <td>{inv.invoice_Date || "-"}</td>
@@ -303,6 +315,23 @@ const GSTsales1 = () => {
                                 )}
                               </tbody>
                             </table>
+                            {totalPages > 1 && (
+                              <div className="d-flex justify-content-center mt-3">
+                                <ul className="pagination">
+                                  <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                    <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                                  </li>
+                                  {[...Array(totalPages)].map((_, i) => (
+                                    <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                                      <button className="page-link" onClick={() => handlePageChange(i + 1)}>{i + 1}</button>
+                                    </li>
+                                  ))}
+                                  <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                                    <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                                  </li>
+                                </ul>
+                              </div>
+                            )}
                            </div>
                         </div>
 

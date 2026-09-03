@@ -72,7 +72,7 @@ const CustomPieLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, i
 
 const Quality = () => {
   const [fy, setFy] = useState('2026-2027');
-  const [plant, setPlant] = useState('Sharp');
+  const [plant, setPlant] = useState('VISHWA S.I');
   const [month, setMonth] = useState('04-2026');
   const [monthSelectOpen, setMonthSelectOpen] = useState(false);
   const [openTrendRej, setOpenTrendRej] = useState(false);
@@ -369,7 +369,7 @@ const Quality = () => {
               <Box className="flex items-center gap-2">
                 <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
                 <Select value={plant} onChange={(e) => setPlant(e.target.value)} size="small" sx={{ height: '32px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: 'white', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
-                  <MenuItem value="Sharp">Sharp</MenuItem>
+                  <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                 </Select>
               </Box>
 
@@ -517,7 +517,7 @@ const Quality = () => {
             <Box className="flex items-center gap-1">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
               <Select value={plant} onChange={(e) => setPlant(e.target.value)} size="small" sx={{ height: '32px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '80px', bgcolor: 'white', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
-                <MenuItem value="Sharp">SHARP</MenuItem>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 
@@ -783,7 +783,7 @@ const Quality = () => {
             <Box className="flex items-center gap-1">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
               <Select value={plant} onChange={(e) => setPlant(e.target.value)} size="small" sx={{ height: '32px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '80px', bgcolor: 'white', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
-                <MenuItem value="Sharp">SHARP</MenuItem>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 
@@ -991,7 +991,7 @@ const Quality = () => {
             <Box className="flex items-center gap-2">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
               <Select 
-                value="Sharp" 
+                value="VISHWA S.I" 
                 size="small" 
                 sx={{ 
                   height: '30px', 
@@ -1003,7 +1003,7 @@ const Quality = () => {
                   '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } 
                 }}
               >
-                <MenuItem value="Sharp" sx={{ fontSize: '11px', fontWeight: 900 }}>SHARP</MenuItem>
+                <MenuItem value="VISHWA S.I" sx={{ fontSize: '11px', fontWeight: 900 }}>VISHWA S.I</MenuItem>
               </Select>
             </Box>
 
@@ -1122,8 +1122,8 @@ const Quality = () => {
 
             <Box className="flex items-center gap-1.5 border-l border-[#e2e8f0] pl-3">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-              <Select value="Sharp" size="small" sx={{ height: '30px', fontSize: '11px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
-                <MenuItem value="Sharp">SHARP</MenuItem>
+              <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '11px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 

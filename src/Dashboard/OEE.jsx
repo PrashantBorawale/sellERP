@@ -181,7 +181,7 @@ const OeeCustomTooltip = ({ active, payload }) => {
 };
 
 const OEE = () => {
-  const [plant, setPlant] = useState('Sharp');
+  const [plant, setPlant] = useState('VISHWA S.I');
   const [period, setPeriod] = useState('April 2026');
 
   return (
@@ -251,7 +251,7 @@ const OEE = () => {
                   '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' }
                 }}
               >
-                <MenuItem value="Sharp">Sharp</MenuItem>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 
@@ -289,8 +289,8 @@ const OEE = () => {
           <Box className="flex items-center gap-6">
             <Box className="flex items-center gap-2">
               <Typography className="text-[13px] font-black text-[#64748b]">Plant:</Typography>
-              <Select value="Sharp" size="small" sx={{ height: '34px', fontSize: '13px', fontWeight: 900, borderRadius: '8px', minWidth: '100px', bgcolor: '#f8fafc', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
-                <MenuItem value="Sharp">Sharp</MenuItem>
+              <Select value="VISHWA S.I" size="small" sx={{ height: '34px', fontSize: '13px', fontWeight: 900, borderRadius: '8px', minWidth: '100px', bgcolor: '#f8fafc', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 
@@ -393,8 +393,8 @@ const OEE = () => {
           <Box className="flex items-center gap-4">
             <Box className="flex items-center gap-1.5">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-              <Select value="Sharp" size="small" sx={{ height: '34px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: '#f8fafc', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
-                <MenuItem value="Sharp">Sharp</MenuItem>
+              <Select value="VISHWA S.I" size="small" sx={{ height: '34px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: '#f8fafc', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 
@@ -484,8 +484,8 @@ const OEE = () => {
           <Box className="flex items-center gap-4">
             <Box className="flex items-center gap-1.5">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-              <Select value="Sharp" size="small" sx={{ height: '34px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: '#f8fafc', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
-                <MenuItem value="Sharp">Sharp</MenuItem>
+              <Select value="VISHWA S.I" size="small" sx={{ height: '34px', fontSize: '12px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: '#f8fafc', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } }}>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </Box>
 

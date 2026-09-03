@@ -69,7 +69,7 @@ const Subcon = () => {
             <Box className="flex items-center gap-3">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
               <Select 
-                value="Sharp" 
+                value="VISHWA S.I" 
                 size="small" 
                 sx={{ 
                   height: '36px', 
@@ -81,7 +81,7 @@ const Subcon = () => {
                   '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e2e8f0' } 
                 }}
               >
-                <MenuItem value="Sharp" sx={{ fontSize: '12px', fontWeight: 900 }}>Sharp</MenuItem>
+                <MenuItem value="VISHWA S.I" sx={{ fontSize: '12px', fontWeight: 900 }}>VISHWA S.I</MenuItem>
               </Select>
             </Box>
 

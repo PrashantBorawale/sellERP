@@ -10,7 +10,7 @@ import {
 const Purchase = () => {
   const [fiscalYear, setFiscalYear] = useState('2026-2027');
   const [poFilters, setPoFilters] = useState({
-    plant: 'sharp',
+    plant: 'VISHWA S.I',
     month: 'april2026',
     view: 'AMOUNT'
   });
@@ -184,7 +184,7 @@ const Purchase = () => {
   }, [dailyPurchaseFilters]);
 
   const [top5Filters, setTop5Filters] = useState({
-    plant: 'sharp',
+    plant: 'VISHWA S.I',
     month: 'april2026',
     top: 5,
     type: 'supplier'
@@ -451,8 +451,8 @@ const Purchase = () => {
             <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-1.5">
                 <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-                <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
-                  <MenuItem value="sharp">Sharp</MenuItem>
+                <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
+                  <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                 </Select>
               </div>
               <div className="flex items-center gap-1.5">
@@ -548,8 +548,8 @@ const Purchase = () => {
             <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-1.5">
                 <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-                <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
-                  <MenuItem value="sharp">Sharp</MenuItem>
+                <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
+                  <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                 </Select>
               </div>
               <div className="flex items-center gap-1.5 pr-2 border-r border-[#cbd5e1]">
@@ -653,7 +653,7 @@ const Purchase = () => {
                 size="small" 
                 sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}
               >
-                <MenuItem value="sharp">Sharp</MenuItem>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </div>
             <div className="flex items-center gap-1.5 pr-2 border-r border-[#cbd5e1]">
@@ -812,7 +812,7 @@ const Purchase = () => {
             <div className="flex items-center gap-1.5">
               <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
               <Select value={top5Filters.plant} onChange={(e) => setTop5Filters(prev => ({ ...prev, plant: e.target.value }))} size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '80px', bgcolor: 'white' }}>
-                <MenuItem value="sharp">Sharp</MenuItem>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </div>
             <div className="flex items-center gap-1.5">
@@ -950,7 +950,7 @@ const Purchase = () => {
                 size="small" 
                 sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '85px', bgcolor: 'white' }}
               >
-                <MenuItem value="sharp">Sharp</MenuItem>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </div>
             <div className="flex items-center gap-2">
@@ -1098,8 +1098,8 @@ const Purchase = () => {
         <div className={`flex items-center gap-2 w-full overflow-x-auto pb-2 ${openGRNDetails ? 'mb-4' : ''}`} style={{ scrollbarWidth: 'thin' }}>
           <div className="flex items-center gap-1 shrink-0">
             <Typography className="text-[12px] font-black text-[#64748b] whitespace-nowrap">Plant:</Typography>
-            <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '75px', bgcolor: 'white' }}>
-              <MenuItem value="sharp">Sharp</MenuItem>
+            <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '75px', bgcolor: 'white' }}>
+              <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
             </Select>
           </div>
           <div className="flex items-center gap-1 shrink-0">
@@ -1214,8 +1214,8 @@ const Purchase = () => {
             </Select>
             <div className="flex items-center gap-2">
               <Typography className="text-[13px] font-black text-[#64748b]">Plant:</Typography>
-              <Select value="sharp" size="small" sx={{ height: '36px', fontSize: '13px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: 'white' }}>
-                <MenuItem value="sharp">Sharp</MenuItem>
+              <Select value="VISHWA S.I" size="small" sx={{ height: '36px', fontSize: '13px', fontWeight: 900, borderRadius: '8px', minWidth: '90px', bgcolor: 'white' }}>
+                <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
               </Select>
             </div>
             <div className="flex items-center gap-2">

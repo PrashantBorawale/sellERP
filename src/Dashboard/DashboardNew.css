@@ -11,14 +11,14 @@
 
 /* ─── Department Cards Row ─── */
 .dn-dept-cards-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   gap: 8px;
   margin-bottom: 20px;
 }
 
 /* ─── Department Card ─── */
 .dn-dept-card {
+  flex: 1;
   background: #ffffff;
   border-radius: 10px;
   padding: 8px 2px;

@@ -575,7 +575,7 @@ const monthlySalesData = [
 ];
 
 const initialTop5SalesData = [
-  { name: "SHARP LTD", value: 125.5, fill: "#3b82f6" }, { name: "TECHNO CORP", value: 98.2, fill: "#10b981" },
+  { name: "VISHWA S.I LTD", value: 125.5, fill: "#3b82f6" }, { name: "TECHNO CORP", value: 98.2, fill: "#10b981" },
   { name: "GLOBAL MFG", value: 75.8, fill: "#f59e0b" }, { name: "PRECISION INC", value: 45.0, fill: "#8b5cf6" },
   { name: "ALPHA IND", value: 32.1, fill: "#06b6d4" },
 ];
@@ -1430,7 +1430,7 @@ const Dashboard = () => {
                   <div className="dn-filter-strip">
                     <label>Plant</label>
                     <select className="dn-mini-select">
-                      <option>SHARP</option>
+                      <option>VISHWA S.I</option>
                     </select>
                   </div>
 
@@ -1501,7 +1501,7 @@ const Dashboard = () => {
 
                   <div className="dn-filter-strip row-gap">
                     <div className="dn-filter-group">
-                      <select className="dn-mini-select"><option>SHARP</option></select>
+                      <select className="dn-mini-select"><option>VISHWA S.I</option></select>
                       <label>Month</label>
                       <select 
                         className="dn-mini-select"
@@ -1626,7 +1626,7 @@ const Dashboard = () => {
                             {/* Inner Filter Bar */}
                             <div className="dn-inner-filter-bar complex" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 16px", background: "#f8fafc", borderBottom: '1px solid #e2e8f0', flexWrap: 'nowrap' }}>
                               <div className="dn-f-left" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <div className="dn-f-item sm">Plant : <select className="dn-mini-select" style={{ width: 80 }}><option>SHARP</option></select></div>
+                                <div className="dn-f-item sm">Plant : <select className="dn-mini-select" style={{ width: 80 }}><option>VISHWA S.I</option></select></div>
                                 <div className="dn-f-item sm">
                                   Month : 
                                   <select 
@@ -1724,7 +1724,7 @@ const Dashboard = () => {
                           <div className="dn-card-body dn-daily-sales-body" style={{ padding: 0 }}>
                             {/* Standardized Flex Filter Strip */}
                             <div className="dn-inner-filter-bar" style={{ display: "flex", alignItems: "center", gap: '8px', padding: "10px 16px", background: "#f8fafc", borderBottom: '1px solid #e2e8f0' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>SHARP</option></select></div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>VISHWA S.I</option></select></div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b', marginLeft: '5px' }}>
                                 Sales Month : 
                                 <select 
@@ -1794,7 +1794,7 @@ const Dashboard = () => {
                           <div className="dn-card-body dn-daily-sales-body" style={{ padding: 0 }}>
                             {/* Standardized Flex Filter Strip */}
                             <div className="dn-inner-filter-bar" style={{ display: "flex", alignItems: "center", gap: '8px', padding: "10px 16px", background: "#f8fafc", borderBottom: '1px solid #e2e8f0' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 60, border: 'none', background: 'transparent', fontWeight: 700 }}><option>SHARP</option></select></div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 60, border: 'none', background: 'transparent', fontWeight: 700 }}><option>VISHWA S.I</option></select></div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b', marginLeft: '5px' }}>Year : <select className="dn-mini-select" style={{ width: 100, border: 'none', background: 'transparent', fontWeight: 700 }}><option>2026-2027</option></select></div>
                               
                               <div className="dn-radio-group mini" style={{ display: 'flex', gap: '8px', fontSize: '11px', fontWeight: 700, marginLeft: '10px' }}>
@@ -1879,7 +1879,7 @@ const Dashboard = () => {
                           <div className="dn-card-body dn-top5-body" style={{ padding: 0 }}>
                             {/* Standardized Flex Filter Strip */}
                             <div className="dn-inner-filter-bar" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 16px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>SHARP</option></select></div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>VISHWA S.I</option></select></div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b', marginLeft: '5px' }}>Year : <select className="dn-mini-select" style={{ width: 100, border: 'none', background: 'transparent', fontWeight: 700 }}><option>2026-2027</option></select></div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b', marginLeft: '5px' }}>Month : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>ALL</option></select></div>
                               
@@ -1969,7 +1969,7 @@ const Dashboard = () => {
                             {/* Compact Filter Bar - Optimized for Screen Fit */}
                             <div className="dn-inner-filter-bar" style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0', flexWrap: 'nowrap', overflowX: 'auto', width: '100%', boxSizing: 'border-box' }}>
                               <div className="dn-f-item sm" style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '10.5px', fontWeight: 600, flexShrink: 0 }}>
-                                Plant : <select className="dn-mini-select" style={{ width: 70 }}><option>SHARP</option></select>
+                                Plant : <select className="dn-mini-select" style={{ width: 70 }}><option>VISHWA S.I</option></select>
                               </div>
                               <div className="dn-f-item sm" style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '10.5px', fontWeight: 600, flexShrink: 0 }}>
                                 From : <input type="text" className="dn-mini-select" defaultValue="10/04/2026" style={{ width: 75 }} />
@@ -2162,7 +2162,7 @@ const Dashboard = () => {
                           <div className="dn-card-body dn-state-body" style={{ padding: 0 }}>
                             {/* Standardized Filter Strip matched to image */}
                             <div className="dn-inner-filter-bar" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 16px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>SHARP</option></select></div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>Plant : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>VISHWA S.I</option></select></div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b', marginLeft: '5px' }}>Year : <select className="dn-mini-select" style={{ width: 100, border: 'none', background: 'transparent', fontWeight: 700 }}><option>2026-2027</option></select></div>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b', marginLeft: '5px' }}>Month : <select className="dn-mini-select" style={{ width: 80, border: 'none', background: 'transparent', fontWeight: 700 }}><option>ALL</option></select></div>
                               

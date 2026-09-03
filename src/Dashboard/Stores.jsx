@@ -413,8 +413,8 @@ const Stores = () => {
             <div className="bg-[#f8fafc] border border-[#eef2f6] rounded-[12px] p-3 mb-6 flex items-center flex-wrap gap-3">
               <div className="flex items-center gap-2">
                 <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-                <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
-                  <MenuItem value="sharp">Sharp</MenuItem>
+                <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
+                  <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                 </Select>
               </div>
               <div className="flex items-center gap-2">
@@ -531,8 +531,8 @@ const Stores = () => {
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
                   <Typography className="text-[12px] font-black text-[#64748b] uppercase">Plant:</Typography>
-                  <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
-                    <MenuItem value="sharp">Sharp</MenuItem>
+                  <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
+                    <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                   </Select>
                 </div>
                 <div className="flex items-center gap-2">
@@ -658,8 +658,8 @@ const Stores = () => {
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
                   <Typography className="text-[12px] font-black text-[#64748b] uppercase">Plant:</Typography>
-                  <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
-                    <MenuItem value="sharp">Sharp</MenuItem>
+                  <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
+                    <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                   </Select>
                 </div>
                 <div className="flex items-center gap-2">
@@ -796,8 +796,8 @@ const Stores = () => {
             <div className="bg-[#f8fafc] border border-[#eef2f6] rounded-[12px] p-3 mb-5 flex items-center flex-wrap gap-4">
               <div className="flex items-center gap-2">
                 <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-                <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
-                  <MenuItem value="sharp">Sharp</MenuItem>
+                <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '90px', bgcolor: 'white' }}>
+                  <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                 </Select>
               </div>
               <div className="flex items-center gap-2">
@@ -945,8 +945,8 @@ const Stores = () => {
             <div className="flex items-center flex-wrap gap-4 mb-4 bg-[#f8fafc] p-3 rounded-[12px] border border-[#eef2f6]">
               <div className="flex items-center gap-2">
                 <Typography className="text-[12px] font-black text-[#64748b]">Plant:</Typography>
-                <Select value="sharp" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '100px', bgcolor: 'white' }}>
-                  <MenuItem value="sharp">Sharp</MenuItem>
+                <Select value="VISHWA S.I" size="small" sx={{ height: '30px', fontSize: '12px', fontWeight: 900, borderRadius: '6px', minWidth: '100px', bgcolor: 'white' }}>
+                  <MenuItem value="VISHWA S.I">VISHWA S.I</MenuItem>
                 </Select>
               </div>
               <div className="flex items-center gap-2">
