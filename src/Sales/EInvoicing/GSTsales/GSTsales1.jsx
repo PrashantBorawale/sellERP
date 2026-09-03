@@ -8,9 +8,47 @@ import "../../../styles/erp-global.css";
 
 const GSTsales1 = () => {
     const [sideNavOpen, setSideNavOpen] = useState(false);
-      const [showModal, setShowModal] = useState(false);
-    
-      const toggleSideNav = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [invoices, setInvoices] = useState([]);
+
+    useEffect(() => {
+      fetchInvoices();
+    }, []);
+
+    const fetchInvoices = async () => {
+      try {
+        const response = await fetch("https://sellerp-backend.onrender.com/Sales/api/invoices/empty-irn/");
+        const result = await response.json();
+        if (result.status && result.data) {
+          setInvoices(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching invoices:", error);
+      }
+    };
+
+    const handleGenerateIRN = async (id) => {
+      try {
+        const response = await fetch(`https://sellerp-backend.onrender.com/Sales/api/einvoice/generate-irn-and-ewaybill/${id}/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        const result = await response.json();
+        if (response.ok) {
+          alert("IRN Generated Successfully!");
+          fetchInvoices();
+        } else {
+          alert("Failed to generate IRN: " + (result.message || JSON.stringify(result)));
+        }
+      } catch (error) {
+        console.error("Error generating IRN:", error);
+        alert("An error occurred while generating IRN.");
+      }
+    };
+
+    const toggleSideNav = () => {
         setSideNavOpen((prevState) => !prevState);
       };
     
@@ -216,33 +254,53 @@ const GSTsales1 = () => {
                                     View 
                                   </th>
                                   <th className=" ">
-                                    JSON 
-                                  </th>
-                                  <th className=" ">
-                                    Act
+                                    IRN
                                   </th>
                                 </tr>
                               </thead>
 
                               <tbody>
-                               <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                               </tr>
+                                {invoices.map((inv, index) => {
+                                  const firstItem = inv.items && inv.items.length > 0 ? inv.items[0] : {};
+                                  const gstDetail = inv.GSTdetails && inv.GSTdetails.length > 0 ? inv.GSTdetails[0] : {};
+                                  
+                                  const billToParts = inv.bill_to ? inv.bill_to.split('|') : ["-", "-"]
+                                  const custName = billToParts[0] ? billToParts[0].trim() : "-";
+                                  const custCode = billToParts[1] ? billToParts[1].trim() : "-";
+
+                                  return (
+                                    <tr key={inv.id || index}>
+                                      <td>{index + 1}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "100px" }}>{firstItem.plant || "-"}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{inv.invoice_no || "-"}</td>
+                                      <td>{inv.invoice_Date || "-"}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{firstItem.po_no || "-"}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "100px" }}>{firstItem.invoice_type || "-"}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{custCode}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "200px" }}>{custName}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "200px" }}>
+                                        {inv.items && inv.items.map((itm, i) => (
+                                          <div key={i}>{itm.part_code || itm.part_no} | {itm.description}</div>
+                                        ))}
+                                      </td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>
+                                        {inv.items && inv.items.map((itm, i) => (
+                                          <div key={i}>{itm.inv_qty}</div>
+                                        ))}
+                                      </td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{gstDetail.assessble_value !== undefined ? gstDetail.assessble_value : "-"}</td>
+                                      <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{gstDetail.grand_total !== undefined ? gstDetail.grand_total : "-"}</td>
+                                      <td>-</td>
+                                      <td><button className="btn btn-sm btn-outline-primary"><i className="fa fa-eye"></i></button></td>
+                                      <td><button className="btn btn-sm btn-outline-success" onClick={() => handleGenerateIRN(inv.id)}>Generate IRN</button></td>
+                                    </tr>
+                                  );
+                                })}
+                                {invoices.length === 0 && (
+                                  <tr>
+                                    <td colSpan="15" className="text-center">No pending invoices found</td>
+                                  </tr>
+                                )}
                               </tbody>
                             </table>
                            </div>
