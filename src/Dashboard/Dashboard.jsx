@@ -89,6 +89,7 @@ const deptCards = [
       </svg>
     ),
   },
+  /*
   {
     id: "purchase",
     label: "Purchase",
@@ -114,18 +115,6 @@ const deptCards = [
       </svg>
     ),
   },
-  /* {
-    id: "oee",
-    label: "OEE",
-    color: "#10b981",
-    bg: "linear-gradient(135deg, #d1fae5 0%, #6ee7b7 100%)",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-  }, */
   {
     id: "quality",
     label: "Quality",
@@ -148,18 +137,7 @@ const deptCards = [
       </svg>
     ),
   },
-  /* {
-    id: "subcon",
-    label: "Subcon",
-    color: "#f97316",
-    bg: "linear-gradient(135deg, #ffedd5 0%, #fdba74 100%)",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
-      </svg>
-    ),
-  }, */
+  */
 ];
 
 const alertItems = [
@@ -2263,20 +2241,14 @@ const Dashboard = () => {
               </div>
             </div>
           )}
-
-
+          {/* 
           {activeDept === "purchase" && <PurchaseView />}
           {activeDept === "ppc" && <PpcView />}
-
-
           {activeDept === "oee" && <OeeView />}
-
           {activeDept === "stores" && <StoresView />}
           {activeDept === "subcon" && <SubconView />}
-
-
-
           {activeDept === "quality" && <QualityView />}
+          */}
         </main>
       </div>
       {/* --- Add Favorite Item Modal --- */}
