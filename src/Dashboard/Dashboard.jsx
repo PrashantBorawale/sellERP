@@ -1403,6 +1403,7 @@ const Dashboard = () => {
 
         <main className={`mainContent dn-main ${sideNavOpen ? "shifted" : ""} ${activeDept !== "financial" ? "dn-full-width-view" : ""}`}>
           {/*    Department Cards    */}
+          {/*
           <div className="dn-dept-cards-row">
             {visibleDeptCards.map((card) => (
               <div
@@ -1419,6 +1420,7 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
+          */}
           {activeDept === "financial" && (
             <div className="dn-content-grid">
 

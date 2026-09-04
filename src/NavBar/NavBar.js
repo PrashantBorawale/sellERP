@@ -76,59 +76,45 @@ const NavBar = ({ toggleSideNav }) => {
         {/* Mega Menu Dropdown */}
       </div>
 
-      <div className="navbar-actions">
-        {/* <input
-          className="navbar-search"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        /> */}
+      <div className="navbar-actions" style={{ alignItems: 'center' }}>
+        <img 
+          className="navbar-user" 
+          src={`${process.env.PUBLIC_URL || ""}/Logo.png`} 
+          alt="Logo" 
+          style={{ height: '48px', width: '48px', marginRight: '15px' }} 
+        />
 
-        <img className="navbar-user" src={`${process.env.PUBLIC_URL || ""}/Logo.png`} alt="Logo" />
-
-        {/* Display the username and year */}
-
-        <label>{year}</label>
-
-        {/* Admin Dropdown */}
-        <div className="navbar-dropdown">
-          <button
-            className="navbar-button dropdown-toggle"
-            type="button"
-            onClick={() => toggleDropdown(setAdminDropdownOpen)}
-          >
-            <label>{username}</label>
-          </button>
-          {adminDropdownOpen && (
-            <ul className="navbar-dropdown-menu">
-              {/* <li>
-                <Link className="navbar-dropdown-item" to="#">
-                  Action
-                </Link>
-              </li>
-              <li>
-                <Link className="navbar-dropdown-item" to="#">
-                  Another action
-                </Link>
-              </li> */}
-              <li>
-                <button
-                  className="navbar-dropdown-item"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
-            </ul>
-          )}
-        </div>
-        {isAdmin && (
-          <div onClick={() => navigate('/dashboard')} style={{ cursor: "pointer" }}>
-            <Home className="navbar-icon"></Home>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <label style={{ fontSize: '13px', fontWeight: '600' }}>{year}</label>
+            <div className="navbar-dropdown" style={{ margin: 0, padding: 0 }}>
+              <button
+                className="navbar-button dropdown-toggle"
+                type="button"
+                onClick={() => toggleDropdown(setAdminDropdownOpen)}
+                style={{ padding: 0 }}
+              >
+                <label style={{ fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>{username}</label>
+              </button>
+              {adminDropdownOpen && (
+                <ul className="navbar-dropdown-menu">
+                  <li>
+                    <button
+                      className="navbar-dropdown-item"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              )}
+            </div>
           </div>
-        )}
-
-        {/* <SettingsIcon className="navbar-icon" /> */}
+          <div style={{ fontSize: '13px', fontWeight: '600', color: 'whitesmoke', marginTop: '2px' }}>
+            Vishwa Samrudhi Industries
+          </div>
+        </div>
+        {/* Home icon removed as per user request */}
       </div>
     </nav>
   );

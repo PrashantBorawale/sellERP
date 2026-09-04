@@ -69,46 +69,59 @@
 }
 
 .InvoiceList .table-responsive {
-  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; 
+  background: transparent;
+  display: block;
 }
 
 .InvoiceList .table {
-  width: 100%;
-  max-width: 100%;
+  width: 100% !important;
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-bottom: 0;
-  background-color: transparent;
+}
+
+.InvoiceList .table th,
+.InvoiceList .table td {
+  white-space: normal !important; 
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 0.65rem !important; 
+  padding: 6px 4px !important; 
+  text-align: center;
+  vertical-align: middle;
 }
 
 .InvoiceList .table th {
-  background-color: #16bfff;
-  color: white;
-  font-size: 12px;
-  padding: 5px 8px;
-  white-space: nowrap;
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .InvoiceList .table td {
-  padding: 4px 8px;
-  vertical-align: middle;
-  font-size: 11px;
-  border-top: 1px solid #dee2e6;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .InvoiceList .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .InvoiceList .table tbody + tbody {
-  border-top: 2px solid #dee2e6;
+  border-top: 2px solid #e2e8f0;
 }
 
-.InvoiceList .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.02);
-}
+
 
 .InvoiceList .table-hover tbody tr:hover {
-  background-color: rgba(22, 191, 255, 0.08);
+  background-color: #f1f5f9;
 }
 
 .InvoiceList .badge-true {

@@ -440,7 +440,7 @@ const InvoiceList = () => {
                     {loading ? (
                       <div className="loading-spinner">Loading invoices...</div>
                     ) : (
-                      <table className="table table-bordered table-striped table-hover">
+                      <table className="table table-bordered table-hover">
                         <thead>
                           <tr>
                             <th scope="col">Sr.</th>
