@@ -920,8 +920,7 @@ const Dashboard = () => {
   const [spSelectedMonthObj, setSpSelectedMonthObj] = useState({ month: 4, year: 2026 });
   const [dsSelectedMonthObj, setDsSelectedMonthObj] = useState({ month: 4, year: 2026 });
   const [stateWiseSalesData, setStateWiseSalesData] = useState(initialStateWiseSalesData);
-  const [totalSalesPurchaseFilter, setTotalSalesPurchaseFilter] = useState({ month: 9, year: 2026 });
-  const [monthWiseTotalData, setMonthWiseTotalData] = useState({ total_sales: 0, total_purchase: 0, month: "2026-09" });
+  const [yearWiseTotalData, setYearWiseTotalData] = useState([]);
 
   const [poRecords, setPoRecords] = useState([]);
   const [taxInvoiceRecords, setTaxInvoiceRecords] = useState([]);
@@ -1327,17 +1326,26 @@ const Dashboard = () => {
     }
   };
 
-  const fetchMonthWiseTotalSales = async (m, y) => {
+  const fetchAllMonthsSales = async () => {
     try {
-      const response = await fetch(`https://sellerp-backend.onrender.com/Dashboard/month-wise-total-sales/?month=${m}&year=${y}`);
-      if (response.ok) {
-        const data = await response.json();
-        if (data.status) {
-          setMonthWiseTotalData(data);
+      const promises = salesMonthsList.map(async (m) => {
+        const response = await fetch(`https://sellerp-backend.onrender.com/Dashboard/month-wise-total-sales/?month=${m.month}&year=${m.year}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.status) {
+            return {
+              label: m.label,
+              revenue: data.total_purchase || 0,
+              sales: data.total_sales || 0,
+            };
+          }
         }
-      }
+        return { label: m.label, revenue: 0, sales: 0 };
+      });
+      const results = await Promise.all(promises);
+      setYearWiseTotalData(results);
     } catch (err) {
-      console.error("Error fetching month-wise total sales:", err);
+      console.error("Error fetching all months total sales:", err);
     }
   };
 
@@ -1369,8 +1377,8 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    fetchMonthWiseTotalSales(totalSalesPurchaseFilter.month, totalSalesPurchaseFilter.year);
-  }, [totalSalesPurchaseFilter]);
+    fetchAllMonthsSales();
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("side-nav-open", sideNavOpen);
@@ -1383,6 +1391,9 @@ const Dashboard = () => {
       : activeRange === "Month"
         ? areaDataMonth
         : areaDataWeek;
+
+  const overallPurchase = yearWiseTotalData.reduce((acc, curr) => acc + curr.revenue, 0);
+  const overallSales = yearWiseTotalData.reduce((acc, curr) => acc + curr.sales, 0);
 
   return (
     <div className="dashboard">
@@ -1550,43 +1561,36 @@ const Dashboard = () => {
                       <span className="dn-legend-dot blue-dot" />
                       <div>
                         <div className="dn-legend-title blue-text">Total Purchase</div>
-                        <div className="dn-legend-sub">₹ {monthWiseTotalData.total_purchase}</div>
+                        <div className="dn-legend-sub">₹ {overallPurchase.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</div>
                       </div>
                       <span className="dn-legend-dot teal-dot" style={{ marginLeft: 20 }} />
                       <div>
                         <div className="dn-legend-title teal-text">Total Sales</div>
-                        <div className="dn-legend-sub">₹ {monthWiseTotalData.total_sales}</div>
+                        <div className="dn-legend-sub">₹ {overallSales.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</div>
                       </div>
-                    </div>
-
-                    <div className="dn-range-btns" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Month:</span>
-                      <select 
-                        className="dn-mini-select"
-                        value={`${totalSalesPurchaseFilter.month}-${totalSalesPurchaseFilter.year}`}
-                        onChange={(e) => {
-                          const [m, y] = e.target.value.split("-").map(Number);
-                          setTotalSalesPurchaseFilter({ month: m, year: y });
-                        }}
-                      >
-                        {salesMonthsList.map(item => (
-                          <option key={item.label} value={`${item.month}-${item.year}`}>{item.label}</option>
-                        ))}
-                      </select>
                     </div>
                   </div>
 
                   <div className="dn-chart-wrapper main">
                     <ResponsiveContainer width="100%" height={300}>
-                      <BarChart data={[{ label: monthWiseTotalData.month, purchase: monthWiseTotalData.total_purchase, sales: monthWiseTotalData.total_sales }]}>
+                      <AreaChart data={yearWiseTotalData}>
+                        <defs>
+                          <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.15} />
+                            <stop offset="95%" stopColor="#4f46e5" stopOpacity={0} />
+                          </linearGradient>
+                          <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#38c5c5" stopOpacity={0.15} />
+                            <stop offset="95%" stopColor="#38c5c5" stopOpacity={0} />
+                          </linearGradient>
+                        </defs>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                         <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12 }} />
                         <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12 }} />
-                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }} cursor={{fill: 'transparent'}} />
-                        <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '12px' }} />
-                        <Bar dataKey="purchase" name="Purchase" fill="#4f46e5" radius={[4,4,0,0]} barSize={50} />
-                        <Bar dataKey="sales" name="Sales" fill="#38c5c5" radius={[4,4,0,0]} barSize={50} />
-                      </BarChart>
+                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }} />
+                        <Area type="monotone" dataKey="revenue" stroke="#4f46e5" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
+                        <Area type="monotone" dataKey="sales" stroke="#38c5c5" strokeWidth={3} fillOpacity={1} fill="url(#colorSales)" />
+                      </AreaChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
