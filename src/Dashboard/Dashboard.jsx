@@ -942,6 +942,8 @@ const Dashboard = () => {
   const [spSelectedMonthObj, setSpSelectedMonthObj] = useState({ month: 4, year: 2026 });
   const [dsSelectedMonthObj, setDsSelectedMonthObj] = useState({ month: 4, year: 2026 });
   const [stateWiseSalesData, setStateWiseSalesData] = useState(initialStateWiseSalesData);
+  const [totalSalesPurchaseFilter, setTotalSalesPurchaseFilter] = useState({ month: 9, year: 2026 });
+  const [monthWiseTotalData, setMonthWiseTotalData] = useState({ total_sales: 0, total_purchase: 0, month: "2026-09" });
 
   const [poRecords, setPoRecords] = useState([]);
   const [taxInvoiceRecords, setTaxInvoiceRecords] = useState([]);
@@ -1347,6 +1349,19 @@ const Dashboard = () => {
     }
   };
 
+  const fetchMonthWiseTotalSales = async (m, y) => {
+    try {
+      const response = await fetch(`https://sellerp-backend.onrender.com/Dashboard/month-wise-total-sales/?month=${m}&year=${y}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.status) {
+          setMonthWiseTotalData(data);
+        }
+      }
+    } catch (err) {
+      console.error("Error fetching month-wise total sales:", err);
+    }
+  };
 
   const toggleSection = (label) => {
     setExpandedSections(prev => ({ ...prev, [label]: !prev[label] }));
@@ -1374,6 +1389,10 @@ const Dashboard = () => {
   }, [dsSelectedMonthObj]);
 
 
+
+  useEffect(() => {
+    fetchMonthWiseTotalSales(totalSalesPurchaseFilter.month, totalSalesPurchaseFilter.year);
+  }, [totalSalesPurchaseFilter]);
 
   useEffect(() => {
     document.body.classList.toggle("side-nav-open", sideNavOpen);
@@ -1552,49 +1571,44 @@ const Dashboard = () => {
                     <div className="dn-chart-legends">
                       <span className="dn-legend-dot blue-dot" />
                       <div>
-                        <div className="dn-legend-title blue-text">Total Revenue</div>
-                        <div className="dn-legend-sub">12.04.2022 - 12.05.2022</div>
+                        <div className="dn-legend-title blue-text">Total Purchase</div>
+                        <div className="dn-legend-sub">₹ {monthWiseTotalData.total_purchase}</div>
                       </div>
                       <span className="dn-legend-dot teal-dot" style={{ marginLeft: 20 }} />
                       <div>
                         <div className="dn-legend-title teal-text">Total Sales</div>
-                        <div className="dn-legend-sub">12.04.2022 - 12.05.2022</div>
+                        <div className="dn-legend-sub">₹ {monthWiseTotalData.total_sales}</div>
                       </div>
                     </div>
 
-                    <div className="dn-range-btns">
-                      {["Day", "Week", "Month"].map(r => (
-                        <button
-                          key={r}
-                          className={`dn-range-btn ${activeRange === r ? "active" : ""}`}
-                          onClick={() => setActiveRange(r)}
-                        >
-                          {r}
-                        </button>
-                      ))}
+                    <div className="dn-range-btns" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Month:</span>
+                      <select 
+                        className="dn-mini-select"
+                        value={`${totalSalesPurchaseFilter.month}-${totalSalesPurchaseFilter.year}`}
+                        onChange={(e) => {
+                          const [m, y] = e.target.value.split("-").map(Number);
+                          setTotalSalesPurchaseFilter({ month: m, year: y });
+                        }}
+                      >
+                        {salesMonthsList.map(item => (
+                          <option key={item.label} value={`${item.month}-${item.year}`}>{item.label}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
                   <div className="dn-chart-wrapper main">
                     <ResponsiveContainer width="100%" height={300}>
-                      <AreaChart data={areaData}>
-                        <defs>
-                          <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.15} />
-                            <stop offset="95%" stopColor="#4f46e5" stopOpacity={0} />
-                          </linearGradient>
-                          <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#38c5c5" stopOpacity={0.15} />
-                            <stop offset="95%" stopColor="#38c5c5" stopOpacity={0} />
-                          </linearGradient>
-                        </defs>
+                      <BarChart data={[{ label: monthWiseTotalData.month, purchase: monthWiseTotalData.total_purchase, sales: monthWiseTotalData.total_sales }]}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                         <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12 }} />
                         <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12 }} />
-                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }} />
-                        <Area type="monotone" dataKey="revenue" stroke="#4f46e5" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
-                        <Area type="monotone" dataKey="sales" stroke="#38c5c5" strokeWidth={3} fillOpacity={1} fill="url(#colorSales)" />
-                      </AreaChart>
+                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }} cursor={{fill: 'transparent'}} />
+                        <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '12px' }} />
+                        <Bar dataKey="purchase" name="Purchase" fill="#4f46e5" radius={[4,4,0,0]} barSize={50} />
+                        <Bar dataKey="sales" name="Sales" fill="#38c5c5" radius={[4,4,0,0]} barSize={50} />
+                      </BarChart>
                     </ResponsiveContainer>
                   </div>
                 </div>

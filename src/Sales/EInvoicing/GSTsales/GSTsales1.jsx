@@ -303,7 +303,7 @@ const GSTsales1 = () => {
                                       <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{gstDetail.assessble_value !== undefined ? gstDetail.assessble_value : "-"}</td>
                                       <td style={{ whiteSpace: "normal", wordWrap: "break-word" }}>{gstDetail.grand_total !== undefined ? gstDetail.grand_total : "-"}</td>
                                       <td>-</td>
-                                      <td><button className="btn btn-sm btn-outline-primary"><i className="fa fa-eye"></i></button></td>
+                                      <td><button className="btn btn-sm btn-outline-primary" onClick={() => window.open(`https://sellerp-backend.onrender.com/Sales/invoice-pdf/${inv.id}/`, '_blank')}><i className="fa fa-eye"></i></button></td>
                                       <td><button className="btn btn-sm btn-outline-success" onClick={() => handleGenerateIRN(inv.id)}>Generate IRN</button></td>
                                     </tr>
                                   );
