@@ -37,6 +37,18 @@ const InvoiceList = () => {
   const [totalIGST, setTotalIGST] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
 
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentInvoices = filteredInvoices.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredInvoices.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   const toggleSideNav = () => {
     setSideNavOpen((prevState) => !prevState);
   };
@@ -170,6 +182,7 @@ const InvoiceList = () => {
     }
 
     setFilteredInvoices(filtered);
+    setCurrentPage(1);
     calculateSummary(filtered);
   };
 
@@ -448,10 +461,10 @@ const InvoiceList = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {filteredInvoices.length > 0 ? (
-                            filteredInvoices.map((inv, index) => (
+                          {currentInvoices.length > 0 ? (
+                            currentInvoices.map((inv, index) => (
                               <tr key={inv.id || index}>
-                                <td>{index + 1}</td>
+                                <td>{indexOfFirstItem + index + 1}</td>
                                 <td>{getFinancialYear(inv)}</td>
                                 <td>{inv.plant || inv.items?.[0]?.plant || "SHARP"}</td>
                                 <td style={{ fontWeight: "600" }}>
@@ -492,6 +505,23 @@ const InvoiceList = () => {
                           )}
                         </tbody>
                       </table>
+                    )}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-center mt-3">
+                        <ul className="pagination">
+                          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                            <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                          </li>
+                          {[...Array(totalPages)].map((_, i) => (
+                            <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                              <button className="page-link" onClick={() => handlePageChange(i + 1)}>{i + 1}</button>
+                            </li>
+                          ))}
+                          <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                            <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                          </li>
+                        </ul>
+                      </div>
                     )}
                   </div>
 
