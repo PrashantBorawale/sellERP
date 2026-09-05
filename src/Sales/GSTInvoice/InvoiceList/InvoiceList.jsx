@@ -5,6 +5,7 @@ import NavBar from "../../../NavBar/NavBar.js";
 import SideNav from "../../../SideNav/SideNav.js";
 import "./InvoiceList.css";
 import { Link, useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
 const InvoiceList = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -255,6 +256,25 @@ const InvoiceList = () => {
     return "";
   };
 
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this invoice?")) {
+      try {
+        const response = await fetch(`https://sellerp-backend.onrender.com/Sales/invoice/delete/${id}/`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          alert("Invoice deleted successfully");
+          fetchInvoices();
+        } else {
+          alert("Failed to delete invoice");
+        }
+      } catch (error) {
+        console.error("Error deleting invoice:", error);
+        alert("An error occurred while deleting the invoice");
+      }
+    }
+  };
+
   return (
     <div className="InvoiceListMaster">
       <div className="container-fluid">
@@ -456,7 +476,7 @@ const InvoiceList = () => {
                             <th scope="col">Qty</th>
                             <th scope="col">Ass Amt</th>
                             <th scope="col">Total</th>
-                            <th scope="col">User</th>
+                            <th scope="col">Delete</th>
                             <th scope="col">View</th>
                           </tr>
                         </thead>
@@ -483,7 +503,15 @@ const InvoiceList = () => {
                                 <td style={{ fontWeight: "600" }}>
                                   {getTotal(inv).toFixed(2)}
                                 </td>
-                                <td>{inv.user || inv.created_by || "sandeep"}</td>
+                                <td>
+                                  <button 
+                                    className="action-btn text-danger bg-transparent border-0" 
+                                    title="Delete" 
+                                    onClick={() => handleDelete(inv.id)}
+                                  >
+                                    <FaTrash />
+                                  </button>
+                                </td>
                                 <td>
                                   <a 
                                     href={`https://sellerp-backend.onrender.com/Sales/invoice-pdf/${inv.id}/`} 

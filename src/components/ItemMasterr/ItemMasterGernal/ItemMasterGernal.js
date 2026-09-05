@@ -1997,23 +1997,20 @@ const ItemMasterGernal = () => {
                                                 </span>
                                               </label>
                                               <div className="col-sm-7">
-                                                <input
+                                                <select
                                                   id="HSN_SAC_Code"
                                                   name="HSN_SAC_Code"
-                                                  type="text"
-                                                  list="hsn-codes-list"
-                                                  className="form-control"
-                                                 
+                                                  className="form-select"
                                                   value={formData.HSN_SAC_Code}
                                                   onChange={handleInputChange}
-                                                />
-                                                <datalist id="hsn-codes-list">
+                                                >
+                                                  <option value="">Select ..</option>
                                                   {hsnCodes.map((hsn) => (
                                                     <option key={hsn.id} value={hsn.HSN_SAC_Code}>
-                                                      {hsn.HSN_SAC_Desc ? hsn.HSN_SAC_Desc : ''}
+                                                      {hsn.HSN_SAC_Code} {hsn.HSN_SAC_Desc ? `- ${hsn.HSN_SAC_Desc}` : ''}
                                                     </option>
                                                   ))}
-                                                </datalist>
+                                                </select>
                                                 {errors.HSN_SAC_Code && (
                                                   <div className="text-danger">
                                                     {errors.HSN_SAC_Code}
