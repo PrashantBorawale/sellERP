@@ -1027,7 +1027,15 @@ const NewInvoice = () => {
                                           placeholder="Qty"
                                           defaultValue={row.qty || row.po_qty || 0}
                                           onChange={(e) => {
-                                            const newQty = e.target.value;
+                                            let newQty = e.target.value;
+                                            const prodQty = parseFloat(row.last_operation?.prod_qty || 0);
+                                            
+                                            if (newQty !== "" && parseFloat(newQty) > prodQty) {
+                                              alert("Quantity cannot be higher than Production Qty.");
+                                              newQty = prodQty.toString();
+                                              e.target.value = newQty;
+                                            }
+
                                             const updatedData = tableData.map((item, i) => {
                                               if (i === index) {
                                                 const rate = parseFloat(item.rate || 0);
