@@ -250,10 +250,14 @@ const NewPurchaseOrder = () => {
     const formattedData = {
       ...finalFormData,
       PoValidityDate: finalFormData.PoValidityDate || null,
-      Schedule_Line: (finalFormData.Schedule_Line || []).map((item) => ({
-        ...item,
-        ItemCode: item.ItemCode ? item.ItemCode.substring(0, 30).trim() : "",
-      })),
+      Schedule_Line: (finalFormData.Schedule_Line || []).map((item) => {
+        // Remove any leftover array fields, keep only named fields
+        const { Dates, Quantities, ...rest } = item;
+        return {
+          ...rest,
+          ItemCode: item.ItemCode ? item.ItemCode.substring(0, 30).trim() : "",
+        };
+      }),
       Item_Detail_Enter: (finalFormData.Item_Detail_Enter || []).map((item) => {
         const {
           HSN_SAC_Code,
@@ -339,7 +343,7 @@ const NewPurchaseOrder = () => {
         navigate("/PoList");
       }, 2000);
     } catch (error) {
-      console.error("Error saving purchase order:", error);
+      console.error("Error saving purchase order:", error?.message || error);
       if (error.response && error.response.data) {
         const errData = error.response.data;
         if (typeof errData === "string") {
@@ -354,6 +358,8 @@ const NewPurchaseOrder = () => {
         } else {
           toast.error("An unexpected error occurred.");
         }
+      } else if (error.message) {
+        toast.error(error.message);
       } else {
         toast.error("An unexpected error occurred.");
       }

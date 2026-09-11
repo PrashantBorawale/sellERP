@@ -3,24 +3,40 @@
 import React, { useState, useEffect } from "react"
 import "./Schedule.css"
 
-const Schedule = ({ updateFormData, itemDetails = [] }) => {
+const Schedule = ({ updateFormData, itemDetails = [], existingSchedule = [] }) => {
   const [scheduleLine, setScheduleLine] = useState([])
 
-  // ✅ Update schedule when `itemDetails` changes
+  // ✅ Update schedule when `itemDetails` changes or existingSchedule is loaded
   useEffect(() => {
     if (itemDetails.length > 0) {
       setScheduleLine((prevSchedule) => {
         const updatedSchedule = itemDetails.map((item, index) => {
-          const existingItem = prevSchedule.find((prev) => prev.ItemCode === item.Item)
+          // First check if we have existing schedule data from API (edit mode)
+          const existingItem = existingSchedule.find(
+            (prev) => prev.ItemCode === (item.Item || "").substring(0, 30).trim()
+          )
+          // Then check if we already have local state for this item
+          const localItem = prevSchedule.find(
+            (prev) => prev.ItemCode === (item.Item || "").substring(0, 30).trim()
+          )
+
+          const sourceItem = localItem || existingItem
 
           return {
             id: index + 1,
             ItemCode: (item.Item || "").substring(0, 30).trim(),
             Description: item.ItemDescription || "",
             TotalQty: item.Qty || 0,
-            // Initialize dates and quantities arrays if they don't exist
-            Dates: existingItem?.Dates || Array(10).fill(""),
-            Quantities: existingItem?.Quantities || Array(10).fill(""),
+            Date1: sourceItem?.Date1 || "",
+            Qty1: sourceItem?.Qty1 || "",
+            Date2: sourceItem?.Date2 || "",
+            Qty2: sourceItem?.Qty2 || "",
+            Date3: sourceItem?.Date3 || "",
+            Qty3: sourceItem?.Qty3 || "",
+            Date4: sourceItem?.Date4 || "",
+            Qty4: sourceItem?.Qty4 || "",
+            Date5: sourceItem?.Date5 || "",
+            Qty5: sourceItem?.Qty5 || "",
           }
         })
 
@@ -28,16 +44,16 @@ const Schedule = ({ updateFormData, itemDetails = [] }) => {
         return updatedSchedule
       })
     }
-  }, [itemDetails, updateFormData])
+  }, [itemDetails, existingSchedule, updateFormData])
 
   // ✅ Handle date and quantity changes
-  const handleInputChange = (rowIndex, field, value, dateIndex) => {
+  const handleInputChange = (rowIndex, fieldName, value) => {
     setScheduleLine((prevSchedule) => {
       const updatedSchedule = prevSchedule.map((row, index) => {
         if (index === rowIndex) {
           return {
             ...row,
-            [field]: row[field].map((val, i) => (i === dateIndex ? value : val)),
+            [fieldName]: value,
           }
         }
         return row
@@ -56,17 +72,17 @@ const Schedule = ({ updateFormData, itemDetails = [] }) => {
         </div>
         <div className="card-body p-0">
           <div className="table-responsive">
-            <table className="table table-bordered align-middle mb-0" style={{ minWidth: '1500px' }}>
+            <table className="table table-bordered align-middle mb-0" style={{ minWidth: '900px' }}>
               <thead className="table-light">
                 <tr>
                   <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Sr.</th>
                   <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Item Code</th>
                   <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Description</th>
                   <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Total Qty</th>
-                  {Array(10).fill().map((_, index) => (
-                    <React.Fragment key={index}>
-                      <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Date {index + 1}</th>
-                      <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Qty {index + 1}</th>
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <React.Fragment key={num}>
+                      <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Date {num}</th>
+                      <th className="text-center text-secondary text-uppercase" style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '8px 4px' }}>Qty {num}</th>
                     </React.Fragment>
                   ))}
                 </tr>
@@ -79,14 +95,14 @@ const Schedule = ({ updateFormData, itemDetails = [] }) => {
                       <td className="text-center text-dark" style={{ padding: '8px 4px', fontSize: '0.75rem' }}>{row.ItemCode}</td>
                       <td className="text-center text-dark" style={{ padding: '8px 4px', fontSize: '0.75rem' }}>{row.Description}</td>
                       <td className="text-center text-dark" style={{ padding: '8px 4px', fontSize: '0.75rem' }}>{row.TotalQty}</td>
-                      {Array(10).fill().map((_, index) => (
-                        <React.Fragment key={index}>
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <React.Fragment key={num}>
                           <td className="text-center" style={{ padding: '8px 4px' }}>
                             <input
                               type="date"
                               className="form-control form-control-sm mx-auto"
-                              value={row.Dates[index]}
-                              onChange={(e) => handleInputChange(rowIndex, "Dates", e.target.value, index)}
+                              value={row[`Date${num}`] || ""}
+                              onChange={(e) => handleInputChange(rowIndex, `Date${num}`, e.target.value)}
                               style={{ minWidth: '95px' }}
                             />
                           </td>
@@ -94,8 +110,8 @@ const Schedule = ({ updateFormData, itemDetails = [] }) => {
                             <input
                               type="number"
                               className="form-control form-control-sm mx-auto"
-                              value={row.Quantities[index]}
-                              onChange={(e) => handleInputChange(rowIndex, "Quantities", e.target.value, index)}
+                              value={row[`Qty${num}`] || ""}
+                              onChange={(e) => handleInputChange(rowIndex, `Qty${num}`, e.target.value)}
                               style={{ minWidth: '40px' }}
                             />
                           </td>
@@ -105,7 +121,7 @@ const Schedule = ({ updateFormData, itemDetails = [] }) => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={24} className="text-center py-4 text-muted" style={{ fontSize: '0.85rem' }}>
+                    <td colSpan={14} className="text-center py-4 text-muted" style={{ fontSize: '0.85rem' }}>
                       No schedule data available
                     </td>
                   </tr>

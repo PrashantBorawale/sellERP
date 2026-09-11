@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import {
-  saveMainGroup,
-  getMainGroups,
-  deleteMainGroup,
-  updateMainGroup,
-} from "../../../Service/Api";
+
+const BASE_URL = "https://sellerp-backend.onrender.com/All_Masters/api/maingroup/";
 
 const NewCardMainGroup = () => {
   const [editId, setEditId] = useState(null);
@@ -20,14 +16,21 @@ const NewCardMainGroup = () => {
     inventory: "YES",
   });
 
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
   useEffect(() => {
     fetchMainGroups();
   }, []);
 
   const fetchMainGroups = async () => {
     try {
-      const data = await getMainGroups();
-      setMainGroups(data);
+      const response = await fetch(BASE_URL);
+      if (response.ok) {
+        const data = await response.json();
+        setMainGroups(data);
+      }
     } catch (error) {
       console.error("Error fetching main groups:", error);
     }
@@ -68,33 +71,47 @@ const NewCardMainGroup = () => {
     if (!validateForm()) return;
 
     try {
+      let response;
       if (editId) {
-        await updateMainGroup(editId, formData);
-        toast.success("Main Group updated successfully");
+        response = await fetch(`${BASE_URL}${editId}/`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
       } else {
-        await saveMainGroup(formData);
-        toast.success("Main Group created successfully");
+        response = await fetch(BASE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
       }
 
-      setFormData({
-        prefix: "",
-        subgroup_code: "",
-        subgroup_name: "",
-        inventory: "YES",
-      });
-      setEditId(null);
-      fetchMainGroups();
-      setErrors({});
-    } catch (error) {
-      if (error.response) {
-        setErrors(error.response.data || {});
-        Object.values(error.response.data).forEach((msg) =>
-          toast.error(msg[0])
-        );
+      if (response.ok) {
+        toast.success(editId ? "Main Group updated successfully" : "Main Group created successfully");
+        setFormData({
+          prefix: "",
+          subgroup_code: "",
+          subgroup_name: "",
+          inventory: "YES",
+        });
+        setEditId(null);
+        fetchMainGroups();
+        setErrors({});
       } else {
-        toast.error("Something went wrong");
-        console.error(error);
+        const errData = await response.json();
+        setErrors(errData || {});
+        if (errData) {
+          Object.values(errData).forEach((msg) => {
+            if (Array.isArray(msg)) toast.error(msg[0]);
+            else toast.error(msg);
+          });
+        } else {
+          toast.error("Failed to save");
+        }
       }
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error(error);
     }
   };
 
@@ -109,16 +126,31 @@ const NewCardMainGroup = () => {
   };
 
   const handleDelete = async (id) => {
-   
-
+    if (!window.confirm("Are you sure you want to delete this Main Group?")) return;
     try {
-      await deleteMainGroup(id);
-      toast.success("Main Group deleted");
-      fetchMainGroups();
+      const response = await fetch(`${BASE_URL}${id}/`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        toast.success("Main Group deleted");
+        fetchMainGroups();
+      } else {
+        toast.error("Failed to delete");
+      }
     } catch (error) {
       toast.error("Failed to delete");
       console.error(error);
     }
+  };
+
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = mainGroups.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(mainGroups.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -174,29 +206,56 @@ const NewCardMainGroup = () => {
           </tr>
         </thead>
         <tbody>
-          {mainGroups.map((item) => (
-            <tr key={item.id}>
-              <td>{item.prefix}</td>
-              <td>{item.subgroup_code}</td>
-              <td>{item.subgroup_name}</td>
-              <td>{item.inventory}</td>
-              <td>
-                <FaEdit
-                  className="text-primary me-2"
-                  onClick={() => handleEdit(item)}
-                  style={{ cursor: "pointer" }}
-                />
-                <FaTrash
-                  className="text-danger"
-                  onClick={() => handleDelete(item.id)}
-                  style={{ cursor: "pointer" }}
-                />
-              </td>
+          {currentItems.length > 0 ? (
+            currentItems.map((item) => (
+              <tr key={item.id}>
+                <td>{item.prefix}</td>
+                <td>{item.subgroup_code}</td>
+                <td>{item.subgroup_name}</td>
+                <td>{item.inventory}</td>
+                <td>
+                  <FaEdit
+                    className="text-primary me-2"
+                    onClick={() => handleEdit(item)}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <FaTrash
+                    className="text-danger"
+                    onClick={() => handleDelete(item.id)}
+                    style={{ cursor: "pointer" }}
+                  />
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" className="text-center">No Data Available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
-      <ToastContainer />
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="d-flex justify-content-center mt-3">
+          <ul className="pagination">
+            <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+              <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+            </li>
+            {[...Array(totalPages)].map((_, i) => (
+              <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                <button className="page-link" onClick={() => handlePageChange(i + 1)}>{i + 1}</button>
+              </li>
+            ))}
+            <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+              <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+            </li>
+          </ul>
+        </div>
+      )}
+
+      {/* Toast container with high zIndex so it's not hidden behind modal or headers */}
+      <ToastContainer position="top-right" style={{ zIndex: 9999999, marginTop: "80px" }} />
     </div>
   );
 };
