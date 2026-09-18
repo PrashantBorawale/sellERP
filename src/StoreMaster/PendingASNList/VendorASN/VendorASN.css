@@ -1,0 +1,122 @@
+  .Vendor-ASN-List-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .Vendor-ASN-List-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .Vendor-ASN-List-main {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+
+  .StoreVendor-ASN-List  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .StoreVendor-ASN-List .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .StoreVendor-ASN-List .table th,
+  .StoreVendor-ASN-List .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+  
+  .pobtn {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+  }
+  
+  .pobtn:hover {
+    background-color: #0056b3;
+  }
+  
+  .header-title {
+    font-size: 1.25rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .header-title {
+      text-align: center;
+    }
+  
+    .Vendor-ASN-List-header .col-md-9,
+    .Vendor-ASN-List-header .col-md-3 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .Vendor-ASN-List-header .row {
+      text-align: center;
+      margin-top: 10px;
+    }
+  
+    .d-flex {
+      display: block !important;
+      text-align: center;
+    }
+  
+    .align-items-end {
+      justify-content: center !important;
+    }
+  
+    .form-check {
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .Vendor-ASN-List-main .form-label {
+      font-size: 0.875rem;
+    }
+  
+    .Vendor-ASN-List-main .form-control,
+    .Vendor-ASN-List-main .form-select {
+      font-size: 0.875rem;
+    }
+  
+    .Vendor-ASN-List-main .btn {
+      font-size: 0.875rem;
+    }
+  
+    .StoreVendor-ASN-List   .table th,
+    .StoreVendor-ASN-List   .table td {
+      padding: 8px;
+      font-size: 0.875rem;
+    }
+  
+    .pobtn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .align-items-end {
+      display: block !important;
+      margin-bottom: 10px;
+    }
+  
+    .header-title {
+      font-size: 1rem;
+    }
+  }
+  

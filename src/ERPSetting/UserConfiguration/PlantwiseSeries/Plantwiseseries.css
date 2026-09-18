@@ -1,0 +1,94 @@
+/* General Layout */
+.plant-series-permission {
+    margin-top: 20px;
+  }
+  
+  .plant-series-permission .header-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .plant-series-permission  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .plant-series-permission .permission-table .table {
+    width: 100%;
+  }
+  
+  .plant-series-permission  .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .plant-series-permission .scrollable-list {
+    max-height: 250px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .plant-series-permission .scrollable-list ul {
+    padding: 0;
+  }
+  
+  .plant-series-permission .scrollable-list li {
+    padding: 5px 0;
+  }
+  
+  /* Styling for dropdowns */
+  .plant-series-permission  .form-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 991px) {
+    .plant-series-permission  .main-content {
+      margin-left: 0;
+    }
+  
+    .plant-series-permission .prod-header {
+      text-align: center;
+    }
+  
+    .plant-series-permission .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .plant-series-permission  .table thead th {
+      font-size: 0.85rem;
+    }
+  
+    .plant-series-permission  .table tbody td {
+      font-size: 0.9rem;
+    }
+  
+    .plant-series-permission .form-select {
+      width: 100%;
+    }
+  }
+  
+  /* Mobile Specific Adjustments */
+  @media (max-width: 576px) {
+    .plant-series-permission   .header-title {
+      font-size: 1.25rem;
+    }
+  
+    .plant-series-permission  .table thead th {
+      font-size: 0.75rem;
+    }
+  
+    .plant-series-permission   .table tbody td {
+      font-size: 0.8rem;
+    }
+  
+    .plant-series-permission   .form-select {
+      width: 100%;
+    }
+  
+    .plant-series-permission  .scrollable-list {
+      max-height: 150px;
+    }
+  }
+  

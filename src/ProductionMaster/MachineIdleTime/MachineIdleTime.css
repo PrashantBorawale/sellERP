@@ -1,0 +1,65 @@
+.MachineIdleMaster {
+    margin-top: 20px;
+  }
+  
+  /* Header Styling */
+  .MachineIdle-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .MachineIdle-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+.MachineIdle  .form-label {
+    font-weight: 600;
+    color: #555;
+  }
+  
+.MachineIdle  .card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button Styling */
+.MachineIdle  .btn-warning {
+    color: #fff;
+    background-color: #ffc107;
+    border: none;
+  }
+  
+.MachineIdle  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+.MachineIdle  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+  .MachineIdle  .MachineIdle-heade.MachineIdler .header-title {
+      font-size: 16px;
+    }
+  
+  .MachineIdle  .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+  .MachineIdle  .main-content {
+      margin-left: 0 !important;
+    }
+  
+  .MachineIdle  .form-check {
+      justify-content: center;
+    }
+  }

@@ -1,0 +1,119 @@
+/* RepairList.css - Branded Enterprise Theme */
+
+.repair-list-page {
+  padding: 1rem;
+}
+
+.repair-list-page .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.repair-list-page .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.repair-list-page .shifted {
+  margin-left: 250px;
+}
+
+/* Header Section */
+.repair-list-page .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.repair-list-page .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Filter Row Section - Reverted to Centered Alignment */
+.repair-list-page .header-section {
+  background-color: #fff;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.repair-list-page .filter-row-flex {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.repair-list-page .filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.repair-list-page .filter-item label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.repair-list-page .checkbox-label-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+
+.repair-list-page .checkbox-label-group label {
+  margin-bottom: 0 !important;
+  font-weight: 500;
+}
+
+.repair-list-page .form-control,
+.repair-list-page .form-select {
+  font-size: 13px;
+  height: 32px;
+  padding: 4px 8px;
+}
+
+.repair-list-page .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+/* Table Styling - Branded Vibrant Blue Header */
+.repair-list-page .user-list-table {
+  margin-top: 10px;
+}
+
+.repair-list-page .user-list-table th {
+  background-color: #1fb5ff !important; /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 5px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.repair-list-page .user-list-table td {
+  font-size: 13px;
+  color: #333;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Button Synchronization - Default Style */
+.repair-list-page .btn {
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+/* Footer Totals Bar */
+.repair-list-page .footer-totals-bar {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}

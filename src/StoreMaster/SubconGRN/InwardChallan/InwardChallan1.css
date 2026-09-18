@@ -1,0 +1,263 @@
+
+  
+  .StoreSubcon-header  {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .StoreSubcon-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+ 
+  .StoreSubcon-main{
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+ 
+ .StoreSubconstatus1{
+    background-color: white;
+    padding: 10px;
+    height: auto;
+ }
+  .StoreSubconstatus .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .StoreSubconstatus .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .StoreSubconstatus .table th,
+  .StoreSubconstatus .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+  
+
+  
+  .StoreSubconstatus .table th input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .StoreSubconstatus .table th label {
+    vertical-align: middle;
+  }
+  
+  .StoreSubconstatus .table th label.ml-2 {
+    margin-left: 8px;
+  }
+  
+  /* Header title styling */
+  .header-title {
+    font-size: 1.25rem; /* Adjust size as needed */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+    .StoreSubconstatus-header {
+      text-align: center; /* Center text on smaller screens */
+    }
+  
+    .pobtn {
+      width: 100%; /* Full width buttons on small screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .StoreSubconstatus .table th,
+    .StoreSubconstatus .table td {
+      padding: 8px;
+      font-size: 0.875rem;
+    }
+  }
+  .StoreSubconstatus .table th, 
+.StoreSubconstatus .table td {
+  vertical-align: middle;
+}
+
+.StoreSubconstatus .table th {
+  width: 30%;
+}
+
+.StoreSubconstatus .form-control, 
+.StoreSubconstatus .form-select {
+  margin-bottom: 10px;
+}
+
+.StoreSubconstatus .btn {
+  margin-top: 15px;
+}
+
+.NewStoreStoreSubcon .main-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background-color: #f1f5f9;
+  padding: 24px;
+}
+
+
+
+
+/* Golden Standard Layout Adjustments */
+.NewStoreStoreSubcon .main-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden; overflow-y: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background-color: #f1f5f9;
+  padding: 24px;
+}
+
+.NewStoreStoreSubcon .shifted {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+.NewStoreStoreSubcon .form-control,
+.NewStoreStoreSubcon .form-select {
+  border-radius: 8px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.NewStoreStoreSubcon label {
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Gradient Buttons */
+.NewStoreStoreSubcon .btn-primary {
+  background: linear-gradient(to right, #3b82f6, #4f46e5) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.NewStoreStoreSubcon .btn-primary:hover {
+  background: linear-gradient(to right, #2563eb, #4338ca) !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+.NewStoreStoreSubcon .btn-secondary, 
+.NewStoreStoreSubcon .btn-dark {
+  background: linear-gradient(to right, #64748b, #475569) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3) !important;
+}
+
+/* Table tight fitting */
+.NewStoreStoreSubcon .table {
+  width: 100% !important;
+}
+.NewStoreStoreSubcon .table th {
+  white-space: nowrap !important;
+  font-size: 0.65rem !important;
+  padding: 10px !important;
+  text-transform: uppercase !important;
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+}
+.NewStoreStoreSubcon .table td {
+  white-space: nowrap !important;
+  font-size: 0.7rem !important;
+  padding: 8px !important;
+}
+
+/* Modern Tabs */
+.NewStoreStoreSubcon .nav-pills {
+  border-bottom: 2px solid #e2e8f0;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.NewStoreStoreSubcon .nav-pills .nav-link {
+  border-radius: 8px 8px 0 0 !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+}
+.NewStoreStoreSubcon .nav-pills .nav-link:hover {
+  color: #3b82f6 !important;
+  background-color: #f8fafc !important;
+}
+.NewStoreStoreSubcon .nav-pills .nav-link.active {
+  color: #2563eb !important;
+  background-color: transparent !important;
+  border-bottom: 3px solid #2563eb !important;
+}
+
+
+/* Fix table overflow */
+.NewStoreStoreSubcon .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important;
+}
+
+/* General Details Table Layout & 3-Column Alignment */
+#pills-Gernal-Detail .row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+#pills-Gernal-Detail .col-md-4 {
+  flex: 0 0 33.333333% !important;
+  max-width: 33.333333% !important;
+  width: 33.333333% !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+#pills-Gernal-Detail .table {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+#pills-Gernal-Detail .table th {
+  width: 38% !important;
+  white-space: normal !important;
+  word-break: break-word;
+  vertical-align: middle !important;
+  padding: 8px 4px !important;
+  font-size: 0.65rem !important;
+}
+
+#pills-Gernal-Detail .table td {
+  width: 62% !important;
+  white-space: normal !important;
+  word-break: break-word;
+  vertical-align: middle !important;
+  padding: 8px 6px !important;
+  font-size: 0.7rem !important;
+}
+

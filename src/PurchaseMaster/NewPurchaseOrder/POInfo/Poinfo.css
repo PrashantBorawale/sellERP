@@ -1,0 +1,71 @@
+/* Ensure proper spacing and responsiveness */
+.Poinfo {
+    margin: 20px 20px;
+    background-color: white;
+    padding: 20px 20px;
+  }
+  
+  .Poinfo .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .Poinfo .form-control {
+    width: 100%;
+  }
+  
+  .Poinfo .form-check-input {
+    margin-right: 5px;
+  }
+  
+  .Poinfo .form-check-label {
+    margin-left: 5px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767px) {
+    .Poinfo .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .Poinfo .col-md-4 {
+      flex: 1;
+    }
+  }
+  .po1btn{
+    border: none;
+    padding: 5px;
+    margin-left: -10px;
+  }
+
+  /* styles.css */
+
+.modal-content {
+    border-radius: 8px;
+  }
+  
+  .modal-header {
+    background-color: #f8f9fa;
+  }
+  
+  .modal-title {
+    color: #007bff; /* Blue color for title */
+  }
+  
+  .close {
+    color: #007bff; /* Blue color for close button */
+  }
+  
+  .table th, .table td {
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-dialog {
+      max-width: 90%;
+      margin: 30px auto;
+    }
+  }
+  

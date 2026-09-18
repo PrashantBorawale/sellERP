@@ -1,0 +1,87 @@
+.DocumentSeriesGroup {
+    margin-top: 20px;
+}
+
+/* Header Styling */
+.DocumentSeries-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+}
+
+.DocumentSeries .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.DocumentSeries-form {
+    padding: 20px;
+  }
+  
+  /* Button Group Styling */
+  .DocumentSeries-Main .btn {
+    background-color: #f8f9fa; /* Light background for buttons */
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    width: auto;
+  }
+  
+  .DocumentSeries-Main .btn:hover {
+    background-color: #e2e6ea;
+  }
+  
+  .DocumentSeries-Main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Responsive for Button Group */
+  @media (max-width: 768px) {
+    .DocumentSeries-Main .btn {
+      width: 100%; /* Full width on small screens */
+    }
+  }
+  
+  /* Form Field Responsive Adjustments */
+  .DocumentSeries-form .form-control {
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .DocumentSeries-form .col-md-2, 
+    .DocumentSeries-form .col-md-3 {
+      width: 100%;
+      margin-bottom: 15px; /* Add space between form fields */
+    }
+  
+    .DocumentSeries-form .btn {
+      width: 100%;
+    }
+  }
+  
+  /* Adjust Main Content with SideNav */
+  .main-content.shifted {
+    margin-left: 250px; /* Adjust when SideNav is opened */
+  }
+  
+  @media (max-width: 768px) {
+    .main-content.shifted {
+      margin-left: 0;
+    }
+  }
+  
+  /* Adjust text alignment for form fields on small screens */
+  @media (max-width: 576px) {
+    .DocumentSeries-form label {
+      text-align: left !important;
+    }
+  }

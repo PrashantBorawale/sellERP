@@ -1,0 +1,91 @@
+/* Global Layout */
+.assetlist {
+  padding: 1rem;
+}
+
+.assetlist .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.assetlist .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+  /* Ensure that the navbar and sidenav are flex items */
+}
+
+.assetlist .shifted {
+  margin-left: 250px;
+  /* Adjust based on the size of your SideNav */
+}
+
+/* Asset List Section */
+.assetlist .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.assetlist .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.assetlist .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.assetlist .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.assetlist .header-section .form-label {
+  font-size: 14px;
+}
+
+.assetlist .header-section .form-control,
+.assetlist .header-section .form-select,
+.assetlist .header-section .btn {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+.assetlist .user-list-table {
+  width: 100%;
+  min-width: 1000px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.assetlist .user-list-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.assetlist .user-list-table th,
+.assetlist .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.assetlist .table {
+  background-color: #fff;
+}
+
+.assetlist .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.assetlist .btn-sm {
+  font-size: 0.8rem;
+}

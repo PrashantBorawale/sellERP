@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+
+.cusgstheader-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.cusgstheader-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+
+.custgat-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+}
+
+.cusgstmain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  flex-grow: 1;
+  padding: 20px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.input-group {
+  width: 100%; /* Ensure input group takes full width */
+}
+
+.input-group .form-control {
+  width: 100%; /* Ensure input field takes full width within input group */
+}
+.cusmainbtn,
+.cusmainniche {
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+}
+
+.cusmainniche {
+  margin-top: 200px;
+}
+
+@media (max-width: 768px) {
+  .cusgstheader {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cusgstheader .text-end {
+    margin-top: 10px;
+  }
+
+  .cusgstmain {
+    margin-top: 20px;
+  }
+}

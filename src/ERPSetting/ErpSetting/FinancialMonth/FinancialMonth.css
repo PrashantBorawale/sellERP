@@ -1,0 +1,93 @@
+.Financialmonth {
+    margin-top: 20px;
+  }
+  
+  .month-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .Financialmonth .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .Financialmonth .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .Financialmonth .table {
+    width: 100%;
+  }
+  
+  .Financialmonth .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* When the side nav is open, shift the content */
+  .Financialmonth .main-content.shifted {
+    margin-left: 250px; /* Adjust based on side nav width */
+  }
+  
+  /* Styling for the edit and delete buttons */
+  .Financialmonth .table button {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .Financialmonth .table button:hover {
+    color: #007bff; /* Change color on hover */
+  }
+  
+  /* Responsive Styling for Tablets and Mobile Devices */
+  @media (max-width: 991px) {
+    .Financialmonth .main-content {
+      margin-left: 0;
+    }
+  
+    .Financialmonth .prod-header {
+      text-align: center;
+    }
+  
+    .Financialmonth .prod-header .col-md-4 {
+      margin-bottom: 10px;
+    }
+  
+    /* Make the table responsive */
+    .Financialmonth .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .Financialmonth .table thead th {
+      font-size: 0.85rem;
+    }
+  
+    .Financialmonth .table tbody td {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Mobile specific adjustments */
+  @media (max-width: 576px) {
+    .Financialmonth .prod-header {
+      text-align: center;
+    }
+  
+    .Financialmonth .prod-header .col-md-4 {
+      margin-bottom: 10px;
+    }
+  
+    .Financialmonth .table thead th {
+      font-size: 0.75rem;
+    }
+  
+    .Financialmonth .table tbody td {
+      font-size: 0.8rem;
+    }
+  }
+  

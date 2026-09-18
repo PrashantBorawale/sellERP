@@ -1,0 +1,152 @@
+/* ===== Golden UI - Purchase Order List ===== */
+
+/* Header Styling */
+.erp-header {
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.erp-header .header-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.vndrbtn {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.vndrbtn:hover {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  transform: translateY(-1px);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form and Inputs */
+.POListMaster label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #475569;
+}
+
+.POListMaster .form-control,
+.POListMaster .form-select {
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.2s ease;
+}
+
+.POListMaster .form-control:focus,
+.POListMaster .form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Table cell wrapping - works with table-layout: fixed */
+.POListMaster .table th,
+.POListMaster .table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  vertical-align: middle;
+  padding: 10px 8px;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.POListMaster .table thead th {
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.POListMaster .table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Pagination */
+.POListMaster .pagination .page-link {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  margin: 0 2px;
+  padding: 6px 12px;
+  transition: all 0.2s ease;
+}
+
+.POListMaster .pagination .page-link:hover {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border-color: transparent;
+}
+
+.POListMaster .pagination .page-item.active .page-link {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  border-color: transparent;
+  color: white;
+}
+
+.POListMaster .pagination .page-item.disabled .page-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #94a3b8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .erp-header .header-title {
+    font-size: 1.4rem;
+  }
+
+  .erp-header .d-flex {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .erp-header {
+    text-align: center;
+  }
+
+  .erp-header .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .erp-header .header-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .POListMaster .table th,
+  .POListMaster .table td {
+    font-size: 0.75rem;
+    padding: 6px 4px;
+  }
+}

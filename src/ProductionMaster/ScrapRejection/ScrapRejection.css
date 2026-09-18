@@ -1,0 +1,42 @@
+.ScrapRejectionMaster {
+    min-height: 100vh;
+  }
+  
+
+  .ScrapRejection-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .ScrapRejection-header h5 {
+    margin: 0;
+  }
+  
+ 
+  
+  .ScrapRejection-form .form-label {
+    font-weight: bold;
+  }
+  
+  
+
+  
+ 
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .ScrapRejection-header {
+      text-align: center;
+    }
+  
+    .table {
+      font-size: 12px;
+    }
+  
+    .main-content.shifted {
+      margin-left: 0;
+    }
+  }
+  

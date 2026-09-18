@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.taskheader-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.taskheader-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.taskmain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+.maintaskbtn {
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  margin: 5px;
+  padding: 7px;
+  border-radius: 10px;
+  border: none;
+}
+.taskmiddle {
+ 
+  padding: 10px 15px; /* Padding around header */
+  margin-top: 40px;
+}
+.taskmiddle .blue-th {
+  background-color: rgba(0, 0, 255, 0.558);
+  color: white;
+}
+
+.taskmiddle .table {
+  width: 100%;
+}
+
+.taskmiddle th,
+.taskmiddle td {
+  text-align: center;
+}
+
+.taskmiddle input[type="text"] {
+  width: 100%;
+}
+
+.taskmiddle .table-responsive {
+  overflow-x: auto;
+}
+
+.taskmiddle .tbbtn {
+  width: 100%;
+  border: none;
+  background-color: rgba(0, 0, 255, 0.558);
+  padding: 5px;
+  border-radius: 10px;
+}
+/* Add your existing CSS styles here */
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .taskheader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .taskbtn {
+    margin-top: 10px;
+  }
+  .taskmiddle input[type="text"] {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}

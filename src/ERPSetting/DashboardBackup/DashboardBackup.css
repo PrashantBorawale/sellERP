@@ -1,0 +1,40 @@
+.DashboardBackup {
+   
+    height: 100vh;
+}
+
+
+.DashboardBackup .header-title {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.DashboardBackup .backup-table {
+    margin-top: 20px;
+}
+
+.DashboardBackup .table th, .table td {
+    text-align: start;
+}
+
+.DashboardBackup  .download-link, .delete-link {
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.DashboardBackup .download-link:hover, .delete-link:hover {
+    text-decoration: underline;
+}
+
+.DashboardBackup footer {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: start;
+}
+
+@media (max-width: 768px) {
+ .DashboardBackup   .main-content {
+        margin-left: 0;
+    }
+}

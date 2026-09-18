@@ -1,0 +1,137 @@
+/* General Styles */
+.NewStoreNewIndent {
+    background-color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Styles */
+  .NewIndent-header {
+    margin-top: 20px;
+    background-color: #f8f9fa;;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main Content Styles */
+  .NewIndent-main {
+    background-color: #f8f9fa;;
+    padding: 15px;
+    margin-top: 20px; /* Adjusted to be closer to the header */
+  }
+  
+  /* Table Styles */
+  .NewIndenttable {
+    background-color: #f8f9fa;;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .NewIndenttable .table-bordered {
+    border: 1px solid #ddd;
+  }
+  
+  .NewIndenttable .table-bordered th, .table-bordered td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .NewIndenttable .table thead th {
+    background-color: #3e7fc0bc;
+    font-weight: bold;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .NewIndent-header, .NewIndent-main, .NewIndenttable {
+      padding: 10px;
+    }
+  
+    .NewIndenttable  .table thead th, .table-bordered th, .table-bordered td {
+      font-size: 0.875rem; /* Smaller text on smaller screens */
+    }
+  
+    .d-flex {
+      flex-direction: column; /* Stack flex items on smaller screens */
+    }
+  
+    .d-flex.align-items-center {
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .form-select, .form-control, .btn {
+      width: 100%; /* Full-width form elements on smaller screens */
+      margin-bottom: 10px; /* Spacing between form elements */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .header-title {
+      font-size: 1rem; /* Adjust header font size for small screens */
+    }
+  
+    .col-md-1, .col-md-2, .col-md-6 {
+      width: 100%; /* Full width columns on very small screens */
+      margin-bottom: 10px; /* Spacing between columns */
+    }
+  
+    .pobtn, .newbtn {
+      width: 100%; /* Full width buttons on small screens */
+      margin-top: 10px; /* Spacing between buttons */
+    }
+  }
+
+ 
+  .NewIndent
+  Footer {
+    padding: 20px 0;
+  }
+  
+  .NewIndent
+  Footer .form-control, .NewIndent
+  Footer .form-select {
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .NewIndent
+  Footer label {
+    font-weight: bold;
+  }
+  
+  .NewIndent
+  Footer button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .NewIndent
+  Footer button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .NewIndent
+    Footer .row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .NewIndent
+    Footer .col-md-2,
+    .NewIndent
+    Footer .col-md-3,
+    .NewIndent
+    Footer .col-md-1 {
+      margin-bottom: 10px;
+    }
+  
+    .NewIndent
+    Footer button {
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,81 @@
+/* General styles */
+.DisableUserList {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+
+  
+  /* Table styles */
+  .DisableUserList .table {
+    width: 100%;
+    background-color: white;
+  }
+  
+  .DisableUserList  .table th,
+  .DisableUserList .table td {
+    text-align: left;
+    vertical-align: middle;
+  }
+  
+  .DisableUserList .table-responsive-md {
+    overflow-x: auto;
+  }
+  
+  /* Header styles */
+  .DisableUser-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .DisableUserList .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .DisableUserList .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main-content {
+      margin-left: 50px;
+    }
+  
+    .table {
+      font-size: 0.875rem;
+    }
+  
+    .DisableUser-header {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .header-title {
+      margin-bottom: 15px;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .main-content {
+      margin-left: 0;
+    }
+  
+    .table {
+      font-size: 0.75rem;
+    }
+  
+    .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  

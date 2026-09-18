@@ -1,0 +1,79 @@
+/* General Styles */
+.PurchReport-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.PurchReport-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+  .PurchaseReport-main{
+   background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+ .PurchaseReportstatus1{
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+ }
+  .PurchaseReportstatus .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .PurchaseReportstatus .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .PurchaseReportstatus .table th,
+  .PurchaseReportstatus .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+
+  .PurchaseReportstatus .table th input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .PurchaseReportstatus .table th label {
+    vertical-align: middle;
+  }
+  
+  .PurchaseReportstatus .table th label.ml-2 {
+    margin-left: 8px;
+  }
+  
+  /* Header title styling */
+  .header-title {
+    font-size: 1.25rem; /* Adjust size as needed */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+    .PurchaseReportstatus-header {
+      text-align: center; /* Center text on smaller screens */
+    }
+  
+    .pobtn {
+      width: 100%; /* Full width buttons on small screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .PurchaseReportstatus .table th,
+    .PurchaseReportstatus .table td {
+      padding: 8px;
+      font-size: 0.875rem;
+    }
+  }
+  

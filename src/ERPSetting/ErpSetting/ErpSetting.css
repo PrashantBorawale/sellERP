@@ -1,0 +1,78 @@
+.erpsetting {
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .erpsetting  .main-content {
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+  .erpsetting  .Main-NavBar {
+    display: flex;
+    margin-left: -20px; /* Ensure that the navbar and sidenav are flex items */
+  }
+  .erpsetting .shifted {
+    margin-left: 250px; /* Adjust based on the size of your SideNav */
+  }
+  
+  /* User Management Section */
+  .erpsetting .WorkOrderEntry-header {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .erpsetting .header-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .erpsetting  .header-section {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .erpsetting  .header-section .form-check-label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .erpsetting .header-section .form-control,
+  .erpsetting .header-section .form-select {
+    margin-bottom: 0.5rem;
+  }
+  
+  .erpsetting .user-list-table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .erpsetting .user-list-table th,
+  .erpsetting .user-list-table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .erpsetting  .user-list-table input[type="password"] {
+    max-width: 120px;
+    display: inline-block;
+  }
+  
+  .erpsetting  .user-list-table .btn {
+    margin-top: 5px;
+  }
+  
+  .erpsetting .table {
+    background-color: #fff;
+  }
+  
+  .erpsetting .btn {
+    margin-left: 5px;
+  }
+  
+  .erpsetting .btn-sm {
+    font-size: 0.8rem;
+  }
+  

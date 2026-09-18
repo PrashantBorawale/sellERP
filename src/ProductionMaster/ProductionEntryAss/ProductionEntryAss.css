@@ -1,0 +1,183 @@
+.AssemblyEntryMaster {
+    margin-top: -10px;
+  }
+  
+  /* Header Styling */
+  .AssemblyEntry-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .AssemblyEntry-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Form and Inputs */
+/* Additional spacing for table cells */
+.AssemblyEntryMaster .table-bordered td, .table-bordered th {
+    padding: 8px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Adjust icon button sizes for consistent appearance */
+ .AssemblyEntryMaster .btn-outline-secondary {
+    padding: 4px 8px;
+    font-size: 1rem;
+  }
+  
+  /* Responsive font and padding adjustments */
+  .AssemblyEntry-main label {
+    font-size: 0.875rem;
+  }
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+   
+    margin: 0;
+    padding: 0;
+  }
+  
+  .AssemblyEntry-main {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .AssemblyEntry-bottom{
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .AssemblyEntry-tabs .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .AssemblyEntry-tabs .nav-tabs .nav-link {
+    font-weight: bold;
+    color: #495057;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .AssemblyEntry-tabs .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .AssemblyEntry .tab-content {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: none;
+    
+    border-radius: 0 0 10px 10px;
+
+  }
+  
+ .AssemblyEntry-main label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+.AssemblyEntry-main  input, select {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+ 
+  
+ .AssemblyEntry-main input.form-control,
+ .AssemblyEntry-main select.form-control {
+    padding: 8px;
+ 
+  }
+  
+ 
+  
+  /* Table Styling */
+  .AssemblyEntry-main .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .AssemblyEntry-main   .table th,
+  .AssemblyEntry-main .table td {
+    text-align: left;
+    padding: 8px;
+    
+  }
+  
+  .AssemblyEntry-main .table th {
+  
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tab-content .row {
+      flex-direction: column;
+    }
+  
+    .row .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .btn {
+      width: auto;
+      margin: 0 5px;
+    }
+  
+    .AssemblyEntry-tabs .nav-tabs .nav-link {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .AssemblyEntry-main {
+      padding: 10px;
+    }
+  
+    .table th, .table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  .AssemblyEntryMaster .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1049;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .AssemblyEntryMaster .card-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050; /* Ensure it's above overlay */
+    background: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  

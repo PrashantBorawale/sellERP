@@ -1,0 +1,168 @@
+/* CreditNoteList.css - EXACT COPY OF TaxInvoiceList.css structure */
+
+.credit-note-list {
+  padding: 1rem;
+}
+
+
+
+/* User Management Section */
+.credit-note-list .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.credit-note-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.credit-note-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.credit-note-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.credit-note-list .header-section .form-control,
+.credit-note-list .header-section .form-select,
+.credit-note-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.credit-note-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.credit-note-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.credit-note-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.credit-note-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.credit-note-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.credit-note-list .table {
+  background-color: #fff;
+}
+
+.credit-note-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.credit-note-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Footer Section Bar */
+.credit-note-list .footer-bar {
+  display: flex;
+}
+
+.credit-note-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.credit-note-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.credit-note-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.credit-note-list .header-section .form-control,
+.credit-note-list .header-section .form-select,
+.credit-note-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.credit-note-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.credit-note-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.credit-note-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.credit-note-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.credit-note-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.credit-note-list .table {
+  background-color: #fff;
+}
+
+.credit-note-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.credit-note-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Footer Section Bar */
+.credit-note-list .footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 8px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.credit-note-list label {
+  font-size: 0.85rem !important;
+}

@@ -1,0 +1,307 @@
+/* DebitNoteList.css - EXACT COPY OF TaxInvoiceList.css structure */
+
+.debit-note-list {
+  padding: 1rem;
+}
+
+
+
+/* User Management Section */
+.debit-note-list .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.debit-note-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.debit-note-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.debit-note-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.debit-note-list .header-section .form-control,
+.debit-note-list .header-section .form-select,
+.debit-note-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.debit-note-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.debit-note-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.debit-note-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.debit-note-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.debit-note-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+/* Table Responsive with Scrollbar after 8 rows */
+.debit-note-list .table-responsive {
+  border-radius: 4px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 450px;
+  /* Approximately 8-9 rows of height */
+  border: 1px solid #dee2e6;
+}
+
+/* Ensure header stays sticky during scroll */
+.debit-note-list .user-list-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.debit-note-list .table {
+  background-color: #fff;
+}
+
+.debit-note-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.debit-note-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Data Specific Coloring */
+.debit-note-list .text-primary-deep {
+  color: #0056b3;
+}
+
+.debit-note-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.debit-note-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.debit-note-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.debit-note-list .header-section .form-control,
+.debit-note-list .header-section .form-select,
+.debit-note-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.debit-note-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.debit-note-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.debit-note-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.debit-note-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.debit-note-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+/* Table Responsive with Scrollbar after 8 rows */
+.debit-note-list .table-responsive {
+  border-radius: 4px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 450px;
+  /* Approximately 8-9 rows of height */
+  border: 1px solid #dee2e6;
+}
+
+/* Ensure header stays sticky during scroll */
+.debit-note-list .user-list-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.debit-note-list .table {
+  background-color: #fff;
+}
+
+.debit-note-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.debit-note-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Data Specific Coloring */
+.debit-note-list .text-primary-deep {
+  color: #0056b3;
+}
+
+.debit-note-list .text-purple {
+  color: #6f42c1;
+}
+
+.debit-note-list .text-orange {
+  color: #d35400;
+}
+
+.debit-note-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.debit-note-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.debit-note-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.debit-note-list .header-section .form-control,
+.debit-note-list .header-section .form-select,
+.debit-note-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.debit-note-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.debit-note-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.debit-note-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.debit-note-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.debit-note-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+/* Table Responsive with Scrollbar after 8 rows */
+.debit-note-list .table-responsive {
+  border-radius: 4px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 450px;
+  /* Approximately 8-9 rows of height */
+  border: 1px solid #dee2e6;
+}
+
+/* Ensure header stays sticky during scroll */
+.debit-note-list .user-list-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.debit-note-list .table {
+  background-color: #fff;
+}
+
+.debit-note-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.debit-note-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Data Specific Coloring */
+.debit-note-list .text-primary-deep {
+  color: #0056b3;
+}
+
+.debit-note-list .text-purple {
+  color: #6f42c1;
+}
+
+.debit-note-list .text-orange {
+  color: #d35400;
+}
+
+.debit-note-list .cancel-badge {
+  background-color: #1fb5ff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.debit-note-list label {
+  font-size: 0.85rem !important;
+}

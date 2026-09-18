@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.workmain-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.workmain-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+
+
+.workmain .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.workmain .card-body {
+  max-height: 400px; /* Set a max height for scrollable content */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.workmain .card {
+  margin-top: -100px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  max-width: 90%;
+  z-index: 1001;
+}
+
+.workmain .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 20px;
+}
+
+.workmain .card-header h5 {
+  margin: 0;
+}
+
+.workmain .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.mst-btn {
+  border: none;
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+}
+.addy {
+  border: none;
+  padding: 8px;
+}
+.workmain .form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.centerMain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+
+.centerselect .btn-workkk {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: rgba(0, 0, 255, 0.692);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.centerselect .btn i {
+  margin-right: 5px;
+}
+
+@media (max-width: 767.98px) {
+  .centerMain {
+    padding: 10px;
+  }
+
+  .centerselect {
+    padding: 10px;
+  }
+}
+
+.workTable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.workTable .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.workTable .table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+
+.workTable .table .btn-tableww {
+  padding: 0.25rem 0.5rem;
+  align-items: center;
+  border: none;
+
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.workTable .record-count {
+  margin-top: 10px;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .workTable {
+    padding: 10px;
+  }
+
+  .workTable .table-responsive {
+    overflow-x: auto;
+  }
+}
+/* machine card */
+.overlay-machine {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-machine {
+  margin-top: -100px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  max-width: 90%;
+  z-index: 1001;
+}
+
+.card-header-machine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.card-header-machine h5 {
+  margin: 0;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+.card-body-machine {
+  max-height: 430px; /* Set a max height for scrollable content */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Work Center  */
+
+/* Overlay styles */
+.overlay-workcenter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+/* Card container */
+.overlay-workcenter .card,.overlay-workcenter  .card-work {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-height: 80%; /* Restrict height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 20px;
+  position: relative;
+}
+
+/* Card header */
+.overlay-workcenter .card-header,.overlay-workcenter  .card-header-work {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+.overlay-workcenter .card-header h5,.overlay-workcenter  .card-header-work h5 {
+  margin: 0;
+  color: #333;
+  font-size: 1.25rem;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  color: #000;
+}
+
+/* Card body */
+.overlay-workcenter .card-body-work {
+  margin-top: 20px;
+}
+
+
+
+
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+ .overlay-workcenter  .card,.overlay-workcenter  .card-work {
+    width: 90%; /* Adjust width for smaller screens */
+  }
+}

@@ -1,0 +1,87 @@
+.BackDatedEntry {
+    padding: 0;
+  }
+  
+  .BackDatedEntry  .Main-NavBar {
+    display: flex;
+  }
+  
+  .BackDatedEntry .main-content {
+    padding: 20px;
+  }
+  
+  .BackDatedEntry .main-content.shifted {
+    margin-left: 250px;
+  }
+  
+  .BackDatedEntry  .back-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .BackDatedEntry .header-title {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  
+  .BackDatedEntry  .back-main {
+    margin-bottom: 20px;
+  }
+  
+  .BackDatedEntry .export-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .BackDatedEntry  .back-table {
+    margin-top: 20px;
+  }
+  
+  .BackDatedEntry .table-responsive {
+    margin-bottom: 20px;
+  }
+  
+  .BackDatedEntry .table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .BackDatedEntry  .form-control {
+    width: 100%;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 767px) {
+    .BackDatedEntry   .main-content.shifted {
+      margin-left: 0;
+    }
+  
+    .BackDatedEntry   .back-header .row {
+      flex-direction: column;
+    }
+  
+    .BackDatedEntry   .back-header .col-md-6,
+    .BackDatedEntry    .back-main .col-md-4,
+    .BackDatedEntry    .back-main .col-md-2 {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .BackDatedEntry   .back-table table th, .back-table table td {
+      font-size: 0.9rem;
+    }
+  
+    .BackDatedEntry   .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .BackDatedEntry   .back-main .col-md-4, .back-main .col-md-2 {
+      width: 50%;
+    }
+  }
+  

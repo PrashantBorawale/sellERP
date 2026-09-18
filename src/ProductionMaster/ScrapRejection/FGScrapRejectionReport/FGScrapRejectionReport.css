@@ -1,0 +1,223 @@
+.FGScrapRejectionMaster {
+    font-family: Arial, sans-serif;
+  }
+.FGScrapRejection-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+ .FGScrapRejection  .header-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+ .FGScrapRejection  .tabs.FGScrapRejection  .nav-tabs {
+    margin-bottom: 20px;
+    border: none;
+  }
+  
+ .FGScrapRejection  .tabs.FGScrapRejection  .nav-tabs.FGScrapRejection  .nav-link {
+    color: #007bff;
+    border: none;
+  }
+  
+ .FGScrapRejection  .tabs.FGScrapRejection  .nav-tabs.FGScrapRejection  .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  .FGScrapRejection-first {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .FGScrapRejection-first form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .FGScrapRejection-first .form-control,
+  .FGScrapRejection-first .form-select {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .FGScrapRejection-first .btn {
+    border-radius: 5px;
+    padding: 8px 16px;
+  }
+  
+  /* Table Styles */
+  .FGScrapRejection-table-section .table,
+  .FGScrapRejection-table-second .table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .FGScrapRejection-first .table th,
+  .FGScrapRejection-first .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .FGScrapRejection-first .table-bordered {
+    border: 1px solid #ccc;
+  }
+  
+  .FGScrapRejection-first .table-bordered th,
+  .FGScrapRejection-first .table-bordered td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .FGScrapRejection-first .btn-sm {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+  
+
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .FGScrapRejection-first .row {
+      flex-direction: column;
+    }
+  
+    .FGScrapRejection-first .row .col-md-4,
+    .FGScrapRejection-first .row .col-md-2 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .FGScrapRejection-table-section,
+    .FGScrapRejection-table-second {
+      overflow-x: auto;
+    }
+  
+    .FGScrapRejection-first .table th,
+    .FGScrapRejection-first .table td {
+      font-size: 14px;
+      padding: 5px;
+    }
+  
+    .btn {
+      font-size: 14px;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .row .col-md-4,
+    .row .col-md-2 {
+      width: 48%;
+      margin-bottom: 15px;
+    }
+  
+    .FGScrapRejection-first {
+      padding: 15px;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    .FGScrapRejection-first {
+      padding: 30px;
+    }
+  }
+
+  /* General Styles */
+.FGScrapRejection-second {
+  padding: 20px;
+  background-color: #fdfdfd;
+}
+
+.FGScrapRejection-second form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
+}
+
+.FGScrapRejection-second .form-control {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 100%;
+}
+
+.FGScrapRejection-second .btn {
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.FGScrapRejection-second .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.FGScrapRejection-second .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.FGScrapRejection-second .row {
+  margin-bottom: 15px;
+}
+
+/* Table Styles */
+.FGScrapRejection-second .table {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .row .col-md-2 {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .FGScrapRejection-second .table {
+    font-size: 12px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .row .col-md-2 {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+
+  .FGScrapRejection-second {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .FGScrapRejection-second {
+    padding: 30px;
+  }
+
+  .row .col-md-2 {
+    margin-bottom: 0;
+  }
+}

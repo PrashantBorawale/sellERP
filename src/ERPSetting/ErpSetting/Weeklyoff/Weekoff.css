@@ -1,0 +1,59 @@
+.WeeklyOff {
+    font-family: Arial, sans-serif;
+  }
+  
+  .WeeklyOff  .header-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  .WeeklyOff-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    border-bottom: 2px solid #dee2e6;
+  }
+  .WeeklyOff-form {
+    
+    padding: 20px;
+    border-radius: 5px;
+    text-align: start;
+  }
+  
+  .WeeklyOff .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .WeeklyOff  .Holiday-table .table {
+    margin-top: 20px;
+  }
+  
+  .WeeklyOff .table-responsive {
+    overflow-x: auto;
+  }
+  
+
+  
+  @media (max-width: 991px) {
+    .main-content {
+      padding-left: 0;
+    }
+  
+    .header-title {
+      text-align: center;
+    }
+  
+    .WeeklyOff-form .form-control, .btn {
+      width: 100%;
+    }
+  
+    .Holiday-table {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .Holiday-table {
+      font-size: 1rem;
+    }
+  }
+  

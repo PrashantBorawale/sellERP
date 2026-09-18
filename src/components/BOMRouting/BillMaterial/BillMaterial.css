@@ -1,0 +1,338 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.BillMaterialMain {
+  background-color: #f8f9fa;
+  /* Light background for header */
+  border: none;
+  border-bottom: none;
+  padding: 10px 15px;
+  /* Padding around header */
+  border-radius: 5px;
+}
+
+.BillMaterialMain .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.BillMaterialsection {
+  background-color: #f8f9fa;
+  /* Light background for header */
+  border: none;
+  border-bottom: none;
+  padding: 10px 15px;
+  /* Padding around header */
+  border-radius: 5px;
+}
+
+.Billmaterialbtn,
+.materialbtn,
+.BOMBOttombtn {
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 4px;
+  background-color: #fff;
+  text-decoration: none;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.Billmaterialbtn:hover,
+.materialbtn:hover,
+.BOMBOttombtn:hover {
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 767px) {
+  .BillMaterialMain .text-end {
+    text-align: center !important;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .Billmaterialbtn,
+  .materialbtn,
+  .BOMBOttombtn {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ProductionDeptCard {
+    width: 95%;
+    top: 20px;
+  }
+}
+
+.ProductionDeptCard,
+
+.Standard,
+.Bomitem {
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  max-height: 90vh;
+  overflow: auto;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.ProductionDeptCard .card,
+
+.Standard .card,
+.Bomitem .card {
+  margin-top: 20px;
+}
+
+.ProductionDeptCard .card-header,
+.ProductionDeptCard .Closebom,
+.Operation .card-header,
+.Operation .Closebom,
+.Standard .card-header,
+.Standard .Closebom,
+.Bomitem .card-header,
+.Bomitem .Closebom {
+  padding: 10px;
+  border: none;
+}
+
+.ProductionDeptCard .card-body,
+.Operation .card-body,
+.Standard .card-body,
+.Bomitem .card-body {
+  padding: 20px;
+  margin: 5px;
+}
+
+.ProductionDeptCard .bomButton,
+.Operation .bomButton,
+.Standard .bomButton,
+.Bomitem .bomButton {
+  margin-top: 30px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(235, 233, 233, 0.685);
+  text-decoration: none;
+  color: black;
+  white-space: nowrap;
+}
+
+.Standard .Standardbtn,
+.StandardButton,
+.Bomitem .Bomitembtn,
+.BomitemButton {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: rgba(235, 233, 233, 0.685);
+  text-decoration: none;
+  color: black;
+  white-space: nowrap;
+}
+
+.Standard .table-responsive,
+.Bomitem .table-responsive,
+.Operation .table-responsive {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.Bomitem th,
+.Bomitem td {
+  background-color: rgb(250, 251, 252);
+}
+
+.bomButton {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bomButton:hover {
+  background-color: darkblue;
+}
+
+.Standardbtn {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Standardbtn:hover {
+  background-color: darkblue;
+}
+
+.StandardButton {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.StandardButton:hover {
+  background-color: darkgreen;
+}
+
+.is-invalid {
+  border-color: red;
+}
+
+.scrollable-card {
+  max-height: 500px;
+  /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+.plus-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.plus-btn:hover {
+  background-color: #0056b3;
+}
+
+.bom-card {
+  position: fixed;
+  top: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 1050;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* Accounts standard table overrides */
+.ps-table-header th {
+  background-color: #0dcaf0 !important;
+  color: white !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  background-image: linear-gradient(to bottom, #118bb9, #28b8e0);
+}
+
+.edit-table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+  border: none;
+}
+
+.edit-table-wrapper thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.BillMaterial .table td {
+  padding: 4px 6px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.BillMaterial .form-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* SCOPED BORDER REMOVALS ONLY FOR BILLMATERIAL PAGE */
+.BillMaterial,
+.BillMaterial1,
+.BillMaterialMain,
+.BillMaterialsection,
+.BillMaterial .container-fluid,
+.BillMaterial .tab-content,
+.BillMaterial .tab-pane,
+.BillMaterial .nav-tabs,
+.BillMaterial .nav-tabs .nav-link,
+.BillMaterial .nav-tabs .nav-link.active,
+.BillMaterial .edit-table-wrapper {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.BillMaterial .user-list-table {
+  width: 100%;
+  min-width: 1200px;
+  margin-top: 0;
+}
+
+
+/* Custom Tabs styling */
+.erp-page .custom-tabs {
+    border-bottom: 2px solid #e2e8f0;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.erp-page .custom-tabs .nav-link {
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+.erp-page .custom-tabs .nav-link:hover {
+    color: #334155;
+    border-color: #cbd5e1;
+}
+.erp-page .custom-tabs .nav-link.active {
+    color: #2563eb;
+    border-color: #2563eb;
+}

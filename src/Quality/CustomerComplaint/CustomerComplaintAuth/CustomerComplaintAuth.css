@@ -1,0 +1,156 @@
+.CustomerComplaintAuthMaster {
+    margin-top: -10px;
+  }
+  
+  /* Header Styling */
+  .CustomerComplaintAuth-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .CustomerComplaintAuth-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Form and Inputs */
+  /* Additional spacing for table cells */
+  .CustomerComplaintAuthMaster .table-bordered td, .table-bordered th {
+    padding: 8px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Adjust icon button sizes for consistent appearance */
+  .CustomerComplaintAuthMaster .btn-outline-secondary {
+    padding: 4px 8px;
+    font-size: 1rem;
+  }
+  
+  /* Responsive font and padding adjustments */
+  .CustomerComplaintAuth-main label {
+    font-size: 0.875rem;
+  }
+  /* General Styling */
+  body {
+    font-family: Arial, sans-serif;
+   
+    margin: 0;
+    padding: 0;
+  }
+  
+  .CustomerComplaintAuth-main {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .CustomerComplaintAuth-bottom{
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .CustomerComplaintAuth-tabs .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .CustomerComplaintAuth-tabs .nav-tabs .nav-link {
+    font-weight: bold;
+    color: #495057;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .CustomerComplaintAuth-tabs .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .CustomerComplaintAuth .tab-content {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: none;
+    
+    border-radius: 0 0 10px 10px;
+  
+  }
+  
+  .CustomerComplaintAuth-main label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .CustomerComplaintAuth-main  input, select {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  
+  
+  .CustomerComplaintAuth-main input.form-control,
+  .CustomerComplaintAuth-main select.form-control {
+    padding: 8px;
+  
+  }
+  
+  /* Table Styling */
+  .CustomerComplaintAuth-main .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .CustomerComplaintAuth-main   .table th,
+  .CustomerComplaintAuth-main .table td {
+    text-align: left;
+    padding: 8px;
+    
+  }
+  
+  .CustomerComplaintAuth-main .table th {
+  
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tab-content .row {
+      flex-direction: column;
+    }
+  
+    .row .col-md-4 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .btn {
+      width: auto;
+      margin: 0 5px;
+    }
+  
+    .CustomerComplaintAuth-tabs .nav-tabs .nav-link {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .CustomerComplaintAuth-main {
+      padding: 10px;
+    }
+  
+    .table th, .table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  

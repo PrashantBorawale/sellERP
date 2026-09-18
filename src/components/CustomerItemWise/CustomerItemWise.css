@@ -1,0 +1,284 @@
+/* CustomerItemWise.css - Standardized UI */
+
+.customer-item-wise {
+  padding: 1rem;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+.customer-item-wise .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.customer-item-wise .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.customer-item-wise .shifted {
+  margin-left: 250px;
+}
+
+/* Tabs Section (Unified) */
+.customer-item-wise .tabs-wrapper {
+  background-color: #f8f9fa;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.customer-item-wise .custom-nav-tabs {
+  border-bottom: none !important;
+  gap: 15px;
+}
+
+.customer-item-wise .custom-nav-tabs .nav-link {
+  border: none;
+  background-color: #e9ecef;
+  color: #495057;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.customer-item-wise .custom-nav-tabs .nav-link:hover {
+  background-color: #dee2e6;
+  color: #000;
+}
+
+.customer-item-wise .custom-nav-tabs .nav-link.active {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(31, 181, 255, 0.2);
+}
+
+/* Header Section */
+.customer-item-wise .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.customer-item-wise .header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1fb5ff;
+  margin: 0;
+}
+
+/* Filter Section */
+.customer-item-wise .header-section {
+  background-color: #fff;
+  padding: 0;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.customer-item-wise .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.customer-item-wise .form-control-sm,
+.customer-item-wise .form-select-sm {
+  font-size: 0.85rem;
+  border-color: #ced4da;
+  height: 32px;
+  border-radius: 4px;
+}
+
+.customer-item-wise .form-control:focus {
+  border-color: #1fb5ff;
+  box-shadow: 0 0 0 0.2rem rgba(31, 181, 255, 0.25);
+}
+
+/* Button Styling */
+.customer-item-wise .filter-btn {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+
+.customer-item-wise .filter-btn:hover {
+  background-color: #1fb5ff !important;
+  color: #fff !important;
+  border-color: #1fb5ff;
+}
+
+.customer-item-wise .search-btn {
+  background-color: #f8f9fa;
+  color: #333;
+  border-color: #ced4da;
+}
+
+.customer-item-wise .search-btn:hover {
+  background-color: #1fb5ff !important;
+  color: white !important;
+  border-color: #1fb5ff;
+}
+
+.customer-item-wise .save-btn,
+.customer-item-wise .excel-btn {
+  /* Consistent border pattern */
+  border-color: #ced4da;
+}
+
+.customer-item-wise .custom-table .btn {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.customer-item-wise .custom-table .btn:hover {
+  background: transparent !important;
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+/* Table Container */
+.customer-item-wise .table-container {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-top: 15px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.customer-item-wise .table-responsive {
+  max-height: 300px;
+  /* Locked to exactly 7 rows + header */
+  overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.customer-item-wise .custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+  /* High density font */
+  table-layout: auto;
+  /* Allow content-based width but prevent overflow */
+}
+
+.customer-item-wise .custom-table thead th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 8px 10px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.customer-item-wise .custom-table tbody td {
+  padding: 6px 10px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+  /* Prevent text wrapping unless necessary */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Row Hover */
+.customer-item-wise .custom-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+.customer-item-wise .custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Numeric alignment */
+.customer-item-wise .text-right {
+  text-align: right !important;
+}
+
+.customer-item-wise .text-center {
+  text-align: center !important;
+}
+
+/* Footer Totals Bar */
+.customer-item-wise .footer-totals-bar {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.customer-item-wise .total-value {
+  color: #1fb5ff;
+  margin-left: 5px;
+}
+
+/* Custom scrollbar - Size 8px */
+.customer-item-wise .table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.customer-item-wise .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.customer-item-wise .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.customer-item-wise .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .customer-item-wise .header-section .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .customer-item-wise .header-section .col-md-4,
+  .customer-item-wise .header-section .col-md-3,
+  .customer-item-wise .header-section .col-md-1 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .customer-item-wise .justify-content-end {
+    justify-content: flex-start !important;
+    width: 100%;
+  }
+}

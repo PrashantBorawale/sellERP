@@ -1,0 +1,105 @@
+/* MachinePreventiveSchedule.css - Exact clone of MachinePreventiveSetUp.css theme */
+
+.machinepreventiveschedule {
+  padding: 1rem;
+}
+
+.machinepreventiveschedule .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.machinepreventiveschedule .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.machinepreventiveschedule .shifted {
+  margin-left: 250px;
+}
+
+/* User Management Section */
+.machinepreventiveschedule .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.machinepreventiveschedule .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.machinepreventiveschedule .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.machinepreventiveschedule .header-section .form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.machinepreventiveschedule .header-section .form-control,
+.machinepreventiveschedule .header-section .form-select,
+.machinepreventiveschedule .header-section .btn {
+  font-size: 14px;
+}
+
+.machinepreventiveschedule .table {
+  background-color: #fff;
+}
+
+.machinepreventiveschedule .table th {
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.machinepreventiveschedule .table td {
+  vertical-align: middle;
+}
+
+/* Specific button styles matching MachinePreventiveSetUp.css */
+.machinepreventiveschedule .btn-refresh {
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.machinepreventiveschedule .btn-add {
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.machinepreventiveschedule .action-column {
+  width: 70px;
+  text-align: center;
+  padding: 0 !important;
+}
+
+/* Bottom Compact Form Styles */
+.machinepreventiveschedule .compact-form .form-control,
+.machinepreventiveschedule .compact-form textarea.form-control {
+  max-width: 300px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+.machinepreventiveschedule .compact-form .form-label {
+  color: #555;
+  font-weight: 600;
+}
+
+/* Record Count styling */
+.machinepreventiveschedule .total-records {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .machinepreventiveschedule .main-content {
+    margin-left: 0 !important;
+  }
+}

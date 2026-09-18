@@ -1,0 +1,67 @@
+/* GrnList.css - Standardized Golden UI Layout */
+
+.PurchaseGrnListMaster {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.PurchaseGrnListMaster .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.PurchaseGrnListMaster .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.PurchaseGrnListMaster .shifted {
+  margin-left: 250px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+  .PurchaseGrnListMaster .main-content {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .PurchaseGrnListMaster .main-content {
+    padding: 10px;
+  }
+}
+
+.erp-table-wrapper table {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+.erp-table-wrapper table th,
+.erp-table-wrapper table td {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  padding: 4px 4px !important;
+  font-size: 0.72rem !important;
+  vertical-align: middle;
+}
+
+.erp-table-wrapper table th {
+  font-size: 0.62rem !important;
+}
+
+.cell-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}

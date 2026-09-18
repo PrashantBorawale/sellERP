@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.Cutwise1 {
+  padding: 20px;
+ 
+}
+.cutwiseheader-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.cutwiseheader-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cuthebtn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(235, 233, 233, 0.685);
+  color: black;
+  text-decoration: none;
+  margin: 5px;
+}
+.cutwisemain {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.btnwise {
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(235, 233, 233, 0.685);
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .Cutwisemain .table-responsive {
+    overflow-x: auto;
+  }
+  .Cutwisemain .table th,
+  .Cutwisemain .table td {
+    white-space: nowrap;
+  }
+}
+.Cutwisetable {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}

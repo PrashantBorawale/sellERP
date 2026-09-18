@@ -1,0 +1,128 @@
+.PurchaseERPGRN {
+    margin-top: 20px;
+    
+}
+
+/* Header Styling */
+.GRNSeries-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+}
+
+.GRNSeries .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.GRNSeries-form {
+    padding: 20px;
+}
+
+/* Button Group Styling */
+.GRNSeries-Main .btn {
+    background-color: #f8f9fa; /* Light background for buttons */
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: auto;
+}
+
+.GRNSeries-Main .btn:hover {
+    background-color: #e2e6ea;
+}
+
+.GRNSeries-Main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+.GRNSeries-table {
+    margin-top: 20px;
+}
+
+.GRNSeries-table .table {
+    width: 100%;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Responsive Styling */
+@media (max-width: 1200px) {
+    .GRNSeries .header-title {
+        font-size: 18px;
+    }
+    .GRNSeries-form {
+        padding: 15px;
+    }
+    .GRNSeries-Main .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 992px) {
+    .GRNSeries .header-title {
+        font-size: 16px;
+    }
+    .GRNSeries-form {
+        padding: 10px;
+    }
+    .GRNSeries-Main .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .GRNSeries-form {
+        padding: 5px;
+    }
+    .GRNSeries-Main {
+        flex-direction: column;
+    }
+    .GRNSeries-table .table {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .GRNSeries .header-title {
+        font-size: 14px;
+    }
+    .GRNSeries-form {
+        padding: 0;
+    }
+    .GRNSeries-Main .btn {
+        padding: 5px 8px;
+        font-size: 10px;
+    }
+    .GRNSeries-table .table {
+        font-size: 10px;
+    }
+    .table-responsive {
+        overflow-x: scroll;
+    }
+}
+
+/* SideNav shifts when opened */
+.main-content.shifted {
+    margin-left: 250px; /* Adjust for SideNav width */
+    transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .main-content.shifted {
+        margin-left: 0;
+    }
+}

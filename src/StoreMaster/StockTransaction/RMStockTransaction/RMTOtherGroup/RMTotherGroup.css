@@ -1,0 +1,64 @@
+/* General Styles */
+.NewStoreRMToOther {
+    /* background-color: #fff; */
+    font-family: Arial, sans-serif;
+  }
+  
+  .RMToOther-header {
+    margin-top: 20px;
+     background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .RMToOther-main {
+     background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .RMToOtherSelect{
+     margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+  .RMToOtherSelect1{
+    margin-top: 20px;
+   background-color: white;
+   padding: 10px;
+   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+ }
+  .header-title {
+    font-weight: bold;
+  }
+  
+  .RMToOther-main  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .RMToOther-main input, select, textarea {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .header-title {
+      font-size: 18px;
+    }
+  
+    .RMToOther-main .form-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .RMToOther-main  .col-form-label {
+      width: 100%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .RMToOther-main .col-form-label {
+      text-align: right;
+    }
+  }
+  

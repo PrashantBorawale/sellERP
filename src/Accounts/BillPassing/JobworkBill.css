@@ -1,0 +1,149 @@
+/* Jobwork Bill Layout */
+.jobwork-bill {
+  padding: 1rem;
+}
+
+
+
+/* Header Section */
+.jobwork-bill .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
+.jobwork-bill .stats-box {
+  font-size: 0.8rem;
+}
+
+.jobwork-bill .stats-box .badge {
+  min-width: 45px;
+  font-size: 0.85rem;
+}
+
+/* Filter Section */
+.jobwork-bill .header-section {
+  background-color: #fff;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+
+
+/* Table Section */
+.jobwork-bill .table-responsive {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.jobwork-bill .top-table-container {
+  max-height: 250px;
+  /* Approximately 4 rows + header */
+  overflow-y: auto;
+}
+
+.jobwork-bill .bottom-table-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.jobwork-bill .user-list-table {
+  width: 100%;
+  min-width: 1000px;
+  margin-top: 0;
+  font-size: 0.85rem;
+}
+
+.jobwork-bill .user-list-table th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 5px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.jobwork-bill .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px 5px;
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.jobwork-bill .cursor-pointer {
+  cursor: pointer;
+}
+
+/* Action Icons */
+.jobwork-bill .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button & Input refinements */
+.jobwork-bill .btn-primary {
+  background-color: #1fb5ff;
+  border-color: #1fb5ff;
+}
+
+.jobwork-bill .header-section .btn-sm {
+  height: 32px;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0;
+}
+
+.jobwork-bill .user-list-table .btn {
+  margin: 0 2px;
+  padding: 2px 8px;
+}
+
+.jobwork-bill .user-list-table .btn-sm {
+  font-size: 0.85rem;
+}
+
+/* Specific Cell styling */
+.jobwork-bill .text-warning {
+  color: #856404 !important;
+  /* Darker orange for better visibility on white */
+}
+
+/* Buttons */
+.jobwork-bill .btn {
+  font-size: 14px;
+}
+
+.jobwork-bill .btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.jobwork-bill .btn-light.border {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+  .jobwork-bill .user-list-table {
+    font-size: 0.75rem;
+  }
+}
+.jobwork-bill .form-label,
+.jobwork-bill .form-check-label {
+  font-size: 0.85rem !important;
+}
+

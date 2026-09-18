@@ -1,0 +1,106 @@
+.NewPurchaseMaster
+ {
+  margin-top: 20px;
+}
+
+/* Header Styling */
+.NewPurchse-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.NewPurchse-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* .newpirchase-main {
+  background-color: #f8f9fa;
+  padding: 10px;
+  margin-top:20px;
+  height: auto;
+} */
+/* Main container styling */ .NewPurchaseMaster
+.newpirchase-main {
+  padding: 10px;
+}
+
+/* Remove borders from the nav-pills */ .NewPurchaseMaster
+.nav-pills .NewPurchaseMaster .nav-link {
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+/* Active tab styling */ .NewPurchaseMaster
+.nav-pills .NewPurchaseMaster .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Responsive tab styling */
+@media (max-width: 768px) {
+  .NewPurchaseMaster .nav-pills {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .NewPurchaseMaster .nav-pills::-webkit-scrollbar {
+    height: 4px;
+  }
+  .NewPurchaseMaster .nav-pills::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  .NewPurchaseMaster .nav-pills .nav-item {
+    flex: 0 0 auto;
+  }
+  .NewPurchaseMaster .nav-pills .nav-link {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .tab-content {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 769px) {
+  .NewPurchaseMaster .nav-pills .nav-link {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+.NewPurchaseMaster .tab-content {
+  padding: 10px;
+  border: none;
+  
+}
+
+.NewPurchaseMaster .tab-pane {
+  display: none;
+}
+
+.NewPurchaseMaster .tab-pane.show {
+  display: block;
+}
+
+/* Forcefully remove any outer borders (left, right, top) from the tab content and wrappers */
+.NewPurchaseMaster .tab-content,
+.NewPurchaseMaster .new-purchase-main,
+.NewPurchaseMaster .itemdetailsMain,
+.NewPurchaseMaster .tab-pane {
+  border: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}

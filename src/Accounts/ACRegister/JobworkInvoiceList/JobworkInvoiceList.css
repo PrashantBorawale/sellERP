@@ -1,0 +1,240 @@
+/* JobworkInvoiceList.css - EXACT COPY OF TaxInvoiceList.css structure */
+
+.jobwork-invoice-list {
+  padding: 1rem;
+}
+
+.jobwork-invoice-list .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.jobwork-invoice-list .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.jobwork-invoice-list .shifted {
+  margin-left: 250px;
+}
+
+/* User Management Section */
+.jobwork-invoice-list .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.jobwork-invoice-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.jobwork-invoice-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.jobwork-invoice-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.jobwork-invoice-list .header-section .form-control,
+.jobwork-invoice-list .header-section .form-select,
+.jobwork-invoice-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.jobwork-invoice-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.jobwork-invoice-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.jobwork-invoice-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.jobwork-invoice-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.jobwork-invoice-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.jobwork-invoice-list .table {
+  background-color: #fff;
+}
+
+.jobwork-invoice-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.jobwork-invoice-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.jobwork-invoice-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.jobwork-invoice-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.jobwork-invoice-list .header-section .form-control,
+.jobwork-invoice-list .header-section .form-select,
+.jobwork-invoice-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.jobwork-invoice-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.jobwork-invoice-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.jobwork-invoice-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.jobwork-invoice-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.jobwork-invoice-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.jobwork-invoice-list .table {
+  background-color: #fff;
+}
+
+.jobwork-invoice-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.jobwork-invoice-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Data Specific Coloring */
+.jobwork-invoice-list .text-primary-deep { color: #0056b3; }
+
+.jobwork-invoice-list .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.jobwork-invoice-list .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.jobwork-invoice-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.jobwork-invoice-list .header-section .form-control,
+.jobwork-invoice-list .header-section .form-select,
+.jobwork-invoice-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.jobwork-invoice-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.jobwork-invoice-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.jobwork-invoice-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.jobwork-invoice-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.jobwork-invoice-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.jobwork-invoice-list .table {
+  background-color: #fff;
+}
+
+.jobwork-invoice-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.jobwork-invoice-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Data Specific Coloring */
+.jobwork-invoice-list .text-primary-deep { color: #0056b3; }
+.jobwork-invoice-list .text-purple { color: #6f42c1; }
+.jobwork-invoice-list .text-orange { color: #d35400; }
+.jobwork-invoice-list .cancel-badge {
+  background-color: #1fb5ff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.jobwork-invoice-list label {
+  font-size: 0.85rem !important;
+}

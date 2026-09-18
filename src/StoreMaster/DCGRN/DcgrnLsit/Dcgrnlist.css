@@ -1,0 +1,123 @@
+/* General Styles */
+.NewStoreRMStock {
+    background-color: white;
+    height: auto;
+  }
+  
+  .RMStock-header {
+    margin-top: 20px;
+    background-color: #f8f9fa;;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .RMStock-main {
+    background-color: #f8f9fa;;
+    padding: 20px;
+    margin-top: 30px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .StoreRMStock {
+    background-color: #f8f9fa;;
+    padding: 20px;
+    border-radius: 8px;
+    height: auto;
+  }
+  
+  /* Button Styling */
+  .pobtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  .pobtn:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  /* Table Styling */
+ .StoreRMStock .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+.StoreRMStock  .table th,
+.StoreRMStock  .table td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+  }
+  
+.StoreRMStock  .table th {
+    /* background-color: #f2f2f2; */
+    font-weight: bold;
+  }
+  
+.StoreRMStock  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .RMStock-header h5 {
+      font-size: 1.25rem;
+    }
+  
+ .StoreRMStock .form-label {
+      font-size: 0.9rem;
+    }
+  
+    .pobtn {
+      padding: 8px 12px;
+      font-size: 0.875rem;
+    }
+  
+ .StoreRMStock .table th, .table td {
+      font-size: 0.875rem;
+      padding: 8px;
+    }
+  
+    .col-md-1,
+    .col-md-2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .RMStock-header {
+      padding: 10px;
+    }
+  
+   .StoreRMStock .table th, .table td {
+      font-size: 0.75rem;
+      padding: 6px;
+    }
+    
+   .StoreRMStock .table-responsive {
+      overflow-x: auto;
+      display: block;
+    }
+  
+    .RMStock-main,
+    .StoreRMStock {
+      padding: 10px;
+    }
+  
+    .pobtn {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
+  }
+  

@@ -1,0 +1,225 @@
+/* Golden Standard UI for Vendor List */
+.vender-page {
+  height: auto;
+  font-family: 'Inter', Arial, sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.vender-page .row,
+.vender-page .col-md-12,
+.vender-page .Main-NavBar {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.erp-header {
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.erp-header .header-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.vender-page .main-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background-color: #ffffff;
+  padding: 24px;
+}
+
+.vender-page .shifted {
+  margin-left: 250px !important;
+  width: calc(100% - 250px) !important;
+}
+
+/* Inputs and Buttons */
+.vender-page .form-control,
+.vender-page .form-select {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.vender-page .form-control:focus,
+.vender-page .form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+}
+
+.vender-page .vndrbtn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  border: none !important;
+  border-radius: 8px;
+  color: white !important;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.vender-page .vndrbtn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+  color: white !important;
+}
+
+.VenderMain {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Screen-Fit Table Setup */
+.vender-page .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  background: transparent;
+  display: block;
+}
+
+.vender-page .table {
+  width: 100% !important;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.vender-page .table th,
+.vender-page .table td {
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 0.65rem !important;
+  padding: 6px 4px !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.vender-page .table th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.vender-page .table td {
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Action buttons in table */
+.vender-page .btn-view {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #fff !important;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.vender-page .btn-view:hover {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #fff !important;
+}
+
+.vender-page .btn-edit {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff !important;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.vender-page .btn-edit:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff !important;
+}
+
+.vender-page .btn-del {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff !important;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.vender-page .btn-del:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* Pagination */
+.vender-page .pagination .page-link {
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0;
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  margin: 0 2px;
+  transition: all 0.2s ease;
+}
+
+.vender-page .pagination .page-item.active .page-link {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  border-color: #2563eb !important;
+  color: #fff !important;
+}
+
+.vender-page .pagination .page-link:hover {
+  background-color: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.vender-page .pagination .page-item.disabled .page-link {
+  color: #94a3b8;
+  background-color: #f1f5f9;
+  pointer-events: none;
+}
+
+.vender-page .record-count {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+}

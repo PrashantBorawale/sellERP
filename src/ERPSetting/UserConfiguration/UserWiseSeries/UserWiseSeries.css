@@ -1,0 +1,115 @@
+/* UserWiseSeries.css */
+
+.UserWiseSeries {
+    padding: 20px; /* Add padding to the main container */
+  }
+  
+  .UserWiseSeries  .Main-NavBar {
+    display: flex;
+    margin-left: -20px; /* Ensure that the navbar and sidenav are flex items */
+  }
+  
+  .UserWiseSeries .main-content {
+    padding: 20px; /* General padding for main content area */
+    transition: margin-left 0.3s; /* Smooth transition for the shifting content */
+  }
+  
+  .UserWiseSeries .main-content.shifted {
+    margin-left: 250px; /* Adjust the main content position when sideNav is open */
+  }
+  
+  .UserWiseSeries  .back-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px; /* Rounded corners for the header */
+  }
+  
+  .UserWiseSeries .header-title {
+    font-weight: 600; /* Slightly bolder font for the header title */
+    font-size: 1.5rem; /* Larger font size */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .UserWiseSeries .export-btn {
+    background-color: #007bff; /* Bootstrap primary button color */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    border-radius: 5px; /* Rounded corners for button */
+    transition: background-color 0.3s; /* Transition effect for hover */
+  }
+  
+  .UserWiseSeries .export-btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .UserWiseSeries .back-main {
+    margin-top: 20px; /* Space above the main form area */
+  }
+  
+  .UserWiseSeries .back-main label {
+    font-weight: 500; /* Medium weight for labels */
+  }
+  
+  .UserWiseSeries .form-select {
+    width: 100%; /* Full width for select elements */
+  }
+  
+  .UserWiseSeries .table {
+    margin-top: 20px; /* Space above the table */
+    width: 100%; /* Full width for table */
+    text-align: center; /* Center text in table */
+  }
+  
+  .UserWiseSeries .table th, .table td {
+    vertical-align: middle; /* Center content vertically */
+  }
+  
+  .UserWiseSeries .table th {
+    background-color: #e9ecef; /* Light grey background for table header */
+    font-weight: bold; /* Bold font for table headers */
+  }
+  
+  .UserWiseSeries .table input {
+    text-align: center; /* Center text in input fields */
+    width: 60%; /* Limit width of input fields */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 767px) {
+    .UserWiseSeries  .main-content.shifted {
+      margin-left: 0; /* Remove left margin on small screens */
+    }
+  
+    .UserWiseSeries   .back-header {
+      text-align: center; /* Center header text on small screens */
+    }
+  
+    .UserWiseSeries   .back-main {
+      display: flex;
+      flex-direction: column; /* Stack inputs vertically */
+      align-items: stretch; /* Stretch to fill container */
+    }
+  
+    .UserWiseSeries   .back-main .col-md-2, .back-main .col-md-1 {
+      width: 100%; /* Full width for small screens */
+      margin-bottom: 10px; /* Margin between stacked inputs */
+    }
+  
+    .UserWiseSeries   .export-btn {
+      width: 100%; /* Full width for button on small screens */
+      margin-bottom: 10px; /* Space below the button */
+    }
+  
+    .UserWiseSeries   .table-responsive {
+      overflow-x: auto; /* Allow horizontal scrolling on small screens */
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .UserWiseSeries  .main-content {
+      padding: 15px; /* Adjust padding for medium screens */
+    }
+  }
+  

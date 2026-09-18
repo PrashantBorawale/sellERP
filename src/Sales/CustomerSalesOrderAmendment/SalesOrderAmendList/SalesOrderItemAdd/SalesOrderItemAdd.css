@@ -1,0 +1,91 @@
+/* Custom spacing between table rows and form elements */
+table th, table td {
+    padding: 12px;
+  }
+  
+  /* Extra space below radio buttons and button */
+  table td button {
+    margin-top: 10px;
+  }
+  
+  /* Ensuring text area is not too large */
+  textarea.form-control {
+    resize: vertical; /* Allow vertical resizing only */
+  }
+  .SalesOrderItemAddMaster {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .SalesOrderItemAdd-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .SalesOrderItemAdd-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .SalesOrderItemAdd-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .SalesOrderItemAdd-Main {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  /* Inputs and buttons for all screen sizes */
+  .SalesOrderItemAdd-Main label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .SalesOrderItemAdd-Main .form-control,
+  .SalesOrderItemAdd-Main .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .SalesOrderItemAdd-Main .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .SalesOrderItemAdd-header .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .SalesOrderItemAdd-header .d-flex {
+      justify-content: center;
+    }
+  
+    .SalesOrderItemAdd-Main .col-6,
+    .SalesOrderItemAdd-Main .col-md-3,
+    .SalesOrderItemAdd-Main .col-md-2 {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .SalesOrderItemAdd-Main .btn {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .SalesOrderItemAdd-header {
+      text-align: center;
+    }
+  }
+    

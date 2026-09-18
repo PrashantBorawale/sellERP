@@ -1,0 +1,66 @@
+.PurchaseOrderPDFMaster {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    background-color: white;
+  }
+.purchasepdf {
+   border: 3px solid black;  
+}
+
+  .purchasepdf-header{
+        align-items: center;
+        text-align: center;
+  }
+
+  .nhkadd1 {
+    font-size: large;
+    font-weight: bold;
+    margin: 3px;
+  }
+  .nhkadd {
+    font-size: medium;
+    font-weight: bold;
+    margin: 3px;
+  }
+  .rednhk {
+    font-weight: 400;
+    color: red;
+    font-size: 400%;
+    margin-left: -5px;
+  }
+
+  .purchaseammend {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    font-weight: bold;
+    padding: 5px;
+  }
+
+  .addName {
+     text-align: justify;
+     align-items: center;
+     margin-left: -150px;
+   }
+
+
+  .addcity {
+    align-items: center;
+    text-align: justify;
+    margin-left: 20px;
+  }
+
+  .sideroow {
+    border-left: 3px solid black;
+    text-align: justify;
+    font-size: medium;
+  }
+  .sideroww {
+    border-bottom: 3px solid black;
+  }
+
+  .tbleroo {
+    border-top: 3px solid black;
+  }
+  .PurchaseOrderPDFMaster .btn{
+    background-color: rgb(80, 80, 101);
+  }

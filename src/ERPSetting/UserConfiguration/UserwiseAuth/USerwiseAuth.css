@@ -1,0 +1,99 @@
+/* General Styles */
+.USerwiseAuth {
+    margin-top: 20px;
+  }
+  
+  .USerwiseAuth .header-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .Auth-main .form-control,
+  .Auth-main .form-select {
+    width: 100%;
+  }
+  
+  .Auth-table .table {
+    width: 100%;
+  }
+  
+  /* Shifting main content when the side navigation is open */
+  .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .main-content.shifted {
+    margin-left: 250px; /* Adjust based on the side nav width */
+  }
+  
+  /* Responsive Styling for Tablets and Mobile Devices */
+  @media (max-width: 991px) {
+    .main-content {
+      margin-left: 0;
+    }
+  
+    .Auth-main .row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .Auth-main .col-md-2, 
+    .Auth-main .col-md-1, 
+    .Auth-main .col-md-4 {
+      margin-bottom: 10px;
+    }
+  
+    .Auth-main .text-end {
+      text-align: start;
+      margin-bottom: 10px;
+    }
+  
+    .Auth-main .btn {
+      width: 100%;
+    }
+  
+    /* Table responsiveness */
+    .USerwiseAuth   .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .USerwiseAuth   .table {
+      width: 100%;
+    }
+  
+    .USerwiseAuth   .table thead {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Mobile specific adjustments */
+  @media (max-width: 576px) {
+    .USerwiseAuth   .prod-header {
+      text-align: center;
+    }
+  
+    .Auth-main .col-sm-3, 
+    .Auth-main .col-sm-9 {
+      width: 100%;
+    }
+  
+    .Auth-main .row {
+      text-align: left;
+    }
+  
+    .USerwiseAuth    .table thead {
+      font-size: 0.8rem;
+    }
+  
+    .Auth-main .btn {
+      width: 100%;
+      text-align: center;
+    }
+  
+    /* Adjust input and select widths on mobile */
+    .USerwiseAuth    .form-control, 
+    .USerwiseAuth  .form-select {
+      width: 100%;
+    }
+  }
+  

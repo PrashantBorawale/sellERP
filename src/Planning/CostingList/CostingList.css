@@ -1,0 +1,147 @@
+/* CostingList.css - Unified ERP Design */
+
+.CostingListMaster {
+    background-color: #f0f0f0;
+    min-height: 100vh;
+}
+
+.CostingList {
+    background-color: #ffffff;
+}
+
+/* Header Section */
+.CostingList-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 8px 15px;
+}
+
+.header-title {
+    color: blue; /* Restored to original blue */
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Buttons */
+.erp-btn-grey-sm {
+    display: inline-block;
+    background-color: rgba(235, 233, 233, 0.685);
+    padding: 3px 10px;
+    margin-left: 2px;
+    font-size: 11px;
+    color: #000;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.erp-btn-grey-sm:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Table Styling */
+.CostingList .erp-table thead th {
+    background-color: #007bff; /* Original ERP Blue */
+    color: white;
+    font-size: 11px;
+    padding: 6px 4px;
+    white-space: nowrap;
+    font-weight: 600;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.CostingList .erp-table tbody td {
+    padding: 4px;
+    vertical-align: middle;
+    font-size: 11px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+/* Footer Section */
+/* Tabs Styling */
+.erp-tabs .nav-link {
+    font-size: 11px;
+    font-weight: 600;
+    color: #495057;
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    margin-right: 2px;
+    padding: 4px 15px;
+    border-radius: 4px 4px 0 0;
+}
+
+.erp-tabs .nav-link.active {
+    background-color: #007bff;
+    color: white !important;
+    border-color: #007bff;
+}
+
+/* Form XS Styling */
+.form-control-xs, .form-select-xs {
+    height: 24px !important;
+    padding: 2px 5px !important;
+    font-size: 11px !important;
+    border-radius: 2px !important;
+}
+
+.table-input-xs {
+    width: 100%;
+    height: 22px;
+    border: 1px solid #ced4da;
+    font-size: 11px;
+    padding: 2px 4px;
+}
+
+.btn-xs {
+    padding: 1px 8px;
+    font-size: 10px;
+}
+
+/* Report & Add Views */
+.CostingReport-View, .AddNewCosting-View {
+    background-color: #fff;
+    min-height: 500px;
+}
+
+.search-bar-row {
+    border-radius: 4px;
+}
+
+.bg-warning-subtle {
+    background-color: #fff3cd !important;
+}
+
+/* Footer Section */
+.CostingList-Footer {
+    background-color: #e9ecef;
+    padding: 6px 15px;
+    border-top: 2px solid #007bff;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.CostingList-Footer .total-records {
+    color: #007bff;
+}
+
+/* Main Content Shift */
+.main-content {
+    transition: margin-left 0.3s ease-in-out;
+    width: 100%;
+}
+
+.main-content.shifted {
+    margin-left: 200px; /* Adjust based on SideNav width */
+}
+
+/* Column Specifics */
+.ps-table-header th {
+    background-color: #007bff !important;
+    color: white !important;
+    text-transform: capitalize;
+}

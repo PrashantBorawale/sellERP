@@ -1,0 +1,92 @@
+/* MachinePreventiveReport.css - Standardized with ToolManagement UI */
+
+.machine-preventive-report {
+  padding: 1rem;
+}
+
+.machine-preventive-report .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.machine-preventive-report .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.machine-preventive-report .shifted {
+  margin-left: 250px;
+}
+
+/* User Management Section */
+.machine-preventive-report .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.machine-preventive-report .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.machine-preventive-report .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.machine-preventive-report .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.machine-preventive-report .header-section .form-control,
+.machine-preventive-report .header-section .form-select,
+.machine-preventive-report .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.machine-preventive-report .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.machine-preventive-report .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.machine-preventive-report .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.machine-preventive-report .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.machine-preventive-report .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.machine-preventive-report .table {
+  background-color: #fff;
+}
+
+.machine-preventive-report .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.machine-preventive-report .btn-sm {
+  font-size: 0.8rem;
+}

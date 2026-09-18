@@ -1,0 +1,23 @@
+.ScrapRejectionEntryMaster {
+    min-height: 100vh;
+  }
+  
+
+  .ScrapRejectionEntry-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .ScrapRejectionEntry-header h5 {
+    margin: 0;
+  }
+  
+ 
+  
+  .ScrapRejectionEntry-form .form-label {
+    font-weight: bold;
+  }
+  
+  

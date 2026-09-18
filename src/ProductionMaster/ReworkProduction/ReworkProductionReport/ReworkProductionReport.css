@@ -1,0 +1,101 @@
+.ReworkProductionReport {
+  font-family: Arial, sans-serif;
+}
+
+.ReworkProductionReport-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.ReworkProductionReport-header .header-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.ReworkProductionReport-header select,
+.ReworkProductionReport-header .btn {
+  width: 100%;
+}
+
+.ReworkProductionReport-main label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.ReworkProductionReport-main input[type="date"],
+.ReworkProductionReport-main input[type="text"],
+.ReworkProductionReport-main select {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.ReworkProductionReport-main .btn {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .ReworkProductionReport-header .row .col-md-10,
+  .ReworkProductionReport-main .row .col-md-1 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .ReworkProductionReport-header .row,
+  .ReworkProductionReport-main .row {
+    flex-direction: column;
+  }
+
+  .ReworkProductionReport-header .header-title {
+    text-align: center;
+  }
+
+  .ReworkProductionReport-main .btn {
+    margin-top: 10px;
+  }
+
+  .table {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .ReworkProductionReport-main label {
+    font-size: 12px;
+  }
+
+  .table tbody td {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 576px) {
+  .ReworkProductionReport {
+    padding: 10px;
+  }
+
+  .ReworkProductionReport-header {
+    padding: 10px;
+  }
+
+  .ReworkProductionReport-main {
+    padding: 10px;
+  }
+
+  .table tbody td {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,396 @@
+/* Header Styling */
+.InprocessInspection-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.InprocessInspection-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.InprocessInspection-filter {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.InprocessInspection-card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+
+/* Tab Buttons */
+.InprocessInspection-filter button {
+  background-color: #16BFFF;
+  color: white;
+  border: 1px solid #16BFFF;
+  margin-right: 5px;
+}
+
+.InprocessInspection-filter button:hover {
+  background-color: #139ad6;
+  color: white;
+}
+
+.InprocessInspection-filter button.active {
+  background-color: #0e8dc0;
+  border-color: #0e8dc0;
+  color: white;
+}
+
+.InprocessInspection-Main .d-flex {
+  margin-top: 0 !important;
+}
+
+/* Form and Inputs */
+.InprocessInspection-Main label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.InprocessInspection-Main .form-control {
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  width: 100%;
+
+}
+
+.InprocessInspection-Main select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.InprocessInspection-Main button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.InprocessInspection-Main button:hover {
+  background-color: #0056b3;
+}
+
+/* Table Styling */
+.InprocessInspectionMaster .table-responsive {
+  overflow: auto;
+  margin-top: 20px;
+  border: 1px solid #dee2e6;
+  min-height: 100px;
+  max-width: 100%;
+  display: block;
+}
+
+.InprocessInspectionMaster .table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.InprocessInspectionMaster .table td,
+.InprocessInspectionMaster .table th {
+  white-space: nowrap;
+  padding: 10px;
+
+}
+
+.InprocessInspection-header .btn {
+  white-space: nowrap;
+
+}
+
+
+.enable-field-wrapper {
+  width: fit-content;
+  width: -moz-fit-content;
+  padding: 5px 15px;
+  margin-top: 150px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+
+}
+
+.InprocessInspectionMaster .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.InprocessInspectionMaster .table th,
+.InprocessInspectionMaster .table td {
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.InprocessInspectionMaster .table th {
+  background-color: #16BFFF;
+  color: white;
+  font-weight: bold;
+}
+
+.InprocessInspection-Main .table th {
+  background-color: #e9ecef;
+  color: black;
+}
+
+.InprocessInspectionMaster .table .btn-link {
+  font-size: 18px;
+  color: #007bff;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.InprocessInspectionMaster .table .btn-link:hover {
+  color: #0056b3;
+}
+
+.InprocessInspectionMaster .table .btn-link.text-danger:hover {
+  color: #d9534f;
+}
+
+.okqty {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  border: rgb(16, 245, 28);
+  background-color: rgb(16, 245, 28);
+  color: #fff;
+}
+
+.okqtyy {
+  border: #f5e50f;
+  color: white;
+  background-color: #f5e50f;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+.okqtyyt {
+  border: #ff3604;
+  color: white;
+  background-color: #ff3604;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+.okqtyyy {
+  border: #1c0cff;
+  color: white;
+  background-color: #1c0cff;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+.nummmr {
+  color: #1779e0;
+}
+
+/* Space between lower table and enable fields */
+.enable-field-wrapper {
+  margin-top: 45px !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.form-control-sm {
+  height: 24px;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.tab-buttons .btn {
+  width: auto !important;
+  flex: 0 0 auto !important;
+}
+
+@media (max-width: 991px) {
+
+  .InprocessInspection-Main .col-md-1,
+  .InprocessInspection-Main .col-md-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .InprocessInspection-header .header-title {
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .InprocessInspectionMaster .table th,
+  .table td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .InprocessInspection-header .header-title {
+    font-size: 16px;
+  }
+
+  .InprocessInspectionMaster .table th,
+  .table td {
+    font-size: 12px;
+  }
+
+  .InprocessInspectionMaster .table-responsive {
+    overflow-x: scroll;
+  }
+}
+
+/* ============================= */
+/* GLOBAL RESPONSIVE FIXES */
+/* ============================= */
+
+/* Make tables scroll properly */
+.InprocessInspectionMaster .table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+/* Remove fixed table width issue */
+.InprocessInspectionMaster .table {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* ============================= */
+/* TAB BUTTON RESPONSIVE */
+/* ============================= */
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap !important;
+}
+
+.tab-buttons .btn {
+  width: auto !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap;
+}
+
+
+/* ============================= */
+/* HEADER RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 992px) {
+  .InprocessInspection-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+
+  .InprocessInspection-header .btn {
+    width: 100%;
+  }
+}
+
+/* ============================= */
+/* FORM RESPONSIVE (ALL SCREENS) */
+/* ============================= */
+
+@media (max-width: 991px) {
+
+  /* Stack all form columns */
+  .InprocessInspection-Main .row {
+    flex-direction: column;
+  }
+
+  .InprocessInspection-Main .col-lg-3,
+  .InprocessInspection-Main .col-lg-4,
+  .InprocessInspection-Main .col-lg-6,
+  .InprocessInspection-Main .col-md-6 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}
+
+/* ============================= */
+/* QC INFO RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .qc-form .row {
+    flex-direction: column;
+  }
+
+  .qc-form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .qc-form .form-control {
+    width: 100%;
+  }
+}
+
+/* ============================= */
+/* REWORK & VISUAL TABLE FIX */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .table th,
+  .table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+}
+
+/* ============================= */
+/* ENABLE FIELD FIX */
+/* ============================= */
+
+@media (max-width: 576px) {
+  .enable-field-wrapper {
+    width: 100%;
+    text-align: left;
+  }
+}

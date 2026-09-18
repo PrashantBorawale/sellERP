@@ -1,0 +1,567 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================================================
+   GLOBAL ERP FONT STANDARDIZATION
+   Forces the entire application to use 'Inter' font family everywhere,
+   overriding all local CSS files, without breaking FontAwesome/Icons.
+   ========================================================================== */
+*:not(i):not(.fa):not(.fas):not(.far):not(.fal):not(.fab):not(.material-icons):not([class^="fa-"]):not([class*=" fa-"]):not([class^="icon-"]):not([class*=" icon-"]) {
+  font-family: 'Inter', Arial, sans-serif !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #f8fafc;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body.has-navbar {
+  padding-top: 70px !important;
+}
+
+main,
+.main-content {
+  padding: 15px;
+  min-height: calc(100vh - 70px);
+  height: auto;
+  overflow-y: visible;
+  overflow-x: hidden;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  width: 100%;
+  min-width: 0;
+}
+
+.main-content.shifted {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+@media (max-width: 1200px) {
+  .main-content.shifted {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+  }
+}
+@media (max-width: 992px) {
+  .main-content.shifted {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+}
+@media (max-width: 768px) {
+  .main-content.shifted {
+    margin-left: 180px;
+    width: calc(100% - 180px);
+  }
+}
+@media (max-width: 576px) {
+  .main-content.shifted {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+code {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* --- Global Table Responsiveness & Scrollbars --- */
+/* The global wildcard hides all scrollbars, so we MUST override it here for horizontal scrolling only */
+.table-responsive::-webkit-scrollbar {
+  display: block !important;
+  height: 8px;
+  width: 0px !important;
+}
+.table-responsive {
+  -ms-overflow-style: auto !important;  /* IE and Edge */
+  scrollbar-width: auto !important;  /* Firefox */
+  overflow-y: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* Global Table Layout Restraints */
+.erp-table-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.erp-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-y: visible !important;
+  overflow-x: auto;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* ==========================================================================
+   GLOBAL ERP TABLE ANTI-OVERLAP & UNIVERSAL RESPONSIVE SCALING
+   Ensures tables never overlap text or cut off data across all monitors,
+   laptops, and Windows display scaling settings (100%, 125%, 150%).
+   ========================================================================== */
+
+/* 1. Universal Table Cell Anti-Overlap & Flexible Heights */
+table, .table {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 1rem;
+  border-collapse: collapse !important;
+}
+
+table th, table td,
+.table th, .table td,
+.MuiTableCell-root {
+  height: auto !important;
+  min-height: 32px !important;
+  max-height: none !important;
+  line-height: 1.3 !important;
+  vertical-align: middle !important;
+  padding: 6px 6px !important;
+  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+  box-sizing: border-box !important;
+}
+
+/* Allow all columns and cells to wrap into 2 or 3 lines when text is long */
+table th.text-center, table td.text-center,
+.table th.text-center, .table td.text-center {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/* 2. Prevent Column Squishing & Data Cutting Off */
+table th, .table th, .MuiTableHead-root .MuiTableCell-root {
+  font-weight: 700 !important;
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/* 3. Global Horizontal Scroll Protection (Never Hide Table Data) */
+.table-responsive,
+.erp-table-wrapper,
+[class*="table-responsive"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  display: block !important;
+}
+
+/* 4. Global Table Header Standardization & Sticky Protection (Stops Text Bleeding) */
+table th, .table th,
+.MuiTableCell-head {
+  background-color: #f1f5f9 !important; /* Unified slate header background */
+  color: #334155 !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid #cbd5e1 !important;
+}
+
+table thead th, .table thead th,
+table th.sticky, .table th.sticky,
+table thead.sticky th, .table thead.sticky th {
+  position: sticky !important;
+  top: 0;
+  z-index: 10 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 4.5 Global Table Data Standardization */
+table td, .table td, .MuiTableCell-body {
+  color: #475569 !important; /* Premium Slate 600 text for readability */
+  border-bottom: 1px solid #e2e8f0 !important; /* Uniform subtle row border */
+  vertical-align: middle !important; /* Perfectly centers text and icons */
+}
+
+/* 5. Windows 125% & 150% Display Scaling Auto-Adjustments (Laptops & Small Screens) */
+@media (max-width: 1440px) {
+  table th, table td,
+  .table th, .table td {
+    font-size: 0.85rem !important;
+    padding: 8px 10px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  table th, table td,
+  .table th, .table td {
+    font-size: 0.80rem !important;
+    padding: 6px 8px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  table th, table td,
+  .table th, .table td {
+    font-size: 0.75rem !important;
+    padding: 6px 6px !important;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL ERP BUTTON STANDARDIZATION (PRIMARY BUTTONS)
+   Forces all primary buttons to share the exact same professional blue color.
+   ========================================================================== */
+.btn-primary,
+.user-btn,
+.perbtn1,
+.perbtn,
+.vndrbtn,
+.Workschedulebtn {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+  background-image: none !important; /* Removes some random gradients */
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.user-btn:hover,
+.perbtn1:hover,
+.perbtn:hover,
+.vndrbtn:hover,
+.Workschedulebtn:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-primary {
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+}
+
+/* ==========================================================================
+   GLOBAL ERP PAGE BACKGROUND STANDARDIZATION
+   Forces the outer page container to use a single unified background color.
+   ========================================================================== */
+body, 
+html,
+.App,
+.erp-page,
+.main-content,
+.home-login,
+.User-wise-permission,
+.user-configuration,
+.UserWiseSeries,
+.UserWiseProduction,
+.plant-series-permission,
+.VendorPageMain {
+  background-color: #f8fafc !important; /* Slate 50 */
+}
+
+/* ==========================================================================
+   GLOBAL ERP FORM INPUT STANDARDIZATION
+   Forces all text boxes and dropdowns to have identical borders and focus glows.
+   ========================================================================== */
+.form-control, 
+.form-select, 
+.form-control-sm, 
+.form-select-sm,
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="password"] {
+  border: 1px solid #cbd5e1 !important; /* Unified slate border */
+  border-radius: 6px !important;        /* Modern slightly rounded corners */
+  background-color: #ffffff !important; /* Ensure crisp white background */
+  color: #334155 !important;            /* Dark slate text */
+  box-shadow: none !important;          /* Remove random default shadows */
+}
+
+/* The Focus Ring (When clicking inside an input) */
+.form-control:focus, 
+.form-select:focus,
+.form-control-sm:focus,
+.form-select-sm:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus {
+  border-color: #2563eb !important;     /* Changes border to Primary Blue */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2) !important; /* Beautiful blue glow */
+  outline: none !important;             /* Removes ugly default browser outlines */
+}
+
+/* Disabled & Read-only Input Protection */
+.form-control:disabled,
+.form-select:disabled,
+input:disabled,
+.form-control[readonly] {
+  background-color: #e2e8f0 !important; /* Distinct light grey for disabled */
+  cursor: not-allowed !important;
+  color: #64748b !important;            /* Muted text color */
+}
+
+/* ==========================================================================
+   GLOBAL ERP ACTION BUTTON STANDARDIZATION (Red, Green, Grey)
+   Forces all secondary action buttons to match the premium theme.
+   ========================================================================== */
+
+/* Red "Danger" Buttons (Delete, Cancel) */
+.btn-danger, [class*="btn-danger"] {
+  background-color: #ef4444 !important; 
+  border-color: #ef4444 !important;
+  color: #ffffff !important;
+  background-image: none !important;
+}
+.btn-danger:hover, .btn-danger:focus, [class*="btn-danger"]:hover {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* Green "Success" Buttons (Save, Approve) */
+.btn-success, [class*="btn-success"] {
+  background-color: #10b981 !important; 
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+  background-image: none !important;
+}
+.btn-success:hover, .btn-success:focus, [class*="btn-success"]:hover {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* Grey "Secondary" Buttons (Back, Close) */
+.btn-secondary, [class*="btn-secondary"] {
+  background-color: #64748b !important; 
+  border-color: #64748b !important;
+  color: #ffffff !important;
+  background-image: none !important;
+}
+.btn-secondary:hover, .btn-secondary:focus, [class*="btn-secondary"]:hover {
+  background-color: #475569 !important;
+  border-color: #475569 !important;
+  box-shadow: 0 4px 6px rgba(100, 116, 139, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   GLOBAL ERP CARD & SHADOW STANDARDIZATION
+   Forces all white panels to have an identical premium drop-shadow and border-radius.
+   ========================================================================== */
+.card,
+.user-container,
+.Main-NavBar,
+.home-form,
+.login-card,
+[class$="-header"],
+[class$="-main"],
+[class$="-second"] {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important; /* Extremely subtle border for crispness */
+}
+
+/* ==========================================================================
+   GLOBAL ERP PAGE TITLE & HEADING STANDARDIZATION
+   Restores original heading colors/gradients while ensuring they are thick and bold.
+   ========================================================================== */
+.header-title,
+[class$="-header"] h2,
+[class$="-header"] h3,
+[class$="-header"] h4,
+[class$="-header"] h5,
+.Main-NavBar h2,
+.Main-NavBar h3,
+.Main-NavBar h4,
+.Main-NavBar h5,
+.page-title {
+  font-weight: 800 !important;                 /* Extra boldness for all page headings */
+  letter-spacing: -0.015em !important;         /* Crisp tracking */
+}
+
+/* ==========================================================================
+   GLOBAL ERP ICON & TABLE ROW STANDARDIZATION
+   Centralizes all standalone action icons and unifies row hover effects.
+   ========================================================================== */
+
+/* 1. Global Table Row Hover Effect */
+table tbody tr:hover > td, 
+.table tbody tr:hover > td,
+.MuiTableRow-root:hover > td,
+.MuiTableRow-root:hover > th {
+  background-color: #f1f5f9 !important; /* Soft slate highlight on hover */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* 2. Standalone Action Icons (Safely ignoring icons inside buttons) */
+
+/* Edit / Modify (Primary Blue) */
+.fa-edit:not(button *):not(.btn *), 
+.fa-pen:not(button *):not(.btn *) {
+  color: #2563eb !important;
+  transition: color 0.2s ease;
+  cursor: pointer !important;
+}
+.fa-edit:not(button *):not(.btn *):hover, 
+.fa-pen:not(button *):not(.btn *):hover {
+  color: #1d4ed8 !important;
+}
+
+/* Trash / Delete (Danger Red) */
+.fa-trash:not(button *):not(.btn *), 
+.fa-trash-alt:not(button *):not(.btn *) {
+  color: #ef4444 !important;
+  transition: color 0.2s ease;
+  cursor: pointer !important;
+}
+.fa-trash:not(button *):not(.btn *):hover, 
+.fa-trash-alt:not(button *):not(.btn *):hover {
+  color: #dc2626 !important;
+}
+
+/* Eye / View (Secondary Slate) */
+.fa-eye:not(button *):not(.btn *) {
+  color: #64748b !important;
+  transition: color 0.2s ease;
+  cursor: pointer !important;
+}
+.fa-eye:not(button *):not(.btn *):hover {
+  color: #475569 !important;
+}
+
+/* Add / Plus (Success Green) */
+.fa-plus:not(button *):not(.btn *), 
+.fa-plus-circle:not(button *):not(.btn *) {
+  color: #10b981 !important;
+  transition: color 0.2s ease;
+  cursor: pointer !important;
+}
+.fa-plus:not(button *):not(.btn *):hover, 
+.fa-plus-circle:not(button *):not(.btn *):hover {
+  color: #059669 !important;
+}
+
+/* ==========================================================================
+   GLOBAL ERP TABLE STRIPES & ICON LIBRARY UNIFICATION
+   Removes alternating grey/white stripes and forces identical icon fonts.
+   ========================================================================== */
+
+/* 1. Eliminate Grey/White Table Striping (Force Unified White Background) */
+table tbody tr,
+table tbody tr:nth-of-type(odd),
+table tbody tr:nth-of-type(even),
+.table-striped > tbody > tr:nth-of-type(odd) > *,
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  box-shadow: none !important; /* Removes Bootstrap's striped box-shadow inset */
+}
+
+/* 2. Unify Icon Library to FontAwesome 5 Solid */
+.fa-edit, .fa-pen, .fa-trash, .fa-trash-alt, .fa-eye, .fa-plus, .fa-plus-circle {
+  font-weight: 900 !important; /* Forces Solid style everywhere (removes 'regular/hollow' mismatch) */
+  font-family: "Font Awesome 5 Free", "FontAwesome" !important;
+}
+
+/* Force fa-trash and fa-trash-alt to look perfectly identical */
+.fa-trash:before {
+  content: "\f2ed" !important; 
+}
+/* Force fa-pen and fa-edit to look perfectly identical */
+.fa-pen:before {
+  content: "\f044" !important;
+}
+
+/* ==========================================================================
+   GLOBAL SIDEBAR & FLEXBOX RESPONSIVENESS
+   Ensures sections shrink properly when the sidebar opens, preventing horizontal layout blowout.
+   ========================================================================== */
+
+/* 1. Force the main layout and white cards to shrink in flex containers */
+.main-content, 
+.erp-page, 
+.App,
+.card,
+.user-container,
+.Main-NavBar,
+.centerMain,
+.purchase-register,
+[class*="Register"],
+[class$="-header"],
+[class$="-main"],
+[class$="-second"] {
+  min-width: 0 !important;     /* Critical for Flexbox: allows container to shrink below content size */
+  max-width: 100% !important;  /* Locks maximum width to the screen */
+}
+
+/* 2. Force table wrappers to be strictly bounded by the shrinking card */
+.table-responsive,
+.erp-table-wrapper,
+[class*="table-responsive"] {
+  min-width: 0 !important;
+}
+
+/* 3. Extreme Safety Catch: If a developer forgot to wrap a table in .table-responsive */
+.card > table,
+.centerMain > table,
+.purchase-register > table,
+[class*="Register"] > table,
+[class$="-main"] > table,
+[class$="-second"] > table {
+  display: block !important;
+  overflow-x: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch !important;
+}

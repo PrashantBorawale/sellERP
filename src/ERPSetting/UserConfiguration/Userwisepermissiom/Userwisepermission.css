@@ -1,0 +1,39 @@
+.user-wise-permission {
+    background-color: #f8f9fa;
+  }
+  
+  .user-wise-permission .main-content {
+    transition: margin-left 0.3s ease-in-out;
+  }
+  
+  .user-wise-permission .main-content.shifted {
+    margin-left: 250px;
+  }
+  
+  .user-wise-permission .header-title {
+    color: #3498db;
+    font-weight: bold;
+  }
+  
+  .user-wise-permission .select-permission label {
+    font-weight: bold;
+  }
+  
+  .user-wise-permission .table {
+    background-color: white;
+  }
+  
+  .user-wise-permission .table-dark th {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+  
+  .user-wise-permission .btn-outline-secondary {
+    color: #3498db;
+    border-color: #3498db;
+  }
+  
+  .user-wise-permission .btn-outline-secondary:hover {
+    background-color: #3498db;
+    color: white;
+  }

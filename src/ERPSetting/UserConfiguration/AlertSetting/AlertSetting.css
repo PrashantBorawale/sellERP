@@ -1,0 +1,122 @@
+/* General Layout */
+.plant-Alertt {
+    margin-top: 20px;
+  }
+  
+  .plant-Alertt .Main-NavBar {
+    position: relative;
+  }
+  
+  .plant-Alertt .prod-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .plant-Alertt .prod-header h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .plant-Alertt .select-department {
+    display: flex;
+    align-items: center;
+  }
+  
+  .plant-Alertt .select-department label {
+    margin-right: 10px;
+  }
+  
+  .plant-Alertt .form-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+  }
+  
+  /* Responsive Table */
+  .plant-Alertt .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .plant-Alertt .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .plant-Alertt .table th, .table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .plant-Alertt .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .plant-Alertt .shifted {
+    margin-left: 250px;
+  }
+  
+  /* Checkbox Alignment */
+  .plant-Alertt .form-check-input {
+    margin-left: 0;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 1200px) {
+    .plant-Alertt .prod-header h5 {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .plant-Alertt .main-content {
+      margin-left: 0;
+    }
+  
+    .plant-Alertt .prod-header h5 {
+      font-size: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .plant-Alertt .prod-header h5 {
+      font-size: 1.1rem;
+    }
+  
+    .plant-Alertt  .form-select {
+      width: 100%;
+    }
+  
+    .plant-Alertt .select-department {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .plant-Alertt  .table th, .table td {
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .plant-Alertt  .prod-header h5 {
+      font-size: 1rem;
+    }
+  
+    .plant-Alertt   .table th, .table td {
+      font-size: 0.75rem;
+    }
+  
+    .plant-Alertt   .form-select {
+      width: 100%;
+    }
+  
+    .plant-Alertt  .select-department {
+      width: 100%;
+    }
+  
+    .plant-Alertt  .select-department label {
+      margin-bottom: 5px;
+    }
+  }
+  

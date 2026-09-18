@@ -1,0 +1,85 @@
+/* General container styling */
+.CompanySettingChange {
+   
+        font-family: Arial, sans-serif;
+      }
+      
+      .CompanyHistory-header {
+        background-color: #f8f9fa; /* Light background for header */
+        border-bottom: 1px solid #dee2e6; /* Border for header */
+        padding: 10px 15px; /* Padding around header */
+        border-radius: 5px;
+      }
+      
+      
+      .CompanyHistory .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .CompanyHistory .header-title {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      
+      .CompanyHistory .button-group .btn {
+        font-size: 0.9rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+      }
+      
+      .CompanyHistory .button-group .btn:hover {
+        background-color: #0056b3;
+      }
+      
+      .filter-section label {
+        font-weight: bold;
+      }
+      
+      .filter-section .form-control {
+        margin-bottom: 10px;
+      }
+      
+      .CompanyHistory .table-section {
+        margin-top: 20px;
+      }
+      
+      .CompanyHistory .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+      }
+      
+      .CompanyHistory .table .form-control {
+        padding: 0.25rem 0.5rem;
+      }
+      
+      @media (max-width: 768px) {
+        .CompanyHistory   .main-content {
+          margin-left: 0;
+        }
+      
+        .CompanyHistory  .header-section {
+          flex-direction: column;
+          text-align: center;
+        }
+      
+        .CompanyHistory   .filter-section .row {
+          flex-direction: column;
+        }
+      
+        .CompanyHistory  .filter-section .col-md-4 {
+          width: 100%;
+          margin-bottom: 15px;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .CompanyHistory  .button-group .btn {
+          display: block;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+      }
+      

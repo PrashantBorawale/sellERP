@@ -1,0 +1,71 @@
+.WeekMaster {
+    font-family: Arial, sans-serif;
+  }
+  
+  .WeekMaster .header-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  .Week-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    border-bottom: 2px solid #dee2e6;
+  }
+  .WeekMaster .Week-Main {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .WeekMaster  .Week-header {
+    margin-bottom: 20px;
+  }
+  
+  .WeekMaster .Week-table .table {
+    margin-top: 20px;
+  }
+  
+  .WeekMaster .table-responsive {
+    overflow-x: auto;
+  }
+  
+
+  
+  @media (max-width: 991px) {
+    .WeekMaster .main-content {
+      padding-left: 0;
+    }
+    
+    .Week-header h5 {
+      text-align: center;
+    }
+  
+    .WeekMaster  .btn-primary {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .WeekMaster  .form-control, .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .WeekMaster   .col-md-2, .col-sm-6, .col-sm-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .WeekMaster   .table-responsive {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .WeekMaster   .table-responsive {
+      font-size: 1rem;
+    }
+  }
+  

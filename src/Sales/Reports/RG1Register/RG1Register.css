@@ -1,0 +1,75 @@
+
+.RG1RegisterMaster {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .RG1Register-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  }
+  
+  .RG1Register-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .RG1Register-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .RG1RegisterMain {
+    padding: 15px;
+    background-color: #f8f9fa;
+  }
+  
+  /* Inputs and buttons for all screen sizes */
+  .RG1Register-Main label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .RG1Register-Main .form-control,
+  .RG1Register-Main .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .RG1Register-Main .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .RG1Register-header .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .RG1Register-header .d-flex {
+      justify-content: center;
+    }
+  
+    .RG1Register-Main .col-6,
+    .RG1Register-Main .col-md-3,
+    .RG1Register-Main .col-md-2 {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .RG1Register-Main .btn {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .RG1Register-header {
+      text-align: center;
+    }
+  }
+  

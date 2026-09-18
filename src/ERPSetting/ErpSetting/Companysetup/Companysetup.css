@@ -1,0 +1,190 @@
+.company-setup {
+  padding: 20px;
+  
+}
+
+.company-header{
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .CompanySetup .setup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.CompanySetup .header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.CompanySetup .header-left h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.CompanySetup .last-updated {
+  font-size: 12px;
+  color: #666;
+}
+
+.CompanySetup .general-setting-btn {
+  padding: 6px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.CompanySetup .tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.CompanySetup .tab {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+}
+
+.CompanySetup .tab.active {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
+}
+
+.CompanySetup .form-container {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.CompanySetup .form-row {
+  display: flex;
+  gap: 40px;
+}
+
+.CompanySetup .form-column {
+  flex: 1;
+}
+
+.CompanySetup .form-group {
+  margin-bottom: 15px;
+}
+
+.CompanySetup .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.CompanySetup .input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.CompanySetup input[type="text"],
+.CompanySetup input[type="email"],
+.CompanySetup textarea {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.CompanySetup textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.CompanySetup .short-name {
+  width: 100px !important;
+}
+
+.CompanySetup .helper-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.CompanySetup .signature-placeholder {
+  width: 100px;
+  height: 40px;
+  border: 1px dashed #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .CompanySetup .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .setup-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .CompanySetup .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .CompanySetup .tabs {
+    flex-wrap: wrap;
+  }
+
+  .CompanySetup .tab {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  .CompanySetup .form-container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-setup {
+    padding: 10px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .short-name {
+    width: 100% !important;
+  }
+
+  .signature-placeholder {
+    width: 100%;
+  }
+}

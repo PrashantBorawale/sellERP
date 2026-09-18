@@ -1,0 +1,78 @@
+
+.OutwardChallanListMaster {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .OutwardChallanList-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .OutwardChallanList-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .OutwardChallanList-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .OutwardChallanList-Main {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  /* Inputs and buttons for all screen sizes */
+  .OutwardChallanList-Main label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .OutwardChallanList-Main .form-control,
+  .OutwardChallanList-Main .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .OutwardChallanList-Main .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .OutwardChallanList-header .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .OutwardChallanList-header .d-flex {
+      justify-content: center;
+    }
+  
+    .OutwardChallanList-Main .col-6,
+    .OutwardChallanList-Main .col-md-3,
+    .OutwardChallanList-Main .col-md-2 {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .OutwardChallanList-Main .btn {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .OutwardChallanList-header {
+      text-align: center;
+    }
+  }
+  

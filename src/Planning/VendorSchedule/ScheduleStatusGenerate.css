@@ -1,0 +1,117 @@
+/* ScheduleStatusGenerate.css - High-density ERP List View */
+
+.ScheduleStatusGenerateMaster {
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+.VendorScheduleList-Container {
+  background-color: #fff;
+  margin: 0 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.VendorScheduleList-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  border-bottom: 1px solid #ced4da;
+}
+
+.VendorScheduleList-header .header-title {
+  color: blue;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-generate {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #333;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-generate svg {
+  color: #007bff;
+  font-size: 14px;
+}
+
+.btn-generate:hover {
+  background-color: #16bfff;
+  color: white;
+}
+
+.btn-generate:hover svg {
+  color: white;
+}
+
+/* Table Section */
+.VendorScheduleList-TableSection {
+  padding: 0;
+}
+
+.VendorScheduleList-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.VendorScheduleList-table thead th {
+  background-color: #16bfff;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 5px;
+  border: 1px solid #0ea8e6;
+  white-space: nowrap;
+}
+
+.VendorScheduleList-table tbody td {
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.VendorScheduleList-table tr:hover {
+  background-color: #f1f3f5;
+}
+
+/* Grid Area (Empty) */
+.VendorScheduleList-GridSection {
+  min-height: 450px;
+  border: 1px solid #dee2e6;
+  margin: 0;
+}
+
+/* Footer */
+.VendorScheduleList-Footer {
+  background-color: #e9ecef;
+  padding: 5px 15px;
+  border-top: 2px solid #16bfff;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Main Content Shift for SideNav */
+.main-content {
+  transition: margin-left 0.3s ease;
+  padding-top: 60px;
+}
+
+.main-content.shifted {
+  margin-left: 250px;
+}

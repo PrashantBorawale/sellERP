@@ -1,0 +1,177 @@
+/* Master Report Styles - Mirroring CustomerSupplierLink.css */
+.Report {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.Report .main-content {
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.Report .main-content.shifted {
+  margin-left: 250px;
+}
+
+/* Header Section */
+.Report .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.Report .header-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1fb5ff; /* Branded Blue */
+  margin: 0;
+}
+
+/* Tab & Filter Section */
+.Report .header-section {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.Report .tabs-wrapper {
+  background-color: #f8f9fa; /* Match reference */
+  padding: 10px 10px 0 10px; /* Added padding for tabs container */
+}
+
+.Report .custom-nav-tabs {
+  gap: 10px;
+}
+
+.Report .custom-nav-tabs .nav-link {
+  border: none;
+  background-color: #e9ecef; /* Match reference box style */
+  color: #495057;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.Report .custom-nav-tabs .nav-link.active {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(31, 181, 255, 0.2);
+}
+
+/* Filter Controls - Box behind inputs */
+.Report .filter-inputs-container {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 0 0 4px 4px;
+}
+
+.Report .filter-btn {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.Report .filter-btn:hover {
+  background-color: #1fb5ff !important;
+  color: #fff !important;
+  border-color: #1fb5ff;
+}
+
+/* Table Styles */
+.Report .table-container {
+  background-color: #fff;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.Report .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Report .custom-table {
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 14px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.Report .custom-table thead th {
+  background-color: #1fb5ff;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+.Report .custom-table tbody td {
+  padding: 8px 10px;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.Report .custom-table tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+/* Footer Totals */
+.Report .footer-totals-bar {
+  background-color: #f8f9fa;
+  padding: 8px 15px;
+  border-top: 1px solid #dee2e6;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Report .total-value {
+  color: #1fb5ff;
+}
+
+/* Form Controls */
+.Report .form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.Report .form-select {
+  height: 32px;
+  font-size: 14px;
+  padding: 0 10px;
+  border: 1px solid #ced4da;
+}
+
+/* Responsiveness */
+@media (max-width: 991.98px) {
+  .Report .col-md-4 {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .Report .justify-content-end {
+    justify-content: flex-start !important;
+  }
+}

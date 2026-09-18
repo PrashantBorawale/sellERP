@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  margin-top: 60px;
+  transition: margin-left 0.3s;
+}
+.main-content.shifted {
+  margin-left: 260px;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.AddNewItemPage {
+  background-color: rgb(241, 242, 244);
+}
+.Main {
+  background-color: rgb(241, 242, 244);
+  height: 207vh;
+  width: 100%;
+  text-align: start;
+}
+
+.top-but2 {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f8f9fa;;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.assd {
+  background-color: white;
+  height: auto;
+  padding: 20px 20px;
+}
+.addnewitemmmmm {
+  background-color: white;
+  padding: 20px 20px;
+  margin: 10px 10px;
+}
+.AddNewMain {
+  margin: 50px 0;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background-color: #f8f9fa;;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.top-but2 label {
+  margin-right: 10px;
+}
+
+.top-but2 input {
+  margin-right: 10px;
+}
+
+.btn-uper {
+  margin-right: 10px;
+  background-color: rgba(235, 233, 233, 0.685);
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+#pills-tab {
+  text-align: start;
+  margin-top: 20px;
+}
+/* custom.css */
+.nav-pills .nav-link {
+  color: grey; /* Default text color for buttons */
+  background-color: white; /* Default background color for buttons */
+}
+.nav-pills .nav-link:hover {
+  color: gray;
+}
+.nav-pills .nav-link.active {
+  background-color: blueviolet !important; /* Active button background color */
+  color: white !important; /* Active button text color */
+}
+
+.nav-item button {
+  background-color: white;
+  color: grey;
+  padding: 12px;
+  margin: 10px;
+  background-color: blueviolet;
+  color: grey;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .main-content.shifted {
+    margin-left: 200px;
+  }
+  .top-but2 {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-content.shifted {
+    margin-left: 60px;
+  }
+  .top-but2 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form {
+    height: auto;
+    padding: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .main-content.shifted {
+    margin-left: 60px;
+  }
+  .top-but2 {
+    flex-direction: column;
+    align-items: start;
+  }
+  .form {
+    height: auto;
+    padding: 10px;
+  }
+}
+.btn {
+  background-color: rgba(235, 233, 233, 0.685);
+  margin-left: -20px;
+  color: black;
+}
+.btn:hover{
+  background-color: black;
+}
+
+@media (max-width: 576px) {
+  .d-flex {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px; /* Add some margin between elements on smaller screens */
+  }
+
+  .me-2 {
+    margin-bottom: 5px; /* Add some margin below each element */
+  }
+
+  #input {
+    width: 100%; /* Make the input field full width */
+    margin-bottom: 5px; /* Add some margin below the input field */
+  }
+}
+.AddNewItemPage .btn {
+  background-color: rgba(235, 233, 233, 0.685);
+  border: none;
+}
+.AddNewItemPage .btn:hover {
+  background-color: rgb(206, 205, 205);
+  color: black;
+  border: none;
+}
+.bjkd {
+  border: none;
+  background-color: blueviolet;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  width: 80%;
+  margin: 5px;
+}

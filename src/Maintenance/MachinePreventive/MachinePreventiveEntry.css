@@ -1,0 +1,68 @@
+/* Global Layout */
+.machinepreventiveentry {
+  padding: 1rem;
+}
+
+.machinepreventiveentry .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.machinepreventiveentry .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.machinepreventiveentry .shifted {
+  margin-left: 250px;
+}
+
+/* User Management Section */
+.machinepreventiveentry .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.machinepreventiveentry .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.machinepreventiveentry .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.machinepreventiveentry .header-section .form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.machinepreventiveentry .header-section .form-control,
+.machinepreventiveentry .header-section .form-select,
+.machinepreventiveentry .header-section .btn {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+.machinepreventiveentry .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.machinepreventiveentry .user-list-table th,
+.machinepreventiveentry .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.machinepreventiveentry .table {
+  background-color: #fff;
+}
+
+.machinepreventiveentry .btn {
+  margin-left: 5px;
+}

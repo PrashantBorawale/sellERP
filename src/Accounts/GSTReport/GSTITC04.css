@@ -1,0 +1,201 @@
+/* GSTITC04.css - Standardized Report UI */
+
+.itc04-page {
+  padding: 1rem;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+.itc04-page .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.itc04-page .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.itc04-page .shifted {
+  margin-left: 250px;
+}
+
+/* Header Action Section */
+.itc04-page .top-action-bar {
+  background-color: #fff;
+  padding: 10px 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.itc04-page .header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1fb5ff;
+  margin: 0;
+}
+
+.itc04-page .action-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #333;
+  margin-right: 5px;
+}
+
+/* Filter Section */
+.itc04-page .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.itc04-page .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 2px;
+}
+
+.itc04-page .form-control-sm,
+.itc04-page .form-select-sm {
+  font-size: 0.8rem;
+  border-color: #ced4da;
+  height: 32px;
+}
+
+/* Button Styling - No Hover Color */
+.itc04-page .btn {
+  margin-left: 5px;
+  font-size: 13px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.itc04-page .excel-icon {
+  color: #217346;
+  font-size: 16px;
+}
+
+.itc04-page .search-icon {
+  color: #16bfff;
+  font-size: 14px;
+}
+
+/* Table Section */
+.itc04-page .table-container {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.itc04-page .table-responsive {
+  max-height: 380px; /* Approximately 9 rows + header */
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.itc04-page .custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.72rem;
+}
+
+.itc04-page .custom-table thead th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 5px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.itc04-page .custom-table tbody td {
+  padding: 8px 8px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.itc04-page .custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.itc04-page .custom-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* Numeric alignment */
+.itc04-page .text-right {
+  text-align: right !important;
+}
+
+.itc04-page .text-center {
+  text-align: center !important;
+}
+
+/* Footer Section */
+.itc04-page .footer-summary {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+}
+
+/* Custom scrollbar - Size 8px, No Hover Change */
+.itc04-page .table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.itc04-page .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.itc04-page .table-responsive::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+  border-radius: 4px;
+}
+
+.itc04-page .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #ccc !important;
+}
+
+/* Checkbox Alignment Fix */
+.itc04-page .form-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0;
+}
+
+.itc04-page .form-check-input {
+  margin-top: 0;
+}
+
+.itc04-page .form-check-label {
+  font-size: 0.8rem;
+  color: #333;
+  white-space: nowrap;
+}

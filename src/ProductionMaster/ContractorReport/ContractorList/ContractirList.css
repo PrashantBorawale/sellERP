@@ -1,0 +1,77 @@
+.ContractorListMaster {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .ContractorList-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .ContractorList-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .ContractorList-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ContractorList-Main {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  /* Inputs and buttons for all screen sizes */
+  .ContractorList-Main label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .ContractorList-Main .form-control,
+  .ContractorList-Main .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .ContractorList-Main .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .ContractorList-header .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .ContractorList-header .d-flex {
+      justify-content: center;
+    }
+  
+    .ContractorList-Main .col-6,
+    .ContractorList-Main .col-md-3,
+    .ContractorList-Main .col-md-2 {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .ContractorList-Main .btn {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .ContractorList-header {
+      text-align: center;
+    }
+  }
+  

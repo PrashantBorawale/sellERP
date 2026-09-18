@@ -1,0 +1,147 @@
+/* Golden Standard UI for PandingQCList */
+.PandingQCListMaster {
+  height: auto;
+  font-family: 'Inter', Arial, sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.PandingQCListMaster .row,
+.PandingQCListMaster .col-md-12 {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.PandingQCListMaster .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.PandingQCList-header {
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.PandingQCList-header .header-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.PandingQCList-header .purch {
+  color: #64748b;
+  font-weight: 600;
+  -webkit-text-fill-color: initial;
+}
+
+.PandingQCListMaster .main-content {
+  width: 100%;
+  padding: 24px;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.PandingQCListMaster .shifted {
+  margin-left: 250px !important;
+  width: calc(100vw - 250px) !important;
+}
+
+/* Inputs and Buttons */
+.PandingQCListMaster .form-control,
+.PandingQCListMaster .form-select {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.PandingQCListMaster .form-control:focus,
+.PandingQCListMaster .form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+}
+
+.PandingQCListMaster .vndrbtn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  border: none !important;
+  border-radius: 8px;
+  color: white !important;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.PandingQCListMaster .vndrbtn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+  color: white !important;
+}
+
+.PandingQCList-Main {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Screen-Fit Squished Table Setup */
+.PandingQCListMaster .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important; 
+  background: transparent;
+  display: block;
+}
+
+.PandingQCListMaster .table {
+  width: 100% !important;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.PandingQCListMaster .table th,
+.PandingQCListMaster .table td {
+  white-space: normal !important; 
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  font-size: 0.65rem !important; 
+  padding: 6px 4px !important; 
+  text-align: center;
+  vertical-align: middle;
+}
+
+.PandingQCListMaster .table th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.PandingQCListMaster .table td {
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Specific component styles retained from original */
+.PandingQCListMaster label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 4px;
+}

@@ -1,0 +1,74 @@
+.ContractorReportMaster {
+    margin-top: 0px;
+  }
+  
+  /* Header Styling */
+  .ContractorReport-header {
+    background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+  }
+  
+  .ContractorReport-header .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Flex wrapping for buttons and select dropdowns */
+  .ContractorReport-header .d-flex {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ContractorReport-Main {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  /* Inputs and buttons for all screen sizes */
+  .ContractorReport-Main label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .ContractorReport-Main .form-control,
+  .ContractorReport-Main .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+ 
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .ContractorReport-header .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .ContractorReport-header .d-flex {
+      justify-content: center;
+    }
+  
+    .ContractorReport-Main .col-6,
+    .ContractorReport-Main .col-md-3,
+    .ContractorReport-Main .col-md-2 {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .ContractorReport-Main .btn {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .ContractorReport-header {
+      text-align: center;
+    }
+  }
+  

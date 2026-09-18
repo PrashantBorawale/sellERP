@@ -1,0 +1,227 @@
+/* General Layout */
+.UserPermission {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+  }
+  
+
+  
+  /* .UserPermission .Main-NavBar {
+    display: flex;
+  }
+  
+
+  .UserPermission .main-content {
+    padding: 20px;
+    transition: all 0.3s ease;
+    background-color: white;
+    min-height: 100vh;
+    margin-left: 0;
+  }
+  
+  .UserPermission .shifted {
+    margin-left: 250px;
+  } */
+  
+  .Permission .header {
+    margin-top: 20px;
+    padding: 15px 10px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .Permission .header-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .Permission .header .btn {
+    margin-left: 10px;
+    padding: 6px 15px;
+  }
+  
+  /* Module Selection Styling */
+  .Permission .col-md-4 h6 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .Permission .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .Permission .form-check-label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* Search Section */
+  .Permission .header-section {
+    margin-bottom: 20px;
+  }
+  
+  .Permission .header-section .form-check-label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .Permission  .header-section input[type="text"] {
+    height: 35px;
+  }
+  
+  .Permission .header-section .btn-primary {
+    padding: 6px 12px;
+  }
+  
+  /* Parameter Table */
+  .parameter-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  .parameter-table th,
+  .parameter-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    text-align: center;
+  }
+  
+  .parameter-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  
+  .parameter-table td {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  
+  .parameter-table .form-select {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .parameter-table .btn-success {
+    padding: 5px 10px;
+    width: 100%;
+  }
+  
+  /* Responsive Design for Tablets and Small Screens */
+  @media (max-width: 1200px) {
+    .Permission  .main-content {
+      padding: 15px;
+    }
+  
+    .Permission  .header .btn {
+      margin-left: 5px;
+      padding: 5px 10px;
+    }
+  
+    .Permission  .parameter-table th, .parameter-table td {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+  
+    .Permission .parameter-table .btn-success {
+      padding: 5px 8px;
+    }
+  }
+  
+  /* Responsive Design for Mobile Screens */
+  @media (max-width: 768px) {
+    .Permission  .header .col-md-2,
+    .Permission  .header .col-md-10 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  
+    .Permission  .header .col-md-10 {
+      text-align: center;
+    }
+  
+    .Permission  .header-section .form-check-label,
+    .Permission  .header-section .btn-primary {
+      display: block;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+  
+    .Permission .parameter-table th,
+    .Permission   .parameter-table td {
+      font-size: 12px;
+      padding: 8px;
+    }
+  
+    .Permission .header-title {
+      text-align: center;
+      font-size: 18px;
+    }
+  
+    .Permission  .form-select {
+      width: 100%;
+    }
+  
+    .Permission  .header-section input[type="text"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .Permission   .header-section .btn-primary {
+      width: 100%;
+    }
+  
+    .Permission   .Permission .header-title {
+      text-align: center;
+    }
+  
+    .Permission   .main-content {
+      margin-left: 0; /* No shift on mobile */
+    }
+  }
+  
+  /* Extra Small Screens (Phones) */
+  @media (max-width: 576px) {
+    .header-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .header-section .form-check-label,
+    .header-section input[type="text"],
+    .header-section .btn-primary {
+      width: 100%;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  
+    .parameter-table th,
+    .parameter-table td {
+      font-size: 11px;
+      padding: 6px;
+    }
+  
+    .parameter-table .btn-success {
+      width: 100%;
+    }
+  
+    .main-content {
+      padding: 10px;
+    }
+  }
+  
+  /* Side Nav Styles (for visibility across screen sizes) */
+  .Permission .side-nav-open .main-content {
+    margin-left: 250px;
+  }
+  
+  @media (max-width: 768px) {
+    .side-nav-open .main-content {
+      margin-left: 0;
+    }
+  }
+  

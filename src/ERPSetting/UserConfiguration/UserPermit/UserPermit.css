@@ -1,0 +1,145 @@
+.UserPermit {
+  font-family: Arial, sans-serif;
+}
+
+.UserPermit.permit-header {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px; /* Rounded corners for the header */
+}
+
+.UserPermit .Permission .header-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.UserPermit .user-permit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Adjust layout for smaller screens */
+  margin-bottom: 20px;
+}
+
+.UserPermit .user-select {
+  width: 200px;
+  padding: 5px;
+}
+
+.UserPermit .export-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Ensure buttons wrap on smaller screens */
+}
+
+.UserPermit .select-all {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.UserPermit .search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.UserPermit .permissions-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Adjust layout for smaller screens */
+}
+
+.UserPermit .modules-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.UserPermit .module-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.UserPermit .module-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.UserPermit .master-pages {
+  flex: 1;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.UserPermit .master-pages h3 {
+  margin-bottom: 10px;
+}
+
+.UserPermit .permission-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.UserPermit .submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3e51e1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.UserPermit .submit-button:hover {
+  background-color: #8770eb;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .UserPermit .permissions-container {
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .UserPermit .modules-list,
+  .UserPermit .master-pages {
+    flex: none; /* Remove flex-grow */
+    width: 100%; /* Full width for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .UserPermit .user-permit-header {
+    flex-direction: column; /* Stack header content vertically */
+    align-items: flex-start;
+    gap: 10px; /* Add spacing between elements */
+  }
+
+  .UserPermit .export-buttons {
+    justify-content: flex-start;
+  }
+
+  .UserPermit .user-select {
+    width: 100%; /* Full width dropdown on mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .UserPermit .submit-button {
+    width: 100%; /* Full width submit button for mobile */
+  }
+
+  .UserPermit .search-input {
+    width: 100%;
+    font-size: 14px; /* Slightly smaller text */
+  }
+}

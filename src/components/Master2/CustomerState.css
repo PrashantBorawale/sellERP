@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  margin-top: 60px;
+  transition: margin-left 0.3s;
+}
+.main-content.shifted {
+  margin-left: 260px;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.customer {
+  width: 100%;
+  background-color: rgb(241, 242, 244);
+  height: 100vh;
+}
+.Main {
+  background-color: rgb(241, 242, 244);
+  height: 107vh;
+  width: 100%;
+  text-align: start;
+}
+.customerState {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.customerStateadd {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  margin-top: 18px;
+  width: 50%;
+}
+.customerStateicon {
+  border: none;
+  background-color: white;
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+  .main-content.shifted {
+    margin-left: 0;
+  }
+  .customer {
+    height: auto;
+  }
+
+  .input-group.mb-3 {
+    flex-direction: column;
+  }
+  #customersearch {
+    width: 100%;
+  }
+  .customerState {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .customerStateicon {
+    width: 20%;
+    margin-top: 10px;
+  }
+}

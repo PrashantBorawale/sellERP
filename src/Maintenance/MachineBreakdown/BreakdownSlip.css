@@ -1,0 +1,120 @@
+/* BreakdownSlip.css - Matching ToolManagement theme exactly */
+
+.breakdown-slip {
+  padding: 1rem;
+}
+
+.breakdown-slip .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.breakdown-slip .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+}
+
+.breakdown-slip .shifted {
+  margin-left: 250px;
+}
+
+/* User Management Section */
+.breakdown-slip .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.breakdown-slip .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  /* Removed custom black to allow standard inheritance as in ToolManagement */
+}
+
+.breakdown-slip .header-section {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.breakdown-slip .header-section .form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Corrected Input Widths */
+.breakdown-slip .header-section .form-control,
+.breakdown-slip .header-section .form-select {
+  font-size: 14px;
+  max-width: 220px;
+}
+
+.breakdown-slip .header-section .btn {
+  font-size: 14px;
+}
+
+/* Table Styling - Matching ToolManagement exactly by removing custom th background */
+.breakdown-slip .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.breakdown-slip .user-list-table th,
+.breakdown-slip .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.breakdown-slip .user-list-table th {
+  font-weight: 600;
+  font-size: 13px;
+  /* Background color removed to match ToolManagement default */
+}
+
+/* First Table (Entry) - Reverted to Grey as in image */
+.breakdown-slip .entry-table th {
+  background-color: #f1f1f1;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 13px;
+  color: #555;
+  border: 1px solid #ddd;
+}
+
+.breakdown-slip .table {
+  background-color: #fff;
+}
+
+/* Action Columns */
+.breakdown-slip .action-column {
+  width: 70px;
+  text-align: center;
+}
+
+/* Footer Section */
+.breakdown-slip .footer-section {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.breakdown-slip .btn {
+  font-size: 14px;
+}
+
+/* Table inputs */
+.breakdown-slip .table input,
+.breakdown-slip .table select,
+.breakdown-slip .table textarea {
+  font-size: 13px;
+  border: 1px solid #ced4da;
+}
+
+@media (max-width: 768px) {
+  .breakdown-slip .main-content {
+    margin-left: 0 !important;
+  }
+}

@@ -1,0 +1,96 @@
+/* TaxInvoiceList.css - EXACT COPY OF ToolManagement.css structure */
+
+.tax-invoice-list {
+  padding: 1rem;
+}
+
+
+
+/* User Management Section */
+.tax-invoice-list .WorkOrderEntry-header {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.tax-invoice-list .header-section .form-check-label {
+  display: flex;
+  align-items: center;
+}
+
+.tax-invoice-list .header-section .form-control,
+.tax-invoice-list .header-section .form-select,
+.tax-invoice-list .header-section .btn {
+  margin-bottom: 0.5rem;
+}
+
+.tax-invoice-list .user-list-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.tax-invoice-list .user-list-table th {
+  background-color: #1fb5ff !important;
+  /* Branded Blue as in image */
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tax-invoice-list .user-list-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tax-invoice-list .user-list-table input[type="password"] {
+  max-width: 120px;
+  display: inline-block;
+}
+
+.tax-invoice-list .user-list-table .btn {
+  margin-top: 5px;
+}
+
+.tax-invoice-list .table {
+  background-color: #fff;
+}
+
+.tax-invoice-list .btn {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.tax-invoice-list .btn-sm {
+  font-size: 0.8rem;
+}
+
+/* Data Specific Coloring (keeping this as it was part of the data requirement) */
+.tax-invoice-list .text-primary-deep {
+  color: #0056b3;
+}
+
+.tax-invoice-list .text-purple {
+  color: #6f42c1;
+}
+
+.tax-invoice-list .text-orange {
+  color: #d35400;
+}
+
+.tax-invoice-list .cancel-badge {
+  background-color: #1fb5ff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+
+.tax-invoice-list label {
+  font-size: 0.85rem !important;
+}
+

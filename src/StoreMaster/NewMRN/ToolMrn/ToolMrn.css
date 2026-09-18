@@ -1,0 +1,101 @@
+
+  /* Header Styles */
+  .ToolMRn-header  {
+  background-color: #f8f9fa; /* Light background for header */
+  border-bottom: 1px solid #dee2e6; /* Border for header */
+  padding: 10px 15px; /* Padding around header */
+  border-radius: 5px;
+}
+
+.ToolMRn-header .header-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+  /* Main Content Styles */
+  .ToolMRn-main {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  /* Table Styles */
+  .ToolMRn-main .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  
+  .ToolMRn-main .table th,
+  .ToolMRn-main .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .ToolMRn-main .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .ToolMRn-main .table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+  }
+  
+  .ToolMRn-main  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+
+  
+  /* Footer Styles */
+  .ToolMRn-Footer {
+    padding: 20px 0;
+    background-color: #f8f9fa;
+  }
+  
+  .ToolMRn-Footer .form-control {
+    resize: vertical;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .ToolMRn-header,
+    .ToolMRn-main,
+    .ToolMRn-Footer {
+      padding: 10px;
+    }
+  
+    .table th,
+    .table td {
+      padding: 0.5rem;
+    }
+  
+    .ToolMRn-header .row,
+    .ToolMRn-Footer .row {
+      flex-wrap: wrap;
+    }
+  
+    .ToolMRn-header .col-md-9,
+    .ToolMRn-Footer .col-md-3 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .ToolMRn-Footer .col-md-1 {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+  }
+  

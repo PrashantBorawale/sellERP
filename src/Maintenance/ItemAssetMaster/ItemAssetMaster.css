@@ -1,0 +1,117 @@
+/* Global Layout */
+.itemassetmaster {
+  padding: 1rem;
+}
+
+.itemassetmaster .main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.itemassetmaster .Main-NavBar {
+  display: flex;
+  margin-left: -20px;
+  /* Ensure that the navbar and sidenav are flex items */
+}
+
+.itemassetmaster .shifted {
+  margin-left: 250px;
+  /* Adjust based on the size of your SideNav */
+}
+
+/* Header Section */
+.itemassetmaster .WorkOrderEntry-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.itemassetmaster .header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Form Section */
+.itemassetmaster .form-section {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.itemassetmaster .form-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.itemassetmaster .form-control,
+.itemassetmaster .form-select,
+.itemassetmaster .btn {
+  font-size: 14px;
+}
+
+
+/* Modal Styles - Positioned Lower */
+.itemassetmaster .modal.show.d-block {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: flex !important;
+  align-items: flex-start; /* Changed from center to allow manual vertical positioning */
+  justify-content: center;
+  padding-top: 150px; /* Moves it down from the top */
+}
+
+.itemassetmaster .modal-dialog {
+  margin: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.itemassetmaster .modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px 15px;
+}
+
+.itemassetmaster .modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.itemassetmaster .close-btn-custom {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.itemassetmaster .close-btn-custom:hover {
+  color: #555;
+}
+
+.itemassetmaster .modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 10px 15px;
+}
+
+/* Modal Table - Branded Blue Header */
+.itemassetmaster .user-list-table th {
+  background-color: #1fb5ff !important;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.itemassetmaster .user-list-table td {
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}

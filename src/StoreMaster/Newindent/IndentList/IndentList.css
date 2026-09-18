@@ -1,0 +1,95 @@
+/* General Styles */
+.NewStoreIndentList {
+    background-color: white;
+    height: auto;
+}
+
+.IndentList-header {
+    margin-top: 20px;
+    background-color: #f8f9fa;;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.IndentList-main {
+    background-color: #f8f9fa;;
+    padding: 10px;
+    margin-top: 80px;
+    height: auto;
+}
+
+.StoreIndentList {
+    background-color: #f8f9fa;;
+    padding: 10px;
+    height: auto;
+}
+
+.StoreIndentList .table-responsive {
+    overflow-x: auto;
+}
+
+.StoreIndentList .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.StoreIndentList .table th,
+.StoreIndentList .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+.pobtn {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.pobtn:hover {
+    background-color: #0056b3;
+}
+
+.header-title {
+    font-size: 1.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .pobtn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .StoreIndentList .table th,
+    .StoreIndentList .table td {
+        padding: 8px;
+        font-size: 0.875rem;
+    }
+
+    .header-title {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .IndentList-main .form-label {
+        font-size: 0.875rem;
+    }
+
+    .IndentList-main .form-control,
+    .IndentList-main .form-select {
+        font-size: 0.875rem;
+    }
+
+    .IndentList-main .btn {
+        font-size: 0.875rem;
+    }
+}

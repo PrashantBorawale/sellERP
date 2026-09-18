@@ -1,0 +1,117 @@
+
+  
+  .NewPendingpoMaster-header {
+    background-color: transparent; /* Removed light background as requested */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+  }
+  
+  .NewPendingpoMaster-header .header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .Pendingpurchase{
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #dee2e6; /* Border for header */
+    padding: 10px 15px; /* Padding around header */
+    border-radius: 5px;
+
+  }
+
+
+.Pendingpurchase .table-responsive {
+    overflow-x: auto;
+  }
+  
+
+ .Pendingpurchase .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+ .Pendingpurchase .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+  
+
+
+  
+  .pobtn {
+  
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pobtn:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .pobtn.mb-3 {
+    margin-bottom: 15px;
+  }
+  
+
+ 
+.Pendingpurchase .table th input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+  }
+  
+ 
+ .Pendingpurchase .table th label {
+    vertical-align: middle;
+  }
+  
+  .Pendingpurchase .table th label.ml-2 {
+    margin-left: 8px;
+  }
+  /* CustomStyles.css */
+
+/* Header title alignment and styling */
+.header-title {
+    font-size: 1.25rem; /* Adjust size as needed */
+  }
+  
+  /* Button styling */
+  .newpurchase-btn {
+
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.875rem; 
+    margin: 5px;
+    
+   
+  }
+  
+  .newpurchase-btn:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+    .Pendingpurchase-header {
+      text-align: center; /* Center text on smaller screens */
+    }
+  
+    .newpurchase-btn {
+      width: 100%; /* Full width buttons on small screens */
+    }
+  }
+  
+.NewPendingpoMaster .table th, .NewPendingpoMaster .table td {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: 150px; min-width: 80px; /* Provides a limit to force wrapping */
+}
+
