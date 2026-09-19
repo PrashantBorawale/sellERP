@@ -81,33 +81,36 @@ const NewJobworkPurchase = () => {
       console.log("Fetched existing data:", response);
 
       if (response && mountedRef.current) {
-        setSelectedSeries(response.Series || "");
-        setIndentNo(response.PoNo || "");
-        setPoType(response.PoType || "Standard PO");
-        setSupplierName(response.Supplier || "");
-        setSupplierCode(response.SupplierCode || "");
+        // Handle DRF nested results array if the backend returned it for the ID lookup
+        const data = response.results ? (response.results[0] || response) : response;
+
+        setSelectedSeries(data.Series || "");
+        setIndentNo(data.PoNo || "");
+        setPoType(data.PoType || "Standard PO");
+        setSupplierName(data.Supplier || "");
+        setSupplierCode(data.SupplierCode || data.code_no || "");
 
         const poInfoData = {
-          PoNo: response.PoNo || "",
-          PaymentTerm: response.PaymentTerm || "",
-          QuotNo: response.QuotNo || "",
-          Delivery: response.Delivery || "",
-          PoValidityDate: response.PoValidityDate || "",
-          PoNote: response.PoNote || "",
-          GST: response.GST || "",
-          PoDate: response.PoDate || "",
-          PaymentRemark: response.PaymentRemark || "",
-          QuotationDate: response.QuotationDate || "",
-          freight: response.freight || "",
-          ContactPersion: response.ContactPersion || "",
-          PF_Charges: response.PF_Charges || "",
-          PoRateType: response.PoRateType || "",
+          PoNo: data.PoNo || "",
+          PaymentTerm: data.PaymentTerm || "",
+          QuotNo: data.QuotNo || "",
+          Delivery: data.Delivery || "",
+          PoValidityDate: data.PoValidityDate || "",
+          PoNote: data.PoNote || "",
+          GST: data.GST || "",
+          PoDate: data.PoDate || "",
+          PaymentRemark: data.PaymentRemark || "",
+          QuotationDate: data.QuotationDate || "",
+          freight: data.freight || "",
+          ContactPersion: data.ContactPersion || "",
+          PF_Charges: data.PF_Charges || "",
+          PoRateType: data.PoRateType || "",
         };
 
-        const itemDetailsData = response.Item_Detail_Enter || [];
-        const gstDetailsData = response.Gst_Details || [];
-        const scheduleLinesData = response.Schedule_Line || [];
-        const shipToAddData = response.Ship_To_Add || [];
+        const itemDetailsData = data.Item_Detail_Enter || [];
+        const gstDetailsData = data.Gst_Details || [];
+        const scheduleLinesData = data.Schedule_Line || [];
+        const shipToAddData = data.Ship_To_Add || [];
 
         setAllTabsData({
           poInfo: poInfoData,
@@ -297,6 +300,7 @@ const NewJobworkPurchase = () => {
         Series: selectedSeries,
         Supplier: supplierName,
         SupplierCode: supplierCode,
+        code_no: supplierCode,
         PoNo: indentNo,
         PaymentTerm: allTabsData.poInfo?.PaymentTerm || "",
         QuotNo: allTabsData.poInfo?.QuotNo || "",

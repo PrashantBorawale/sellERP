@@ -50,7 +50,8 @@ const JobworkList = () => {
   useEffect(() => {
     const filtered = jobWorkData.filter(item =>
       (item.PoNo || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (item.Name || "").toLowerCase().includes(searchTerm.toLowerCase())
+      (item.Supplier || item.Name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (item.code_no || item.SupplierCode || item.number || "").toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
     setPage(1); // Reset to first page on search
@@ -91,8 +92,8 @@ const JobworkList = () => {
       "Po No": item.PoNo || "",
       "Po Date": item.PoDate || "",
       "Po Type": item.PoType || "",
-      "Supplier/Vendor Name": item.Name || "",
-      "Code No": item.number || "",
+      "Supplier/Vendor Name": item.Supplier || item.Name || "",
+      "Code No": item.code_no || item.SupplierCode || item.number || "",
       "User": item.User || ""
     }));
 
@@ -109,10 +110,14 @@ const JobworkList = () => {
   };
 
   const handleViewPdf = (item) => {
-    const viewPath = item?.View || item?.pdf || item?.file;
+    let viewPath = item?.View || item?.pdf || item?.file;
     if (!viewPath || viewPath === "null" || viewPath === "undefined") {
-      alert(`No PDF document attached to JW-PO: ${item?.PoNo || "this order"}`);
-      return;
+      if (item?.id) {
+        viewPath = `https://sellerp-backend.onrender.com/Purchase/purchase-order/pdf/${item.id}/`;
+      } else {
+        alert(`No PDF document attached to JW-PO: ${item?.PoNo || "this order"}`);
+        return;
+      }
     }
     let url = viewPath;
     if (viewPath.startsWith("http://") || viewPath.startsWith("https://")) {
@@ -286,8 +291,8 @@ const JobworkList = () => {
                                     </TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoDate || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoType || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.Name || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.number || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.Supplier || item.Name || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.code_no || item.SupplierCode || item.number || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.User || "-"}</TableCell>
                                     
                                     <TableCell align="center" sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>

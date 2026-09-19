@@ -196,7 +196,7 @@ export const fetchJobWorkPOList = async () => {
       throw new Error("Authentication token not found. Please log in again.")
     }
 
-    const response = await fetch(`${BASE_URL}JobWorkPOList/`, {
+    const response = await fetch(`${BASE_URL}api/NewJobWorkPO/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -208,7 +208,9 @@ export const fetchJobWorkPOList = async () => {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    return await response.json()
+    const data = await response.json()
+    // Handle both paginated DRF responses and flat arrays
+    return data.results ? data.results : data;
   } catch (error) {
     console.error("Error fetching Job Work PO List:", error)
     throw error

@@ -1530,7 +1530,6 @@ const Dashboard = () => {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: 8 }}><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="9" y1="3" x2="9" y2="21" /><line x1="15" y1="3" x2="15" y2="21" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="3" y1="15" x2="21" y2="15" /></svg>
                       Alerts
                     </div>
-                    <a href="#" className="dn-side-link">Add New Alert</a>
                   </div>
 
                   <div className="dn-filter-strip">
@@ -1600,7 +1599,6 @@ const Dashboard = () => {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: 8 }}><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="9" y1="3" x2="9" y2="21" /><line x1="15" y1="3" x2="15" y2="21" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="3" y1="15" x2="21" y2="15" /></svg>
                       Total Record's
                     </div>
-                    <a href="#" className="dn-side-link">View More</a>
                   </div>
 
                   <div className="dn-filter-strip row-gap">
@@ -1654,8 +1652,8 @@ const Dashboard = () => {
                 <div className="dn-chart-card dn-chart-main">
                   <div className="dn-chart-header">
                     <div className="dn-chart-legends">
-                      <span className="dn-legend-dot blue-dot" />
-                      <div>
+                      <span className="dn-legend-dot blue-dot" style={{ marginLeft: 20 }} />
+                      <div style={{ paddingRight: '20px' }}>
                         <div className="dn-legend-title blue-text">Total Purchase</div>
                         <div className="dn-legend-sub">₹ {overallPurchase.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</div>
                       </div>
@@ -2275,8 +2273,14 @@ const Dashboard = () => {
                                   </tr>
                                 </tbody>
                               </table>
-                              <div style={{ marginTop: 10, fontSize: '11px', fontWeight: 700, color: '#007bff' }}>
-                                Item Rate : <span style={{ textDecoration: 'underline', cursor: 'pointer' }}>Sales Order or Item Master</span>
+                              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '5px' }}>
+                                <Pagination 
+                                  count={1} 
+                                  page={1} 
+                                  color="primary" 
+                                  shape="rounded"
+                                  size="small"
+                                />
                               </div>
                             </div>
                           </div>
