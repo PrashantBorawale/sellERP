@@ -309,13 +309,13 @@ const PurchaseRegister = () => {
                   </div>
 
   {/* Table Section */}
-                  <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px', overflow: 'hidden', width: '100%' }}>
-    <div className="table-responsive" style={{ maxHeight: '600px' }}>
-      <table className="table table-bordered table-hover mb-0" style={{ width: '100%', tableLayout: 'auto' }}>
+                  <div className="table-container">
+    <div className="table-responsive">
+      <table className="custom-register-table table-hover mb-0">
         <thead className="table-light sticky-top">
           <tr>
             {["Sr", "Year", "Bill (P) No.", "Bill (P) Date", "Type", "Bill Type", "Challan No", "Challan Date", "PO No", "GRN No", "Code", "Supplier/Vendor Name", "Ass Amt.", "Total Amt.", "User", "Auth", "View", "Edit", "Del", "Doc"].map((head) => (
-              <th key={head} style={{ backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.65rem', textTransform: 'uppercase', padding: '6px 8px', textAlign: 'center' }}>
+<th key={head}>
                 {head}
               </th>
             ))}
@@ -371,7 +371,7 @@ const PurchaseRegister = () => {
         </tbody>
       </table>
     </div>
-    <div className="card-footer bg-light p-2 border-top d-flex justify-content-between align-items-center">
+          <div className="register-footer d-flex justify-content-between align-items-center">
       <span className="small fw-bold text-muted">Total Record's: {data.length}</span>
       <span className="small fw-bold text-dark">Total Amt: 6,53,48,404.87</span>
     </div>

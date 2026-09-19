@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import "./DashboardNew.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Pagination } from "@mui/material";
 import {
   AreaChart,
   Area,
@@ -916,6 +917,7 @@ const Dashboard = () => {
 
   const [top5SalesData, setTop5SalesData] = useState(initialTop5SalesData);
   const [itemWiseDispatchData, setItemWiseDispatchData] = useState(initialItemWiseDispatchData);
+  const [itemWiseDispatchPage, setItemWiseDispatchPage] = useState(1);
   const [businessPlanData, setBusinessPlanData] = useState(initialBusinessPlanData);
   const [spSelectedMonthObj, setSpSelectedMonthObj] = useState({ month: 4, year: 2026 });
   const [dsSelectedMonthObj, setDsSelectedMonthObj] = useState({ month: 4, year: 2026 });
@@ -971,7 +973,8 @@ const Dashboard = () => {
 
       try {
         const [
-          pendingPo,
+          pendingPoRegular,
+          pendingPoJw,
           pendingInprocessQc,
           pendingSalesReturnQc,
           billPassingPurchase,
@@ -981,14 +984,108 @@ const Dashboard = () => {
           pendingGateInward
         ] = await Promise.all([
           safeFetchCount("https://sellerp-backend.onrender.com/Purchase/purchase-orders/unverified/simple/"),
-          safeFetchCount("https://sellerp-backend.onrender.com/Production/api/production-entries/"),
-          safeFetchCount("https://sellerp-backend.onrender.com/Quality/sales-return-qc/"),
-          safeFetchCount("https://sellerp-backend.onrender.com/Account/purchasebill/"),
-          safeFetchCount("https://sellerp-backend.onrender.com/Account/jobworkbill/"),
+          safeFetchCount("https://sellerp-backend.onrender.com/Purchase/jobwork-po/pending/"),
+          safeFetchCount("https://sellerp-backend.onrender.com/Quality/production/qc-entries/"),
+          (async () => {
+            try {
+              const today = new Date();
+              const todayStr = today.toISOString().split("T")[0];
+              const monthAgo = new Date();
+              monthAgo.setMonth(monthAgo.getMonth() - 1);
+              const monthAgoStr = monthAgo.toISOString().split("T")[0];
+              const res = await fetch(`https://sellerp-backend.onrender.com/Sales/get/sales-return/?start_date=${monthAgoStr}&end_date=${todayStr}&cust_name=`, { headers });
+              if (!res.ok) return 0;
+              const data = await res.json();
+              const arr = Array.isArray(data) ? data : (data.data || data.results || data.value || []);
+              
+              // Flatten items exactly like the PaddingSalesQC page does
+              let flattenedCount = 0;
+              arr.forEach(mainItem => {
+                if (!mainItem.items || mainItem.items.length === 0) {
+                  flattenedCount += 1;
+                } else {
+                  flattenedCount += mainItem.items.length;
+                }
+              });
+              return flattenedCount;
+            } catch {
+              return 0;
+            }
+          })(),
+          (async () => {
+            try {
+              const today = new Date();
+              const todayStr = today.toISOString().split("T")[0];
+              const monthAgo = new Date();
+              monthAgo.setMonth(monthAgo.getMonth() - 1);
+              const monthAgoStr = monthAgo.toISOString().split("T")[0];
+
+              const res = await fetch(`https://sellerp-backend.onrender.com/Account/purchase-po-date-filter/?from_date=${monthAgoStr}&to_date=${todayStr}`, { headers });
+              if (!res.ok) return 0;
+              const data = await res.json();
+              const arr = Array.isArray(data) ? data : (data.data || data.results || data.value || []);
+              
+              let flattenedCount = 0;
+              arr.forEach(item => {
+                const items = Array.isArray(item.NewGrnList) ? item.NewGrnList : (Array.isArray(item.item_details) ? item.item_details : []);
+                if (items.length === 0) {
+                  flattenedCount += 1;
+                } else {
+                  flattenedCount += items.length;
+                }
+              });
+              return flattenedCount;
+            } catch {
+              return 0;
+            }
+          })(),
+          (async () => {
+            try {
+              const today = new Date();
+              const todayStr = today.toISOString().split("T")[0];
+              const monthAgo = new Date();
+              monthAgo.setMonth(monthAgo.getMonth() - 1);
+              const monthAgoStr = monthAgo.toISOString().split("T")[0];
+
+              const res = await fetch(`https://sellerp-backend.onrender.com/Account/inwardchllan-date-fillter/?from_date=${monthAgoStr}&to_date=${todayStr}`, { headers });
+              if (!res.ok) return 0;
+              const data = await res.json();
+              const arr = Array.isArray(data.data) ? data.data : (Array.isArray(data) ? data : []);
+              
+              let flattenedCount = 0;
+              arr.forEach(item => {
+                const nestedItems = item.InwardChallanTable || item.item_details || [item];
+                flattenedCount += nestedItems.length;
+              });
+              return flattenedCount;
+            } catch {
+              return 0;
+            }
+          })(),
           safeFetchCount("https://sellerp-backend.onrender.com/Sales/UpcomingDispatchList/"),
-          safeFetchCount("https://sellerp-backend.onrender.com/Production/bom-routing/"),
-          safeFetchCount("https://sellerp-backend.onrender.com/Store/GateInward/")
+          (async () => {
+            try {
+              const res = await fetch("https://sellerp-backend.onrender.com/All_Masters/api/bom-items/", { headers });
+              if (!res.ok) return 0;
+              const data = await res.json();
+              // Calculate exactly like BomRouting.js does (summing bom_items length)
+              let totalItems = 0;
+              if (typeof data === 'object' && data !== null) {
+                Object.values(data).forEach(parentData => {
+                  if (parentData && parentData.bom_items && Array.isArray(parentData.bom_items)) {
+                    totalItems += parentData.bom_items.length;
+                  }
+                });
+              }
+              return totalItems;
+            } catch {
+              return 0;
+            }
+          })(),
+          safeFetchCount("https://sellerp-backend.onrender.com/Store/api/gate-inward/")
         ]);
+
+        const pendingPo = pendingPoRegular + pendingPoJw;
 
         setDynamicAlerts([
           { id: 1, label: "Pending PO Approval", count: pendingPo, color: "#eff6ff" },
@@ -996,9 +1093,8 @@ const Dashboard = () => {
           { id: 3, label: "Pending Sales Return QC", count: pendingSalesReturnQc, color: "#bfdbfe" },
           { id: 4, label: "Bill Passing (Purchase)", count: billPassingPurchase, color: "#93c5fd" },
           { id: 5, label: "Bill Passing (Jobwork)", count: billPassingJobwork, color: "#60a5fa" },
-          { id: 6, label: "Upcoming Dispatch", count: upcomingDispatch, color: "#3b82f6" },
-          { id: 7, label: "Unauthorised BOM", count: unauthorisedBom, color: "#2563eb" },
-          { id: 8, label: "Pending Gate Inward Entry", count: pendingGateInward, color: "#1e3a8a" },
+          { id: 6, label: "Unauthorised BOM", count: unauthorisedBom, color: "#2563eb" },
+          { id: 7, label: "Pending Gate Inward Entry", count: pendingGateInward, color: "#1e3a8a" },
         ]);
       } catch (err) {
         console.error("Error fetching alert counts:", err);
@@ -1186,8 +1282,8 @@ const Dashboard = () => {
       const updated = data.map((item, index) => ({
         sr: index + 1,
         customer: item.customer,
-        itemNo: "-",
-        itemCode: "-",
+        itemNo: item.part_no || "-",
+        itemCode: item.part_code || "-",
         itemDesc: item.description || "N/A",
         qty: item.total_po_qty || 0,
         amount: parseFloat(item.total_assessable_value || 0)
@@ -1464,8 +1560,6 @@ const Dashboard = () => {
                               navigate("/purchase-bill");
                             } else if (item.label === "Bill Passing (Jobwork)") {
                               navigate("/jobwork-bill");
-                            } else if (item.label === "Upcoming Dispatch") {
-                              navigate("/UpcomingDispatchList");
                             } else if (item.label === "Unauthorised BOM") {
                               navigate("/bom-routing");
                             } else if (item.label === "Pending Gate Inward Entry") {
@@ -1912,18 +2006,37 @@ const Dashboard = () => {
                                     cx="50%"
                                     cy="50%"
                                     outerRadius={90}
-                                    label={({ cx, cy, midAngle, innerRadius, outerRadius, value, name, percent }) => {
-                                      const RADIAN = Math.PI / 180;
-                                      const radius = 25 + outerRadius;
-                                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                                      return (
-                                        <text x={x} y={y} fill="#000" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" style={{ fontSize: 11, fontWeight: 700 }}>
-                                          {`( ${(percent * 100).toFixed(2)}% ) ${name}`}
-                                        </text>
-                                      );
-                                    }}
-                                    labelLine={{ stroke: '#000', strokeWidth: 1 }}
+                                      label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, index }) => {
+                                        const RADIAN = Math.PI / 180;
+                                        const stagger = (index % 3) * 20; 
+                                        const radius = 40 + outerRadius + stagger;
+                                        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                        const textAnchor = x > cx ? 'start' : 'end';
+                                        const shortName = name.length > 25 ? name.substring(0, 25) + '..' : name;
+                                        const labelText = `( ${(percent * 100).toFixed(2)}% ) ${shortName}`;
+                                        
+                                        return (
+                                          <g>
+                                            <text x={x} y={y} fill="none" stroke="#fff" strokeWidth={4} strokeLinejoin="round" textAnchor={textAnchor} dominantBaseline="central" style={{ fontSize: 11, fontWeight: 700 }}>
+                                              {labelText}
+                                            </text>
+                                            <text x={x} y={y} fill="#334155" textAnchor={textAnchor} dominantBaseline="central" style={{ fontSize: 11, fontWeight: 700 }}>
+                                              {labelText}
+                                            </text>
+                                          </g>
+                                        );
+                                      }}
+                                      labelLine={({ cx, cy, midAngle, outerRadius, index }) => {
+                                        const RADIAN = Math.PI / 180;
+                                        const stagger = (index % 3) * 20;
+                                        const radius = 40 + outerRadius + stagger;
+                                        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                        const startX = cx + outerRadius * Math.cos(-midAngle * RADIAN);
+                                        const startY = cy + outerRadius * Math.sin(-midAngle * RADIAN);
+                                        return <line x1={startX} y1={startY} x2={x} y2={y} stroke="#94a3b8" strokeWidth={1} />;
+                                      }}
                                   >
                                     {top5SalesData.map((entry, index) => (
                                       <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -2006,10 +2119,10 @@ const Dashboard = () => {
                                     <th style={{ background: '#007bff', color: '#fff', textAlign: "right", border: '1px solid rgba(255,255,255,0.2)' }}>Amount</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                   {itemWiseDispatchData.map((item, idx) => (
+                                 <tbody>
+                                   {itemWiseDispatchData.slice((itemWiseDispatchPage - 1) * 7, itemWiseDispatchPage * 7).map((item, idx) => (
                                     <tr key={idx}>
-                                      <td style={{ textAlign: "center", border: '1px solid #e2e8f0', padding: '1px 4px', fontSize: '11px' }}>{item.sr}</td>
+                                      <td style={{ textAlign: "center", border: '1px solid #e2e8f0', padding: '1px 4px', fontSize: '11px' }}>{(itemWiseDispatchPage - 1) * 7 + idx + 1}</td>
                                       <td style={{ fontSize: 10, fontWeight: 600, border: '1px solid #e2e8f0', padding: '1px 4px' }}>{item.customer}</td>
                                       <td style={{ border: '1px solid #e2e8f0', padding: '1px 4px', fontSize: '11px' }}>{item.itemNo}</td>
                                       <td style={{ fontWeight: 600, border: '1px solid #e2e8f0', padding: '1px 4px', fontSize: '11px' }}>{item.itemCode}</td>
@@ -2022,6 +2135,19 @@ const Dashboard = () => {
                                 </tbody>
                               </table>
                             </div>
+
+                            {itemWiseDispatchData.length > 0 && (
+                              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '5px' }}>
+                                <Pagination 
+                                  count={Math.ceil(itemWiseDispatchData.length / 7)} 
+                                  page={itemWiseDispatchPage} 
+                                  onChange={(e, value) => setItemWiseDispatchPage(value)} 
+                                  color="primary" 
+                                  shape="rounded"
+                                  size="small"
+                                />
+                              </div>
+                            )}
 
                             {/* Screenshot-matched Summary Bar */}
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 10px', background: '#f8fafc' }}>

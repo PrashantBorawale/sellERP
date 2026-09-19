@@ -331,13 +331,13 @@ const UserPermit = () => {
                   </div>
 
                   <Paper elevation={0} sx={{ p: 3, mb: 4, borderRadius: '16px', border: '1px solid #e2e8f0', bgcolor: 'white' }}>
-                    <div className="row align-items-center">
-                      <div className="col-md-3">
-                        <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>Select User:</label>
+                    <div className="row align-items-end mb-3">
+                      <div className="col-md-4 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Select User</label>
                         <select
                           value={selectedUser}
                           onChange={(e) => setSelectedUser(e.target.value)}
-                          className="form-select"
+                          className="form-select mt-1"
                           style={{ borderColor: '#cbd5e1', boxShadow: 'none' }}
                         >
                           <option value="">Select User</option>
@@ -348,13 +348,19 @@ const UserPermit = () => {
                           ))}
                         </select>
                       </div>
-                      <div className="col-md-9 d-flex flex-wrap justify-content-end gap-2 align-items-end mt-3 mt-md-0">
-                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export User</Button>
-                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export All</Button>
-                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export Modulewise</Button>
-                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export Active</Button>
-                        <Button variant="outlined" size="small" startIcon={<ContentCopyIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Copy</Button>
-                        <div className="ms-3 d-flex align-items-center" style={{ height: '30px' }}>
+                      <div className="col-md-6 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Search Permission</label>
+                        <input
+                          type="text"
+                          placeholder="Search permissions..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="form-control mt-1"
+                          style={{ borderColor: '#cbd5e1', boxShadow: 'none' }}
+                        />
+                      </div>
+                      <div className="col-md-2 d-flex align-items-center justify-content-end mb-1">
+                        <div className="d-flex align-items-center">
                           <input
                             type="checkbox"
                             className="form-check-input mt-0 me-2"
@@ -366,18 +372,15 @@ const UserPermit = () => {
                           <label htmlFor="select-all" className="form-check-label fw-bold" style={{ cursor: 'pointer', color: '#1e293b' }}>All</label>
                         </div>
                       </div>
-                    </div>
-                    <div className="row mt-4">
-                      <div className="col-md-12">
-                        <input
-                          type="text"
-                          placeholder="Search permissions..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="form-control"
-                          style={{ borderColor: '#cbd5e1', boxShadow: 'none', borderRadius: '8px', padding: '10px 16px' }}
-                        />
+                      {/*
+                      <div className="col-md-12 d-flex flex-wrap justify-content-end gap-2 align-items-end mt-3 mt-md-0 d-none">
+                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export User</Button>
+                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export All</Button>
+                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export Modulewise</Button>
+                        <Button variant="outlined" size="small" startIcon={<DownloadIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Export Active</Button>
+                        <Button variant="outlined" size="small" startIcon={<ContentCopyIcon />} sx={{ borderRadius: '6px', textTransform: 'none', fontWeight: 600, borderColor: '#e2e8f0', color: '#475569', '&:hover': { borderColor: '#cbd5e1', backgroundColor: '#f8fafc' } }}>Copy</Button>
                       </div>
+                      */}
                     </div>
                   </Paper>
 

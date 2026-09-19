@@ -319,8 +319,9 @@ input[type="date"],
 input[type="password"] {
   border: 1px solid #cbd5e1 !important; /* Unified slate border */
   border-radius: 6px !important;        /* Modern slightly rounded corners */
-  background-color: #ffffff !important; /* Ensure crisp white background */
+  background-color: #f8fafc !important; /* Light background */
   color: #334155 !important;            /* Dark slate text */
+  font-weight: 300 !important;          /* Light font weight */
   box-shadow: none !important;          /* Remove random default shadows */
 }
 

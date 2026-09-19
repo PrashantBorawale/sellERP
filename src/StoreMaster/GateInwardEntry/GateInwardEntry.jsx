@@ -387,6 +387,12 @@ const GateInwardEntry = () => {
                       />
                     </Box>
                   )}
+                  
+                  <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                    <div className="record-count fw-bold" style={{ marginLeft: "15px" }}>
+                      Total Record : <span className="badge bg-primary text-white fs-6" style={{ padding: "0.35em 0.65em" }}>{gateInwardData.length}</span>
+                    </div>
+                  </div>
 
                 </div>
               </main>

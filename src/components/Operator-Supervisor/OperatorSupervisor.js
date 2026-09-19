@@ -13,7 +13,8 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { Pagination } from "@mui/material";
+import * as XLSX from "xlsx";
 
 const OperatorSupervisor = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -44,9 +45,11 @@ const OperatorSupervisor = () => {
     fetchOperators();
   }, []);
 
-  const fetchOperators = async () => {
+  const [nameSearchQuery, setNameSearchQuery] = useState("");
+
+  const fetchOperators = async (query = "") => {
     try {
-      const data = await getOperatorList();
+      const data = await getOperatorList(query);
       setOperatorList(data.sort((a, b) => b.id - a.id));
     } catch (err) {
       console.error("Error fetching data", err);
@@ -54,20 +57,24 @@ const OperatorSupervisor = () => {
     }
   };
 
-const handleEdit = async (id) => {
-  try {
-    const data = await getOperatorById(id);
-    setFormData(data);
-    setEditId(id);
-    // You should store the data to localStorage or global state if needed
-    localStorage.setItem("editOperator", JSON.stringify(data));
-    
-    navigate("/Supervisor");
-  } catch (err) {
-    console.error("Error fetching operator by ID", err);
-    toast.error("Failed to load data for editing");
-  }
-};
+  const handleSearch = () => {
+    fetchOperators(nameSearchQuery);
+  };
+
+  const handleEdit = async (id) => {
+    try {
+      const data = await getOperatorById(id);
+      setFormData(data);
+      setEditId(id);
+      // Store the data to localStorage to be read by Supervisor
+      localStorage.setItem("editOperator", JSON.stringify(data));
+      
+      navigate("/Supervisor");
+    } catch (err) {
+      console.error("Error fetching operator by ID", err);
+      toast.error("Failed to load data for editing");
+    }
+  };
 
 
   const handleDelete = async (id) => {
@@ -88,7 +95,38 @@ const handleEdit = async (id) => {
   const currentRecords = operatorList.slice(indexOfFirstRecord, indexOfLastRecord);
   const totalPages = Math.ceil(operatorList.length / recordsPerPage);
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
+  const handleExportExcel = () => {
+    if (operatorList.length === 0) {
+      alert("No records to export");
+      return;
+    }
+    const exportData = operatorList.map((item, index) => ({
+      "Sr.": index + 1,
+      "Name": item.Name || "",
+      "Type": item.Type || "",
+      "Department": item.Department || "",
+      "Code": item.Code || "",
+      "Designation": item.Designation || "",
+      "Contact": item.Contact_No || "",
+      "Daily Work Hours": item.DailyWorkHours || "",
+      "Contractor": item.Contractor || ""
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Operator Supervisor Staff");
+    
+    const wscols = Object.keys(exportData[0]).map(key => ({
+      wch: Math.max(key.length, ...exportData.map(row => row[key] ? row[key].toString().length : 0)) + 2
+    }));
+    worksheet["!cols"] = wscols;
+
+    XLSX.writeFile(workbook, "Operator_Supervisor_Staff.xlsx");
+  };
 
   return (
     <div className="erp-page OperatorSupervisor">
@@ -111,10 +149,10 @@ const handleEdit = async (id) => {
                         <Link to={"/Supervisor"} className="vndrbtn text-decoration-none">
                           Add New Operator/Supervisor
                         </Link>
-                        <Link to={"/Department-Head"} className="vndrbtn text-decoration-none">
+                        {/* <Link to={"/Department-Head"} className="vndrbtn text-decoration-none">
                           Department Head
-                        </Link>
-                        <button className="vndrbtn">Export Report</button>
+                        </Link> */}
+                        <button className="vndrbtn" onClick={handleExportExcel}>Export Report</button>
                       </div>
                     </div>
                   </div>
@@ -141,16 +179,18 @@ const handleEdit = async (id) => {
                           </div>
                           <input
                             type="text"
-                            id="description"
+                            id="operatorName"
                             className="form-control"
                             placeholder="Operator Name"
+                            value={nameSearchQuery}
+                            onChange={(e) => setNameSearchQuery(e.target.value)}
                           />
                         </div>
                         <div className="col-md-2 col-6">
                           <label htmlFor="description" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
                             Description
                           </label>
-                          <select id="contractor" className="form-select">
+                          <select id="description_field" className="form-select">
                             <option value="">All</option>
                             <option value="">All</option>
                             {/* Add options here */}
@@ -193,7 +233,7 @@ const handleEdit = async (id) => {
                           </select>
                         </div>
                         <div className="col-md-1 col-12 mt-auto">
-                          <button className="vndrbtn w-100">
+                          <button className="vndrbtn w-100" onClick={handleSearch}>
                             Search
                           </button>
                         </div>
@@ -251,22 +291,15 @@ const handleEdit = async (id) => {
                           </table>
                         </div>
                 {/* Pagination Controls */}
-      <div className="d-flex justify-content-between mt-4">
-        <button
-          className="vndrbtn erp-btn-outline"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="align-self-center text-muted fw-bold">Page {currentPage} of {totalPages}</span>
-        <button
-          className="vndrbtn erp-btn-outline"
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+      <div className="d-flex justify-content-end mt-4">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+          shape="rounded"
+          size="medium"
+        />
       </div>
                 </div>
               </main>

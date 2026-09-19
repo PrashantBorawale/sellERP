@@ -302,7 +302,7 @@ const AddCycleTime = () => {
 
   return (
     <div className="erp-page">
-      <ToastContainer />
+      <ToastContainer style={{ marginTop: '70px' }} />
       <div className="container-fluid p-0">
         <div className="row m-0">
           <div className="col-md-12 p-0">

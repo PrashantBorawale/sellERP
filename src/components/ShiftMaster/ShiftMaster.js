@@ -5,7 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import NavBar from "../../NavBar/NavBar";
 import SideNav from "../../SideNav/SideNav";
 import "./ShiftMaster.css";
-import { saveShiftMaster, fetchShiftMasters } from "../../Service/Api.jsx";
+import { saveShiftMaster, fetchShiftMasters, deleteShiftMaster } from "../../Service/Api.jsx";
 import { toast, ToastContainer } from "react-toastify";
 
 const ShiftMaster = () => {
@@ -40,17 +40,20 @@ const ShiftMaster = () => {
   const [errors, setErrors] = useState({});
   const [shiftData, setShiftData] = useState([]);
 
+  const [editId, setEditId] = useState(null);
+
+  const fetchAndSetData = async () => {
+    try {
+      const data = await fetchShiftMasters();
+      setShiftData(data.sort((a, b) => b.id - a.id));
+    } catch (error) {
+      console.error("Error fetching shift data:", error);
+      toast.error("Failed to load shift data");
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchShiftMasters();
-        setShiftData(data.sort((a, b) => b.id - a.id));
-      } catch (error) {
-        console.error("Error fetching shift data:", error);
-        toast.error("Failed to load shift data");
-      }
-    };
-    fetchData();
+    fetchAndSetData();
   }, []);
 
   const handleChange1 = (e) => {
@@ -64,6 +67,35 @@ const ShiftMaster = () => {
       } else {
         setShowTable(false);
       }
+    }
+  };
+
+  const handleEdit = (shift) => {
+    setEditId(shift.id);
+    setSelectedOption(shift.Plant || "");
+    setFormData({
+      Plant: shift.Plant || "",
+      Shift_Name: shift.Shift_Name || "",
+      Shift_Prefix: shift.Shift_Prefix || "",
+      Shift_From: shift.Shift_From || "",
+      Shift_Till: shift.Shift_Till || "",
+      Break_Name: shift.Break_Name || "",
+      Break_Till: shift.Break_Till || "",
+      Break_Time: shift.Break_Time || "",
+      Total_Hours: shift.Total_Hours || "",
+    });
+    if (shift.Plant === "VISHWA S.I.") setShowTable(true);
+    window.scrollTo(0, 0);
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this shift?")) return;
+    try {
+      await deleteShiftMaster(id);
+      toast.success("Deleted successfully!");
+      fetchAndSetData();
+    } catch (error) {
+      toast.error("Delete failed!");
     }
   };
 
@@ -85,10 +117,23 @@ const ShiftMaster = () => {
     setErrors({});
 
     try {
-      await saveShiftMaster(formData);
-      toast.success("Data saved successfully");
-      const data = await fetchShiftMasters();
-      setShiftData(data);
+      await saveShiftMaster(formData, editId);
+      toast.success(editId ? "Data updated successfully" : "Data saved successfully");
+      
+      setFormData({
+        Plant: selectedOption,
+        Shift_Name: "",
+        Shift_Prefix: "",
+        Shift_From: "",
+        Shift_Till: "",
+        Break_Name: "",
+        Break_Till: "",
+        Break_Time: "",
+        Total_Hours: "",
+      });
+      setEditId(null);
+      
+      fetchAndSetData();
     } catch (error) {
       toast.error("Failed to save data");
     }
@@ -127,8 +172,6 @@ const ShiftMaster = () => {
                           >
                             <option value="">Select...</option>
                             <option value="VISHWA S.I.">VISHWA S.I.</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
                           </select>
                         </div>
                         <div className="col-md-2 position-relative">
@@ -263,12 +306,12 @@ const ShiftMaster = () => {
                               <td>{shift.Break_Time}</td>
                               <td>{shift.Total_Hours}</td>
                               <td>
-                                <button className="btn btn-sm text-primary border-0 p-0" title="Edit">
+                                <button className="btn btn-sm text-primary border-0 p-0" title="Edit" onClick={() => handleEdit(shift)}>
                                   <i className="fas fa-edit" style={{ fontSize: '16px' }}></i>
                                 </button>
                               </td>
                               <td>
-                                <button className="btn btn-sm text-danger border-0 p-0" title="Delete">
+                                <button className="btn btn-sm text-danger border-0 p-0" title="Delete" onClick={() => handleDelete(shift.id)}>
                                   <i className="fas fa-trash" style={{ fontSize: '16px' }}></i>
                                 </button>
                               </td>

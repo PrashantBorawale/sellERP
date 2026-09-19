@@ -9,7 +9,8 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { useNavigate } from "react-router-dom";
 import { fetchCycleTimeList, deleteCycleTimeData } from "../../Service/Api.jsx";
 import * as XLSX from "xlsx";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const CycleTime = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [records, setRecords] = useState([]);
@@ -59,9 +60,11 @@ const CycleTime = () => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         await deleteCycleTimeData(id);
+        toast.success("Record deleted successfully!");
         fetchCycleTimeListItems();
       } catch (error) {
-        console.log("Failed to delete record");
+        console.log("Failed to delete record", error);
+        toast.error("Failed to delete record!");
       }
     }
   };
@@ -111,6 +114,7 @@ const CycleTime = () => {
 
   return (
     <div className="erp-page Cycletimecenter">
+      <ToastContainer style={{ marginTop: '70px' }} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
@@ -129,9 +133,9 @@ const CycleTime = () => {
                         <button className="vndrbtn" onClick={handleAddNewCycleTime}>
                           <i className="fas fa-plus me-2"></i> Add New Cycle Time
                         </button>
-                        <button className="vndrbtn">
+                        {/* <button className="vndrbtn">
                           <i className="fas fa-chart-bar me-2"></i> Report
-                        </button>
+                        </button> */}
                         <button className="vndrbtn" onClick={handleExportExcel}>
                           <i className="fas fa-file-excel me-2"></i> Export Report
                         </button>

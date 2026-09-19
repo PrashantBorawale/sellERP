@@ -397,6 +397,12 @@ const PendingPo = () => {
                     </div>
                   </div>
 
+                  <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                    <div className="record-count fw-bold">
+                      Total Record : <span className="badge bg-primary text-white fs-6">{filteredList.length}</span>
+                    </div>
+                  </div>
+
                 </div>
               </main>
             </div>

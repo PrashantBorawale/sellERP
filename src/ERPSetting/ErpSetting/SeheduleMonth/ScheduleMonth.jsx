@@ -12,6 +12,8 @@ import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 import SaveIcon from "@mui/icons-material/SaveOutlined";
 import AddIcon from "@mui/icons-material/AddOutlined";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ScheduleMonth = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -99,13 +101,14 @@ const ScheduleMonth = () => {
         method: "DELETE"
       });
       if (response.ok) {
-        alert("Schedule Month deleted successfully!");
+        toast.success("Schedule Month deleted successfully!");
         setMonthData(prev => prev.filter(item => item.id !== id));
       } else {
-        alert("Failed to delete schedule month.");
+        toast.error("Failed to delete schedule month.");
       }
     } catch (error) {
       console.error("Error deleting schedule month:", error);
+      toast.error("Error deleting schedule month.");
     }
   };
 
@@ -138,7 +141,7 @@ const ScheduleMonth = () => {
       ? `https://sellerp-backend.onrender.com/Settings/schedule-month/${editingId}/`
       : "https://sellerp-backend.onrender.com/Settings/schedule-month/";
     
-    const method = editingId ? "PATCH" : "POST";
+    const method = editingId ? "PUT" : "POST";
 
     try {
       const response = await fetch(url, {
@@ -150,7 +153,7 @@ const ScheduleMonth = () => {
       if (response.ok) {
         const responseData = await response.json().catch(() => ({}));
         const savedItem = responseData.data || responseData;
-        alert(editingId ? "Schedule Month updated successfully!" : "Schedule Month added successfully!");
+        toast.success(editingId ? "Schedule Month updated successfully!" : "Schedule Month added successfully!");
         
         if (editingId) {
           setMonthData(prev => prev.map(item => item.id === editingId ? savedItem : item));
@@ -169,15 +172,17 @@ const ScheduleMonth = () => {
         });
       } else {
         const errorData = await response.json().catch(() => ({}));
-        alert(`Failed to save: ${JSON.stringify(errorData)}`);
+        toast.error(`Failed to save: ${JSON.stringify(errorData)}`);
       }
     } catch (error) {
       console.error("Error saving schedule month:", error);
+      toast.error("Error saving schedule month.");
     }
   };
 
   return (
     <div className="ScheduleMonthMaster">
+      <ToastContainer style={{ marginTop: '70px' }} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
@@ -194,7 +199,7 @@ const ScheduleMonth = () => {
                         </Typography>
                       </div>
                       <div className="col-md-6 d-flex justify-content-end gap-2">
-                        <Button 
+                        {/* <Button 
                           component={Link}
                           to='/WeekMaster'
                           variant="contained" 
@@ -207,40 +212,40 @@ const ScheduleMonth = () => {
                           }}
                         >
                           Week Master
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </div>
                   
                   <Paper elevation={0} sx={{ p: 3, mb: 4, borderRadius: '16px', border: '1px solid #e2e8f0', bgcolor: 'white' }}>
                     <div className="row align-items-end g-3">
-                      <div className="col-md-2">
-                        <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>Month Name</label>
-                        <input type="text" id="monthName" className="form-control" placeholder="Enter month name" value={formData.month_name} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
+                      <div className="col-md-2 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Month Name</label>
+                        <input type="text" id="monthName" className="form-control mt-1" placeholder="Enter month name" value={formData.month_name} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
                       </div>
-                      <div className="col-md-2">
-                        <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>From Date</label>
-                        <input type="date" id="fromDate" className="form-control" value={formData.from_date} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
+                      <div className="col-md-2 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>From Date</label>
+                        <input type="date" id="fromDate" className="form-control mt-1" value={formData.from_date} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
                       </div>
-                      <div className="col-md-2">
-                        <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>To Date</label>
-                        <input type="date" id="toDate" className="form-control" value={formData.to_date} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
+                      <div className="col-md-2 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>To Date</label>
+                        <input type="date" id="toDate" className="form-control mt-1" value={formData.to_date} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
                       </div>
                       <div className="col-md-3">
                         <div className="row g-2">
-                          <div className="col-6">
-                            <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>Month No</label>
-                            <input type="text" id="monthNo" className="form-control" placeholder="MM" value={formData.month_no} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
+                          <div className="col-6 text-start">
+                            <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Month No</label>
+                            <input type="text" id="monthNo" className="form-control mt-1" placeholder="MM" value={formData.month_no} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
                           </div>
-                          <div className="col-6">
-                            <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>Year No</label>
-                            <input type="text" id="yearNo" className="form-control" placeholder="YYYY" value={formData.year_no} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
+                          <div className="col-6 text-start">
+                            <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Year No</label>
+                            <input type="text" id="yearNo" className="form-control mt-1" placeholder="YYYY" value={formData.year_no} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
                           </div>
                         </div>
                       </div>
-                      <div className="col-md-1">
-                        <label className="form-label mb-1 fw-bold text-muted" style={{ fontSize: '0.85rem' }}>W Days</label>
-                        <input type="text" id="wDays" className="form-control" placeholder="Days" value={formData.w_days} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
+                      <div className="col-md-1 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>W Days</label>
+                        <input type="text" id="wDays" className="form-control mt-1" placeholder="Days" value={formData.w_days} onChange={handleInputChange} style={{ borderRadius: '8px', border: '1px solid #cbd5e1', boxShadow: 'none' }} />
                       </div>
                       <div className="col-md-2">
                         <Button 

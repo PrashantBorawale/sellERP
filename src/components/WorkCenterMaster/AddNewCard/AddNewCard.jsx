@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Button } from '@mui/material';
 import { toast, ToastContainer } from "react-toastify";
 import { saveWorkCenter } from "../../../Service/Api.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import MachineGroup from "../MachineGroup/MachineGroup.jsx";
 
-const AddNewCard = () => {
+const AddNewCard = ({ onSuccess }) => {
   const [isCardVisibleMachine, setCardVisibleMachine] = useState(false);
 
   const handleAddNewClickMachine = () => {
@@ -71,6 +72,7 @@ const AddNewCard = () => {
       const response = await saveWorkCenter(formData);
       console.log("Saved Data:", response); // Log the response data to the console
       toast.success("Work Center saved successfully"); // Show success toast
+      if (onSuccess) onSuccess();
     } catch (error) {
       console.log(
         "Error:",
@@ -106,18 +108,16 @@ const AddNewCard = () => {
 
   return (
     <div className="container-fluid">
-      <ToastContainer /> {/* Moved outside the form */}
+      <ToastContainer style={{ marginTop: '70px' }} /> {/* Moved outside the form */}
       <div className="row">
         <div className="col-md-12">
           <form onSubmit={handleSave}> {/* Changed onClick to onSubmit */}
             <div className="card-body">
               {/* Form fields */}
               <div className="row mb-3">
-                <div className="col-sm-3 text-start">
-                  <label htmlFor="Plant" className="col-sm-3 col-form-label">
-                    Plant
-                  </label>
-                </div>
+                <label htmlFor="Plant" className="col-sm-3 text-start col-form-label">
+                  Plant
+                </label>
                 <div className="col-sm-9">
                   <select
                     className="form-select mb-3"
@@ -136,9 +136,9 @@ const AddNewCard = () => {
               </div>
               <div className="row mb-3">
                 <div className="col-md-12 text-start">
-                  <button className="mst-btn" type="button">
+                  <Button variant="contained" type="button" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
                     Master
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className="row mb-3">
@@ -224,10 +224,10 @@ const AddNewCard = () => {
                       <option value="VMC">VMC</option>
                     </select>
                   </div>
-                  <div className="col-sm-2">
-                    <button className="addy" type="button" onClick={handleAddNewClickMachine}>
+                  <div className="col-sm-2 d-flex align-items-center">
+                    <Button variant="contained" type="button" onClick={handleAddNewClickMachine} sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
                       Add
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -364,13 +364,13 @@ const AddNewCard = () => {
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-md-12">
-                  <button className="btn" type="submit">
+                <div className="col-md-12 d-flex justify-content-center mt-3">
+                  <Button variant="contained" type="submit" sx={{ mr: 2, borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
                     Save
-                  </button>
-                  <button className="btn ms-2" type="button" onClick={handleClear}>
+                  </Button>
+                  <Button variant="outlined" type="button" onClick={handleClear} color="error" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600 }}>
                     Clear
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

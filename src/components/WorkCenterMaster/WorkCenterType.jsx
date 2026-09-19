@@ -24,7 +24,8 @@ const WorkCenterType = ({ handleClose }) => {
   const loadWorkCenterTypes = async () => {
     try {
       const res = await fetchWorkCenterTypeGroupList();
-      setWorkCenterList(res.data);
+      const sortedData = res.data.sort((a, b) => b.id - a.id);
+      setWorkCenterList(sortedData);
     } catch (err) {
       console.error("Failed to load data", err);
     }
@@ -100,7 +101,7 @@ const WorkCenterType = ({ handleClose }) => {
 
   return (
   <div className="overlay-workcenter">
-     <ToastContainer position="top-right" autoClose={3000} />
+     <ToastContainer position="top-right" autoClose={3000} style={{ marginTop: '70px' }} />
       <div className="card-work">
         <div className="card-header-work">
           <h5 className="title">Machine Group Type</h5>
@@ -142,19 +143,23 @@ const WorkCenterType = ({ handleClose }) => {
                   <small className="text-danger">{errors.prodWt}</small>
                 )}
               </div>
-              <div className="col-md-4 mt-5 d-flex align-items-center">
-                <button className="btn btn-primary me-2" type="submit">
-                  {editId ? "Update" : "Save"}
-                </button>
-                {editId && (
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={resetForm}
-                  >
-                    Cancel
+              <div className="col-md-4">
+                <label className="form-label">&nbsp;</label>
+                <div className="d-flex">
+                  <button className="btn me-2" type="submit" style={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', color: 'white', border: 'none', padding: '8px 16px', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)' }}>
+                    {editId ? "Update" : "Save"}
                   </button>
-                )}
+                  {editId && (
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger"
+                      onClick={resetForm}
+                      style={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, padding: '8px 16px' }}
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 

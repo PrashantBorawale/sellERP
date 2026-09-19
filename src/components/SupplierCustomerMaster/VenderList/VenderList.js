@@ -130,7 +130,7 @@ const VenderList = () => {
                     <div className="d-flex justify-content-between align-items-center">
                       <h5 className="header-title mb-0">Supplier / Customer / Vendor List</h5>
                       <div className="d-flex gap-2">
-                        <Link to="/CustomerQuery" className="vndrbtn">Customer - Query</Link>
+                        {/* <Link to="/CustomerQuery" className="vndrbtn">Customer - Query</Link> */}
                         <Link to="/Supplier-Customer-Master" className="vndrbtn">+ Add New</Link>
                       </div>
                     </div>

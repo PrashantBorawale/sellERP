@@ -348,6 +348,13 @@ const InprocessInspection = () => {
                         </ul>
                       </nav>
                     )}
+
+                    <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                      <div className="record-count fw-bold">
+                        Total Record : <span className="badge bg-primary text-white fs-6">{data.length}</span>
+                      </div>
+                    </div>
+
                   </div>
 
                   <div className="AssemblyEntry-bottom mt-5">

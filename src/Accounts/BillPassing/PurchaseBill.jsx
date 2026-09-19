@@ -11,8 +11,19 @@ import * as XLSX from "xlsx";
 
 const PurchaseBill = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  const getOneMonthAgoDate = () => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - 1);
+    return date.toISOString().split("T")[0];
+  };
+
+  const [fromDate, setFromDate] = useState(getOneMonthAgoDate());
+  const [toDate, setToDate] = useState(getTodayDate());
   const [reportData, setReportData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
@@ -80,6 +91,107 @@ const PurchaseBill = () => {
     }
   };
 
+  const processAndSetData = (rawData) => {
+    if (Array.isArray(rawData)) {
+      const mappedData = rawData.flatMap((item) => {
+        const items = Array.isArray(item.NewGrnList) ? item.NewGrnList : (Array.isArray(item.item_details) ? item.item_details : []);
+        const gstDetails = Array.isArray(item.GrnGstTDC) ? item.GrnGstTDC : (Array.isArray(item.gst_details) ? item.gst_details : []);
+
+        if (items.length === 0) {
+          const gst = gstDetails[0] || {};
+          return [{
+            id: item.id,
+            year: "",
+            grnNo: item.GrnNo || item.PoNo || item.no || "",
+            grnDate: item.GrnDate || item.PoDate || item.challan_date || "",
+            challanNo: item.ChallanNo || item.PoNo || item.challan_no || "",
+            challanDate: item.ChallanDate || item.PoDate || item.challan_date || "",
+            invoiceNo: item.InvoiceNo || item.PoNo || item.invoice_no || "",
+            invoiceDate: item.InvoiceDate || item.PoDate || item.invoice_Date || "",
+            supplier: item.SelectSupplier || item.Supplier || item.supplier_name || "",
+            supplierCode: item.SelectSupplier ? item.SelectSupplier.split(" - ")[0] : (item.CodeNo || ""),
+            poNo: item.SelectPO || item.PoNo || "",
+            total: gst.grand_total || item.GR_Total || item.net_total || item.total || "0",
+            user: item.PreparedBy || item.created_by_username || "",
+            description: "",
+            hsnCode: item.hsnCode || item.hsn_code || item.HSN || item.hsn || "",
+            qty: 0,
+            dis: parseFloat(item.Disc || item.disc || item.Discount || item.discount || item.dis || 0),
+            taxableValue: 0,
+            cgst: parseFloat(gst.cgst || item.TOC_CGST || item.cgst || item.cgst_per || item.cgstPer || 0),
+            sgst: parseFloat(gst.sgst || item.TOC_SGST || item.sgst || item.sgst_per || item.sgstPer || 0),
+            igst: parseFloat(gst.igst || item.TOC_IGST || item.igst || item.igst_per || item.igstPer || 0),
+          }];
+        }
+
+        return items.map((detail, idx) => {
+          const gst = gstDetails[idx] || gstDetails[0] || {};
+          const rate = parseFloat(detail.Rate || detail.rate || gst.Rate || 0);
+          const qty = parseFloat(detail.Qty || detail.grn_qty || gst.Qty || detail.GrnQty || 0);
+          
+          const mappedItem = {
+            id: `${item.id}-${idx}`,
+            year: "",
+            grnNo: item.GrnNo || item.PoNo || item.no || "",
+            grnDate: item.GrnDate || item.PoDate || item.challan_date || "",
+            challanNo: item.ChallanNo || item.PoNo || item.challan_no || "",
+            challanDate: item.ChallanDate || item.PoDate || item.challan_date || "",
+            invoiceNo: item.InvoiceNo || item.PoNo || item.invoice_no || "",
+            invoiceDate: item.InvoiceDate || item.PoDate || item.invoice_Date || "",
+            supplier: item.SelectSupplier || item.Supplier || item.supplier_name || "",
+            supplierCode: item.SelectSupplier ? item.SelectSupplier.split(" - ")[0] : (item.CodeNo || ""),
+            poNo: detail.PoNo || item.SelectPO || item.PoNo || "",
+            user: item.PreparedBy || item.created_by_username || "",
+            description: (detail.Item || detail.ItemNoCode || detail.item_code || gst.ItemCode) && (detail.Description || detail.ItemDescription || detail.item_description)
+              ? `${detail.Item || detail.ItemNoCode || detail.item_code || gst.ItemCode} - ${detail.Description || detail.ItemDescription || detail.item_description}` 
+              : (detail.Item || detail.ItemNoCode || detail.item_code || gst.ItemCode || detail.Description || detail.ItemDescription || detail.item_description || ""),
+            hsnCode: gst.HSN || detail.HSN || detail.HSNCode || detail.hsn_code || detail.HSN_SAC_Code || detail.hsn_sac_code || detail.hsnSacCode || detail.Hsn || detail.hsn || "",
+            dis: parseFloat(detail.Disc || detail.disc || gst.Discount || detail.Discount || detail.discount || detail.dis || detail.dis_per || detail.discount_percent || detail.disc_per || 0),
+            qty: qty,
+            taxableValue: parseFloat(gst.assessable_value || gst.AssValue || (rate * qty)),
+            cgst: parseFloat(gst.cgst || gst.CGST || gst.cgst_per || gst.cgst || detail.CGST || detail.cgst_per || detail.cgst || detail.cgstPer || detail.cgst_percent || item.TOC_CGST || item.cgst || 0),
+            sgst: parseFloat(gst.sgst || gst.SGST || gst.sgst_per || gst.sgst || detail.SGST || detail.sgst_per || detail.sgst || detail.sgstPer || detail.sgst_percent || item.TOC_SGST || item.sgst || 0),
+            igst: parseFloat(gst.igst || gst.IGST || gst.igst_per || gst.igst || detail.IGST || detail.igst_per || detail.igst || detail.igstPer || detail.igst_percent || item.TOC_IGST || item.igst || 0),
+            total: detail.Total || gst.Total || gst.grand_total || item.GR_Total || item.net_total || item.total || (rate * qty).toFixed(2),
+            paymentTerms: item.PaymentTermDay || item.PaymentTerms || "",
+            poDate: detail.Date || item.PoDate || "",
+            challanNo: item.ChallanNo || item.PoNo || item.no || "",
+            challanDate: item.ChallanDate || item.PoDate || item.challan_date || "",
+            packCharges: parseFloat(gst.packing_forwarding_charges || item.TOC_PackCharges || 0),
+            transCharges: parseFloat(gst.transport_charges || item.TOC_TransportCost || 0),
+            insCharges: parseFloat(gst.insurance || item.TOC_Insurance || 0),
+            instCharges: parseFloat(gst.installation_charges || item.TOC_InstallationCharges || 0),
+            otherCharges: parseFloat(gst.other_charges || item.TOC_OtherCharges || 0),
+            tdsPer: parseFloat(gst.Tds || item.TOC_TDS || 0),
+          };
+          return mappedItem;
+        });
+      });
+      setReportData(mappedData);
+    } else {
+      setReportData([]);
+    }
+  };
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem("accessToken");
+        const response = await axios.get(`https://sellerp-backend.onrender.com/Account/purchase-po-date-filter/?from_date=${fromDate}&to_date=${toDate}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const rawData = Array.isArray(response.data) ? response.data : (response.data?.data ? response.data.data : []);
+        processAndSetData(rawData);
+      } catch (error) {
+        console.error("Error fetching initial Purchase Bill report:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchInitialData();
+  }, []);
+
   const handleSearch = async () => {
     if (!fromDate || !toDate) {
       alert("Please select both From and To dates.");
@@ -93,98 +205,8 @@ const PurchaseBill = () => {
           Authorization: `Bearer ${token}`
         }
       });
-
-      console.log("Purchase Bill API Response:", response.data);
-
-      const rawData = Array.isArray(response.data) ? response.data : 
-                      (response.data?.data ? response.data.data : []);
-
-      if (Array.isArray(rawData)) {
-        const mappedData = rawData.flatMap((item) => {
-          const items = Array.isArray(item.NewGrnList) ? item.NewGrnList : (Array.isArray(item.item_details) ? item.item_details : []);
-          const gstDetails = Array.isArray(item.GrnGstTDC) ? item.GrnGstTDC : (Array.isArray(item.gst_details) ? item.gst_details : []);
-
-          console.log(`Mapping item ${item.GrnNo || item.PoNo || item.id}`, { items, gstDetails });
-
-          // If no items, return at least one row for the master data
-          if (items.length === 0) {
-            const gst = gstDetails[0] || {};
-            return [{
-              id: item.id,
-              year: "",
-              grnNo: item.GrnNo || item.PoNo || item.no || "",
-              grnDate: item.GrnDate || item.PoDate || item.challan_date || "",
-              challanNo: item.ChallanNo || item.PoNo || item.challan_no || "",
-              challanDate: item.ChallanDate || item.PoDate || item.challan_date || "",
-              invoiceNo: item.InvoiceNo || item.PoNo || item.invoice_no || "",
-              invoiceDate: item.InvoiceDate || item.PoDate || item.invoice_Date || "",
-              supplier: item.SelectSupplier || item.Supplier || item.supplier_name || "",
-              supplierCode: item.SelectSupplier ? item.SelectSupplier.split(" - ")[0] : (item.CodeNo || ""),
-              poNo: item.SelectPO || item.PoNo || "",
-              total: gst.grand_total || item.GR_Total || item.net_total || item.total || "0",
-              user: item.PreparedBy || item.created_by_username || "",
-              description: "",
-              hsnCode: item.hsnCode || item.hsn_code || item.HSN || item.hsn || "",
-              qty: 0,
-              dis: parseFloat(item.Disc || item.disc || item.Discount || item.discount || item.dis || 0),
-              taxableValue: 0,
-              cgst: parseFloat(gst.cgst || item.TOC_CGST || item.cgst || item.cgst_per || item.cgstPer || 0),
-              sgst: parseFloat(gst.sgst || item.TOC_SGST || item.sgst || item.sgst_per || item.sgstPer || 0),
-              igst: parseFloat(gst.igst || item.TOC_IGST || item.igst || item.igst_per || item.igstPer || 0),
-            }];
-          }
-
-          return items.map((detail, idx) => {
-            const gst = gstDetails[idx] || gstDetails[0] || {};
-            const rate = parseFloat(detail.Rate || detail.rate || gst.Rate || 0);
-            const qty = parseFloat(detail.Qty || detail.grn_qty || gst.Qty || detail.GrnQty || 0);
-            
-            const mappedItem = {
-              id: `${item.id}-${idx}`,
-              year: "",
-              grnNo: item.GrnNo || item.PoNo || item.no || "",
-              grnDate: item.GrnDate || item.PoDate || item.challan_date || "",
-              challanNo: item.ChallanNo || item.PoNo || item.challan_no || "",
-              challanDate: item.ChallanDate || item.PoDate || item.challan_date || "",
-              invoiceNo: item.InvoiceNo || item.PoNo || item.invoice_no || "",
-              invoiceDate: item.InvoiceDate || item.PoDate || item.invoice_Date || "",
-              supplier: item.SelectSupplier || item.Supplier || item.supplier_name || "",
-              supplierCode: item.SelectSupplier ? item.SelectSupplier.split(" - ")[0] : (item.CodeNo || ""),
-              poNo: detail.PoNo || item.SelectPO || item.PoNo || "",
-              user: item.PreparedBy || item.created_by_username || "",
-              description: (detail.Item || detail.ItemNoCode || detail.item_code || gst.ItemCode) && (detail.Description || detail.ItemDescription || detail.item_description)
-                ? `${detail.Item || detail.ItemNoCode || detail.item_code || gst.ItemCode} - ${detail.Description || detail.ItemDescription || detail.item_description}` 
-                : (detail.Item || detail.ItemNoCode || detail.item_code || gst.ItemCode || detail.Description || detail.ItemDescription || detail.item_description || ""),
-              hsnCode: gst.HSN || detail.HSN || detail.HSNCode || detail.hsn_code || detail.HSN_SAC_Code || detail.hsn_sac_code || detail.hsnSacCode || detail.Hsn || detail.hsn || "",
-              dis: parseFloat(detail.Disc || detail.disc || gst.Discount || detail.Discount || detail.discount || detail.dis || detail.dis_per || detail.discount_percent || detail.disc_per || 0),
-              qty: qty,
-              taxableValue: parseFloat(gst.assessable_value || gst.AssValue || (rate * qty)),
-              cgst: parseFloat(gst.cgst || gst.CGST || gst.cgst_per || gst.cgst || detail.CGST || detail.cgst_per || detail.cgst || detail.cgstPer || detail.cgst_percent || item.TOC_CGST || item.cgst || 0),
-              sgst: parseFloat(gst.sgst || gst.SGST || gst.sgst_per || gst.sgst || detail.SGST || detail.sgst_per || detail.sgst || detail.sgstPer || detail.sgst_percent || item.TOC_SGST || item.sgst || 0),
-              igst: parseFloat(gst.igst || gst.IGST || gst.igst_per || gst.igst || detail.IGST || detail.igst_per || detail.igst || detail.igstPer || detail.igst_percent || item.TOC_IGST || item.igst || 0),
-              total: detail.Total || gst.Total || gst.grand_total || item.GR_Total || item.net_total || item.total || (rate * qty).toFixed(2),
-              
-              // Master Level Data (Footer/Header)
-              paymentTerms: item.PaymentTermDay || item.PaymentTerms || "",
-              poDate: detail.Date || item.PoDate || "",
-              challanNo: item.ChallanNo || item.PoNo || item.no || "",
-              challanDate: item.ChallanDate || item.PoDate || item.challan_date || "",
-              packCharges: parseFloat(gst.packing_forwarding_charges || item.TOC_PackCharges || 0),
-              transCharges: parseFloat(gst.transport_charges || item.TOC_TransportCost || 0),
-              insCharges: parseFloat(gst.insurance || item.TOC_Insurance || 0),
-              instCharges: parseFloat(gst.installation_charges || item.TOC_InstallationCharges || 0),
-              otherCharges: parseFloat(gst.other_charges || item.TOC_OtherCharges || 0),
-              tdsPer: parseFloat(gst.Tds || item.TOC_TDS || 0),
-            };
-
-            console.log(`Mapped Item Row for DirectBill:`, mappedItem);
-            return mappedItem;
-          });
-        });
-        setReportData(mappedData);
-      } else {
-        setReportData([]);
-      }
+      const rawData = Array.isArray(response.data) ? response.data : (response.data?.data ? response.data.data : []);
+      processAndSetData(rawData);
     } catch (error) {
       console.error("Error fetching Purchase Bill report:", error);
       setReportData([]);
@@ -397,10 +419,15 @@ const PurchaseBill = () => {
                     </div>
                   </div>
 
-                  <div className="footer-actions mt-3 text-end">
-                    <button className="vndrbtn bg-success border-success" onClick={handleConfirmToGstBill}>
-                      <FaCheck className="me-2" /> Confirm To GST Bill
-                    </button>
+                  <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                    <div className="record-count fw-bold" style={{ marginLeft: "15px" }}>
+                      Total Record : <span className="badge bg-primary text-white fs-6">{reportData.length}</span>
+                    </div>
+                    <div className="footer-actions text-end">
+                      <button className="vndrbtn bg-success border-success" onClick={handleConfirmToGstBill}>
+                        <FaCheck className="me-2" /> Confirm To GST Bill
+                      </button>
+                    </div>
                   </div>
                 </div>
               </main>

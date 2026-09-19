@@ -56,12 +56,14 @@ const [editId, setEditId] = useState(null);
 const [editData, setEditData] = useState({});
 
 
+  const [machineTypeSearch, setMachineTypeSearch] = useState("ALL");
+
   useEffect(() => {
     fetchData();
   }, []);
-const fetchData = async () => {
+const fetchData = async (searchType = "") => {
   try {
-    const result = await getWorkCenters();
+    const result = await getWorkCenters(searchType);
     setData(result.sort((a, b) => b.id - a.id));
   } catch (err) {
     setError("Failed to fetch data");
@@ -69,6 +71,10 @@ const fetchData = async () => {
   } finally {
     setLoading(false);
   }
+};
+
+const handleSearch = () => {
+  fetchData(machineTypeSearch);
 };
 
   // Handle Edit
@@ -217,7 +223,7 @@ const handleExportExcel = () => {
                               ×
                             </button>
                           </div>
-                          <AddNewCard/>
+                          <AddNewCard onSuccess={() => { handleCloseCard(); fetchData(machineTypeSearch); }} />
                          
                         </div>
                       </div>
@@ -229,7 +235,7 @@ const handleExportExcel = () => {
                   </div>
                   
                   <div className="centerMain mt-4">
-                    <ToastContainer position="top-right" autoClose={3000} />
+                    <ToastContainer position="top-right" autoClose={3000} style={{ marginTop: '70px' }} />
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, alignItems: 'flex-end', mb: 4 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5 }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', width: '100%', textAlign: 'left' }}>Select Plant</Typography>
@@ -251,7 +257,8 @@ const handleExportExcel = () => {
                           <TextField
                             select
                             size="small"
-                            defaultValue="ALL"
+                            value={machineTypeSearch}
+                            onChange={(e) => setMachineTypeSearch(e.target.value)}
                             sx={{ minWidth: '220px', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}
                           >
                             <MenuItem value="ALL">ALL</MenuItem>
@@ -273,7 +280,7 @@ const handleExportExcel = () => {
                           </TextField>
                         </Box>
 
-                        <Button variant="contained" sx={{ height: '38px', mt: 'auto', borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
+                        <Button variant="contained" onClick={handleSearch} sx={{ height: '38px', mt: 'auto', borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
                           <i className="fas fa-search me-2"></i> Search
                         </Button>
                     </Box>
@@ -293,14 +300,14 @@ const handleExportExcel = () => {
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Work Center Code</TableCell>
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Work Center Name</TableCell>
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Machine Type</TableCell>
-                              <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Type Group</TableCell>
+                              {/* <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Type Group</TableCell> */}
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Category</TableCell>
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>W.Hr.Rate</TableCell>
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>PPM</TableCell>
                               
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Edit</TableCell>
                               <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Delete</TableCell>
-                              <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Doc</TableCell>
+                              {/* <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Doc</TableCell> */}
                             </TableRow>
                           </TableHead>
                         <TableBody>
@@ -335,11 +342,11 @@ const handleExportExcel = () => {
           item.WorkCenterType
         )}
       </TableCell>
-      <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>{editId === item.id ? (
+      {/* <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>{editId === item.id ? (
           <TextField size="small" variant="outlined" name="TypeGroup" value={editData.TypeGroup || ''} onChange={handleChange} sx={{ minWidth: '120px', '& .MuiOutlinedInput-root': { borderRadius: '6px' } }} />
         ) : (
           item.TypeGroup
-        )}</TableCell>
+        )}</TableCell> */}
       <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
         {editId === item.id ? (
           <TextField size="small" variant="outlined" name="Category" value={editData.Category || ''} onChange={handleChange} sx={{ minWidth: '120px', '& .MuiOutlinedInput-root': { borderRadius: '6px' } }} />
@@ -379,11 +386,11 @@ const handleExportExcel = () => {
           <IconButton size="small" onClick={() => handleDelete(item.id)} sx={{ color: '#ef4444', '&:hover': { background: '#fee2e2' } }}><FaTrash style={{ fontSize: '16px' }} /></IconButton>
         </Tooltip>
       </TableCell>
-      <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
+      {/* <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
         <Tooltip title="Documentation">
           <Button size="small" variant="outlined" onClick={() => handleViewDoc(item)} sx={{ borderRadius: '6px', textTransform: 'none', color: '#6366f1', borderColor: '#6366f1', '&:hover': { backgroundColor: '#eef2ff' } }}>Doc</Button>
         </Tooltip>
-      </TableCell>
+      </TableCell> */}
     </TableRow>
   ))}
 </TableBody>

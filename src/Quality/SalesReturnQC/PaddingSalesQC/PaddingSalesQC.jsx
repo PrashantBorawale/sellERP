@@ -7,16 +7,30 @@ import "./PaddingSalesQC.css";
 import { useNavigate } from "react-router-dom";
 import { fetchSalesReturns } from "../../../Service/Api.jsx";
 import * as XLSX from "xlsx";
+import { Pagination, Box } from "@mui/material";
 
 const PaddingSalesQC = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [qcList, setQcList] = useState([]);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 7;
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  const getOneMonthAgoDate = () => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - 1);
+    return date.toISOString().split("T")[0];
+  };
+
   const [filters, setFilters] = useState({
     plant: "SHARP",
-    fromDate: "2025-01-01",
-    toDate: "2026-03-03",
-    custName: "Ram kumawat",
+    fromDate: getOneMonthAgoDate(),
+    toDate: getTodayDate(),
+    custName: "",
     itemCode: "",
     returnNo: ""
   });
@@ -220,9 +234,9 @@ const PaddingSalesQC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {qcList.map((item, index) => (
+                      {qcList.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item, index) => (
                         <tr key={index}>
-                          <td>{index + 1}</td>   {/* Sr No */}
+                          <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>   {/* Sr No */}
                           <td>{item.year}</td>
                           <td>{item.plant}</td>
                           <td>{item.returnNo}</td>
@@ -239,11 +253,28 @@ const PaddingSalesQC = () => {
                           >
                             !
                           </td>
-
                         </tr>
                       ))}
                     </tbody>
                   </table>
+                </div>
+
+                {qcList.length > 0 && (
+                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3, mb: 1 }}>
+                    <Pagination 
+                      count={Math.ceil(qcList.length / itemsPerPage)} 
+                      page={currentPage} 
+                      onChange={(e, value) => setCurrentPage(value)} 
+                      color="primary" 
+                      shape="rounded"
+                    />
+                  </Box>
+                )}
+
+                <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                  <div className="record-count fw-bold" style={{ marginLeft: "15px" }}>
+                    Total Record : <span className="badge bg-primary text-white fs-6">{qcList.length}</span>
+                  </div>
                 </div>
               </main>
             </div>

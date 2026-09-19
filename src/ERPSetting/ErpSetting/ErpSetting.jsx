@@ -6,6 +6,7 @@ import SideNav from "../../SideNav/SideNav.js";
 import "./ErpSetting.css";
 import { Link } from "react-router-dom";
 import { getUsers, updateUser, deleteUser } from "../../Service/Erpsetting.jsx";
+import * as XLSX from "xlsx";
 import { Box, Tooltip, IconButton, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/DownloadOutlined";
 import EditIcon from "@mui/icons-material/EditOutlined";
@@ -38,7 +39,7 @@ const ErpSetting = () => {
     const fetchData = async () => {
       try {
         const data = await getUsers();
-        setUsers(data);
+        setUsers(data.sort((a, b) => b.id - a.id));
         setLoading(false);
       } catch (error) {
         console.error("Failed to load users:", error);
@@ -77,6 +78,33 @@ const ErpSetting = () => {
     return <div>Loading...</div>;
   }
 
+  const handleExportExcel = () => {
+    if (users.length === 0) {
+      alert("No records to export");
+      return;
+    }
+    const exportData = users.map((user, index) => ({
+      "Sr.": index + 1,
+      "Department": user.department || "",
+      "Full Name": user.fullName || "",
+      "User Name": user.username || "",
+      "Email Id": user.email || "",
+      "Mobile No": user.mobileNo || "",
+      "Action Password": user.password || ""
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "User Management");
+    
+    const wscols = Object.keys(exportData[0]).map(key => ({
+      wch: Math.max(key.length, ...exportData.map(row => row[key] ? row[key].toString().length : 0)) + 2
+    }));
+    worksheet["!cols"] = wscols;
+
+    XLSX.writeFile(workbook, "User_Management.xlsx");
+  };
+
   return (
     <div className="erpsetting">
       <div className="container-fluid">
@@ -109,7 +137,7 @@ const ErpSetting = () => {
                         >
                           Add New
                         </Button>
-                        <Button 
+                        {/* <Button 
                           component={Link}
                           to="/DisableUserList"
                           variant="contained" 
@@ -122,10 +150,11 @@ const ErpSetting = () => {
                           }}
                         >
                           Disable User List
-                        </Button>
+                        </Button> */}
                         <Button 
                           variant="contained" 
                           startIcon={<DownloadIcon />}
+                          onClick={handleExportExcel}
                           sx={{ 
                             borderRadius: '8px', textTransform: 'none', fontWeight: 600, 
                             background: 'linear-gradient(to right, #3b82f6, #4f46e5)', color: 'white',
@@ -141,10 +170,9 @@ const ErpSetting = () => {
 
                   <Paper elevation={0} sx={{ mb: 4, p: 3, borderRadius: '16px', border: '1px solid #e2e8f0', bgcolor: 'white' }}>
                     <div className="row align-items-end mb-3">
-                      <div className="col-md-3">
-                        <label className="form-check-label mb-1">
-                          <input type="checkbox" className="form-check-input me-2" />
-                          Include User Name Like
+                      <div className="col-md-3 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
+                          Name
                         </label>
                         <input
                           type="text"
@@ -152,15 +180,17 @@ const ErpSetting = () => {
                           placeholder="User Name Like"
                         />
                       </div>
-                      <div className="col-md-3">
-                        <label className="form-label mb-1">Plant:</label>
-                        <select className="form-select">
+                      <div className="col-md-3 text-start">
+                        <label className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
+                          Plant
+                        </label>
+                        <select className="form-select mt-1">
                           <option value="">Select Plant</option>
                           <option value="VISHWA S.I.">VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-md-2">
-                        <Button variant="contained" fullWidth sx={{ height: '38px', borderRadius: '8px', backgroundColor: '#10b981', boxShadow: 'none', textTransform: 'none', fontSize: '0.875rem', fontWeight: 600, '&:hover': { backgroundColor: '#059669', boxShadow: 'none' } }}>Search</Button>
+                        <Button variant="contained" fullWidth sx={{ height: '38px', mb: '4px', borderRadius: '8px', backgroundColor: '#10b981', boxShadow: 'none', textTransform: 'none', fontSize: '0.875rem', fontWeight: 600, '&:hover': { backgroundColor: '#059669', boxShadow: 'none' } }}>Search</Button>
                       </div>
                     </div>
                   </Paper>

@@ -9,6 +9,7 @@ import "./AddContractor.css";
 import { addContractor } from "../../../Service/Api.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from "@mui/material";
 const AddContractor = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
 
@@ -86,7 +87,7 @@ const AddContractor = () => {
 
   return (
     <div className="AddContractorMaster">
-      <ToastContainer />
+      <ToastContainer style={{ marginTop: '70px' }} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
@@ -99,18 +100,14 @@ const AddContractor = () => {
               <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
                 <div className="AddContractorMaster1">
                   
-                   <div className="AddContractor-header mb-4 text-start mt-5">
-                     <div className="row align-items-center">
-                        <div className="col-md-4">
-                          <h5 className="header-title">
-                            Add New Contractor Master
-                          </h5>
-                        </div>
-                      </div>
+                  <div className="erp-header mb-4">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <h5 className="header-title mb-0">Add New Contractor Master</h5>
                     </div>
+                  </div>
                   
-                  <div className="AddContractorMain mt-5">
-                    <div className="container-fluid">
+                  <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                    <div className="card-body p-4">
                       <div className="row text-start mt-4">
                         <div className="col-md-6">
                           <div className="row mb-3">
@@ -129,8 +126,6 @@ const AddContractor = () => {
                               >
                                 <option value="">Select Plant</option>
                                 <option value="VISHWA S.I.">VISHWA S.I.</option>
-                                <option value="plant2">Plant 2</option>
-                                <option value="plant3">Plant 3</option>
                               </select>
                               {errors.Plant && (
                                 <div className="text-danger">
@@ -360,19 +355,13 @@ const AddContractor = () => {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col-md-12 text-end">
-                            <button
-                              className="btn"
-                              onClick={handleSubmit}
-                            >
+                          <div className="col-12 d-flex justify-content-center mt-4">
+                            <Button variant="contained" type="button" onClick={handleSubmit} sx={{ mr: 2, borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
                               Save
-                            </button>
-                            <button
-                              className="btn"
-                              onClick={handleClear}
-                            >
+                            </Button>
+                            <Button variant="outlined" type="button" onClick={handleClear} color="error" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600 }}>
                               Clear
-                            </button>
+                            </Button>
                           </div>
                         </div>
                       </div>

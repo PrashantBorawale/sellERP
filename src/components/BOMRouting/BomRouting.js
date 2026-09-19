@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Paper, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, IconButton } from '@mui/material';
+import { Paper, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, IconButton, Pagination } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -14,6 +14,7 @@ const BomRouting = () => {
   const [bomData, setBomData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("ALL");
   const [selectedItemGroup, setSelectedItemGroup] = useState("ALL");
@@ -453,8 +454,8 @@ const BomRouting = () => {
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BomPartCode || "-"}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.item || "-"}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BomPartDesc || "-"}</TableCell>
-        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.QC || "-"}</TableCell>
-        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BOMPartType || "-"}</TableCell>
+        {/* <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.QC || "-"}</TableCell>
+        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BOMPartType || "-"}</TableCell> */}
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PartCode || "-"}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
           <IconButton size="small" onClick={() => window.open(`https://sellerp-backend.onrender.com/All_Masters/api/bom_pdf/${item.item || item.id}`, "_blank")} sx={{ color: '#3b82f6', '&:hover': { background: '#dbeafe' } }}><i className="fas fa-eye" style={{ fontSize: '16px' }}></i></IconButton>
@@ -492,8 +493,9 @@ const BomRouting = () => {
     }
 
     const filteredData = getFilteredData();
+    const sortedEntries = Object.entries(filteredData).sort((a, b) => (b[1].item_id || 0) - (a[1].item_id || 0));
 
-    if (Object.keys(filteredData).length === 0) {
+    if (sortedEntries.length === 0) {
       return (
         <TableRow>
           <TableCell colSpan={10} sx={{ textAlign: 'center', py: 4, color: '#64748b' }}>
@@ -504,10 +506,14 @@ const BomRouting = () => {
       );
     }
 
-    let serialNumber = 1;
+    const rowsPerPage = 10;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const paginatedEntries = sortedEntries.slice(startIndex, startIndex + rowsPerPage);
+
+    let serialNumber = startIndex + 1;
     const rows = [];
 
-    Object.entries(filteredData).forEach(([partNumber, data]) => {
+    paginatedEntries.forEach(([partNumber, data]) => {
       const isExpanded = expandedRows.has(partNumber);
 
       rows.push(
@@ -516,9 +522,9 @@ const BomRouting = () => {
           <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.part_no || partNumber}</TableCell>
           <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.Part_Code || "-"}</TableCell>
           <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.Name_Description || "-"}</TableCell>
-          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.NPD || "-"}</TableCell>
-          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.Auth === true ? "Auth" : "Un-Auth"}</TableCell>
-          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.User || "-"}</TableCell>
+          {/* <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.NPD || "-"}</TableCell>
+          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.Auth === true ? "Auth" : "Un-Auth"}</TableCell> */}
+          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{data.User || "Admin"}</TableCell>
           <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
             <IconButton size="small" onClick={() => window.open(`https://sellerp-backend.onrender.com/All_Masters/api/bom_pdf/${data.item_id || data.Part_Code}`, "_blank")} sx={{ color: '#3b82f6', '&:hover': { background: '#dbeafe' } }}><i className="fas fa-eye" style={{ fontSize: '16px' }}></i></IconButton>
           </TableCell>
@@ -557,7 +563,7 @@ const BomRouting = () => {
                       <h5 className="header-title mb-0">BOM And Routing List</h5>
                       
                       <div className="d-flex gap-2 flex-wrap justify-content-end align-items-center">
-                        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mr: 2 }}>
+                        {/* <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mr: 2 }}>
                           <span className="badge" style={{ backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '6px 12px', fontSize: '13px' }}>Total BOM:</span>
                           <span className="badge" style={{ backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '6px 12px', fontSize: '13px' }}>FG:548</span>
                           <span className="badge" style={{ backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '6px 12px', fontSize: '13px' }}>SFG:1</span>
@@ -566,9 +572,9 @@ const BomRouting = () => {
                           <span className="badge" style={{ backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '6px 12px', fontSize: '13px' }}>Total:593</span>
                           <span className="badge" style={{ backgroundColor: '#fef2f2', color: '#ef4444', border: '1px solid #fca5a5', padding: '6px 12px', fontSize: '13px' }}>Un-Auth:2</span>
                           <span className="badge" style={{ backgroundColor: '#f0fdf4', color: '#16a34a', border: '1px solid #86efac', padding: '6px 12px', fontSize: '13px' }}>Auth:591</span>
-                        </Box>
+                        </Box> */}
   
-                        <div style={{ position: 'relative', display: 'inline-block' }}>
+                        {/* <div style={{ position: 'relative', display: 'inline-block' }}>
                           <button onClick={toggleDropdown} className="vndrbtn border-0">BOM:Report ▼</button>
   
                         {dropdownOpen && (
@@ -601,10 +607,10 @@ const BomRouting = () => {
                             <li><Link className="dropdown-item py-2 px-3" to={"/"} style={{ fontWeight: 500 }}>BOM Tree View</Link></li>
                           </ul>
                         )}
-                      </div>
+                      </div> */}
 
                       <Link to="/bill-material" className="vndrbtn">New / Modify BOM</Link>
-                      <Link to="/BOMQuery" className="vndrbtn">BOM:Query</Link>
+                      {/* <Link to="/BOMQuery" className="vndrbtn">BOM:Query</Link> */}
                     </div>
                   </div>
                 </div>
@@ -703,8 +709,8 @@ const BomRouting = () => {
                                 <TableCell sx={{ width: '12%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>item no</TableCell>
                                 <TableCell sx={{ width: '12%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>item code</TableCell>
                                 <TableCell sx={{ width: '25%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>item description</TableCell>
-                                <TableCell sx={{ width: '7%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>NPD</TableCell>
-                                <TableCell sx={{ width: '8%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Auth</TableCell>
+                                {/* <TableCell sx={{ width: '7%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>NPD</TableCell>
+                                <TableCell sx={{ width: '8%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Auth</TableCell> */}
                                 <TableCell sx={{ width: '10%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>User</TableCell>
                                 <TableCell sx={{ width: '8%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>View</TableCell>
                                 <TableCell sx={{ width: '8%', whiteSpace: 'normal', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '16px' }}>Action</TableCell>
@@ -717,14 +723,27 @@ const BomRouting = () => {
                           </Table>
                         </TableContainer>
                       </Paper>
+                      
+                      {Object.keys(getFilteredData()).length > 0 && (
+                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                          <Pagination 
+                            count={Math.ceil(Object.keys(getFilteredData()).length / 10)} 
+                            page={currentPage} 
+                            onChange={(e, value) => setCurrentPage(value)} 
+                            color="primary" 
+                            shape="rounded"
+                            size="small"
+                          />
+                        </div>
+                      )}
                     </div>
 
                   {/* Footer */}
                   
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2, px: 2 }}>
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: '#64748b' }}>
-                      <i className="fas fa-info-circle me-1"></i> Total Records: <strong style={{ color: '#6366f1' }}>{totalItems}</strong>
-                    </Typography>
+                    <div className="record-count fw-bold" style={{ marginLeft: "15px" }}>
+                      Total Record : <span className="badge bg-primary text-white fs-6" style={{ padding: "0.35em 0.65em" }}>{totalItems}</span>
+                    </div>
                     <Typography variant="body2" sx={{ fontWeight: 600, color: '#64748b' }}>
                       Format: <strong style={{ color: '#6366f1' }}>PDF</strong>
                     </Typography>

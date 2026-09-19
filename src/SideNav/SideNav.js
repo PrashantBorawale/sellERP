@@ -171,9 +171,9 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                       <Link className="dropdown-item" to="/ErpFinancialYear">
                         Financial Year
                       </Link>
-                      <Link className="dropdown-item" to="/FinancialMonth">
+                      {/* <Link className="dropdown-item" to="/FinancialMonth">
                         Financial Month Master
-                      </Link>
+                      </Link> */}
                       <Link className="dropdown-item" to="/ScheduleMonth">
                         Schedule Month Master
                       </Link>
@@ -280,7 +280,7 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                   </Link>
                 )}
 
-                {permissions.All_Masters.includes("Cross Reference") && (
+                {/* {permissions.All_Masters.includes("Cross Reference") && (
                   <div className="nested-dropdown">
                     <div
                       className="dropdown-item nested-toggle"
@@ -310,7 +310,7 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                       )}
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {permissions.All_Masters.includes("GST Rate Master") && (
                   <Link className="dropdown-item" to="/gst-rate-master">
@@ -318,11 +318,11 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                   </Link>
                 )}
 
-                {permissions.All_Masters.includes("Commodity Master") && (
+                {/* {permissions.All_Masters.includes("Commodity Master") && (
                   <Link className="dropdown-item" to="/commodity-master">
                     Commodity Master
                   </Link>
-                )}
+                )} */}
 
                 {permissions.All_Masters.includes("BOM Routing Master") && (
                   <Link className="dropdown-item" to="/bom-routing">

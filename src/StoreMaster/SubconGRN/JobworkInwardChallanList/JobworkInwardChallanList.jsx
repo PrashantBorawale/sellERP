@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../../NavBar/NavBar.js";
 import SideNav from "../../../SideNav/SideNav.js";
+import { FaTrash, FaEye } from "react-icons/fa";
 import "./JobworkInwardChallanList.css";
 
 const JobworkInwardChallanList = () => {
@@ -55,6 +56,27 @@ const JobworkInwardChallanList = () => {
     const handleViewPdf = (challanId) => {
         // Open PDF in new tab
         window.open(`https://sellerp-backend.onrender.com/Store/jobwork-inward-challan-pdf/${challanId}/`, '_blank');
+    };
+
+    const handleDelete = async (id) => {
+        if (!id) return;
+        const confirmDelete = window.confirm("Are you sure you want to delete this Jobwork Inward Challan?");
+        if (!confirmDelete) return;
+
+        try {
+            const response = await fetch(`https://sellerp-backend.onrender.com/Store/JobworkInwardChallan/${id}/`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                alert("Deleted successfully!");
+                fetchInwardChallanList();
+            } else {
+                alert("Failed to delete.");
+            }
+        } catch (error) {
+            console.error("Error deleting:", error);
+            alert("Error deleting record.");
+        }
     };
 
     const indexOfLastRecord = currentPage * recordsPerPage;
@@ -195,7 +217,7 @@ const JobworkInwardChallanList = () => {
                                     <div className="InwardList-table">
                                         <div className="container-fluid mt-4 text-start">
                                             <div className="table-responsive" style={{ width: '100%', overflowX: 'hidden' }}>
-                                                <table className="table table-bordered table-striped table-sm" style={{ width: '100%', wordBreak: 'break-word', fontSize: '0.85rem' }}>
+                                                <table className="table table-bordered table-striped table-sm" style={{ width: '100%', wordBreak: 'break-word', fontSize: '0.75rem' }}>
                                                     <thead>
                                                         <tr>
                                                             <th>Sr no.</th>
@@ -206,21 +228,22 @@ const JobworkInwardChallanList = () => {
                                                             <th>Challan Date</th>
                                                             <th>Invoice No</th>
                                                             <th>Invoice Date</th>
-                                                            <th>Supplier Name</th>
+                                                            <th style={{ width: '120px', minWidth: '120px' }}>Supplier Name</th>
                                                             <th>Vehicle No</th>
                                                             <th>Transporter</th>
-                                                            <th>Item Qty | Desc</th>
+                                                            <th style={{ width: '180px', minWidth: '180px' }}>Item Qty | Desc</th>
                                                             <th>Prepared By</th>
                                                             <th>Checked By</th>
                                                             <th>Total Items</th>
                                                             <th>Remarks</th>
-                                                            <th>View PDF</th>
+                                                            <th>View</th>
+                                                            <th>Del</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {loading ? (
                                                             <tr>
-                                                                <td colSpan="17" className="text-center">
+                                                                <td colSpan="18" className="text-center">
                                                                     Loading...
                                                                 </td>
                                                             </tr>
@@ -238,7 +261,7 @@ const JobworkInwardChallanList = () => {
                                                                     <td>{challan.Customer || 'N/A'}</td>
                                                                     <td>{challan.VehicleNo || 'N/A'}</td>
                                                                     <td>{challan.Transporter || 'N/A'}</td>
-                                                                    <td style={{ maxWidth: '1200px', wordWrap: 'break-word' }}>
+                                                                    <td style={{ maxWidth: '180px', wordWrap: 'break-word', whiteSpace: 'normal' }}>
                                                                         {formatItemsDisplay(challan.JobworkInwardChallanTable)}
                                                                     </td>
                                                                     <td>{challan.PrepartedBy || 'N/A'}</td>
@@ -246,19 +269,25 @@ const JobworkInwardChallanList = () => {
                                                                     <td>{challan.TotalItem || 'N/A'}</td>
                                                                     <td>{challan.Remark || 'N/A'}</td>
                                                                     <td>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-sm btn-info"
+                                                                        <FaEye
+                                                                            title="View PDF"
+                                                                            style={{ cursor: 'pointer', fontSize: '1.2rem', color: '#0dcaf0' }}
                                                                             onClick={() => handleViewPdf(challan.id)}
-                                                                        >
-                                                                            View PDF
-                                                                        </button>
+                                                                        />
+                                                                    </td>
+                                                                    <td>
+                                                                        <FaTrash
+                                                                            title="Delete"
+                                                                            className="text-danger"
+                                                                            style={{ cursor: 'pointer', fontSize: '1.1rem' }}
+                                                                            onClick={() => handleDelete(challan.id)}
+                                                                        />
                                                                     </td>
                                                                 </tr>
                                                             ))
                                                         ) : (
                                                             <tr>
-                                                                <td colSpan="17" className="text-center">
+                                                                <td colSpan="18" className="text-center">
                                                                     No inward challan data available
                                                                 </td>
                                                             </tr>

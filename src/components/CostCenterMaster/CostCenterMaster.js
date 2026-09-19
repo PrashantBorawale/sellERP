@@ -20,6 +20,8 @@ import {
   deleteCostCenterAdd,
 } from "../../Service/Api.jsx";
 import { toast, ToastContainer } from "react-toastify";
+import { Pagination } from "@mui/material";
+import * as XLSX from "xlsx";
 
 const CostCenterMaster = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -54,6 +56,44 @@ const CostCenterMaster = () => {
     Cost_Center_Desc: "",
   });
   const [editId1, setEditId1] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  
+  const [modalCurrentPage, setModalCurrentPage] = useState(1);
+  const modalItemsPerPage = 5;
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const handleModalPageChange = (event, value) => {
+    setModalCurrentPage(value);
+  };
+
+  const handleExportExcel = () => {
+    if (costCenterData.length === 0) {
+      toast.warning("No records to export");
+      return;
+    }
+    const exportData = costCenterData.map((item, index) => ({
+      "Sr.": index + 1,
+      "Cost Center Code": item.Cost_Center_Code || "",
+      "Cost Center Desc": item.Cost_Center_Desc || "",
+      "Category Code": item.Category_Code || "",
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Cost Center Master");
+    
+    const wscols = Object.keys(exportData[0]).map(key => ({
+      wch: Math.max(key.length, ...exportData.map(row => row[key] ? row[key].toString().length : 0)) + 2
+    }));
+    worksheet["!cols"] = wscols;
+
+    XLSX.writeFile(workbook, "Cost_Center_Master.xlsx");
+  };
 
   // Fetch cost centers for the first card
   useEffect(() => {
@@ -103,7 +143,7 @@ const CostCenterMaster = () => {
         Cost_Center_Desc: "",
       });
       setEditId(null);
-      fetchCostCenters().then((data) => setCostCenterData(data));
+      fetchCostCenters().then((data) => setCostCenterData(data.sort((a, b) => b.id - a.id)));
       console.log("data saved");
     } catch (error) {
       toast.error("Failed to save data");
@@ -126,11 +166,30 @@ const CostCenterMaster = () => {
     try {
       await deleteCostCenter(id);
       toast.success("Cost Center deleted successfully!");
-      fetchCostCenters().then((data) => setCostCenterData(data));
+      fetchCostCenters().then((data) => setCostCenterData(data.sort((a, b) => b.id - a.id)));
     } catch (error) {
       toast.error("Failed to delete data");
     }
   };
+
+  const paginatedData = costCenterData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+  const totalPages = Math.ceil(costCenterData.length / itemsPerPage);
+
+  const [firstModalCurrentPage, setFirstModalCurrentPage] = useState(1);
+  const paginatedFirstModalData = costCenterData.slice(
+    (firstModalCurrentPage - 1) * 5,
+    firstModalCurrentPage * 5
+  );
+  const totalFirstModalPages = Math.ceil(costCenterData.length / 5);
+
+  const paginatedModalData = costCenterData1.slice(
+    (modalCurrentPage - 1) * modalItemsPerPage,
+    modalCurrentPage * modalItemsPerPage
+  );
+  const totalModalPages = Math.ceil(costCenterData1.length / modalItemsPerPage);
 
   // Handle input change for the second card
   const handleInputChange1 = (e) => {
@@ -161,7 +220,7 @@ const CostCenterMaster = () => {
         Cost_Center_Desc: "",
       });
       setEditId1(null);
-      fetchCostCentersAdd().then((data) => setCostCenterData1(data));
+      fetchCostCentersAdd().then((data) => setCostCenterData1(data.sort((a, b) => b.id - a.id)));
       console.log("data saved");
     } catch (error) {
       toast.error("Failed to save data");
@@ -206,61 +265,48 @@ const CostCenterMaster = () => {
               />
               <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
                 <div className="CostcenterMaster1">
-                  <div className="Costcenter mt-5">
-                    <div className="Costcenter-header mb-4 text-start">
-                    <div className="row align-items-center">
-                      <div className="col-md-4">
-                        <h5 className="header-title">Cost Center Master</h5>
-                        </div>
-                        <div className="col-md-8 text-md-end text-start mt-2 mt-md-0">
-                          <button
-                            className="btn"
-                            onClick={toggleAddForm}
-                          >
-                            Add New
-                          </button>
-                          <button className="btn">
-                            Export Report
-                          </button>
-                        </div>
+                  <div className="erp-header mb-4">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <h5 className="header-title mb-0">Cost Center Master</h5>
+                      <div className="d-flex gap-2">
+                        <button className="btn vndrbtn" onClick={toggleAddForm}>
+                          Add New
+                        </button>
+                        <button className="btn vndrbtn" onClick={handleExportExcel}>
+                          Export Report
+                        </button>
                       </div>
                     </div>
                   </div>
-                  <div className="CostcenterMain mt-5">
-                    <div className="container-fluid">
-                      <div className="row text-start centerselect">
-                        <div className="col-md-2 col-sm-3 mb-3 mb-sm-0">
-                          <label
-                            htmlFor="CostcenterName"
-                            className="col-form-label"
-                          >
+
+                  <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                    <div className="card-body p-4">
+                      <div className="row align-items-end text-start mb-3">
+                        <div className="col-md-3">
+                          <label htmlFor="CostcenterName" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
                             Cost Center Category:
                           </label>
-                        </div>
-                        <div className="col-md-3 col-sm-9 mb-3 mb-sm-0">
-                          <select
-                            className="form-select"
-                            aria-label="Default select example"
-                          >
+                          <select className="form-select mt-1">
                             <option selected>All</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                           </select>
                         </div>
-                        <div className="col-md-1 col-sm-12 text-sm-start text-md-start mt-2">
-                          <button className="btn">
-                          Search
+                        <div className="col-md-2">
+                          <button className="btn vndrbtn mb-1 w-100">
+                            Search
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="CostcenterTable mt-5">
-                    <div className="container-fluid">
+
+                  <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                    <div className="card-body p-4">
                       <div className="table-responsive">
-                        <table className="table table-bordered table-striped">
-                          <thead className="table-primary">
+                        <table className="table table-bordered table-striped" style={{ fontSize: '0.85rem' }}>
+                          <thead className="table-light">
                             <tr>
                               <th scope="col">Sr.</th>
                               <th scope="col">Cost Center Code</th>
@@ -270,9 +316,9 @@ const CostCenterMaster = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {costCenterData.map((costCenter, index) => (
+                            {paginatedData.map((costCenter, index) => (
                               <tr key={costCenter.id}>
-                                <td>{index + 1}</td>
+                                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td>{costCenter.Cost_Center_Code}</td>
                                 <td>{costCenter.Cost_Center_Desc}</td>
                                 <td>{costCenter.Category_Code}</td>
@@ -295,13 +341,26 @@ const CostCenterMaster = () => {
                           </tbody>
                         </table>
                       </div>
+                      <div className="row mt-3 align-items-center">
+                        <div className="col-md-6 text-start">
+                          <span className="record-count" style={{ color: "#475569", fontWeight: 600, fontSize: "0.85rem" }}>
+                            Total Records: {costCenterData.length}
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex justify-content-end">
+                          {totalPages > 1 && (
+                            <Pagination
+                              count={totalPages}
+                              page={currentPage}
+                              onChange={handlePageChange}
+                              color="primary"
+                              shape="rounded"
+                              size="small"
+                            />
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    className="record-count text-start"
-                    style={{ color: "blue", padding: "10px" }}
-                  >
-                    Total Records: {costCenterData.length}
                   </div>
                   {showAddForm && (
                     <div className="costtype-overlay">
@@ -320,95 +379,62 @@ const CostCenterMaster = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="card-body">
-                          <div className="row text-start">
+                        <div className="card-body p-4">
+                          <div className="row align-items-end text-start mb-4">
                             <div className="col-md-4">
-                              <label
-                                htmlFor="Category_Code"
-                                className="col-sm-7 col-form-label"
-                              >
+                              <label htmlFor="Category_Code" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
                                 Category Code:
                               </label>
-                              <div className="row mb-3">
-                                <div className="col-sm-5">
-                                  <select
-                                    id="Category_Code"
-                                    name="Category_Code"
-                                    className="form-select"
-                                    value={formData.Category_Code}
-                                    onChange={handleInputChange}
-                                    style={{marginTop:"-1px"}}
-                                  >
-                                    <option value="" disabled>
-                                      Select ..
-                                    </option>
-                                    <option>Store</option>
-                                    <option>Maintenance</option>
-                                  </select>
-                                </div>
-                                <div className="col-sm-1"    style={{marginTop:"-1px"}}>
-                                  <button
-                                    className="btn"
-                                    onClick={toggleAddFormsecond}
-                                  >
-                                    New
-                                  </button>
-                                </div>
-                                <div className="col-sm-1 ms-4">
-                                  <button className="btn"    style={{marginTop:"-1px"}}>
-                                    <CachedIcon />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-md-4">
-                              <label
-                                htmlFor="Cost_Center_Code"
-                                className="col-sm-7 col-form-label"
-                              >
-                                Cost Center Code:
-                              </label>
-                              <div className="row mb-3">
-                                <div className="col-sm-12">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="Cost_Center_Code"
-                                    name="Cost_Center_Code"
-                                    placeholder="Cost Center Code"
-                                    value={formData.Cost_Center_Code}
-                                    onChange={handleInputChange}
-                                  />
-                                </div>
+                              <div className="d-flex gap-2">
+                                <select
+                                  id="Category_Code"
+                                  name="Category_Code"
+                                  className="form-select"
+                                  value={formData.Category_Code}
+                                  onChange={handleInputChange}
+                                >
+                                  <option value="" disabled>Select ..</option>
+                                  <option>Store</option>
+                                  <option>Maintenance</option>
+                                </select>
+                                <button className="btn btn-sm btn-outline-primary" onClick={toggleAddFormsecond}>
+                                  New
+                                </button>
+                                <button className="btn btn-sm btn-outline-secondary">
+                                  <CachedIcon fontSize="small" />
+                                </button>
                               </div>
                             </div>
                             <div className="col-md-3">
-                              <label
-                                htmlFor="Cost_Center_Desc"
-                                className="col-sm-12 col-form-label"
-                              >
+                              <label htmlFor="Cost_Center_Code" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
+                                Cost Center Code:
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="Cost_Center_Code"
+                                name="Cost_Center_Code"
+                                placeholder="Cost Center Code"
+                                value={formData.Cost_Center_Code}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                            <div className="col-md-3">
+                              <label htmlFor="Cost_Center_Desc" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
                                 Cost Center Desc:
                               </label>
-                              <div className="row mb-3">
-                                <div className="col-sm-12">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="Cost_Center_Desc"
-                                    name="Cost_Center_Desc"
-                                    placeholder="Cost Center Description"
-                                    value={formData.Cost_Center_Desc}
-                                    onChange={handleInputChange}
-                                  />
-                                </div>
-                              </div>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="Cost_Center_Desc"
+                                name="Cost_Center_Desc"
+                                placeholder="Cost Center Description"
+                                value={formData.Cost_Center_Desc}
+                                onChange={handleInputChange}
+                              />
                             </div>
-                            <div className="col-md-1 col-sm-12 text-sm-start text-md-start mt-2">
-                              <button
-                                className="btn"
-                                style={{ marginTop: "29px" }}
-                                onClick={handleSave}
-                              >
+                            <div className="col-md-2">
+                              <button className="btn vndrbtn w-100" onClick={handleSave}>
                                 Save
                               </button>
                             </div>
@@ -416,8 +442,8 @@ const CostCenterMaster = () => {
                           <div className="CostaddnewTable">
                             <div className="container-fluid">
                               <div className="table-responsive">
-                                <table className="table">
-                                  <thead className="table-primary">
+                                <table className="table table-bordered table-striped" style={{ fontSize: '0.85rem' }}>
+                                  <thead className="table-light">
                                     <tr>
                                       <th>Category Code</th>
                                       <th>Cost Center Code</th>
@@ -426,8 +452,8 @@ const CostCenterMaster = () => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    {costCenterData.length > 0 ? (
-                                      costCenterData.map((item) => (
+                                    {paginatedFirstModalData.length > 0 ? (
+                                      paginatedFirstModalData.map((item) => (
                                         <tr key={item.id}>
                                           <td>{item.Category_Code}</td>
                                           <td>{item.Cost_Center_Code}</td>
@@ -468,6 +494,19 @@ const CostCenterMaster = () => {
                                   </tbody>
                                 </table>
                               </div>
+                              
+                              {totalFirstModalPages > 1 && (
+                                <div className="d-flex justify-content-end mt-2">
+                                  <Pagination
+                                    count={totalFirstModalPages}
+                                    page={firstModalCurrentPage}
+                                    onChange={(e, v) => setFirstModalCurrentPage(v)}
+                                    color="primary"
+                                    shape="rounded"
+                                    size="small"
+                                  />
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -491,72 +530,51 @@ const CostCenterMaster = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="card-body">
-                          <div className="row text-start">
-                            <div className="col-md-4">
-                              <label
-                                htmlFor="Category_Code"
-                                className="col-sm-12 col-form-label"
-                              >
+                        <div className="card-body p-4">
+                          <div className="row align-items-end text-start mb-4">
+                            <div className="col-md-5">
+                              <label htmlFor="Category_Code" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
                                 Category Code:
                               </label>
-                              <div className="row mb-3">
-                                <div className="col-sm-12">
-                                  <select
-                                    id="Category_Code"
-                                    name="Category_Code"
-                                    className="form-select"
-                                    value={formData1.Category_Code}
-                                    onChange={handleInputChange1}
-                                    style={{marginTop:"-1px"}}
-                                  >
-                                    <option value="" disabled>
-                                      Select ..
-                                    </option>
-                                    <option>Store</option>
-                                    <option>Maintenance</option>
-                                  </select>
-                                </div>
-                              </div>
+                              <select
+                                id="Category_Code"
+                                name="Category_Code"
+                                className="form-select"
+                                value={formData1.Category_Code}
+                                onChange={handleInputChange1}
+                              >
+                                <option value="" disabled>Select ..</option>
+                                <option>Store</option>
+                                <option>Maintenance</option>
+                              </select>
                             </div>
 
-                            <div className="col-md-4">
-                              <label
-                                htmlFor="Cost_Center_Desc"
-                                className="col-sm-12 col-form-label"
-                              >
+                            <div className="col-md-5">
+                              <label htmlFor="Cost_Center_Desc" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>
                                 Cost Center Desc:
                               </label>
-                              <div className="row mb-3">
-                                <div className="col-sm-12">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="Cost_Center_Desc"
-                                    name="Cost_Center_Desc"
-                                    placeholder="Description"
-                                    value={formData1.Cost_Center_Desc}
-                                    onChange={handleInputChange1}
-                                  />
-                                </div>
-                              </div>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="Cost_Center_Desc"
+                                name="Cost_Center_Desc"
+                                placeholder="Description"
+                                value={formData1.Cost_Center_Desc}
+                                onChange={handleInputChange1}
+                              />
                             </div>
 
-                            <div className="col-md-1 text-start">
-                              <button
-                                className="btn"
-                                style={{ marginTop: "38px" }}
-                                onClick={handleSave1}
-                              >
+                            <div className="col-md-2">
+                              <button className="btn vndrbtn w-100" onClick={handleSave1}>
                                 Save
                               </button>
                             </div>
                           </div>
                           <div className="CostaddnewTable">
-                            <div className="container-fluid">
+                            <div className="container-fluid p-0">
                               <div className="table-responsive">
-                                <table className="table table-striped">
-                                  <thead>
+                                <table className="table table-bordered table-striped" style={{ fontSize: '0.85rem' }}>
+                                  <thead className="table-light">
                                     <tr>
                                       <th>Category Code</th>
                                       <th>Cost Center Desc</th>
@@ -564,7 +582,7 @@ const CostCenterMaster = () => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    {costCenterData1.map((costCenter) => (
+                                    {paginatedModalData.map((costCenter) => (
                                       <tr key={costCenter.id}>
                                         <td>{costCenter.Category_Code}</td>
                                         <td>{costCenter.Cost_Center_Desc}</td>
@@ -599,6 +617,18 @@ const CostCenterMaster = () => {
                                   </tbody>
                                 </table>
                               </div>
+                              {totalModalPages > 1 && (
+                                <div className="d-flex justify-content-end mt-2">
+                                  <Pagination
+                                    count={totalModalPages}
+                                    page={modalCurrentPage}
+                                    onChange={handleModalPageChange}
+                                    color="primary"
+                                    shape="rounded"
+                                    size="small"
+                                  />
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>

@@ -134,6 +134,16 @@ export const getFinancialYears = async () => {
   }
 };
 
+export const deleteFinancialYear = async (id) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}financial_years/${id}/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting financial year:", error);
+    throw error;
+  }
+};
+
 export const getDefaultRoute = (permissions, username) => {
   const uname = (username || "").trim().toLowerCase();
   const isAdmin = uname === "admin" || uname === "prashant" || permissions?.role === "admin" || permissions === "all";

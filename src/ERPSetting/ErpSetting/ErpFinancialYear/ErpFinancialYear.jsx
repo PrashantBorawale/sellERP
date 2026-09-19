@@ -6,12 +6,13 @@ import SideNav from "../../../SideNav/SideNav.js";
 import "./ErpFinancialYear.css";
 import { FaFile } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { createFinancialYear, getFinancialYears } from "../../../Service/Erpsetting.jsx";
+import { createFinancialYear, getFinancialYears, deleteFinancialYear } from "../../../Service/Erpsetting.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import AddIcon from "@mui/icons-material/AddOutlined";
+import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 
 const ErpFinancialYear = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -96,6 +97,17 @@ const ErpFinancialYear = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this financial year?")) return;
+    try {
+      await deleteFinancialYear(id);
+      setFinancialYears(financialYears.filter((item) => item.id !== id));
+      toast.success("Financial Year deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete Financial Year!");
+    }
+  };
+
   return (
     <div className="ErpFinancialyear">
       <div className="container-fluid">
@@ -146,6 +158,7 @@ const ErpFinancialYear = () => {
                             <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '12px 16px', textAlign: 'center' }}>Short Name</TableCell>
                             <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '12px 16px', textAlign: 'center' }}>Doc Start No.</TableCell>
                             <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '12px 16px', textAlign: 'center' }}>Fy Month</TableCell>
+                            <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: '#f8fafc', color: '#475569', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', padding: '12px 16px', textAlign: 'center' }}>Delete</TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
@@ -165,6 +178,9 @@ const ErpFinancialYear = () => {
                               </TableCell>
                               <TableCell sx={{ color: '#475569', fontSize: '0.8rem', padding: '12px 16px', borderBottom: '1px solid #f1f5f9', textAlign: 'center' }}>
                                 <FaFile size={18} style={{ color: '#94a3b8', cursor: 'pointer', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.currentTarget.style.color = '#64748b'} onMouseOut={(e) => e.currentTarget.style.color = '#94a3b8'} />
+                              </TableCell>
+                              <TableCell sx={{ color: '#ef4444', fontSize: '0.8rem', padding: '12px 16px', borderBottom: '1px solid #f1f5f9', textAlign: 'center' }}>
+                                <DeleteIcon style={{ cursor: 'pointer', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.currentTarget.style.color = '#b91c1c'} onMouseOut={(e) => e.currentTarget.style.color = '#ef4444'} onClick={() => handleDelete(year.id)} />
                               </TableCell>
                             </TableRow>
                           ))}

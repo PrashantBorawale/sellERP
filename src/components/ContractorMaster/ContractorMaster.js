@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 import {  fetchContractorMaster,
   deleteContractor,
   updateContractor } from "../../Service/Api";
-  import { ToastContainer,toast } from "react-toastify";
-
+  import { ToastContainer, toast } from "react-toastify";
+  import * as XLSX from "xlsx";
+  import { Pagination } from "@mui/material";
 const ContractorMaster = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
 
@@ -32,20 +33,34 @@ const ContractorMaster = () => {
   const [editForm, setEditForm] = useState({});
   const itemsPerPage = 10;
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     loadContractors();
   }, []);
 
-  const loadContractors = async () => {
+  const loadContractors = async (query = "") => {
     try {
-      const data = await fetchContractorMaster();
+      const data = await fetchContractorMaster(query);
       setContractorList(data.sort((a, b) => b.id - a.id));
     } catch (error) {
       console.error("Error fetching contractors", error);
     }
   };
 
+  const handleSearch = () => {
+    setCurrentPage(1);
+    loadContractors(searchQuery);
+  };
+
+  const handleViewAll = () => {
+    setSearchQuery("");
+    setCurrentPage(1);
+    loadContractors("");
+  };
+
 const handleDelete = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this contractor?")) return;
   try {
     await deleteContractor(id);
     toast.success("Contractor deleted successfully");
@@ -80,12 +95,40 @@ const handleSave = async () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+  const totalPages = Math.ceil(contractorList.length / itemsPerPage);
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
+  const handleExportExcel = () => {
+    if (contractorList.length === 0) {
+      alert("No records to export");
+      return;
+    }
+    const exportData = contractorList.map((item, index) => ({
+      "Sr.": index + 1,
+      "Name": item.name || "",
+      "Type": item.type || "",
+      "Code": item.code || "",
+      "Designation": item.designation || "",
+      "Contact": item.contact || "",
+      "Contractor Type": item.contractortype || ""
+    }));
 
-  return (
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Contractor Master");
+    
+    const wscols = Object.keys(exportData[0]).map(key => ({
+      wch: Math.max(key.length, ...exportData.map(row => row[key] ? row[key].toString().length : 0)) + 2
+    }));
+    worksheet["!cols"] = wscols;
+
+    XLSX.writeFile(workbook, "Contractor_Master.xlsx");
+  };  return (
     <div className="ContractorMaster">
-      <ToastContainer/>
+      <ToastContainer style={{ marginTop: '70px' }} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
@@ -97,28 +140,21 @@ const handleSave = async () => {
               />
               <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
                 <div className="ContractorMaster1">
-                  
-                  <div className="Contractor-header mb-4 text-start mt-5">
-                    <div className="row align-items-center">
-                      <div className="col-md-6">
-                        <h5 className="header-title">Contractor Master</h5>
-                        </div>
-                        <div className="col-md-6 col-12 text-end">
-                          <Link
-                            to={"/Addcontractor-master"}
-                            className="btn me-2 mb-2"
-                          >
-                            Add New Contractor
-                          </Link>
-                          <Link className="btn mb-2">
-                            Export To Excel
-                          </Link>
-                        </div>
+                  <div className="erp-header mb-4">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <h5 className="header-title mb-0">Contractor Master</h5>
+                      <div className="d-flex gap-2">
+                        <Link to={"/Addcontractor-master"} className="vndrbtn text-decoration-none">
+                          Add New Contractor
+                        </Link>
+                        <button className="vndrbtn" onClick={handleExportExcel}>
+                          Export To Excel
+                        </button>
                       </div>
-                    
+                    </div>
                   </div>
-                  <div className="ContractorMain mt-5">
-                    <div className="container-fluid">
+                  <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                    <div className="card-body p-4">
                       <div className="row">
                         <div className="col-md-12 text-start">
                           <div className="row">
@@ -146,30 +182,30 @@ const handleSave = async () => {
                                 id="contractorName"
                                 className="form-control"
                                 placeholder="Enter Contractor Name"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                               />
                             </div>
-                            <div className="col-md-3" style={{marginTop:"34px"}}>
-                              <button className="btn" type="button">
-                                Search
-                              </button>
-                            
-                            
-                              <button className="btn" type="button">
-                                View All
-                              </button>
+                            <div className="col-md-3 d-flex flex-column">
+                              <label className="form-label">&nbsp;</label>
+                              <div className="d-flex gap-2">
+                                <button className="vndrbtn" type="button" onClick={handleSearch}>
+                                  Search
+                                </button>
+                                <button className="vndrbtn" type="button" onClick={handleViewAll}>
+                                  View All
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="Contractortable mt-5">
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-md-12 text-start">
-                          <div className="table-striped table-responsive">
-                          <table className="table">
-                            <thead>
+                  <div className="mt-4">
+                    <div className="table-responsive">
+                      <table className="table table-bordered table-striped" style={{ fontSize: '0.85rem' }}>
+                        <thead className="table-light">
                               <tr>
                                 <th>Sr. No</th>
                                 <th>Plant</th>
@@ -193,20 +229,23 @@ const handleSave = async () => {
               <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
               {editingId === con.id ? (
                 <>
-                  <td><input name="Plant" value={editForm.Plant} onChange={handleEditChange} /></td>
-                  <td><input name="ContractorName" value={editForm.ContractorName} onChange={handleEditChange} /></td>
-                  <td><input name="Address" value={editForm.Address} onChange={handleEditChange} /></td>
-                  <td><input name="ContactNo" value={editForm.ContactNo} onChange={handleEditChange} /></td>
-                  <td><input name="PanNo" value={editForm.PanNo} onChange={handleEditChange} /></td>
-                  <td><input name="GstNo" value={editForm.GstNo} onChange={handleEditChange} /></td>
-                  <td><input name="Tds" value={editForm.Tds} onChange={handleEditChange} /></td>
-                  <td><input name="NatureOfService" value={editForm.NatureOfService} onChange={handleEditChange} /></td>
-                  <td><input name="FirName" value={editForm.FirName} onChange={handleEditChange} /></td>
-                  <td><input name="Email" value={editForm.Email} onChange={handleEditChange} /></td>
-                  <td><input name="RefCode" value={editForm.RefCode} onChange={handleEditChange} /></td>
-                  <td colSpan="2">
-                    <button className="btn btn-success btn-sm" onClick={handleSave}>
-                      Save
+                  <td><input className="form-control form-control-sm" name="Plant" value={editForm.Plant} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="ContractorName" value={editForm.ContractorName} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="Address" value={editForm.Address} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="ContactNo" value={editForm.ContactNo} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="PanNo" value={editForm.PanNo} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="GstNo" value={editForm.GstNo} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="Tds" value={editForm.Tds} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="NatureOfService" value={editForm.NatureOfService} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="FirName" value={editForm.FirName} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="Email" value={editForm.Email} onChange={handleEditChange} /></td>
+                  <td><input className="form-control form-control-sm" name="RefCode" value={editForm.RefCode} onChange={handleEditChange} /></td>
+                  <td colSpan="2" className="text-center">
+                    <button className="btn btn-success btn-sm me-1" onClick={handleSave} title="Save">
+                      <i className="fas fa-check"></i>
+                    </button>
+                    <button className="btn btn-secondary btn-sm" onClick={() => setEditingId(null)} title="Cancel">
+                      <i className="fas fa-times"></i>
                     </button>
                   </td>
                 </>
@@ -240,26 +279,16 @@ const handleSave = async () => {
         </tbody>
                           </table>
                           </div>
-                        </div>
+                      <div className="d-flex justify-content-end mt-4">
+                        <Pagination
+                          count={totalPages}
+                          page={currentPage}
+                          onChange={handlePageChange}
+                          color="primary"
+                          shape="rounded"
+                          size="medium"
+                        />
                       </div>
-                      <div className="d-flex justify-content-between">
-        <button
-          className="btn btn-secondary btn-sm"
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
-        <span>Page {currentPage}</span>
-        <button
-          className="btn btn-secondary btn-sm"
-          disabled={currentPage * itemsPerPage >= contractorList.length}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>
-                    </div>
                   </div>
                 </div>
               </main>

@@ -75,14 +75,25 @@ const UnitConversion = () => {
     setErrors({});
   };
   const [data, setData] = useState([]);
+  const [itemsList, setItemsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetchUnitConversionData();
-        setData(result.sort((a, b) => b.id - a.id));
+        const token = localStorage.getItem("accessToken");
+        const [conversionResult, itemsResult] = await Promise.all([
+          fetchUnitConversionData(),
+          fetch("https://sellerp-backend.onrender.com/All_Masters/api/item-table/", {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }).then(res => res.json())
+        ]);
+        
+        setData(conversionResult.sort((a, b) => b.id - a.id));
+        setItemsList(Array.isArray(itemsResult) ? itemsResult : (itemsResult.results || itemsResult.data || []));
       } catch (error) {
         setError(error);
       } finally {
@@ -118,7 +129,7 @@ const UnitConversion = () => {
                   <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
                     <div className="card-body">
                       <div className="row g-3 align-items-end text-start">
-                        <div className="col-md-2">
+                        <div className="col-md-2 position-relative">
                           <label htmlFor="SubGroup" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Sub Group:</label>
                           <select
                             id="SubGroup"
@@ -136,23 +147,29 @@ const UnitConversion = () => {
                             <option value="Service">Service</option>
                             <option value="Asset">Asset</option>
                           </select>
-                          {errors.SubGroup && <div className="text-danger mt-1" style={{ fontSize: '0.85rem' }}>{errors.SubGroup}</div>}
+                          {errors.SubGroup && <div className="text-danger position-absolute" style={{ fontSize: '0.75rem', bottom: '-18px', left: '10px', whiteSpace: 'nowrap' }}>{errors.SubGroup}</div>}
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-2 position-relative">
                           <label htmlFor="Item" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Item:<span className="text-danger">*</span></label>
-                          <input
-                            type="text"
-                            className="form-control"
+                          <select
+                            className="form-select"
                             id="Item"
                             value={formData.Item}
                             onChange={handleChange}
-                          />
-                          {errors.Item && <div className="text-danger mt-1" style={{ fontSize: '0.85rem' }}>{errors.Item}</div>}
+                          >
+                            <option value="">Select...</option>
+                            {itemsList.map(item => (
+                              <option key={item.id} value={item.id}>
+                                {item.part_no} | {item.Part_Code} | {item.Name_Description}
+                              </option>
+                            ))}
+                          </select>
+                          {errors.Item && <div className="text-danger position-absolute" style={{ fontSize: '0.75rem', bottom: '-18px', left: '10px', whiteSpace: 'nowrap' }}>{errors.Item}</div>}
                         </div>
-                        <div className="col-md-1 mt-auto">
+                        <div className="col-md-1 mt-auto position-relative">
                           <button className="vndrbtn w-100" onClick={handleSubmit}>Search</button>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-2 position-relative">
                           <label htmlFor="Unit" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Unit:</label>
                           <select
                             id="Unit"
@@ -174,9 +191,9 @@ const UnitConversion = () => {
                             <option value="11">BAG</option>
                             <option value="12">PACKET</option>
                           </select>
-                          {errors.Unit && <div className="text-danger mt-1" style={{ fontSize: '0.85rem' }}>{errors.Unit}</div>}
+                          {errors.Unit && <div className="text-danger position-absolute" style={{ fontSize: '0.75rem', bottom: '-18px', left: '10px', whiteSpace: 'nowrap' }}>{errors.Unit}</div>}
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-2 position-relative">
                           <label htmlFor="StockQty" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Stock Qty:</label>
                           <input
                             type="text"
@@ -185,9 +202,9 @@ const UnitConversion = () => {
                             value={formData.StockQty}
                             onChange={handleChange}
                           />
-                          {errors.StockQty && <div className="text-danger mt-1" style={{ fontSize: '0.85rem' }}>{errors.StockQty}</div>}
+                          {errors.StockQty && <div className="text-danger position-absolute" style={{ fontSize: '0.75rem', bottom: '-18px', left: '10px', whiteSpace: 'nowrap' }}>{errors.StockQty}</div>}
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-2 position-relative">
                           <label htmlFor="StockUnit" className="form-label w-100 fw-bold text-secondary" style={{ fontSize: '0.85rem' }}>Stock Unit:</label>
                           <select
                             id="StockUnit"
@@ -209,7 +226,7 @@ const UnitConversion = () => {
                             <option value="11">BAG</option>
                             <option value="12">PACKET</option>
                           </select>
-                          {errors.StockUnit && <div className="text-danger mt-1" style={{ fontSize: '0.85rem' }}>{errors.StockUnit}</div>}
+                          {errors.StockUnit && <div className="text-danger position-absolute" style={{ fontSize: '0.75rem', bottom: '-18px', left: '10px', whiteSpace: 'nowrap' }}>{errors.StockUnit}</div>}
                         </div>
                         <div className="col-md-1 d-flex flex-column gap-2 mt-auto">
                           <button className="vndrbtn w-100 px-1" onClick={handleSubmit}>Save</button>

@@ -35,6 +35,18 @@ const ProductionEntry = () => {
   const navigate = useNavigate() // For navigation after save
   const [isEditMode, setIsEditMode] = useState(false)
   const [sideNavOpen, setSideNavOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState("shifttabs")
+  const tabsList = ["shifttabs", "machineIdle", "rework", "toolDie"]
+
+  const handleNextTab = () => {
+    const currentIndex = tabsList.indexOf(activeTab)
+    if (currentIndex < tabsList.length - 1) setActiveTab(tabsList[currentIndex + 1])
+  }
+  
+  const handlePrevTab = () => {
+    const currentIndex = tabsList.indexOf(activeTab)
+    if (currentIndex > 0) setActiveTab(tabsList[currentIndex - 1])
+  }
 
   const toggleSideNav = () => {
     setSideNavOpen((prevState) => !prevState)
@@ -588,12 +600,12 @@ const ProductionEntry = () => {
       if (nextProdData?.prod_no) {
         setProdNo(nextProdData.prod_no)
         console.log("✅ Updated Production Number:", nextProdData.prod_no)
-      } else {
-        toast.error("⚠️ Failed to fetch the next production number.")
+      } else if (series === "DP") {
+        toast.error("Failed to fetch the next production number.")
       }
     } catch (error) {
-      console.error("❌ Error fetching next production number:", error)
-      toast.error("❌ Failed to get the next production number.")
+      console.error("Error fetching series info:", error)
+      toast.error("Failed to get the next production number.")
     }
   }, [series, shortYear]) // ✅ Dependencies added correctly
 
@@ -608,7 +620,10 @@ const ProductionEntry = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log("🚀 Form submission started...")
-
+    // 🔒 Safety guard: only allow submission from the final "Save Entry" step
+    if (activeTab !== "toolDie") {
+      return
+    }
     const postData = {
       ...formData,
       Prod_no: prodNo || "",
@@ -646,7 +661,7 @@ const ProductionEntry = () => {
           throw new Error(`Error: ${response.error || "Unknown error occurred"}`)
         }
 
-        toast.success("✅ Production entry updated successfully!")
+        toast.success("Production entry updated successfully!")
         // Navigate back to the list after successful update
         navigate("/ProductionEntryList")
       } else {
@@ -658,7 +673,7 @@ const ProductionEntry = () => {
           throw new Error(`Error: ${response.error || "Unknown error occurred"}`)
         }
 
-        toast.success("✅ Production entry submitted successfully!")
+        toast.success("Production entry submitted successfully!")
 
         // Clear form fields for new entry
         setFormData({
@@ -1140,7 +1155,15 @@ const ProductionEntry = () => {
               <SideNav sideNavOpen={sideNavOpen} toggleSideNav={toggleSideNav} />
               <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
                 <div className="ProductionEntry">
-                  <form onSubmit={handleSubmit} autoComplete="off">
+                  <form
+                    onSubmit={handleSubmit}
+                    autoComplete="off"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
+                        e.preventDefault()
+                      }
+                    }}
+                  >
                     <div className="ProductionEntry-header mb-4">
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="d-flex align-items-center gap-4">
@@ -1822,10 +1845,8 @@ const ProductionEntry = () => {
                         <ul className="nav nav-tabs" id="productionEntryTabs" role="tablist">
                           <li className="nav-item" role="presentation">
                             <button
-                              className="nav-link active"
-                              id="shift-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#shifttabs"
+                              className={`nav-link ${activeTab === 'shifttabs' ? 'active' : ''}`}
+                              onClick={() => setActiveTab('shifttabs')}
                               type="button"
                               role="tab"
                             >
@@ -1834,10 +1855,8 @@ const ProductionEntry = () => {
                           </li>
                           <li className="nav-item" role="presentation">
                             <button
-                              className="nav-link"
-                              id="machine-idle-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#machineIdle"
+                              className={`nav-link ${activeTab === 'machineIdle' ? 'active' : ''}`}
+                              onClick={() => setActiveTab('machineIdle')}
                               type="button"
                               role="tab"
                             >
@@ -1846,10 +1865,8 @@ const ProductionEntry = () => {
                           </li>
                           <li className="nav-item" role="presentation">
                             <button
-                              className="nav-link"
-                              id="rework-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#rework"
+                              className={`nav-link ${activeTab === 'rework' ? 'active' : ''}`}
+                              onClick={() => setActiveTab('rework')}
                               type="button"
                               role="tab"
                             >
@@ -1858,10 +1875,8 @@ const ProductionEntry = () => {
                           </li>
                           <li className="nav-item" role="presentation">
                             <button
-                              className="nav-link"
-                              id="tool-die-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#toolDie"
+                              className={`nav-link ${activeTab === 'toolDie' ? 'active' : ''}`}
+                              onClick={() => setActiveTab('toolDie')}
                               type="button"
                               role="tab"
                             >
@@ -1872,7 +1887,7 @@ const ProductionEntry = () => {
 
                         <div className="tab-content mt-4" id="productionEntryTabsContent">
 
-                          <div className="tab-pane fade show active" id="shifttabs" role="tabpanel">
+                          <div className={`tab-pane fade ${activeTab === 'shifttabs' ? 'show active' : ''}`} id="shifttabs" role="tabpanel">
                             <div className="row">
                               <div className="table table-bordered table-responsive">
                                 <table>
@@ -2110,7 +2125,7 @@ const ProductionEntry = () => {
                             </div>
                           </div>
 
-                          <div className="tab-pane fade" id="machineIdle" role="tabpanel">
+                          <div className={`tab-pane fade ${activeTab === 'machineIdle' ? 'show active' : ''}`} id="machineIdle" role="tabpanel">
                             <div className="table table-bordered table-responsive">
                               <table>
                                 <thead>
@@ -2277,7 +2292,7 @@ const ProductionEntry = () => {
                             </div>
                           </div>
 
-                          <div className="tab-pane fade" id="rework" role="tabpanel">
+                          <div className={`tab-pane fade ${activeTab === 'rework' ? 'show active' : ''}`} id="rework" role="tabpanel">
                             <div className="row">
                               <div className="col-md-6">
                                 <div className="row">
@@ -2438,7 +2453,7 @@ const ProductionEntry = () => {
                             </div>
                           </div>
 
-                          <div className="tab-pane fade" id="toolDie" role="tabpanel">
+                          <div className={`tab-pane fade ${activeTab === 'toolDie' ? 'show active' : ''}`} id="toolDie" role="tabpanel">
                             <div className="Container-fluid">
                               <div className="row">
                                 <div className="col-md-1">
@@ -2573,11 +2588,23 @@ const ProductionEntry = () => {
                           />
                         </div>
 
-                        {/* Save Button */}
-                        <div className="col-md-12 d-flex justify-content-end mt-3">
-                          <button type="submit" className="vndrbtn">
-                            Save Entry
-                          </button>
+                        {/* Action Buttons */}
+                        <div className="col-md-12 d-flex justify-content-end mt-3 gap-2">
+                          {activeTab !== "shifttabs" && (
+                            <button type="button" className="btn btn-secondary" onClick={handlePrevTab}>
+                              Previous
+                            </button>
+                          )}
+                          
+                                                    {activeTab !== "toolDie" ? (
+                            <button type="button" className="btn btn-primary" onClick={handleNextTab}>
+                              Next
+                            </button>
+                          ) : (
+                            <button type="button" className="vndrbtn" onClick={handleSubmit}>
+                              Save Entry
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

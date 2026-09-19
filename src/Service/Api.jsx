@@ -984,9 +984,11 @@ export const getMachineTypes = async () => {
 };
 
 // shift master
-export const saveShiftMaster = async (data) => {
-  const response = await fetch(`${BASE_URL}Shift_Master/`, {
-    method: "POST",
+export const saveShiftMaster = async (data, id = null) => {
+  const url = id ? `${BASE_URL}Shift_Master/${id}/` : `${BASE_URL}Shift_Master/`;
+  const method = id ? "PUT" : "POST";
+  const response = await fetch(url, {
+    method: method,
     headers: {
       "Content-Type": "application/json",
     },
@@ -1006,6 +1008,16 @@ export const fetchShiftMasters = async () => {
     throw new Error("Failed to fetch data");
   }
   return response.json();
+};
+
+export const deleteShiftMaster = async (id) => {
+  const response = await fetch(`${BASE_URL}Shift_Master/${id}/`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to delete data");
+  }
+  return response;
 };
 
 // Operator Supplier Master add button
@@ -1213,9 +1225,10 @@ export const addContractor = async (data) => {
   }
 };
 
-export const fetchContractorMaster = async () => {
+export const fetchContractorMaster = async (searchQuery = "") => {
   try {
-    const response = await axios.get(`${BASE_URL}Contractor_Master/`);
+    const url = searchQuery ? `${BASE_URL}Contractor_Master/?q=${searchQuery}` : `${BASE_URL}Contractor_Master/`;
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     throw error;
@@ -2983,11 +2996,21 @@ export const deleteBomItem = async (itemId, bomId) => {
 
 
 
-export const getWorkCenters = async () => {
+export const getWorkCenters = async (machineType = "") => {
   try {
-    const response = await axios.get(`${BASE_URL}Work_Center/`);
-    console.log("API Response:", response.data); // ✅ Check if correct data is returned
-    return response.data;
+    const url = machineType && machineType !== "ALL" 
+      ? `${BASE_URL}Work_Center/?q=${machineType}` 
+      : `${BASE_URL}Work_Center/`;
+    const response = await axios.get(url);
+    console.log("API Response:", response.data);
+    
+    // Front-end fallback filter if backend doesn't support ?q= for this endpoint yet
+    let data = response.data;
+    if (machineType && machineType !== "ALL") {
+      data = data.filter(item => item.WorkCenterType === machineType);
+    }
+    
+    return data;
   } catch (error) {
     console.error("Error fetching items:", error);
     return [];
@@ -3016,9 +3039,15 @@ export const deleteWorkCenter = async (id) => {
   }
 };
 
-export const getOperatorList = async () => {
-  const res = await axios.get(`${BASE_URL}Add_New_Operator/`);
-  return res.data;
+export const getOperatorList = async (nameQuery = "") => {
+  const url = nameQuery ? `${BASE_URL}Add_New_Operator/?q=${nameQuery}` : `${BASE_URL}Add_New_Operator/`;
+  const res = await axios.get(url);
+  
+  let data = res.data;
+  if (nameQuery) {
+    data = data.filter(item => item.Name && item.Name.toLowerCase().includes(nameQuery.toLowerCase()));
+  }
+  return data;
 };
 
 export const getOperatorById = async (id) => {

@@ -133,7 +133,7 @@ const ItemMaster = () => {
                       <h5 className="header-title mb-0">Item Master</h5>
                       <div className="d-flex gap-2">
                         <Link to="/item-master-gernal" className="vndrbtn">Add New Item</Link>
-                        <Link to="/item-master-query" className="vndrbtn">Item Query</Link>
+                        {/* <Link to="/item-master-query" className="vndrbtn">Item Query</Link> */}
                       </div>
                     </div>
                   </div>
@@ -282,7 +282,7 @@ const ItemMaster = () => {
                       <span className="record-count">Total Records: <strong>{filteredItems.length}</strong></span>
                     </div>
                     <div className="col-md-6 text-end">
-                      <span className="record-count">Total Pending BOM FG=8 SFG=2</span>
+                      
                     </div>
                   </div>
 

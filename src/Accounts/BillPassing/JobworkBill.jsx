@@ -12,9 +12,20 @@ import * as XLSX from "xlsx";
 const JobworkBill = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  const getOneMonthAgoDate = () => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - 1);
+    return date.toISOString().split("T")[0];
+  };
+
   const [sideNavOpen, setSideNavOpen] = useState(false);
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+  const [fromDate, setFromDate] = useState(getOneMonthAgoDate());
+  const [toDate, setToDate] = useState(getTodayDate());
   const [vendorName, setVendorName] = useState("");
   const [supplierList, setSupplierList] = useState([]);
   const [reportData, setReportData] = useState([]);
@@ -123,7 +134,8 @@ const JobworkBill = () => {
   };
 
   useEffect(() => {
-    // handleSearch() removed to avoid automatic selection/search on load
+    handleSearch('date');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

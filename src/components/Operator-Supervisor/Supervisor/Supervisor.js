@@ -5,9 +5,11 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import NavBar from "../../../NavBar/NavBar";
 import SideNav from "../../../SideNav/SideNav";
 import "./Supervisor.css";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { addOperator } from "../../../Service/Api.jsx";
+import { addOperator, updateOperator } from "../../../Service/Api.jsx";
 import {
   fetchDepartments,
   addDepartment,
@@ -119,29 +121,56 @@ const Supervisor = () => {
     return isValid;
   };
 
+  const [editModeId, setEditModeId] = useState(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("editOperator");
+    if (stored) {
+      const data = JSON.parse(stored);
+      setEditModeId(data.id);
+      setFormData({
+        Department: data.Department || "",
+        Name: data.Name || "",
+        Address: data.Address || "",
+        Contact_No: data.Contact_No || "",
+        Birth_Date: data.Birth_Date || "",
+        Salary: data.Salary || "",
+        Date_Of_Leaving: data.Date_Of_Leaving || "",
+        Aadhar_No: data.Aadhar_No || "",
+        Code: data.Code || "",
+        Designation: data.Designation || "",
+        CorrespondingAddress: data.CorrespondingAddress || "",
+        Type: data.Type || "",
+        Joining_Sal_Date: data.Joining_Sal_Date || "",
+        Contractor: data.Contractor || "",
+        DailyWorkHours: data.DailyWorkHours || "",
+        PanNo: data.PanNo || "",
+        BankName: data.BankName || "",
+        BankAccountNo: data.BankAccountNo || "",
+        BankIFSC_Code: data.BankIFSC_Code || "",
+      });
+      localStorage.removeItem("editOperator"); // Clear it so it doesn't stick
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Log form data to the console before validation
-    console.log("Form Data:", formData);
-
     if (!validate()) {
-      // Log errors to the console if validation fails
-      console.error("Validation errors:", errors);
       return;
     }
 
     try {
-      const response = await addOperator(formData);
-
-      // Check the response status code
-      if (response.status === 200 || response.status === 201) {
-        toast.success("Data saved successfully!");
-        console.log("Data saved successfully:", response.data);
+      let response;
+      if (editModeId) {
+        response = await updateOperator(editModeId, formData);
+        toast.success("Data updated successfully!");
       } else {
-        toast.error("Failed to save data.");
-        console.error("Unexpected response status:", response.status);
+        response = await addOperator(formData);
+        toast.success("Data saved successfully!");
       }
+      setEditModeId(null);
+      handleReset();
     } catch (error) {
       console.error("Error:", error.message);
       toast.error(error.message || "Error occurred while saving data.");
@@ -400,7 +429,7 @@ const Supervisor = () => {
 
   return (
     <div className="Supervisor">
-      <ToastContainer />
+      <ToastContainer style={{ marginTop: '70px' }} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
@@ -413,24 +442,22 @@ const Supervisor = () => {
               <main className={`main-content ${sideNavOpen ? "shifted" : ""}`}>
                 <div className="Supervisor1">
                  
-                  <div className="Supervisorupper-header mb-4 text-start mt-5">
-                    <div className="row align-items-center">
-                       <div className="col-md-4">
-                        <h5 className="header-title">
-                            Operator / Supervisor / Staff Master
-                          </h5>
-                        </div>
-                        <div className="col-md-2 col-sm-6 text-start">
-                          <select id="contractor" className="form-select">
-                            <option value="">VISHWA S.I.</option>
-                            {/* Add options here */}
-                          </select>
-                        </div>
+                  <div className="erp-header mb-4">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <h5 className="header-title mb-0">
+                        Operator / Supervisor / Staff Master
+                      </h5>
+                      <div className="d-flex gap-2">
+                        <select id="contractor" className="form-select" style={{ minWidth: '150px' }}>
+                          <option value="">VISHWA S.I.</option>
+                          {/* Add options here */}
+                        </select>
                       </div>
+                    </div>
                   </div>
                 
-                  <div className="SupervisorMain mt-5">
-                    <div className="container-fluid">
+                  <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                    <div className="card-body p-4">
                       <form onSubmit={handleSubmit} autoComplete="off">
                         <div className="row text-start mt-5">
                           <div className="col-md-4 col-sm-12">
@@ -464,16 +491,17 @@ const Supervisor = () => {
                                     <option>Quality</option>
                                     <option>Logistics</option>
                                   </select>
-                                  <span
+                                  <button
                                     type="button"
-                                    className="Supbtn"
+                                    className="btn btn-outline-primary d-flex align-items-center justify-content-center"
                                     onClick={toggleAddDepartment} // Toggle modal on click
+                                    style={{ px: 3 }}
                                   >
                                     <i className="fas fa-plus"></i>
-                                  </span>
-                                  <span type="button" className="Supbtn">
+                                  </button>
+                                  <button type="button" className="btn btn-outline-secondary d-flex align-items-center justify-content-center" style={{ px: 3 }}>
                                     <i className="fas fa-sync"></i>
-                                  </span>
+                                  </button>
                                 </div>
                                 {errors.Department && (
                                   <div className="text-danger">
@@ -694,16 +722,16 @@ const Supervisor = () => {
                                     <option>Manager</option>
                                     <option>Staff</option>
                                   </select>
-                                  <span
+                                  <button
                                     type="button"
-                                    className="Supbtn"
+                                    className="btn btn-outline-primary d-flex align-items-center justify-content-center"
                                     onClick={toggleAddDesignation} // Toggle modal on click
                                   >
                                     <i className="fas fa-plus"></i>
-                                  </span>
-                                  <span type="button" className="Supbtn">
+                                  </button>
+                                  <button type="button" className="btn btn-outline-secondary d-flex align-items-center justify-content-center">
                                     <i className="fas fa-sync"></i>
-                                  </span>
+                                  </button>
 
                                   {errors.Designation && (
                                     <div className="text-danger">
@@ -813,16 +841,16 @@ const Supervisor = () => {
                                     <option>Manager</option>
                                     <option>Staff</option>
                                   </select>
-                                  <span
+                                  <button
                                     type="button"
-                                    className="Supbtn"
+                                    className="btn btn-outline-primary d-flex align-items-center justify-content-center"
                                     onClick={toggleAddContractor} // Toggle modal on click
                                   >
                                     <i className="fas fa-plus"></i>
-                                  </span>
-                                  <span type="button" className="Supbtn">
+                                  </button>
+                                  <button type="button" className="btn btn-outline-secondary d-flex align-items-center justify-content-center">
                                     <i className="fas fa-sync"></i>
-                                  </span>
+                                  </button>
                                   {/* {errors.Contractor && (
                                     <div className="text-danger">
                                       {errors.Contractor}
@@ -949,22 +977,20 @@ const Supervisor = () => {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col-12 text-end">
-                            <button type="submit" className="btn">
-                              SAVE
-                            </button>
-                            <button
-                              type="reset"
-                              className="btn"
-                              onClick={handleReset}
-                            >
-                              CLEAR
-                            </button>
+                          <div className="col-12 d-flex justify-content-center mt-4">
+                            <Button variant="contained" type="submit" sx={{ mr: 2, borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
+                              Save
+                            </Button>
+                            <Button variant="outlined" type="button" onClick={handleReset} color="error" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600 }}>
+                              Clear
+                            </Button>
                           </div>
                         </div>
                       </form>
-                      {/* Add Department Modal/Card */}
-                      {showAddDepartment && (
+                    </div>
+                  </div>
+                  {/* Add Department Modal/Card */}
+                  {showAddDepartment && (
   <div className="modal-container">
     <div className="card">
       <div className="card-header">
@@ -1308,8 +1334,6 @@ const Supervisor = () => {
                           </div>
                         </div>
                       )}
-                    </div>
-                  </div>
                 </div>
               </main>
             </div>
