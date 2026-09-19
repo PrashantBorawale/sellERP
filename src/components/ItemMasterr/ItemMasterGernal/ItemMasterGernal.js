@@ -340,7 +340,7 @@ const ItemMasterGernal = () => {
       "item_group",
       "Name_Description",
       "Store_Location",
-
+      "Item_Size",
       "HSN_SAC_Code",
     ];
 
@@ -418,12 +418,12 @@ const ItemMasterGernal = () => {
         isEditMode ? id : null
       );
 
-      toast.success(`Data ${isEditMode ? "updated" : "saved"} successfully!`, {
+      toast.success(`Item ${isEditMode ? "Updated" : "Created"} Succesfully`, {
         onClose: () => navigate("/item-master"), // ⬅️ Navigate after toast closes
         autoClose: 2000, // Optional: auto close in 2 seconds
       });
       console.log(
-        `Data ${isEditMode ? "updated" : "saved"} successfully:`,
+        `Item ${isEditMode ? "updated" : "saved"} successfully:`,
         result
       );
     } catch (error) {
@@ -681,9 +681,7 @@ const ItemMasterGernal = () => {
   };
 
   return (
-    <div className="Itemmastergernalpage">
-      <ToastContainer position="top-right" />
-
+    <div className="Itemmastergernalpage erp-page">
       <div className="container-fluid p-0">
         <div className="row m-0">
           <div className="col-md-12 p-0">
@@ -712,7 +710,7 @@ const ItemMasterGernal = () => {
                   </div>
 
                   {/* Tabs */}
-                  <div className="ItemMasterGernal-tabs">
+                  <div className="mt-3">
                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li className="nav-item" role="presentation">
                               <button
@@ -802,7 +800,7 @@ const ItemMasterGernal = () => {
                                                 <select
                                                   name="main_group"
                                                   id="main_group"
-                                                  className="form-select flex-grow-1"
+                                                  className={`form-select flex-grow-1 ${errors.main_group ? 'border-danger' : ''}`}
                                                   value={formData.main_group}
                                                   onChange={handleInputChange}
                                                 >
@@ -849,7 +847,7 @@ const ItemMasterGernal = () => {
                                               <div className="col-sm-7">
                                                 <input
                                                   type="text"
-                                                  className="form-control"
+                                                  className={`form-control ${errors.part_no ? 'border-danger' : ''}`}
                                                   id="part_no"
                                                   name="part_no"
                                                   value={formData.part_no}
@@ -883,7 +881,7 @@ const ItemMasterGernal = () => {
                                                 <select
                                                   id="Unit_Code"
                                                   name="Unit_Code"
-                                                  className="form-select"
+                                                  className={`form-select ${errors.Unit_Code ? 'border-danger' : ''}`}
                                                   value={formData.Unit_Code}
                                                   onChange={handleInputChange}
                                                 >
@@ -917,7 +915,7 @@ const ItemMasterGernal = () => {
                                                 htmlFor="TDC"
                                                 className="col-sm-5 col-form-label"
                                               >
-                                                TDC:
+                                                  TDC:
                                               </label>
                                               <div className="col-sm-4">
                                                 <select
@@ -973,7 +971,7 @@ const ItemMasterGernal = () => {
                                                   type="text"
                                                   id="Part_Code"
                                                   name="Part_Code"
-                                                  className="form-control"
+                                                  className={`form-control ${errors.Part_Code ? 'border-danger' : ''}`}
                                                  
                                                   value={formData.Part_Code}
                                                   onChange={handleInputChange}
@@ -1089,7 +1087,7 @@ const ItemMasterGernal = () => {
                                                   type="text"
                                                   id="Item_Size"
                                                   name="Item_Size"
-                                                  className="form-control"
+                                                  className={`form-control ${errors.Item_Size ? 'border-danger' : ''}`}
                                                  
                                                   value={formData.Item_Size}
                                                   onChange={handleInputChange}
@@ -1333,7 +1331,7 @@ const ItemMasterGernal = () => {
                                                 <select
                                                   id="item_group"
                                                   name="item_group"
-                                                  className="form-select flex-grow-1"
+                                                  className={`form-select flex-grow-1 ${errors.item_group ? 'border-danger' : ''}`}
                                                   value={formData.item_group}
                                                   onChange={handleInputChange}
                                                 >
@@ -1381,7 +1379,7 @@ const ItemMasterGernal = () => {
                                                   type="text"
                                                   name="Name_Description"
                                                   id="Name_Description"
-                                                  className="form-control"
+                                                  className={`form-control ${errors.Name_Description ? 'border-danger' : ''}`}
                                                  
                                                   value={
                                                     formData.Name_Description
@@ -1409,7 +1407,7 @@ const ItemMasterGernal = () => {
                                                 <select
                                                   id="Store_Location"
                                                   name="Store_Location"
-                                                  className="form-select flex-grow-1"
+                                                  className={`form-select flex-grow-1 ${errors.Store_Location ? 'border-danger' : ''}`}
                                                   value={
                                                     formData.Store_Location
                                                   }
@@ -2000,7 +1998,7 @@ const ItemMasterGernal = () => {
                                                 <select
                                                   id="HSN_SAC_Code"
                                                   name="HSN_SAC_Code"
-                                                  className="form-select"
+                                                  className={`form-select ${errors.HSN_SAC_Code ? 'border-danger' : ''}`}
                                                   value={formData.HSN_SAC_Code}
                                                   onChange={handleInputChange}
                                                 >

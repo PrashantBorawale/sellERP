@@ -497,7 +497,8 @@ const SupplierCustomerMaster = () => {
           toast.error(`Failed to submit form: ${response.message}`)
         } else {
           console.log("Form submitted successfully:", response)
-          toast.success(`Supplier ${isEditMode ? "updated" : "created"} successfully!`)
+          const typeDisplay = formData.type || "Supplier";
+          toast.success(`${typeDisplay} ${isEditMode ? "updated" : "created"} successfully!`)
 
           // Save the submitted data into local storage as requested
           try {
@@ -846,7 +847,7 @@ const SupplierCustomerMaster = () => {
                                             <select
                                               id="type"
                                               name="type"
-                                              className="form-select form-select-sm"
+                                              className={`form-select form-select-sm ${errors.type ? 'border-danger' : ''}`}
                                               value={formData.type}
                                               onChange={handleChange}
                                             >
@@ -869,7 +870,7 @@ const SupplierCustomerMaster = () => {
                                           <div className="col-md-7">
                                             <input
                                               type="text"
-                                              className="form-control form-control-sm"
+                                              className={`form-control form-control-sm ${errors.Name ? 'border-danger' : ''}`}
                                               id="Name"
                                               name="Name"
                                               value={formData.Name}
@@ -887,7 +888,7 @@ const SupplierCustomerMaster = () => {
                                             <select
                                               id="Payment_Term"
                                               name="Payment_Term"
-                                              className="form-select form-select-sm"
+                                              className={`form-select form-select-sm ${errors.Payment_Term ? 'border-danger' : ''}`}
                                               value={formData.Payment_Term}
                                               onChange={handleChange}
                                             >
@@ -923,7 +924,7 @@ const SupplierCustomerMaster = () => {
                                           <div className="col-md-7">
                                             <input
                                               type="text"
-                                              className="form-control form-control-sm"
+                                              className={`form-control form-control-sm ${errors.PAN_NO ? 'border-danger' : ''}`}
                                               id="PAN_NO"
                                               name="PAN_NO"
                                               value={formData.PAN_NO}
@@ -944,7 +945,7 @@ const SupplierCustomerMaster = () => {
                                             <select
                                               id="PAN_Type"
                                               name="PAN_Type"
-                                              className="form-select form-select-sm"
+                                              className={`form-select form-select-sm ${errors.PAN_Type ? 'border-danger' : ''}`}
                                               value={formData.PAN_Type}
                                               onChange={handleChange}
                                             >
@@ -1208,7 +1209,7 @@ const SupplierCustomerMaster = () => {
                                           <div className="col-md-7">
                                             <input
                                               type="text"
-                                              className="form-control form-control-sm"
+                                              className={`form-control form-control-sm ${errors.number ? 'border-danger' : ''}`}
                                               id="number"
                                               name="number"
                                               value={formData.number}
@@ -1251,7 +1252,7 @@ const SupplierCustomerMaster = () => {
                                             <select
                                               id="Region"
                                               name="Region"
-                                              className="form-select form-select-sm"
+                                              className={`form-select form-select-sm ${errors.Region ? 'border-danger' : ''}`}
                                               value={formData.Region}
                                               onChange={handleChange}
                                             >
@@ -1277,7 +1278,7 @@ const SupplierCustomerMaster = () => {
                                               type="text"
                                               id="State_Code"
                                               name="State_Code"
-                                              className="form-control form-control-sm"
+                                              className={`form-control form-control-sm ${errors.State_Code ? 'border-danger' : ''}`}
                                               value={formData.State_Code}
                                               onChange={handleChange}
                                               placeholder="Enter State Code"
@@ -1297,7 +1298,7 @@ const SupplierCustomerMaster = () => {
                                             <select
                                               id="GST_Tax_Code"
                                               name="GST_Tax_Code"
-                                              className="form-select form-select-sm"
+                                              className={`form-select form-select-sm ${errors.GST_Tax_Code ? 'border-danger' : ''}`}
                                               value={formData.GST_Tax_Code}
                                               onChange={handleChange}
                                             >
@@ -1346,7 +1347,7 @@ const SupplierCustomerMaster = () => {
                                           <div className="col-md-7">
                                             <textarea
                                               type="text"
-                                              className="form-control form-control-sm"
+                                              className={`form-control form-control-sm ${errors.Address_Line_1 ? 'border-danger' : ''}`}
                                               id="Address_Line_1"
                                               name="Address_Line_1"
                                               value={formData.Address_Line_1}
@@ -1367,7 +1368,7 @@ const SupplierCustomerMaster = () => {
                                           <div className="col-md-7">
                                             <input
                                               type="text"
-                                              className="form-control form-control-sm"
+                                              className={`form-control form-control-sm ${errors.Pin_Code ? 'border-danger' : ''}`}
                                               id="Pin_Code"
                                               name="Pin_Code"
                                               value={formData.Pin_Code}
@@ -1388,7 +1389,7 @@ const SupplierCustomerMaster = () => {
                                             <select
                                               id="GST_No"
                                               name="GST_No"
-                                              className="form-select form-select-sm"
+                                              className={`form-select form-select-sm ${errors.GST_No ? 'border-danger' : ''}`}
                                               value={formData.GST_No}
                                               onChange={handleChange}
                                             >
@@ -1410,7 +1411,7 @@ const SupplierCustomerMaster = () => {
                                             <div className="col-md-7">
                                               <input
                                                 type="text"
-                                                className="form-control form-control-sm"
+                                                className={`form-control form-control-sm ${errors.GST_No2 ? 'border-danger' : ''}`}
                                                 id="GST_No2"
                                                 name="GST_No2"
                                                 value={formData.GST_No2} // Show only the last 3 characters for input

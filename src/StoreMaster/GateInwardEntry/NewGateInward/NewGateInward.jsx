@@ -370,12 +370,6 @@ const NewGateInward = () => {
                         </Typography>
                       </div>
                       <div className="col-md-6 d-flex justify-content-end gap-2 flex-wrap">
-                        <button className="vndrbtn bg-success border-success" onClick={handleSubmit}>
-                          <FaCheck className="me-1" /> {isEditMode ? "Update Gate Entry" : "Save Gate Entry"}
-                        </button>
-                        <button className="vndrbtn bg-secondary border-secondary" onClick={() => navigate("/Gate-Inward-Entry")}>
-                          <FaTimes className="me-1" /> Cancel
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -397,36 +391,36 @@ const NewGateInward = () => {
                             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', bgcolor: '#fff', p: 2, borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '50px' }}>Plant:</Typography>
-                                <TextField select size="small" name="Plant" value={formData.Plant} onChange={handleChange} required sx={{ width: '150px', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }}>
-                                  <MenuItem value="">Select Plant</MenuItem>
-                                  <MenuItem value="VISHWA S.I.">VISHWA S.I.</MenuItem>
-                                </TextField>
+                                <select className="form-select form-select-sm" name="Plant" value={formData.Plant} onChange={handleChange} required style={{ width: '150px' }}>
+                                  <option value="">Select Plant</option>
+                                  <option value="VISHWA S.I.">VISHWA S.I.</option>
+                                </select>
                               </Box>
                               
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '50px' }}>Series:</Typography>
-                                <TextField select size="small" name="Series" value={formData.Series} onChange={handleSeriesChange} required disabled={isEditMode} sx={{ width: '150px', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }}>
-                                  <MenuItem value="">Select Series</MenuItem>
-                                  <MenuItem value="GateInward">Gate Inward</MenuItem>
-                                </TextField>
+                                <select className="form-select form-select-sm" name="Series" value={formData.Series} onChange={handleSeriesChange} required disabled={isEditMode} style={{ width: '150px' }}>
+                                  <option value="">Select Series</option>
+                                  <option value="GateInward">Gate Inward</option>
+                                </select>
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '50px' }}>Type:</Typography>
-                                <TextField select size="small" name="Type" value={formData.Type} onChange={handleChange} sx={{ width: '180px', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }}>
-                                  <MenuItem value="">Select Type</MenuItem>
-                                  <MenuItem value="PurchaseGRN">Purchase GRN</MenuItem>
-                                  <MenuItem value="ScheduleGRN">Schedule GRN</MenuItem>
-                                  <MenuItem value="ImportGRN">Import GRN</MenuItem>
-                                  <MenuItem value="57F4GRN">57F4 GRN</MenuItem>
-                                  <MenuItem value="jobworkGRN">jobwork GRN</MenuItem>
-                                  <MenuItem value="DC GRN">DC GRN</MenuItem>
-                                  <MenuItem value="InterStoreInvoice">Inter Store Invoice</MenuItem>
-                                  <MenuItem value="InterStoreChallan">Inter Store Challan</MenuItem>
-                                  <MenuItem value="Sales Return">Sales Return</MenuItem>
-                                  <MenuItem value="DirectGRN">Direct GRN</MenuItem>
-                                  <MenuItem value="General/Document/Courier">General/Document/Courier</MenuItem>
-                                </TextField>
+                                <select className="form-select form-select-sm" name="Type" value={formData.Type} onChange={handleChange} style={{ width: '180px' }}>
+                                  <option value="">Select Type</option>
+                                  <option value="PurchaseGRN">Purchase GRN</option>
+                                  <option value="ScheduleGRN">Schedule GRN</option>
+                                  <option value="ImportGRN">Import GRN</option>
+                                  <option value="57F4GRN">57F4 GRN</option>
+                                  <option value="jobworkGRN">jobwork GRN</option>
+                                  <option value="DC GRN">DC GRN</option>
+                                  <option value="InterStoreInvoice">Inter Store Invoice</option>
+                                  <option value="InterStoreChallan">Inter Store Challan</option>
+                                  <option value="Sales Return">Sales Return</option>
+                                  <option value="DirectGRN">Direct GRN</option>
+                                  <option value="General/Document/Courier">General/Document/Courier</option>
+                                </select>
                               </Box>
                             </Box>
                           </Grid>
@@ -438,7 +432,7 @@ const NewGateInward = () => {
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Supp./Cust:</Typography>
                                 <Box sx={{ position: 'relative', flex: 1 }}>
-                                  <TextField size="small" name="Supp_Cust" value={formData.Supp_Cust} onChange={handleChange} autoComplete="off" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                  <input type="text" className="form-control form-control-sm" name="Supp_Cust" value={formData.Supp_Cust} onChange={handleChange} autoComplete="off" />
                                   {showCustomerDropdown && customerSearchResults.length > 0 && (
                                     <Box sx={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 10, bgcolor: '#fff', border: '1px solid #ccc', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto', mt: 0.5, boxShadow: 3 }}>
                                       {customerSearchResults.map((customer, index) => {
@@ -463,27 +457,27 @@ const NewGateInward = () => {
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>GE No:</Typography>
-                                <TextField size="small" name="GE_No" value={formData.GE_No} onChange={handleChange} readOnly sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem', bgcolor: '#f8fafc' } }} />
+                                <input type="text" className="form-control form-control-sm bg-light" name="GE_No" value={formData.GE_No} onChange={handleChange} readOnly />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>GE Date:</Typography>
-                                <TextField type="date" size="small" name="GE_Date" value={formData.GE_Date} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="date" className="form-control form-control-sm" name="GE_Date" value={formData.GE_Date} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>GE Time:</Typography>
-                                <TextField type="time" size="small" name="GE_Time" value={formData.GE_Time} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="time" className="form-control form-control-sm" name="GE_Time" value={formData.GE_Time} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Challan No:</Typography>
-                                <TextField size="small" name="ChallanNo" value={formData.ChallanNo} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="ChallanNo" value={formData.ChallanNo} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Challan Date:</Typography>
-                                <TextField type="date" size="small" name="ChallanDate" value={formData.ChallanDate} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="date" className="form-control form-control-sm" name="ChallanDate" value={formData.ChallanDate} onChange={handleChange} />
                               </Box>
                             </Box>
                           </Grid>
@@ -494,12 +488,12 @@ const NewGateInward = () => {
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Select Series:</Typography>
                                 <Box sx={{ display: 'flex', flex: 1, alignItems: 'center', gap: 1 }}>
-                                  <TextField select size="small" name="Select" value={selectedPoNo} onChange={handlePoSelectChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }}>
-                                    <MenuItem value="">Select Series</MenuItem>
+                                  <select className="form-select form-select-sm" name="Select" value={selectedPoNo} onChange={handlePoSelectChange} style={{ flex: 1 }}>
+                                    <option value="">Select Series</option>
                                     {poList.map((po, index) => (
-                                      <MenuItem key={index} value={po.PoNo}>{po.PoNo}</MenuItem>
+                                      <option key={index} value={po.PoNo}>{po.PoNo}</option>
                                     ))}
-                                  </TextField>
+                                  </select>
                                   <IconButton size="small" color="primary" onClick={() => {
                                     if (selectedPoNo && formData.Supp_Cust) {
                                       window.open(`https://sellerp-backend.onrender.com/Store/gate/jobwork/purchase/pdf/?po_no=${selectedPoNo}&supplier=${encodeURIComponent(formData.Supp_Cust)}`, "_blank");
@@ -514,27 +508,27 @@ const NewGateInward = () => {
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Invoice No:</Typography>
-                                <TextField size="small" name="InVoiceNo" value={formData.InVoiceNo} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="InVoiceNo" value={formData.InVoiceNo} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Invoice Date:</Typography>
-                                <TextField type="date" size="small" name="Invoicedate" value={formData.Invoicedate} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="date" className="form-control form-control-sm" name="Invoicedate" value={formData.Invoicedate} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>E-Way Bill No:</Typography>
-                                <TextField size="small" name="EWayBillNo" value={formData.EWayBillNo} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="EWayBillNo" value={formData.EWayBillNo} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>EWay Bill Date:</Typography>
-                                <TextField type="date" size="small" name="EWayBillDate" value={formData.EWayBillDate} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="date" className="form-control form-control-sm" name="EWayBillDate" value={formData.EWayBillDate} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Contact Person:</Typography>
-                                <TextField size="small" name="ContactPerson" value={formData.ContactPerson} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="ContactPerson" value={formData.ContactPerson} onChange={handleChange} />
                               </Box>
                             </Box>
                           </Grid>
@@ -544,22 +538,22 @@ const NewGateInward = () => {
                               
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Vehicle No:</Typography>
-                                <TextField size="small" name="VehicleNo" value={formData.VehicleNo} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="VehicleNo" value={formData.VehicleNo} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>LR No:</Typography>
-                                <TextField size="small" name="LrNo" value={formData.LrNo} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="LrNo" value={formData.LrNo} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px' }}>Transporter:</Typography>
-                                <TextField size="small" name="Transporter" value={formData.Transporter} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" name="Transporter" value={formData.Transporter} onChange={handleChange} />
                               </Box>
 
                               <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', minWidth: '90px', mt: 1 }}>Remark:</Typography>
-                                <TextField multiline minRows={4} name="Remark" value={formData.Remark} onChange={handleChange} sx={{ flex: 1, '& .MuiOutlinedInput-root': { borderRadius: '6px', fontSize: '0.75rem' } }} />
+                                <textarea className="form-control form-control-sm" name="Remark" value={formData.Remark} onChange={handleChange} rows={4}></textarea>
                               </Box>
 
                             </Box>
@@ -573,7 +567,7 @@ const NewGateInward = () => {
                             <Grid item xs={12} sm={3}>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', mb: 0.5 }}>Select Item</Typography>
                               <Box sx={{ position: 'relative' }}>
-                                <TextField size="small" placeholder="Search Item..." value={searchQuery} onChange={handleSearchChange} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                                <input type="text" className="form-control form-control-sm" placeholder="Search Item..." value={searchQuery} onChange={handleSearchChange} />
                                 {searchResults.length > 0 && (
                                   <Box sx={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 10, bgcolor: '#fff', border: '1px solid #ccc', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto', mt: 0.5, boxShadow: 3 }}>
                                     {searchResults.map((item, index) => (
@@ -589,27 +583,27 @@ const NewGateInward = () => {
                             
                             <Grid item xs={12} sm={2}>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', mb: 0.5 }}>Description</Typography>
-                              <TextField size="small" name="Description" value={newItem.Description} readOnly sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem', bgcolor: '#f8fafc' } }} />
+                              <input type="text" className="form-control form-control-sm bg-light" name="Description" value={newItem.Description} readOnly />
                             </Grid>
 
                             <Grid item xs={12} sm={1.5}>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', mb: 0.5 }}>Qty NOS</Typography>
-                              <TextField size="small" name="Qty_NOS" value={newItem.Qty_NOS} onChange={(e) => setNewItem({ ...newItem, Qty_NOS: e.target.value })} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                              <input type="text" className="form-control form-control-sm" name="Qty_NOS" value={newItem.Qty_NOS} onChange={(e) => setNewItem({ ...newItem, Qty_NOS: e.target.value })} />
                             </Grid>
 
                             <Grid item xs={12} sm={1.5}>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', mb: 0.5 }}>QTY KG</Typography>
-                              <TextField size="small" name="QTY_KG" value={newItem.QTY_KG} onChange={(e) => setNewItem({ ...newItem, QTY_KG: e.target.value })} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                              <input type="text" className="form-control form-control-sm" name="QTY_KG" value={newItem.QTY_KG} onChange={(e) => setNewItem({ ...newItem, QTY_KG: e.target.value })} />
                             </Grid>
 
                             <Grid item xs={12} sm={1.5}>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', mb: 0.5 }}>Unit Code</Typography>
-                              <TextField size="small" name="Unit_Code" value={newItem.Unit_Code} onChange={(e) => setNewItem({ ...newItem, Unit_Code: e.target.value })} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                              <input type="text" className="form-control form-control-sm" name="Unit_Code" value={newItem.Unit_Code} onChange={(e) => setNewItem({ ...newItem, Unit_Code: e.target.value })} />
                             </Grid>
 
                             <Grid item xs={12} sm={1.5}>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', mb: 0.5 }}>Remark</Typography>
-                              <TextField size="small" name="Remark" value={newItem.Remark} onChange={(e) => setNewItem({ ...newItem, Remark: e.target.value })} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', height: '32px', fontSize: '0.75rem' } }} />
+                              <input type="text" className="form-control form-control-sm" name="Remark" value={newItem.Remark} onChange={(e) => setNewItem({ ...newItem, Remark: e.target.value })} />
                             </Grid>
 
                             <Grid item xs={12} sm={1} sx={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -658,6 +652,14 @@ const NewGateInward = () => {
                           </div>
                         </Box>
                       )}
+                      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end', gap: 2, pb: 2 }}>
+                        <button type="button" className="vndrbtn bg-secondary border-secondary" onClick={() => navigate("/Gate-Inward-Entry")}>
+                          <FaTimes className="me-1" /> Cancel
+                        </button>
+                        <button type="button" className="vndrbtn bg-success border-success" onClick={handleSubmit}>
+                          <FaCheck className="me-1" /> {isEditMode ? "Update Gate Entry" : "Save Gate Entry"}
+                        </button>
+                      </Box>
                     </form>
                   </div>
 
