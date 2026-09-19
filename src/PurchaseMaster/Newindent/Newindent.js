@@ -6,7 +6,7 @@ import NavBar from "../../NavBar/NavBar";
 import SideNav from "../../SideNav/SideNav";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getNextIndentNo, postIndent } from "../../Service/PurchaseApi";
+import { getNextIndentNo, postIndent, putIndent } from "../../Service/PurchaseApi";
 import { useNavigate } from "react-router-dom";
 import { FaTrashAlt, FaPlus, FaSearch } from "react-icons/fa";
 
@@ -28,6 +28,7 @@ const Newindent = () => {
 
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const [itemsList, setItemsList] = useState([]);
 
   useEffect(() => {
     const now = new Date();
@@ -36,6 +37,22 @@ const Newindent = () => {
 
     setCurrentDate(date);
     setCurrentTime(time);
+
+    const fetchItems = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+        const res = await fetch("https://sellerp-backend.onrender.com/All_Masters/api/item-table/", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const data = await res.json();
+        setItemsList(Array.isArray(data) ? data : (data.results || data.data || []));
+      } catch (error) {
+        console.error("Error fetching items", error);
+      }
+    };
+    fetchItems();
   }, []);
 
   const [series, setSeries] = useState("");
@@ -61,6 +78,7 @@ const Newindent = () => {
     }
   };
 
+  const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     Plant: '',
     Series: 'IND-2025',
@@ -73,6 +91,36 @@ const Newindent = () => {
     Remark: '',
     New_Indent: [],
   });
+
+  useEffect(() => {
+    const editDataStr = localStorage.getItem("editIndent");
+    if (editDataStr) {
+      try {
+        const parsed = JSON.parse(editDataStr);
+        setEditId(parsed.id);
+        setFormData({
+          Plant: parsed.Plant || '',
+          Series: parsed.Series || 'IND-2025',
+          IndentNo: parsed.IndentNo || '',
+          Date: parsed.Date || '',
+          Time: parsed.Time || '',
+          Category: parsed.Category || '',
+          CPCCode: parsed.CPCCode || '',
+          WorkOrder: parsed.WorkOrder || '',
+          Remark: parsed.Remark || '',
+          New_Indent: [],
+        });
+        setIndentNo(parsed.IndentNo || '');
+        setSeries(parsed.Series || 'IND-2025');
+        setCurrentDate(parsed.Date || '');
+        setCurrentTime(parsed.Time || '');
+        setNewIndentTable(parsed.indent_details || parsed.New_Indent || []);
+      } catch (e) {
+        console.error("Error parsing editIndent", e);
+      }
+      localStorage.removeItem("editIndent");
+    }
+  }, []);
 
   const [itemRow, setItemRow] = useState({
     ItemNoCpcCode: '',
@@ -113,10 +161,17 @@ const Newindent = () => {
     const { name, value } = e.target;
   
     if (name in itemRow) {
-      setItemRow((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+      setItemRow((prev) => {
+        const updatedRow = { ...prev, [name]: value };
+        if (name === "ItemNoCpcCode") {
+          const selectedItem = itemsList.find(item => item.id.toString() === value || (item.part_no + " | " + item.Part_Code) === value);
+          if (selectedItem) {
+            updatedRow.ItemNoCpcCode = `${selectedItem.part_no} | ${selectedItem.Part_Code}`;
+            updatedRow.Description = selectedItem.Name_Description || "";
+          }
+        }
+        return updatedRow;
+      });
     } else {
       setFormData((prev) => ({
         ...prev,
@@ -136,8 +191,14 @@ const Newindent = () => {
     };
   
     try {
-      await postIndent(payload);
-      toast.success("Indent saved successfully");
+      if (editId) {
+        await putIndent(editId, payload);
+        toast.success("Indent updated successfully");
+        setEditId(null);
+      } else {
+        await postIndent(payload);
+        toast.success("Indent saved successfully");
+      }
   
       setFormData({
         Plant: '', Series: 'IND-2025', IndentNo: '', Date: '', Time: '', Category: '', CPCCode: '', WorkOrder: '', Remark: '', New_Indent: [],
@@ -245,14 +306,21 @@ const Newindent = () => {
                           <tbody>
                             <tr>
                               <td style={{ padding: '4px' }}>
-                                <div className="d-flex gap-1">
-                                  <input type="text" className="form-control form-control-sm" name="ItemNoCpcCode" value={itemRow.ItemNoCpcCode} onChange={handleChange} placeholder="Item" />
-                                  <button className="btn btn-sm btn-outline-primary p-1">
-                                    <FaSearch size={12} />
-                                  </button>
-                                </div>
+                                <select 
+                                  className="form-select form-select-sm" 
+                                  name="ItemNoCpcCode" 
+                                  value={itemRow.ItemNoCpcCode} 
+                                  onChange={handleChange}
+                                >
+                                  <option value="">Select Item</option>
+                                  {itemsList.map(item => (
+                                    <option key={item.id} value={`${item.part_no} | ${item.Part_Code}`}>
+                                      {item.part_no} | {item.Part_Code}
+                                    </option>
+                                  ))}
+                                </select>
                               </td>
-                              <td style={{ padding: '4px' }}><input type="text" className="form-control form-control-sm" name="Description" value={itemRow.Description} onChange={handleChange} /></td>
+                              <td style={{ padding: '4px' }}><input type="text" className="form-control form-control-sm" name="Description" value={itemRow.Description} onChange={handleChange} readOnly /></td>
                               <td style={{ padding: '4px' }}><input type="text" className="form-control form-control-sm" name="AvailableStock" value={itemRow.AvailableStock} onChange={handleChange} /></td>
                               <td style={{ padding: '4px' }}>
                                 <select className="form-select form-select-sm" name="Unit" value={itemRow.Unit} onChange={handleChange}>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, IconButton, TextField, MenuItem, Tooltip } from '@mui/material';
+import { Paper, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, IconButton, TextField, MenuItem, Tooltip, Pagination } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import NavBar from "../../../NavBar/NavBar.js";
 import SideNav from "../../../SideNav/SideNav.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Indent/ListIndent.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -32,13 +32,26 @@ const ListIndent = () => {
   // Toggle side nav
   const toggleSideNav = () => setSideNavOpen((prev) => !prev);
 
+  // For navigating to the edit page
+  const navigate = useNavigate();
+
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 10;
+
   // Mock fetch – replace URL with your real endpoint
   const fetchIndents = async () => {
     try {
-      const res = await fetch("https://sellerp-backend.onrender.com/Purchase/all-indents/");
+      const token = localStorage.getItem("accessToken");
+      const res = await fetch("https://sellerp-backend.onrender.com/Purchase/all-indents/", {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
       const json = await res.json();
-      setIndentList(json.data);
-      setFilteredList(json.data); // Initialize filtered list
+      const sortedData = json.data.sort((a, b) => b.id - a.id);
+      setIndentList(sortedData);
+      setFilteredList(sortedData); // Initialize filtered list
     } catch (err) {
       console.error("Failed to load indents:", err);
       toast.error("Error fetching data!");
@@ -114,6 +127,7 @@ const ListIndent = () => {
     }
 
     setFilteredList(filtered);
+    setCurrentPage(1); // Reset to first page on new search
   };
 
   // Handle form submission
@@ -134,6 +148,7 @@ const ListIndent = () => {
       status: ''
     });
     setFilteredList(indentList);
+    setCurrentPage(1);
   };
 
   // Get unique values for dropdowns
@@ -197,6 +212,44 @@ const ListIndent = () => {
     XLSX.writeFile(workbook, "Indent_List.xlsx");
   };
 
+    // View PDF (Eye icon)
+  const handleViewPdf = (id) => {
+    if (!id) {
+      toast.warn("No PDF available for this indent.");
+      return;
+    }
+    window.open(`https://sellerp-backend.onrender.com/Purchase/indent/pdf/${id}/`, "_blank", "noopener,noreferrer");
+  };
+
+  // Edit (Edit icon) - navigates to the edit page
+  const handleEditIndent = (indent) => {
+    localStorage.setItem("editIndent", JSON.stringify(indent));
+    navigate("/new-indent");
+  };
+
+  // Delete (Trash icon)
+  const handleDeleteIndent = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this indent?")) return;
+    try {
+      const token = localStorage.getItem("accessToken");
+      const res = await fetch(`https://sellerp-backend.onrender.com/Purchase/api/indents/${id}/`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      if (res.ok || res.status === 204) {
+        toast.success("Indent deleted successfully!");
+        fetchIndents();
+      } else {
+        toast.error("Failed to delete indent.");
+      }
+    } catch (err) {
+      console.error("Delete failed:", err);
+      toast.error("Error deleting indent!");
+    }
+  };
+
   useEffect(() => {
     fetchIndents();
   }, []);
@@ -204,6 +257,16 @@ const ListIndent = () => {
   useEffect(() => {
     document.body.classList.toggle("side-nav-open", sideNavOpen);
   }, [sideNavOpen]);
+
+  // Pagination calculation
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = filteredList.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(filteredList.length / recordsPerPage);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   return (
     <div className="erp-page ListIndent">
@@ -229,9 +292,9 @@ const ListIndent = () => {
                         </h5>
                         
                         <div className="d-flex gap-2 flex-wrap">
-                          <Button component={Link} to="/IndentStutasReport" variant="contained" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
+                          {/* <Button component={Link} to="/IndentStutasReport" variant="contained" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
                             <i className="fas fa-chart-bar me-2"></i> Indent Status Report
-                          </Button>
+                          </Button> */}
                           <Button variant="contained" onClick={handleExportExcel} sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #10b981, #059669)', boxShadow: '0 4px 14px 0 rgba(16, 185, 129, 0.39)', '&:hover': { background: 'linear-gradient(to right, #059669, #047857)', transform: 'translateY(-1px)' } }}>
                             <i className="fas fa-file-excel me-2"></i> Export Excel
                           </Button>
@@ -395,76 +458,81 @@ const ListIndent = () => {
                                     <i className="fas fa-search me-2"></i> {indentList.length === 0 ? "No indents found." : "No indents match the current filters."}
                                   </TableCell>
                                 </TableRow>
-                              ) : (
-                                filteredList.map((indent, i) =>
-                                  indent.indent_details.map((d, j) => {
-                                    const year = new Date(indent.Date).getFullYear();
-                                    return (
-                                      <TableRow key={`${indent.id}-${d.id}`} hover sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{i + 1}.{j + 1}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{year}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
-                                          <strong style={{ color: '#3b82f6' }}>{indent.IndentNo}</strong><br/>
-                                          <small className="text-muted">{indent.Date}</small>
-                                        </TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{d.SchDate || "-"}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', maxWidth: '250px', whiteSpace: 'normal' }}>
-                                          <strong>{d.ItemNoCpcCode}</strong><br/>
-                                          <small className="text-muted">{d.Description}</small>
-                                        </TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{d.Qty}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{indent.Time}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{indent.Auth || "-"}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
-                                          <span className={`badge ${indent.Auth === "Approved" ? "bg-success" : indent.Auth === "Pending" ? "bg-warning text-dark" : "bg-secondary"}`}>
-                                            {indent.Auth || "Pending"}
-                                          </span>
-                                        </TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{indent.Plant || "—"}</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>-</TableCell>
-                                        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
-                                          <Tooltip title="View">
-                                            <IconButton component={Link} to={`/indent/${indent.id}`} size="small" sx={{ color: '#10b981', '&:hover': { background: '#d1fae5' } }}>
-                                              <FaEye style={{ fontSize: '14px' }} />
-                                            </IconButton>
-                                          </Tooltip>
-                                          <Tooltip title="Edit">
-                                            <IconButton size="small" sx={{ color: '#3b82f6', '&:hover': { background: '#dbeafe' } }}>
-                                              <FaEdit style={{ fontSize: '14px' }} />
-                                            </IconButton>
-                                          </Tooltip>
-                                          <Tooltip title="Delete">
-                                            <IconButton size="small" sx={{ color: '#ef4444', '&:hover': { background: '#fee2e2' } }}>
-                                              <FaTrash style={{ fontSize: '14px' }} />
-                                            </IconButton>
-                                          </Tooltip>
-                                          <Tooltip title="Document">
-                                            <IconButton size="small" sx={{ color: '#8b5cf6', '&:hover': { background: '#ede9fe' } }}>
-                                              <FaFileAlt style={{ fontSize: '14px' }} />
-                                            </IconButton>
-                                          </Tooltip>
-                                          <Tooltip title="Mail">
-                                            <IconButton size="small" sx={{ color: '#64748b', '&:hover': { background: '#f1f5f9' } }}>
-                                              <FaEnvelope style={{ fontSize: '14px' }} />
-                                            </IconButton>
-                                          </Tooltip>
-                                        </TableCell>
-                                      </TableRow>
-                                    );
-                                  })
-                                )
+                                                            ) : (
+                                (() => {
+                                  let srNo = 0;
+                                  return currentRecords.map((indent, i) =>
+                                    indent.indent_details.map((d, j) => {
+                                      srNo += 1;
+                                      const year = new Date(indent.Date).getFullYear();
+                                      return (
+                                        <TableRow key={`${indent.id}-${d.id}`} hover sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{srNo}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{year}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
+                                            <strong style={{ color: '#3b82f6' }}>{indent.IndentNo}</strong><br/>
+                                            <small className="text-muted">{indent.Date}</small>
+                                          </TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{d.SchDate || "-"}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', maxWidth: '250px', whiteSpace: 'normal' }}>
+                                            <strong>{d.ItemNoCpcCode}</strong><br/>
+                                            <small className="text-muted">{d.Description}</small>
+                                          </TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{d.Qty}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{indent.Time}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{indent.Auth || "-"}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
+                                            <span className={`badge ${indent.Auth === "Approved" ? "bg-success" : indent.Auth === "Pending" ? "bg-warning text-dark" : "bg-secondary"}`}>
+                                              {indent.Auth || "Pending"}
+                                            </span>
+                                          </TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{indent.Plant || "—"}</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>-</TableCell>
+                                          <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
+                                            <Tooltip title="View PDF">
+                                              <IconButton onClick={() => handleViewPdf(indent.id)} size="small" sx={{ color: '#10b981', '&:hover': { background: '#d1fae5' } }}>
+                                                <FaEye style={{ fontSize: '14px' }} />
+                                              </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Edit">
+                                              <IconButton onClick={() => handleEditIndent(indent)} size="small" sx={{ color: '#3b82f6', '&:hover': { background: '#dbeafe' } }}>
+                                                <FaEdit style={{ fontSize: '14px' }} />
+                                              </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Delete">
+                                              <IconButton onClick={() => handleDeleteIndent(indent.id)} size="small" sx={{ color: '#ef4444', '&:hover': { background: '#fee2e2' } }}>
+                                                <FaTrash style={{ fontSize: '14px' }} />
+                                              </IconButton>
+                                            </Tooltip>
+                                          </TableCell>
+                                        </TableRow>
+                                      );
+                                    })
+                                  );
+                                })()
                               )}
                             </TableBody>
                           </Table>
                         </TableContainer>
+                        {totalPages > 1 && (
+                          <Box sx={{ display: 'flex', justifyContent: 'center', p: 2, borderTop: '1px solid #e2e8f0' }}>
+                            <Pagination 
+                              count={totalPages} 
+                              page={currentPage} 
+                              onChange={handlePageChange} 
+                              color="primary" 
+                              size="small"
+                            />
+                          </Box>
+                        )}
                       </Paper>
                     </div>
 
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2, px: 2, pb: 4 }}>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: '#64748b' }}>
-                        <i className="fas fa-info-circle me-1"></i> Showing <strong style={{ color: '#6366f1' }}>{filteredList.length}</strong> of {indentList.length} results
-                      </Typography>
-                    </Box>
+                    <div className="d-flex justify-content-between align-items-center mt-3 mb-4 px-2">
+                      <div className="record-count fw-bold" style={{ color: '#64748b' }}>
+                        Total Record : <span className="badge bg-primary text-white fs-6">{filteredList.length}</span>
+                      </div>
+                    </div>
 
                   </div>
                 </div>

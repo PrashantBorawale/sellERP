@@ -31,7 +31,7 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
       ERPSetting: ["User Configuration", "ERP Configuration", "Change Password", "Login History", "Dealer Management", "Dashboard Backup", "Delete Record"],
       Dashboard: ["Dashboard", "Dashboard View", "Financial", "Purchase", "PPC", "OEE", "Quality", "Stores", "Subcon", "Planning", "Sales", "Account", "CRM"],
       All_Masters: ["Masters", "Customer", "Business Partner Address", "Item Master", "Cross Reference", "Customer / Supplier Item Link", "Item Cross Reference", "GST Rate Master", "Commodity Master", "BOM Routing Master", "Work Center Master", "Cycle Time Master", "Operator and Supervisor Master", "Contractor Master", "Shift Master", "Work Center Schedule", "Unit Conversion", "Price List", "Price List Master", "Price List Entry", "Cost Center Master", "Project Management", "Document Management", "Master Report", "Customer State", "Master Customers"],
-      Purchase: ["Purchase", "New Indent", "New Purchase Order", "New Jobwork Purchase Order", "Pending PO Release", "Pending Indent Release", "Purchase MRN Release", "Purchase Order Status", "Quote Comparison", "RFO", "Quoto Comparison Statement", "Quoto Comparison Pending", "Reports", "Purchase Order List", "Jobwork Purchase Order List", "Supplier Wise Item Purchase List", "Purchase Report (Cost Center Wise)", "Import"],
+      Purchase: ["Purchase", "New Indent", "New Purchase Order", "New Jobwork Purchase Order", "Pending PO Release", "Pending Jobwork PO Release", "Pending Indent Release", "Purchase MRN Release", "Purchase Order Status", "Quote Comparison", "RFO", "Quoto Comparison Statement", "Quoto Comparison Pending", "Reports", "Purchase Order List", "Jobwork Purchase Order List", "Supplier Wise Item Purchase List", "Purchase Report (Cost Center Wise)", "Import"],
       Store: ["Store", "Gate Inward Entry", "Pending ASN List", "New MRN", "Purchase GRN", "Subcon GRN", "57F4 Inward Challan", "JobWork Inward Challan", "Vendor Scrap Inward", "Material Issue Challan", "Material Issue Gernal", "Stock Transaction", "Opening Stock", "FG Movement", "RM Stock Transaction", "Stock Transfer", "Delivery Challan", "DC GRN", "Store Report", "GRN List", "MRN List", "Inward 57F4 Challan List", "Material Issue Challan List", "General Material Issue Challan List", "Deliver Challan List", "DC GRN List", "Indent List", "Indent Status", "Stock Report", "Subcontract Stock", "WIP Stock Report", "RM Stock Report", "Consumable Stock Report", "FG Stock Report"],
       Production: ["Production", "Work Order Entry", "Work Order List", "Production Plan List", "Production Entry", "Production Entry Ass.", "Production Report", "Rework Production", "Rework Production Entry2", "Rework Production Entry", "Rework Production Report", "Scrap Production", "Scrap/Rejection Entry", "Scrap/Rejection Report", "FG Scrap/Rejection Entry", "FG Scrap/Rejection Report", "Material Idle Time", "Breakdown Time Entry", "Breakdown Time Report", "Contractor Payment", "P Report", "Rejection Report", "Rework Report", "Default Ideal Time Report", "Breakdown Analysis Report", "Cycle Time Report", "Operator Performance Report"],
       ProductionV2: ["Production V2", "Work Order Entry V2", "Work Order Report V2", "Contractor Work Order", "Work Order Status Entry", "Punching And Laser Schedule", "Punching Program", "Power Press"],
@@ -476,6 +476,10 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                     Pending PO Release
                   </Link>
                 )}
+
+                <Link className="dropdown-item" to="/pending-jobwork-po-release">
+                  Pending Jobwork PO Release
+                </Link>
 
                 {permissions.Purchase.includes("Pending Indent Release") && (
                   <Link className="dropdown-item" to="/pendingindent">

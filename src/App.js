@@ -138,6 +138,7 @@ const PoList = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/PoList
 const NewPurchaseOrder = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/NewPurchaseOrder.jsx"));
 const NewJobworkPurchase = React.lazy(() => import("./PurchaseMaster/NewJobworkPurchase/NewJobworkPurchase.jsx"));
 const PendingPo = React.lazy(() => import("./PurchaseMaster/PendingPo/PendingPo.jsx"));
+const PendingJobworkPORelease = React.lazy(() => import("./PurchaseMaster/PendingJobworkPORelease/PendingJobworkPORelease.jsx"));
 const PendingIndent = React.lazy(() => import("./PurchaseMaster/PendingIndent/PendingIndent.jsx"));
 const PurchaseMrn = React.lazy(() => import("./PurchaseMaster/PurchaseMRN/PurchaseMrn.jsx"));
 const PurchseOrderStatus = React.lazy(() => import("./PurchaseMaster/PurchseOrderStatus/PurchseOrderStatus.jsx"));
@@ -656,6 +657,7 @@ function App() {
           element={<NewJobworkPurchase />}
         />
         <Route path="/pendingpo" element={<PendingPo />} />
+        <Route path="/pending-jobwork-po-release" element={<PendingJobworkPORelease />} />
         <Route path="/pendingindent" element={<PendingIndent />} />
         <Route path="/Purchse-Mrn" element={<PurchaseMrn />} />
         <Route path="/Purchse-order-status" element={<PurchseOrderStatus />} />
@@ -663,8 +665,10 @@ function App() {
         <Route path="/Rfo" element={<Rfo />} />
         <Route path="/Quoto-Comparison-Statement" element={<QuotoComparisonStatement />} />
         <Route path="/Quoto-Comparison-Pending" element={<QuotoComparisonPending />} />
-        <Route path="purchase-order-list" element={<PurchseOderList />} />
-        <Route path="jobwork-purchase-order-list" element={<JobWorkPurchseOrderList />} />
+        {/* <Route path="purchase-order-list" element={<PurchseOderList />} /> */}
+        <Route path="purchase-order-list" element={<PoList />} />
+        {/* <Route path="jobwork-purchase-order-list" element={<JobWorkPurchseOrderList />} /> */}
+        <Route path="jobwork-purchase-order-list" element={<JobworkList />} />
         <Route path="supplier-wise-list" element={<SupplierWiseList />} />
         <Route path="purchase-report" element={<PurchaseReport />} />
         <Route path="/EditPo/:id" element={<POEdit />} />

@@ -683,6 +683,16 @@ export const postIndent = async (data) => {
   }
 };
 
+export const putIndent = async (id, data) => {
+  try {
+    const response = await axios.put(`${BASE_URL}api/indents/${id}/`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating indent:", error);
+    throw error;
+  }
+};
+
 // POList
 
 export const deletePurchaseOrder = async (po_id) => {

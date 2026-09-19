@@ -30,7 +30,7 @@ const PoList = () => {
     const getPurchaseOrders = async () => {
       try {
         const data = await fetchPurchaseOrders()
-        setPurchaseOrders(data)
+        setPurchaseOrders(data.sort((a, b) => b.id - a.id))
       } catch (error) {
         console.error("Error fetching purchase orders:", error)
       }
@@ -108,9 +108,6 @@ const PoList = () => {
                       <div className="d-flex gap-2 flex-wrap">
                         <Link type="button" className="vndrbtn border-0">
                           Recently Po Approval List
-                        </Link>
-                        <Link type="button" className="vndrbtn border-0">
-                          AMC Purchase Order List
                         </Link>
                         <Link type="button" className="vndrbtn border-0">
                           Purchase Order - Query

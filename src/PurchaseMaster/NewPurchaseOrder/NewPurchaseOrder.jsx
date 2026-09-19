@@ -459,9 +459,7 @@ const NewPurchaseOrder = () => {
                         {isEditMode ? "Edit Purchase Order" : "New Purchase Order"}
                       </h5>
                       <div className="d-flex gap-2">
-                        <button className="vndrbtn" onClick={handleClear} style={{ backgroundColor: "#3b82f6" }}>
-                          <i className="fas fa-file me-2"></i> {isEditMode ? "New" : "Clear"}
-                        </button>
+                        {/* Clear button removed per user request */}
                         <button className="vndrbtn" onClick={() => navigate('/PoList')}>
                           <i className="fas fa-list me-2"></i> PO List
                         </button>

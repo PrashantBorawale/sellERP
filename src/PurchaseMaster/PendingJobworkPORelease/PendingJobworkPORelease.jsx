@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { Pagination } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../NavBar/NavBar.js";
 import SideNav from "../../SideNav/SideNav.js";
-import "./PendingPo.css";
+import "./PendingJobworkPORelease.css";
 
-const PendingPo = () => {
+const PendingJobworkPORelease = () => {
   // side‑nav
   const [sideNavOpen, setSideNavOpen] = useState(false);
 
@@ -21,22 +22,17 @@ const PendingPo = () => {
   const [supplierFilter, setSupplierFilter] = useState("");
   const [poNoFilter, setPoNoFilter] = useState("");
   const [crNameFilter, setCrNameFilter] = useState("");
-  // pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-
-  // toggle to re-run filters on Search click
-  // removed searchToggle as it is unused
 
   // fetch once on mount
-    const fetchPendingPo = async () => {
+  const fetchPendingPo = async () => {
     try {
       const token = localStorage.getItem("accessToken");
-      let regularPOs = [];
+      let jwPOs = [];
 
+      // Fetch Jobwork Pending POs only
       try {
         const res = await fetch(
-          "https://sellerp-backend.onrender.com/Purchase/purchase-orders/unverified/simple/",
+          "https://sellerp-backend.onrender.com/Purchase/jobwork-po/pending/",
           {
             headers: {
               "Authorization": `Bearer ${token}`
@@ -48,16 +44,32 @@ const PendingPo = () => {
           const contentType = res.headers.get("content-type");
           if (contentType && contentType.includes("application/json")) {
             const data = await res.json();
-            regularPOs = data.data || data || [];
-            if (!Array.isArray(regularPOs)) regularPOs = [];
+            jwPOs = data.data || data || [];
+            if (!Array.isArray(jwPOs)) jwPOs = [];
+            
+            // Tag and normalize JW POs to match table columns
+            jwPOs = jwPOs.map((po) => ({ 
+              ...po, 
+              isJW: true,
+              Type: po.Type || po.PoType,
+              DeliveryDate: po.DeliveryDate || po.Delivery,
+              EnquiryNo: po.EnquiryNo || po.QuotNo || "",
+              item_details: po.Item_Detail_Enter
+                ? po.Item_Detail_Enter.map((it) => ({
+                    Item: it.ItemName || "",
+                    ItemDescription: it.ItemDescription || "",
+                  }))
+                : [],
+            }));
           }
         }
       } catch (err) {
-        console.error("Failed to fetch Regular POs:", err);
+        console.error("Failed to fetch Jobwork POs:", err);
       }
 
-      regularPOs.sort((a, b) => b.id - a.id);
-      setPendingPoList(regularPOs);
+      // Sort by highest id first
+      jwPOs.sort((a, b) => b.id - a.id);
+      setPendingPoList(jwPOs);
     } catch (err) {
       console.error("Critical error in fetchPendingPo:", err);
     }
@@ -112,32 +124,30 @@ const PendingPo = () => {
   };
 
   // apply filters
-    const filteredList = useMemo(() => {
-    return pendingPoList
-      .filter((po) => {
-        if (plantFilter && po.Plant !== plantFilter) return false;
-        if (fromDate && po.PoDate < fromDate) return false;
-        if (toDate && po.PoDate > toDate) return false;
-        if (typeFilter && po.Type !== typeFilter) return false;
-        if (categoryFilter && po.Series !== categoryFilter) return false;
-        if (
-          supplierFilter &&
-          !po.Supplier?.toLowerCase().includes(supplierFilter.toLowerCase())
-        )
-          return false;
-        if (
-          poNoFilter &&
-          !po.PoNo.toString().includes(poNoFilter)
-        )
-          return false;
-        if (
-          crNameFilter &&
-          !po.CPCCode?.toLowerCase().includes(crNameFilter.toLowerCase())
-        )
-          return false;
-        return true;
-      })
-      .sort((a, b) => (b.id || 0) - (a.id || 0));
+  const filteredList = useMemo(() => {
+    return pendingPoList.filter((po) => {
+      if (plantFilter && po.Plant !== plantFilter) return false;
+      if (fromDate && po.PoDate < fromDate) return false;
+      if (toDate && po.PoDate > toDate) return false;
+      if (typeFilter && po.Type !== typeFilter) return false;
+      if (categoryFilter && po.Series !== categoryFilter) return false;
+      if (
+        supplierFilter &&
+        !po.Supplier?.toLowerCase().includes(supplierFilter.toLowerCase())
+      )
+        return false;
+      if (
+        poNoFilter &&
+        !po.PoNo.toString().includes(poNoFilter)
+      )
+        return false;
+      if (
+        crNameFilter &&
+        !po.CPCCode?.toLowerCase().includes(crNameFilter.toLowerCase())
+      )
+        return false;
+      return true;
+    });
   }, [
     pendingPoList,
     plantFilter,
@@ -150,26 +160,6 @@ const PendingPo = () => {
     crNameFilter,
   ]);
 
-  // reset to page 1 whenever filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [
-    plantFilter,
-    fromDate,
-    toDate,
-    typeFilter,
-    categoryFilter,
-    supplierFilter,
-    poNoFilter,
-    crNameFilter,
-  ]);
-
-  const totalPages = Math.ceil(filteredList.length / itemsPerPage) || 1;
-  const paginatedList = filteredList.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
   const handleViewPdf = (orderId, orderNo) => {
     if (orderId) {
       window.open(`https://sellerp-backend.onrender.com/Purchase/PoOrder/pdf/${orderId}/`, "_blank", "noopener,noreferrer");
@@ -177,6 +167,23 @@ const PendingPo = () => {
       alert(`No PDF available for PO: ${orderNo || "this order"}`);
     }
   };
+
+  // Pagination states and calc
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 10;
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = filteredList.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(filteredList.length / recordsPerPage);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filteredList]);
 
   return (
     <div className="erp-page NewPendingpoMaster">
@@ -198,7 +205,7 @@ const PendingPo = () => {
                     <div className="row align-items-center">
                       <div className="col-md-5">
                         <h5 className="header-title mb-0">
-                          Pending Purchase Order Release List
+                          Pending Jobwork PO Release
                         </h5>
                       </div>
         
@@ -314,14 +321,14 @@ const PendingPo = () => {
                             </tr>
                           </thead>
                           <tbody>
-                              {filteredList.length === 0 ? (
+                            {filteredList.length === 0 ? (
                               <tr>
                                 <td colSpan="13" className="text-center py-4 text-muted" style={{ fontSize: '0.85rem' }}>
                                   No pending purchase orders.
                                 </td>
                               </tr>
                             ) : (
-                              paginatedList.map((po) => (
+                              currentRecords.map((po) => (
                                 <tr key={po.id}>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.PoNo}</td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.EnquiryNo}</td>
@@ -374,49 +381,21 @@ const PendingPo = () => {
                     </div>
                   </div>
 
-                                    <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-center mt-3 mb-4">
+                      <Pagination 
+                        count={totalPages} 
+                        page={currentPage} 
+                        onChange={handlePageChange} 
+                        color="primary" 
+                      />
+                    </div>
+                  )}
+
+                  <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
                     <div className="record-count fw-bold">
                       Total Record : <span className="badge bg-primary text-white fs-6">{filteredList.length}</span>
                     </div>
-
-                    {totalPages > 1 && (
-                      <nav>
-                        <ul className="pagination pagination-sm mb-0">
-                          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                            <button
-                              type="button"
-                              className="page-link"
-                              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                            >
-                              Previous
-                            </button>
-                          </li>
-                          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                            <li
-                              key={page}
-                              className={`page-item ${currentPage === page ? "active" : ""}`}
-                            >
-                              <button
-                                type="button"
-                                className="page-link"
-                                onClick={() => setCurrentPage(page)}
-                              >
-                                {page}
-                              </button>
-                            </li>
-                          ))}
-                          <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
-                            <button
-                              type="button"
-                              className="page-link"
-                              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                            >
-                              Next
-                            </button>
-                          </li>
-                        </ul>
-                      </nav>
-                    )}
                   </div>
 
                 </div>
@@ -429,4 +408,4 @@ const PendingPo = () => {
   );
 };
 
-export default PendingPo;
+export default PendingJobworkPORelease;
