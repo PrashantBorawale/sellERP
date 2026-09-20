@@ -77,9 +77,6 @@ const PurchseOderList = () => {
                         <Link to="/AMCPurchaseOrderList" className="vndrbtn text-decoration-none">
                           <i className="fas fa-list-alt me-2"></i> AMC Purchase Order List
                         </Link>
-                        <Link to="/Purchase-Order-Summary" className="vndrbtn text-decoration-none">
-                          <i className="fas fa-list-alt me-2"></i> Purchase Order - Query
-                        </Link>
                       </div>
                     </div>
                   </div>

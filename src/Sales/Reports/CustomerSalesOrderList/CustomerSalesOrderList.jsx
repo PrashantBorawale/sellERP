@@ -1,50 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "../../../NavBar/NavBar.js";
 import SideNav from "../../../SideNav/SideNav.js";
 import "./CustomerSalesOrderList.css";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
-
-const defaultData = [
-  { sr: 1, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700077", soDate: "16/09/2026", custPoNo: "1100044257", custPoDt: "16/09/2026", type: "D. GST Close", code: "027", customerName: "ENDURANCE TECHNOLOGIES LTD (DISC BREAK DIVISION E-71)", amount: "110,000.00", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 2, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700076", soDate: "16/09/2026", custPoNo: "1100044268", custPoDt: "16/09/2026", type: "D. GST Close", code: "311", customerName: "ENDURANCE TECHNOLOGIES LTD ( R & D )", amount: "1,194.00", poStatus: "Completed", auth: true, user: "NPD" },
-  { sr: 3, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700075", soDate: "15/09/2026", custPoNo: "1100044252", custPoDt: "14/09/2026", type: "D. GST Close", code: "C0005", customerName: "ENDURANCE TECHNOLOGIES LTD (I)", amount: "25,840.15", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 4, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700074", soDate: "11/09/2026", custPoNo: "1100044231", custPoDt: "11/09/2026", type: "D. GST Close", code: "C0005", customerName: "ENDURANCE TECHNOLOGIES LTD (I)", amount: "125,600.40", poStatus: "New", auth: true, user: "NPD" },
-  { sr: 5, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700073", soDate: "10/09/2026", custPoNo: "1100044198", custPoDt: "09/09/2026", type: "D. GST Close", code: "17", customerName: "ENDURANCE TECHNOLOGIES LTD (N)", amount: "37,760.25", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 6, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700072", soDate: "09/09/2026", custPoNo: "1100043962", custPoDt: "19/08/2026", type: "D. GST Close", code: "311", customerName: "ENDURANCE TECHNOLOGIES LTD ( R & D )", amount: "8,574.01", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 7, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700071", soDate: "07/09/2026", custPoNo: "1100044091", custPoDt: "01/09/2026", type: "D. GST Close", code: "C0005", customerName: "ENDURANCE TECHNOLOGIES LTD (I)", amount: "60,709.52", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 8, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700070", soDate: "05/09/2026", custPoNo: "1100044101", custPoDt: "02/09/2026", type: "D. GST Close", code: "C0005", customerName: "ENDURANCE TECHNOLOGIES LTD (I)", amount: "13,930.00", poStatus: "Completed", auth: true, user: "NPD" },
-  { sr: 9, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700069", soDate: "02/09/2026", custPoNo: "1900009890", custPoDt: "20/08/2026", type: "D. GST Open", code: "027", customerName: "ENDURANCE TECHNOLOGIES LTD (DISC BREAK DIVISION E-71)", amount: "828.79", poStatus: "New", auth: true, user: "NPD" },
-  { sr: 10, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700068", soDate: "02/09/2026", custPoNo: "1100043945", custPoDt: "19/08/2026", type: "D. GST Close", code: "C0005", customerName: "ENDURANCE TECHNOLOGIES LTD (I)", amount: "31,422.10", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 11, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700067", soDate: "02/09/2026", custPoNo: "SEPL 26-27/128", custPoDt: "02/09/2026", type: "D. GST Close", code: "0032", customerName: "SAPTAGIRI ENGINEERING PVT LTD", amount: "44,290.00", poStatus: "Partial", auth: true, user: "NPD" },
-  { sr: 12, year: "26-27", plant: "VISHWA S.I.", soNo: "SOD262700066", soDate: "01/09/2026", custPoNo: "PCPL/26-27/112", custPoDt: "03/08/2026", type: "D. GST Close", code: "00039", customerName: "PRANEEL CASTING PVT LTD", amount: "37,760.00", poStatus: "Completed", auth: true, user: "NPD" }
-];
-
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 const CustomerSalesOrderList = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
+  const navigate = useNavigate();
 
-  const toggleSideNav = () => {
-    setSideNavOpen(!sideNavOpen);
+  const handleEdit = (id) => {
+    navigate("/NewSalesOrder", { state: { id } });
   };
 
-  // Sorting by highest ID (sr) at top
-  const sortedData = [...defaultData].sort((a, b) => b.sr - a.sr);
-  
-  // Pagination calculations
-  const totalRecords = sortedData.length;
-  const totalPages = Math.ceil(totalRecords / rowsPerPage);
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = sortedData.slice(indexOfFirstRow, indexOfLastRow);
-
-  const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this Sales Order?")) {
+      try {
+        const response = await fetch(`https://sellerp-backend.onrender.com/Sales/newsalesorder/${id}/`, {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          toast.success("Sales Order deleted successfully");
+          fetchData(); // refresh the list
+        } else {
+          toast.error("Failed to delete Sales Order");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while deleting");
+      }
+    }
   };
 
   const formatDate = (date) => {
@@ -59,8 +47,74 @@ const CustomerSalesOrderList = () => {
   monthAgo.setMonth(monthAgo.getMonth() - 1);
   const monthAgoStr = formatDate(monthAgo);
 
+  const [data, setData] = useState([]);
+  const [fromDate, setFromDate] = useState(monthAgoStr);
+  const [toDate, setToDate] = useState(todayStr);
+  const [custName, setCustName] = useState("");
+  const [isCustNameChecked, setIsCustNameChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const loggedInUser = localStorage.getItem("username") || "Admin";
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      let url = "https://sellerp-backend.onrender.com/Sales/newsalesorder/?";
+      const params = new URLSearchParams();
+      
+      if (fromDate) params.append("from_date", fromDate);
+      if (toDate) params.append("to_date", toDate);
+      
+      if (isCustNameChecked && custName.trim() !== "") {
+        params.append("customer", custName.trim());
+      }
+      
+      const response = await fetch(url + params.toString());
+      if (response.ok) {
+        const result = await response.json();
+        const sorted = result.sort((a, b) => b.id - a.id);
+        setData(sorted);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [fromDate, toDate]); // Fetch on mount and when dates change initially? No, user says "as the user do any and click on search button". We'll just fetch on mount.
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggleSideNav = () => {
+    setSideNavOpen(!sideNavOpen);
+  };
+  
+  // Pagination calculations
+  const totalRecords = data.length;
+  const totalPages = Math.ceil(totalRecords / rowsPerPage);
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
   return (
     <div className="CustomerSalesOrderList">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
@@ -73,11 +127,6 @@ const CustomerSalesOrderList = () => {
                   <div className="CustomerSalesOrderList-header mb-3">
                     <div className="d-flex justify-content-between align-items-center">
                       <h5 className="header-title mb-0" style={{textAlign: 'center'}}>Customer Sales Order List</h5>
-                      <div className="d-flex gap-2">
-                        <button className="vndrbtn" style={{textAlign: 'center'}}>🔍 Validity Date</button>
-                        <button className="vndrbtn" style={{textAlign: 'center'}}>📊 CustomerPO: Report</button>
-                        <button className="vndrbtn" style={{textAlign: 'center'}}>⚙ Sales Order Query</button>
-                      </div>
                     </div>
                   </div>
 
@@ -99,13 +148,13 @@ const CustomerSalesOrderList = () => {
                     {/* From Date */}
                     <div className="d-flex flex-column align-items-start flex-shrink-0 gap-1">
                       <label className="fw-bold text-secondary" style={{fontSize: '0.8rem', whiteSpace: 'nowrap'}}>From Date</label>
-                      <input type="date" className="form-control form-control-sm shadow-none" defaultValue={monthAgoStr} style={{ fontSize: '0.8rem', padding: '2px 6px', height: '28px' }} />
+                      <input type="date" className="form-control form-control-sm shadow-none" value={fromDate} onChange={(e) => setFromDate(e.target.value)} style={{ fontSize: '0.8rem', padding: '2px 6px', height: '28px' }} />
                     </div>
 
                     {/* To Date */}
                     <div className="d-flex flex-column align-items-start flex-shrink-0 gap-1">
                       <label className="fw-bold text-secondary" style={{fontSize: '0.8rem', whiteSpace: 'nowrap'}}>To Date</label>
-                      <input type="date" className="form-control form-control-sm shadow-none" defaultValue={todayStr} style={{ fontSize: '0.8rem', padding: '2px 6px', height: '28px' }} />
+                      <input type="date" className="form-control form-control-sm shadow-none" value={toDate} onChange={(e) => setToDate(e.target.value)} style={{ fontSize: '0.8rem', padding: '2px 6px', height: '28px' }} />
                     </div>
                     
                     <div className="d-flex flex-column align-items-start flex-shrink-0 gap-1">
@@ -139,8 +188,10 @@ const CustomerSalesOrderList = () => {
                     </div>
 
                     <div className="d-flex flex-column align-items-start flex-shrink-0 gap-1">
-                      <label className="fw-bold text-secondary d-flex align-items-center gap-1" style={{fontSize: '0.8rem', whiteSpace: 'nowrap'}}><input type="checkbox" className="form-check-input m-0 shadow-none" style={{ cursor: 'pointer', width: '14px', height: '14px' }} /> Cust Name</label>
-                      <input type="text" className="form-control form-control-sm shadow-none" placeholder="Name..." style={{ fontSize: '0.8rem', padding: '2px 6px', height: '28px', width: '110px' }} />
+                      <label className="fw-bold text-secondary d-flex align-items-center gap-1" style={{fontSize: '0.8rem', whiteSpace: 'nowrap'}}>
+                        <input type="checkbox" className="form-check-input m-0 shadow-none" checked={isCustNameChecked} onChange={(e) => setIsCustNameChecked(e.target.checked)} style={{ cursor: 'pointer', width: '14px', height: '14px' }} /> Cust Name
+                      </label>
+                      <input type="text" className="form-control form-control-sm shadow-none" value={custName} onChange={(e) => setCustName(e.target.value)} disabled={!isCustNameChecked} placeholder="Name..." style={{ fontSize: '0.8rem', padding: '2px 6px', height: '28px', width: '110px' }} />
                     </div>
 
                     <div className="d-flex flex-column align-items-start flex-shrink-0 gap-1">
@@ -154,7 +205,9 @@ const CustomerSalesOrderList = () => {
                     </div>
 
                     <div className="d-flex align-items-end gap-2 flex-shrink-0 ms-auto">
-                      <button className="vndrbtn px-2" style={{ fontSize: '0.8rem', height: '28px', display: 'flex', alignItems: 'center' }}><i className="fas fa-search me-1"></i> Search</button>
+                      <button onClick={fetchData} disabled={loading} className="vndrbtn px-2" style={{ fontSize: '0.8rem', height: '28px', display: 'flex', alignItems: 'center' }}>
+                        <i className="fas fa-search me-1"></i> {loading ? "Searching..." : "Search"}
+                      </button>
                     </div>
                   </div>
 
@@ -173,52 +226,54 @@ const CustomerSalesOrderList = () => {
                           <th style={{textAlign: 'center'}}>Code</th>
                           <th style={{minWidth: '200px', textAlign: 'center'}}>Customer Name</th>
                           <th style={{textAlign: 'center'}}>Amount</th>
-                          <th style={{textAlign: 'center'}}>Po Status</th>
                           <th style={{textAlign: 'center'}}>Auth</th>
                           <th style={{textAlign: 'center'}}>User</th>
+                          <th style={{textAlign: 'center'}}>PDF</th>
                           <th style={{textAlign: 'center'}}>Edit</th>
-                          <th style={{textAlign: 'center'}}>View</th>
-                          <th style={{textAlign: 'center'}}>All <input type="checkbox" /></th>
+                          <th style={{textAlign: 'center'}}>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {currentRows.map((row, index) => (
-                          <tr key={index}>
-                            <td style={{textAlign: 'center'}}>{(currentPage - 1) * rowsPerPage + index + 1}</td>
-                            <td style={{textAlign: 'center'}}>{row.year}</td>
-                            <td style={{textAlign: 'center'}}>{row.plant}</td>
-                            <td style={{textAlign: 'center'}}>{row.soNo}</td>
-                            <td style={{textAlign: 'center'}}>{row.soDate}</td>
-                            <td style={{textAlign: 'center'}}>{row.custPoNo}</td>
-                            <td style={{textAlign: 'center'}}>{row.custPoDt}</td>
-                            <td style={{textAlign: 'center'}}>{row.type}</td>
-                            <td style={{textAlign: 'center'}}>{row.code}</td>
-                            <td style={{textAlign: 'center'}}>{row.customerName}</td>
-                            <td style={{textAlign: 'center'}}>{row.amount}</td>
-                            <td style={{textAlign: 'center'}}>
-                              <div className="d-flex align-items-center gap-1 justify-content-center">
-                                <span style={{
-                                  color: row.poStatus === 'Completed' ? 'green' : (row.poStatus === 'New' ? 'orange' : 'teal'),
-                                  border: '1px solid #ccc',
-                                  padding: '2px 6px',
-                                  borderRadius: '4px',
-                                  fontSize: '11px',
-                                  textAlign: 'center'
-                                }}>
-                                  {row.poStatus === 'Completed' ? '✔' : (row.poStatus === 'New' ? '...' : '🕒')} {row.poStatus}
-                                </span>
-                                <button className="btn btn-sm btn-light border p-0 px-1"><FaTrashAlt style={{color: 'red'}} size={12} /></button>
-                              </div>
-                            </td>
-                            <td style={{textAlign: 'center'}}>
-                              {row.auth && <span style={{backgroundColor: 'green', color: 'white', padding: '1px 4px', borderRadius: '2px'}}>✔</span>}
-                            </td>
-                            <td style={{textAlign: 'center'}}>{row.user}</td>
-                            <td style={{textAlign: 'center'}}><FaEdit style={{color: 'black', cursor: 'pointer'}} size={16} /></td>
-                            <td style={{textAlign: 'center'}}><FaEye style={{color: 'black', cursor: 'pointer'}} size={16} /></td>
-                            <td style={{textAlign: 'center'}}><input type="checkbox" /></td>
-                          </tr>
-                        ))}
+                        {currentRows.map((row, index) => {
+                          const year = row.so_date ? new Date(row.so_date).getFullYear().toString().slice(-2) : "-";
+                          const nextYear = year !== "-" ? parseInt(year) + 1 : "-";
+                          const yearStr = year !== "-" ? `${year}-${nextYear}` : "-";
+                          
+                          const totalAmount = row.item && Array.isArray(row.item) ? row.item.reduce((sum, it) => sum + parseFloat(it.gr_total || 0), 0) : 0;
+
+                          let customerName = row.customer || "-";
+                          let customerCode = "-";
+                          if (customerName !== "-" && customerName.includes("|")) {
+                            const parts = customerName.split("|");
+                            customerName = parts[0].trim();
+                            customerCode = parts[1].trim();
+                          } else {
+                            customerCode = row.ship_to_add_code || "-";
+                          }
+
+                          return (
+                            <tr key={index}>
+                              <td style={{textAlign: 'center'}}>{(currentPage - 1) * rowsPerPage + index + 1}</td>
+                              <td style={{textAlign: 'center'}}>{yearStr}</td>
+                              <td style={{textAlign: 'center'}}>{row.plant || "-"}</td>
+                              <td style={{textAlign: 'center'}}>{row.so_no || "-"}</td>
+                              <td style={{textAlign: 'center'}}>{row.so_date || "-"}</td>
+                              <td style={{textAlign: 'center'}}>{row.cust_po || "-"}</td>
+                              <td style={{textAlign: 'center'}}>{row.cust_date || "-"}</td>
+                              <td style={{textAlign: 'center'}}>{row.order_type || "-"}</td>
+                              <td style={{textAlign: 'center'}}>{customerCode}</td>
+                              <td style={{textAlign: 'center'}}>{customerName}</td>
+                              <td style={{textAlign: 'center'}}>{totalAmount.toFixed(2)}</td>
+                              <td style={{textAlign: 'center'}}>
+                                <span style={{backgroundColor: 'green', color: 'white', padding: '1px 4px', borderRadius: '2px'}}>✔</span>
+                              </td>
+                              <td style={{textAlign: 'center'}}>{loggedInUser}</td>
+                              <td style={{textAlign: 'center'}}><FaEye style={{color: 'blue', cursor: 'pointer'}} size={16} onClick={() => window.open(`https://sellerp-backend.onrender.com/Sales/sales-order/pdf/${row.id}/`, "_blank")} /></td>
+                              <td style={{textAlign: 'center'}}><FaEdit style={{color: 'black', cursor: 'pointer'}} size={16} onClick={() => handleEdit(row.id)} /></td>
+                              <td style={{textAlign: 'center'}}><FaTrashAlt style={{color: 'red', cursor: 'pointer'}} size={16} onClick={() => handleDelete(row.id)} /></td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
@@ -236,11 +291,6 @@ const CustomerSalesOrderList = () => {
                     <div className="d-flex gap-4 align-items-center">
                       <div style={{textAlign: 'center'}}>Qty : <strong>19,582.00</strong></div>
                       <div style={{textAlign: 'center'}}>Amount : <strong>505,278.12</strong></div>
-                      <div className="d-flex align-items-center gap-2">
-                        <span style={{textAlign: 'center'}}>PO Status</span>
-                        <select style={{height: '24px', fontSize: '12px', textAlign: 'center'}}><option>NEW</option></select>
-                        <button className="vndrbtn" style={{padding: '2px 10px', textAlign: 'center'}}>Update</button>
-                      </div>
                     </div>
                   </div>
 

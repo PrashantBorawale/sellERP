@@ -296,20 +296,20 @@ const PendingIndent = () => {
                         <table className="table table-bordered table-striped table-hover align-middle mb-0">
                           <thead className="table-primary sticky-top" style={{ zIndex: 1 }}>
                             <tr>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>#</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>PLANT</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>SERIES</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>INDENT NO</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>DATE</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>TIME</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CATEGORY</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CPC CODE</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>WORK ORDER</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>REMARK</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>AUTH</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>DETAILS</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>APPROVE</th>
-                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>REJECT</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>#</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>PLANT</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>SERIES</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>INDENT NO</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>DATE</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>TIME</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>CATEGORY</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>CPC CODE</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>WORK ORDER</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>REMARK</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>AUTH</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word', minWidth: '300px', maxWidth: '400px' }}>DETAILS</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>APPROVE</th>
+                              <th style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>REJECT</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -322,17 +322,17 @@ const PendingIndent = () => {
                             )}
                             {filteredIndents.map((ind, idx) => (
                               <tr key={ind.id}>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{idx + 1}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.Plant || "—"}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.Series}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.IndentNo}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.Date}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.Time}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.Category || "—"}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.CPCCode || "—"}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.WorkOrder || "—"}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{ind.Remark || "—"}</td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{idx + 1}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.Plant || "—"}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.Series}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.IndentNo}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.Date}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.Time}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.Category || "—"}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.CPCCode || "—"}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.WorkOrder || "—"}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>{ind.Remark || "—"}</td>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>
                                   <span
                                     className={`badge ${ind.Auth === "Pending"
                                       ? "bg-warning text-dark"
@@ -344,19 +344,22 @@ const PendingIndent = () => {
                                     {ind.Auth}
                                   </span>
                                 </td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
-                                  <ul className="mb-0 ps-3 text-start">
-                                    {ind.indent_details.map((d) => (
-                                      <li key={d.id}>
-                                        {d.ItemNoCpcCode} — {d.Description} ×{" "}
-                                        {d.Qty} ({d.Unit})
-                                        <br />
-                                        <span className="text-muted">Sch: {d.SchDate} | Type: {d.Type}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', minWidth: '300px', maxWidth: '400px' }}>
+                                  <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%' }}>
+                                    <ul className="mb-0 ps-3 text-start" style={{ whiteSpace: 'normal', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                                      {ind.indent_details.map((d) => (
+                                        <li key={d.id} style={{ marginBottom: '4px' }}>
+                                          {d.ItemNoCpcCode} — {d.Description} × {d.Qty} ({d.Unit})
+                                          <br />
+                                          <span className="text-muted" style={{ display: 'inline-block', marginTop: '2px' }}>
+                                            Sch: {d.SchDate} | Type: {d.Type}
+                                          </span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
                                 </td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>
                                   <button 
                                     className="btn btn-sm btn-outline-success border-0" 
                                     title="Approve Indent" 
@@ -365,7 +368,7 @@ const PendingIndent = () => {
                                     <i className="fas fa-check-circle" style={{ fontSize: '1.25rem' }}></i>
                                   </button>
                                 </td>
-                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                <td style={{ fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center', whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>
                                   <button 
                                     className="btn btn-sm btn-outline-danger border-0" 
                                     title="Reject Indent" 

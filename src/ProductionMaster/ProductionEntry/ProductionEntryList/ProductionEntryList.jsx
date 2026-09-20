@@ -102,17 +102,6 @@ const ProductionEntryList = () => {
                         </h5>
                       </div>
                       <div className="col-md-8 text-end">
-                        <button type="button" className="vndrbtn" to="/AddQuater">
-                          Production Report
-                        </button>
-
-                        <button
-                          type="button"
-                          className="vndrbtn"
-                          to="/Companysetup"
-                        >
-                          Production Query
-                        </button>
                       </div>
                     </div>
                   </div>

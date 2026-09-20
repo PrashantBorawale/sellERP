@@ -59,7 +59,7 @@ const OpeningStock = () => {
                             </Link>
                             <br/>
 
-                            <button className="btn btn-outline-primary w-100 mt-2 mb-3">Download Opening Stock Upload Template</button>
+                            <button className="btn btn-outline-primary w-100 mt-2 mb-3" style={{ whiteSpace: 'nowrap', fontSize: '0.8rem', padding: '6px 4px' }}>Download Opening Stock Upload Template</button>
 
                             <div className="row g-2 mt-3 align-items-end">
                                 <div className="col-8"><label className="form-label mb-1">Item Group:</label>
@@ -71,7 +71,7 @@ const OpeningStock = () => {
                                 </select>
                               </div>
                               <div className="col-4">
-                                <Link className="btn btn-success w-100">
+                                <Link className="btn btn-success btn-sm w-100" style={{ fontSize: '0.8rem', padding: '6px 2px', whiteSpace: 'nowrap' }}>
                                   Download
                                 </Link>
                               </div>
@@ -98,7 +98,7 @@ const OpeningStock = () => {
                             </Link>
                             <br/>
 
-                            <button className="btn btn-outline-primary w-100 mt-2 mb-3">Download Opening Stock Upload Template</button>
+                            <button className="btn btn-outline-primary w-100 mt-2 mb-3" style={{ whiteSpace: 'nowrap', fontSize: '0.8rem', padding: '6px 4px' }}>Download Opening Stock Upload Template</button>
 
                             <div className="row g-2 mt-3 align-items-end">
                                 <div className="col-8"><label className="form-label mb-1">Item Group:</label>
@@ -113,7 +113,7 @@ const OpeningStock = () => {
                                 </select>
                               </div>
                               <div className="col-4">
-                                <Link className="btn btn-success w-100">
+                                <Link className="btn btn-success btn-sm w-100" style={{ fontSize: '0.8rem', padding: '6px 2px', whiteSpace: 'nowrap' }}>
                                   Download
                                 </Link>
                               </div>

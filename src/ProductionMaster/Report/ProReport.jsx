@@ -50,6 +50,7 @@ const ProReport = () => {
                       <button type="button" className="vndrbtn" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center', border: 'none', cursor: 'pointer' }}>
                         Export To Excel
                       </button>
+                      {/*
                       <button type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
                         Print Format
                       </button>
@@ -65,6 +66,7 @@ const ProReport = () => {
                       <button type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
                         Rejection Report - Quary
                       </button>
+                      */}
                     </div>
                   </div>
                 </div>

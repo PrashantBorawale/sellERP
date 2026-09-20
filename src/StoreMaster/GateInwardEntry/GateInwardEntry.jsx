@@ -180,8 +180,8 @@ const GateInwardEntry = () => {
                         <Link to={"/New-Gate-Entry"} style={{ textDecoration: 'none' }}>
                           <button className="vndrbtn bg-primary border-primary"><AddIcon className="me-1" /> New Gate Entry</button>
                         </Link>
-                        <button className="vndrbtn bg-primary border-primary"><ListAltIcon className="me-1" /> Material Reg</button>
-                        <button className="vndrbtn bg-primary border-primary"><ListAltIcon className="me-1" /> Query</button>
+                        {/* <button className="vndrbtn bg-primary border-primary"><ListAltIcon className="me-1" /> Material Reg</button>
+                        <button className="vndrbtn bg-primary border-primary"><ListAltIcon className="me-1" /> Query</button> */}
                         <button className="vndrbtn bg-success border-success" onClick={handleExportExcel}><DownloadIcon className="me-1" /> Export To Excel</button>
                       </div>
                     </div>

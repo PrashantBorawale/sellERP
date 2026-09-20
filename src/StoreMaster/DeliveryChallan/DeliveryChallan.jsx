@@ -412,7 +412,7 @@ const DeliveryChallan = () => {
                                     <th>Unit</th>
                                     <th>Rate</th>
                                     <th>Qty</th>
-                                    <th>Action</th>
+                                    <th style={{ whiteSpace: 'nowrap' }}>Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -524,7 +524,7 @@ const DeliveryChallan = () => {
                                       />
                                     </td>
                                     <td>
-                                      <button type="submit" className="pobtn">
+                                      <button type="submit" className="pobtn btn-sm" style={{ padding: '4px 12px', fontSize: '12px', whiteSpace: 'nowrap', display: 'inline-block' }}>
                                         {isEditing ? "Update" : "Add"}
                                       </button>
                                     </td>

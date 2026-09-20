@@ -111,9 +111,6 @@ const PoList = () => {
                         <Link type="button" className="vndrbtn border-0">
                           Recently Po Approval List
                         </Link>
-                        <Link type="button" className="vndrbtn border-0">
-                          Purchase Order - Query
-                        </Link>
                       </div>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../NavBar/NavBar.js";
@@ -10,6 +10,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewSalesOrder = () => {
+  const location = useLocation();
+  const editId = location.state?.id || null;
+  const isEditing = !!editId;
+
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [customers, setCustomers] = useState([]);
@@ -93,40 +97,83 @@ const NewSalesOrder = () => {
     fetchData();
   }, []);
 
-  // 2. Fetch SO No on component mount
+  // 2. Fetch SO No or existing data
   useEffect(() => {
-    const fetchSoNo = async () => {
-      try {
-        setSoNoLoading(true);
-        setSoNoError(null);
-        const response = await fetch(
-          "https://sellerp-backend.onrender.com/Sales/generate-so-no/"
-        );
-        if (response.ok) {
-          const data = await response.json();
-          console.log("SO No Response:", data);
-          // Handle different response formats
-          const soNo = data.so_no || data.SO_No || data.soNo || data.data?.so_no || "";
-          setFormData((prev) => ({
-            ...prev,
-            so_no: soNo,
-          }));
-          if (soNo) {
-            toast.success(`SO No: ${soNo} generated`);
+    if (isEditing) {
+      const fetchEditData = async () => {
+        try {
+          const res = await fetch(`https://sellerp-backend.onrender.com/Sales/newsalesorder/${editId}/`);
+          if (res.ok) {
+            const data = await res.json();
+            setFormData({
+              cust_date: data.cust_date || "",
+              plant: data.plant || "VISHWA S.I.",
+              order_type: data.order_type || "",
+              order_status: data.order_status || "",
+              customer: data.customer || "",
+              cust_po: data.cust_po || "",
+              pay_day: data.pay_day || "",
+              pay_note: data.pay_note || "",
+              valid_up: data.valid_up || "",
+              so_date: data.so_date || "",
+              so_no: data.so_no || "",
+              po_rec_date: data.po_rec_date || "",
+              incoterms: data.incoterms || "",
+              ship_to: data.ship_to || "",
+              ship_to_add_code: data.ship_to_add_code || "",
+              ccn_no: data.ccn_no || "",
+              delivery_date: data.delivery_date || "",
+              buyer_name: data.buyer_name || "",
+              packing: data.packing || "",
+              shift: data.shift || "",
+              plan_date: data.plan_date || "",
+              lc_no: data.lc_no || "",
+              sales_person: data.sales_person || "",
+              site_name: data.site_name || "",
+              project_name: data.project_name || "",
+              delivery_al: data.delivery_al || "",
+              terms: data.terms || "",
+            });
+            if (data.item && Array.isArray(data.item)) {
+              setOrderItems(data.item);
+            }
+          } else {
+            toast.error("Failed to load Sales Order data for editing");
           }
-        } else {
-          setSoNoError("Failed to fetch SO No");
+        } catch (error) {
+          console.error("Fetch Edit Error:", error);
+          toast.error("Error loading Sales Order data");
         }
-      } catch (error) {
-        console.error("SO No fetch error:", error);
-        setSoNoError(error.message);
-        toast.error("Error fetching SO No");
-      } finally {
-        setSoNoLoading(false);
-      }
-    };
-    fetchSoNo();
-  }, []);
+      };
+      fetchEditData();
+    } else {
+      const fetchSoNo = async () => {
+        try {
+          setSoNoLoading(true);
+          setSoNoError(null);
+          const response = await fetch(
+            "https://sellerp-backend.onrender.com/Sales/generate-so-no/"
+          );
+          if (response.ok) {
+            const data = await response.json();
+            const soNo = data.so_no || data.SO_No || data.soNo || data.data?.so_no || "";
+            setFormData((prev) => ({
+              ...prev,
+              so_no: soNo,
+            }));
+          } else {
+            setSoNoError("Failed to fetch SO No");
+          }
+        } catch (error) {
+          console.error("SO No fetch error:", error);
+          setSoNoError(error.message);
+        } finally {
+          setSoNoLoading(false);
+        }
+      };
+      fetchSoNo();
+    }
+  }, [isEditing, editId]);
 
   // Handle Customer Selection & Auto-fill Ship To
   const handleChange = (e) => {
@@ -422,16 +469,17 @@ const NewSalesOrder = () => {
 
       console.log("Sending Payload:", JSON.stringify(payload, null, 2));
 
-      const res = await fetch(
-        "https://sellerp-backend.onrender.com/Sales/newsalesorder/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const url = isEditing
+        ? `https://sellerp-backend.onrender.com/Sales/newsalesorder/${editId}/`
+        : "https://sellerp-backend.onrender.com/Sales/newsalesorder/";
+
+      const res = await fetch(url, {
+        method: isEditing ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
       const responseData = await res.json();
 
@@ -441,7 +489,7 @@ const NewSalesOrder = () => {
         return;
       }
 
-      toast.success("Order saved successfully!");
+      toast.success(isEditing ? "Order updated successfully!" : "Order saved successfully!");
 
       // Reset form after successful save
       setTimeout(() => {
@@ -516,7 +564,7 @@ const NewSalesOrder = () => {
   };
 
   const handleNavigate = () => {
-    navigate("/OrderLiast");
+    navigate("/CustomerSalesOrderList");
   };
 
   const handleFileChange = (e) => {
@@ -529,6 +577,7 @@ const NewSalesOrder = () => {
 
   return (
     <div className="NewSalesOrderMaster">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
@@ -543,7 +592,7 @@ const NewSalesOrder = () => {
                   <div className="NewSalesOrder-header mb-2 text-start">
                     <div className="row align-items-center">
                       <div className="col-md-6">
-                        <h5 className="header-title mb-0">New Sales Order</h5>
+                        <h5 className="header-title mb-0">{isEditing ? "Edit Sales Order" : "New Sales Order"}</h5>
                       </div>
                       <div className="col-md-6 text-end">
                         <button
@@ -558,7 +607,7 @@ const NewSalesOrder = () => {
                           className="vndrbtn mx-1"
                           onClick={handleNavigate}
                         >
-                          Order List
+                          Customer Order List
                         </button>
                       </div>
                     </div>

@@ -593,27 +593,29 @@ const JobworkInwardChallan = () => {
                                   </ul>
                                 )}
                               </div>
-                              <div className="d-flex mt-1">
-                                <label className="me-1 text-nowrap">FG Part Code:</label>
-                                <select
-                                  name="FGPartCode"
-                                  className="form-select flex-grow-1"
-                                  value={currentRow.FGPartCode}
-                                  onChange={handleFGPartCodeChange}
-                                  disabled={fgPartCodeOptions.length === 0}
-                                  style={{ paddingRight: "25px", minWidth: "250px", fontSize: "0.85rem" }}
-                                >
-                                  <option value="">-- Select FG Part Code --</option>
-                                  {fgPartCodeOptions.map((pc, idx) => {
-                                    const fullVal = `${pc.OPNo} | ${pc.PartCode} | ${pc.Operation}`;
-                                    return (
-                                      <option key={idx} value={fullVal}>
-                                        {fullVal}
-                                      </option>
-                                    );
-                                  })}
-                                </select>
-                              </div>
+                              {selectedItemType !== "RM" && (
+                                <div className="d-flex mt-1">
+                                  <label className="me-1 text-nowrap">FG Part Code:</label>
+                                  <select
+                                    name="FGPartCode"
+                                    className="form-select flex-grow-1"
+                                    value={currentRow.FGPartCode}
+                                    onChange={handleFGPartCodeChange}
+                                    disabled={fgPartCodeOptions.length === 0}
+                                    style={{ paddingRight: "25px", minWidth: "250px", fontSize: "0.85rem" }}
+                                  >
+                                    <option value="">-- Select FG Part Code --</option>
+                                    {fgPartCodeOptions.map((pc, idx) => {
+                                      const fullVal = `${pc.OPNo} | ${pc.PartCode} | ${pc.Operation}`;
+                                      return (
+                                        <option key={idx} value={fullVal}>
+                                          {fullVal}
+                                        </option>
+                                      );
+                                    })}
+                                  </select>
+                                </div>
+                              )}
                             </td>
                             <td>
                               <div className="d-flex mb-1">
