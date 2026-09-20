@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../../NavBar/NavBar.js";
@@ -58,7 +60,7 @@ const IssueMaterial = () => {
         // Remove the deleted item from UI in real-time
         setMaterialIssues(materialIssues.filter((item) => item.id !== id));
 
-        alert("Item deleted successfully!");
+        toast.success("Item deleted successfully!");
       } catch (err) {
         setError("Error while deleting item.");
         console.error("Error deleting item:", err);

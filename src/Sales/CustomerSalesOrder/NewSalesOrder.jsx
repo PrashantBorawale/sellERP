@@ -326,7 +326,7 @@ const NewSalesOrder = () => {
     };
 
     setOrderItems([...orderItems, newItem]);
-    toast.success("✅ Item added to order!");
+    toast.success("Item added to order!");
 
     setCurrentItem({
       selectedSearch: "",
@@ -441,7 +441,7 @@ const NewSalesOrder = () => {
         return;
       }
 
-      toast.success("✅ Order saved successfully!");
+      toast.success("Order saved successfully!");
 
       // Reset form after successful save
       setTimeout(() => {
@@ -1722,8 +1722,8 @@ const NewSalesOrder = () => {
                               </table>
                             </div>
 
-                            <div className="row text-start">
-                              <div className="col-md-3">
+                            <div className="row mt-3">
+                              <div className="col-md-12 d-flex justify-content-end">
                                 <button
                                   type="button"
                                   onClick={handleSaveOrder}

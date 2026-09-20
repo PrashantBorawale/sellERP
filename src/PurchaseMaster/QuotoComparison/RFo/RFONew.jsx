@@ -5,6 +5,8 @@ import NavBar from "../../../NavBar/NavBar.js";
 import SideNav from "../../../SideNav/SideNav.js";
 import "./Rfo.css";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RFONew = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -125,7 +127,7 @@ const RFONew = () => {
 
       if (response.ok) {
         await response.json();
-        alert('RFQ created successfully!');
+        toast.success('RFQ created successfully!');
         // Reset form or redirect
         setFormData({
           rfq_type: '',
@@ -147,11 +149,11 @@ const RFONew = () => {
       } else {
         const errorData = await response.json();
         setErrors(errorData);
-        alert('Error creating RFQ. Please check the form.');
+        toast.error('Error creating RFQ. Please check the form.');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Network error. Please try again.');
+      toast.error('Network error. Please try again.');
     } finally {
       setLoading(false);
     }

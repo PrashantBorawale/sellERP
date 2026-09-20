@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../NavBar/NavBar.js";
@@ -85,14 +87,14 @@ const GateInwardEntry = () => {
       try {
         const response = await deleteGateInward(id);
         if (response.status === 204 || response.status === 200) {
-          alert("Entry Deleted Successfully");
+          toast.success("Entry Deleted Successfully");
           setGateInwardData(gateInwardData.filter((item) => item.id !== id));
         } else {
-          alert("Failed to delete entry");
+          toast.error("Failed to delete entry");
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("Something went wrong!");
+        toast.error("Something went wrong!");
       }
     }
   };
@@ -156,6 +158,7 @@ const GateInwardEntry = () => {
 
   return (
     <div className="NewStoreGateInward1">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">

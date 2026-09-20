@@ -1061,7 +1061,7 @@ const ProductionEntry = () => {
           console.warn("⚠️ Koi lot numbers nahi mile!")
           toast.warning("No lot numbers available for this operation")
         } else {
-          toast.success(`✅ ${lotsData.length} lot(s) loaded successfully!`)
+          toast.success(`${lotsData.length} lot(s) loaded successfully!`)
         }
 
         setLotNumbers(lotsData)

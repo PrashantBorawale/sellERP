@@ -6,6 +6,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import NavBar from "../../../NavBar/NavBar.js";
 import SideNav from "../../../SideNav/SideNav.js";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './JobworkList.css';
 import { fetchJobWorkPOList, deleteJobworkPO } from "../../../Service/PurchaseApi.jsx";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
@@ -72,11 +74,11 @@ const JobworkList = () => {
     const success = await deleteJobworkPO(id);
 
     if (success) {
-      alert("Jobwork PO deleted successfully!");
+      toast.success("Jobwork PO deleted successfully!");
       setJobWorkData(prev => prev.filter(item => item.id !== id));
       setFilteredData(prev => prev.filter(item => item.id !== id));
     } else {
-      alert("Failed to delete. Please try again.");
+      toast.error("Failed to delete. Please try again.");
     }
   };
 

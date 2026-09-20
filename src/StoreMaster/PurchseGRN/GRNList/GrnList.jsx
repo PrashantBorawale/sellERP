@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../../NavBar/NavBar.js";
@@ -71,9 +73,9 @@ const GrnList = () => {
       try {
         await deleteGrn(id);
         setGrnData((prevData) => prevData.filter((item) => item.id !== id));
-        alert("GRN Deleted Successfully");
+        toast.success("GRN Deleted Successfully");
       } catch (error) {
-        alert("Failed to delete GRN");
+        toast.error("Failed to delete GRN");
       }
     }
   };

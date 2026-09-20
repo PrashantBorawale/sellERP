@@ -411,6 +411,7 @@ const MaterialGatepassNew = React.lazy(() => import("./Sales/MaterialGatepass/Ma
 const PendingMaterialGatepassList = React.lazy(() => import("./Sales/MaterialGatepass/PendingMaterialGatepassList/PendingMaterialGatepassList.jsx"));
 const MaterialGatepassList = React.lazy(() => import("./Sales/MaterialGatepass/MaterialGatepassList/MaterialGatepassList.jsx"));
 const CustSalesOrderList = React.lazy(() => import("./Sales/Reports/CustSalesOrderList/CustSalesOrderList.jsx"));
+const CustomerSalesOrderList = React.lazy(() => import("./Sales/Reports/CustomerSalesOrderList/CustomerSalesOrderList.jsx"));
 const TaxInvoiceList = React.lazy(() => import("./Accounts/ACRegister/TaxInvoiceList/TaxInvoiceList.jsx"));
 const JobworkInvoiceList = React.lazy(() => import("./Accounts/ACRegister/JobworkInvoiceList/JobworkInvoiceList.jsx"));
 const BajajTaxInvoiceList = React.lazy(() => import("./Sales/Reports/BajajTaxInvoiceList/BajajTaxInvoiceList.jsx"));
@@ -956,6 +957,7 @@ function App() {
         <Route path="PendingMaterialGatepassList" element={<PendingMaterialGatepassList />} />
         <Route path="MaterialGatepassList" element={<MaterialGatepassList />} />
         <Route path="CustSalesOrderList" element={<CustSalesOrderList />} />
+        <Route path="CustomerSalesOrderList" element={<CustomerSalesOrderList />} />
         <Route path="/tax-invoice-list" element={<TaxInvoiceList />} />
         <Route path="/TaxInvoiceList" element={<TaxInvoiceList />} /> {/* Alias for backward compatibility */}
         <Route path="/ProformaInvoiceList" element={<ProformaInvoiceList />} />

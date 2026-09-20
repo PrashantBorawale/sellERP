@@ -5,6 +5,8 @@ import NavBar from "../../../NavBar/NavBar.js"
 import SideNav from "../../../SideNav/SideNav.js"
 import { FaEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./PoList.css"
 import { fetchPurchaseOrders, deletePurchaseOrder } from "../../../Service/PurchaseApi.jsx"
 import { MdDeleteForever } from "react-icons/md";
@@ -77,9 +79,9 @@ const PoList = () => {
     // Remove deleted PO from state
     setPurchaseOrders((prev) => prev.filter((item) => item.id !== id));
 
-    alert("Purchase Order Deleted Successfully!");
+    toast.success("Purchase Order Deleted Successfully!");
   } catch (error) {
-    alert("Failed to delete Purchase Order");
+    toast.error("Failed to delete Purchase Order");
   }
 };
 

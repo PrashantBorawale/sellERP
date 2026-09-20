@@ -1820,7 +1820,7 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                   </div>
                 )} */}
 
-                {permissions.Sales.includes("Sales Report") && (
+                {permissions.Sales && (
                   <div className="nested-dropdown">
                     <div
                       className="dropdown-item nested-toggle"
@@ -1833,69 +1833,12 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                       <span className={`arrow ${isDropdownOpen("salesReport") ? "open" : ""}`}>▶</span>
                     </div>
                     <div className={`nested-dropdown-menu ${isDropdownOpen("salesReport") ? "show" : ""}`}>
-                      {permissions.Sales.includes("Customer Sales Order List") && (
-                        <Link className="dropdown-item" to="/CustSalesOrderList">
+                      {permissions.Sales && (
+                        <Link className="dropdown-item" to="/CustomerSalesOrderList">
                           Customer Sales Order List
                         </Link>
                       )}
-                      {permissions.Sales.includes("Proforma Invoice List") && (
-                        <Link className="dropdown-item" to="/ProformaInvoiceList">
-                          Proforma Invoice List
-                        </Link>
-                      )}
-                      {permissions.Sales.includes("Tax Invoice List") && (
-                        <Link className="dropdown-item" to="/tax-invoice-list">
-                          Tax Invoice List
-                        </Link>
-                      )}
-                      {/* {permissions.Sales.includes("Tax Invoice List Bajaj") && (
-                        <Link className="dropdown-item" to="/BajajTaxInvoiceList">
-                          Tax Invoice List Bajaj
-                        </Link>
-                      )} */}
-                      {permissions.Sales.includes("JobWork Invoice List") && (
-                        <Link className="dropdown-item" to="/JobworkInvList">
-                          JobWork Invoice List
-                        </Link>
-                      )}
-                      {permissions.Sales.includes("JobWork DC List") && (
-                        <Link className="dropdown-item" to="/JobworkDCList">
-                          JobWork DC List
-                        </Link>
-                      )}
-                      <Link className="dropdown-item" to="/GSTJobworkDCReturnList">
-                        GST Jobwork DC Return List
-                      </Link>
-                      {permissions.Sales.includes("OutWard 57F4 Challan List") && (
-                        <Link className="dropdown-item" to="/OutwardChallanList">
-                          OutWard 57F4 Challan List
-                        </Link>
-                      )}
-                      {permissions.Sales.includes("Debit Note List") && (
-                        <Link className="dropdown-item" to="/debit-note-list">
-                          Debit Note List
-                        </Link>
-                      )}
-                      {permissions.Sales.includes("Credit Note List") && (
-                        <Link className="dropdown-item" to="/credit-note-list">
-                          Credit Note List
-                        </Link>
-                      )}
-                      {permissions.Sales.includes("GST Sales Return List") && (
-                        <Link className="dropdown-item" to="/gst-sales-return-list">
-                          GST Sales Return List
-                        </Link>
-                      )}
-                      {/* {permissions.Sales.includes("RG1 Register") && (
-                        <Link className="dropdown-item" to="/RG1Register">
-                          RG1 Register
-                        </Link>
-                      )}
-                      {permissions.Sales.includes("Transport List") && (
-                        <Link className="dropdown-item" to="/TransportList">
-                          Transport List
-                        </Link>
-                      )} */}
+
                     </div>
                   </div>
                 )}

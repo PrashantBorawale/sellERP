@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../../NavBar/NavBar.js";
@@ -68,14 +70,14 @@ const JobworkInwardChallanList = () => {
                 method: 'DELETE',
             });
             if (response.ok) {
-                alert("Deleted successfully!");
+                toast.success("Deleted successfully!");
                 fetchInwardChallanList();
             } else {
-                alert("Failed to delete.");
+                toast.error("Failed to delete.");
             }
         } catch (error) {
             console.error("Error deleting:", error);
-            alert("Error deleting record.");
+            toast.error("Error deleting record.");
         }
     };
 
