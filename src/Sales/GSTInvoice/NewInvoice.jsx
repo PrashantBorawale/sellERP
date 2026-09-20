@@ -1129,7 +1129,7 @@ const NewInvoice = () => {
                                             const prodQty = parseFloat(row.last_operation?.prod_qty || 0);
                                             
                                             if (newQty !== "" && parseFloat(newQty) > prodQty) {
-                                              alert("Quantity cannot be higher than Production Qty.");
+                                              toast.error("Quantity cannot be higher than Production Qty.");
                                               newQty = prodQty.toString();
                                               e.target.value = newQty;
                                             }

@@ -174,27 +174,27 @@ const Report = () => {
                       <table className="table table-bordered table-hover">
                         <thead className="table-light">
                           <tr>
-                            <th>Sr no.</th>
-                            <th>Year</th>
-                            <th>Plant</th>
-                            <th>GRN No</th>
-                            <th>GRN Date</th>
-                            <th>Entry Date</th>
-                            <th>Challan No</th>
-                            <th>Challan Date</th>
-                            <th>Invoice No</th>
-                            <th>Invoice Date</th>
-                            <th>Supplier Name</th>
-                            <th>PO No</th>                           
-                            <th>User</th>
-                            <th>Info</th>
-                            <th>Doc</th>
-                            <th>Qc</th>
-                            <th>Bill</th>
-                            <th>Email</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                            <th>View</th>
+                            <th style={{ width: '3%' }}>Sr no.</th>
+                            <th style={{ width: '3%' }}>Year</th>
+                            <th style={{ width: '5%' }}>Plant</th>
+                            <th style={{ width: '6%' }}>GRN No</th>
+                            <th style={{ width: '5%' }}>GRN Date</th>
+                            <th style={{ width: '5%' }}>Entry Date</th>
+                            <th style={{ width: '5%' }}>Challan No</th>
+                            <th style={{ width: '5%' }}>Challan Date</th>
+                            <th style={{ width: '5%' }}>Invoice No</th>
+                            <th style={{ width: '5%' }}>Invoice Date</th>
+                            <th style={{ width: '15%' }}>Supplier Name</th>
+                            <th style={{ width: '6%' }}>PO No</th>                           
+                            <th style={{ width: '4%' }}>User</th>
+                            <th style={{ width: '3%' }}>Info</th>
+                            <th style={{ width: '3%' }}>Doc</th>
+                            <th style={{ width: '3%' }}>Qc</th>
+                            <th style={{ width: '3%' }}>Bill</th>
+                            <th style={{ width: '3%' }}>Email</th>
+                            <th style={{ width: '3.5%' }}>Delete</th>
+                            <th style={{ width: '3.5%' }}>Edit</th>
+                            <th style={{ width: '6%' }}>View</th>
                           </tr>
                         </thead>
                         <tbody>

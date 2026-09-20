@@ -704,7 +704,7 @@ const ProductionEntry = () => {
       }
     } catch (error) {
       console.error("❌ Submission Error:", error)
-      toast.error(`❌ Submission failed: ${error.message}`)
+      toast.error(`Submission failed: ${error.message}`)
     }
   }
 
@@ -2615,6 +2615,7 @@ const ProductionEntry = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-right" />
     </div>
   )
 }

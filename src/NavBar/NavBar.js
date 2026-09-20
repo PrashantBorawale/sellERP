@@ -84,24 +84,27 @@ const NavBar = ({ toggleSideNav }) => {
           style={{ height: '48px', width: '48px', marginRight: '15px' }} 
         />
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', minWidth: '180px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <label style={{ fontSize: '13px', fontWeight: '600' }}>{year}</label>
-            <div className="navbar-dropdown" style={{ margin: 0, padding: 0 }}>
+            <span style={{ fontSize: '14px', fontWeight: '600', color: '#f8fafc', whiteSpace: 'nowrap', lineHeight: '1' }}>{year}</span>
+            <div className="navbar-dropdown" style={{ margin: 0, padding: 0, position: 'relative' }}>
               <button
                 className="navbar-button dropdown-toggle"
                 type="button"
                 onClick={() => toggleDropdown(setAdminDropdownOpen)}
-                style={{ padding: 0 }}
+                style={{ padding: 0, background: 'transparent', border: 'none', outline: 'none', display: 'flex', alignItems: 'center', height: 'auto' }}
               >
-                <label style={{ fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>{username}</label>
+                <span style={{ fontSize: '14px', fontWeight: '700', cursor: 'pointer', color: '#60a5fa', textTransform: 'capitalize', whiteSpace: 'nowrap', lineHeight: '1' }}>{username || 'User'}</span>
               </button>
               {adminDropdownOpen && (
-                <ul className="navbar-dropdown-menu">
-                  <li>
+                <ul className="navbar-dropdown-menu" style={{ display: 'block', position: 'absolute', right: 0, left: 'auto', top: '100%', marginTop: '8px', backgroundColor: '#ffffff', borderRadius: '8px', minWidth: '150px', padding: '8px 0', border: '1px solid #e2e8f0', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', zIndex: 1000 }}>
+                  <li style={{ margin: 0, padding: 0 }}>
                     <button
                       className="navbar-dropdown-item"
                       onClick={handleLogout}
+                      style={{ width: '100%', textAlign: 'left', backgroundColor: 'transparent', border: 'none', color: '#ef4444', fontWeight: '600', padding: '8px 16px', fontSize: '14px', cursor: 'pointer', transition: 'background-color 0.2s' }}
+                      onMouseEnter={(e) => { e.target.style.backgroundColor = '#fef2f2'; }}
+                      onMouseLeave={(e) => { e.target.style.backgroundColor = 'transparent'; }}
                     >
                       Logout
                     </button>
@@ -110,7 +113,7 @@ const NavBar = ({ toggleSideNav }) => {
               )}
             </div>
           </div>
-          <div style={{ fontSize: '13px', fontWeight: '600', color: 'whitesmoke', marginTop: '2px' }}>
+          <div style={{ fontSize: '13px', fontWeight: '600', color: '#ffffff', marginTop: '10px', textTransform: 'uppercase', whiteSpace: 'nowrap', lineHeight: '1' }}>
             Vishwa Samrudhi Industries
           </div>
         </div>
