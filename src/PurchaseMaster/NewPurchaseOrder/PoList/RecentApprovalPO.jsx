@@ -8,10 +8,10 @@ import { Link } from "react-router-dom"
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./PoList.css"
-import { fetchPurchaseOrders, deletePurchaseOrder } from "../../../Service/PurchaseApi.jsx"
+import { deletePurchaseOrder } from "../../../Service/PurchaseApi.jsx"
 import { MdDeleteForever } from "react-icons/md";
 
-const PoList = () => {
+const RecentApprovalPO = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false)
   const [purchaseOrders, setPurchaseOrders] = useState([])
  
@@ -29,21 +29,22 @@ const PoList = () => {
   }, [sideNavOpen])
 
   useEffect(() => {
-    const getPurchaseOrders = async () => {
+    const fetchRecentApprovedPO = async () => {
       try {
-        const data = await fetchPurchaseOrders()
-        setPurchaseOrders(data.sort((a, b) => b.id - a.id))
+        const response = await fetch("https://sellerp-backend.onrender.com/Purchase/recent-approved-purchase-po/");
+        if (response.ok) {
+          const data = await response.json();
+          const sortedData = data.sort((a, b) => b.id - a.id);
+          setPurchaseOrders(sortedData);
+        } else {
+          console.error("Failed to fetch recent approved POs");
+        }
       } catch (error) {
-        console.error("Error fetching purchase orders:", error)
+        console.error("Error fetching recent approved POs:", error);
       }
-    }
-
-    getPurchaseOrders()
-  }, [])
-
-  
-
-  
+    };
+    fetchRecentApprovedPO();
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // Set number of items per page
@@ -106,10 +107,10 @@ const PoList = () => {
                   {/* Golden UI Header */}
                   <div className="erp-header mb-4 mt-2">
                     <div className="d-flex justify-content-between align-items-center flex-wrap">
-                      <h5 className="header-title mb-0">Purchase Order List</h5>
+                      <h5 className="header-title mb-0">Recently Approved PO List</h5>
                       <div className="d-flex gap-2 flex-wrap">
-                        <Link to="/RecentlyPoApprovalList" type="button" className="vndrbtn border-0 text-decoration-none">
-                          Recently Po Approval List
+                        <Link to="/purchase-order-list" type="button" className="vndrbtn border-0 text-decoration-none">
+                          Purchase Order List
                         </Link>
                       </div>
                     </div>
@@ -234,40 +235,32 @@ const PoList = () => {
                           <tbody>
                             {currentItems.map((order, index) => (
                               <tr key={order.id}>
-                                <td>{index + 1}</td>
+                                <td>{indexOfFirstItem + index + 1}</td>
                                 <td>{order.PoDate ? new Date(order.PoDate).getFullYear() : "N/A"}</td>
                                 <td>{order.Plant}</td>
                                 <td>{order.PoNo}</td>
                                 <td>{order.PoDate}</td>
-                                <td>{order.Type}</td>
+                                <td>{order.Type || order.PoType || "N/A"}</td>
                                 <td>{order.CodeNo}</td>
                                 <td>{order.Supplier}</td>
-                                <td>{order.User}</td>
+                                <td>{order.User || order.created_by || "N/A"}</td>
                                 <td>
                                   <button
                                     type="button"
                                     onClick={() => handleViewPdf(order)}
                                     className="vndrbtn border-0"
-                                    style={{ fontSize: '12px', padding: '4px 10px' }}
+                                    style={{ fontSize: "12px", padding: "4px 10px" }}
                                   >
                                     View
                                   </button>
                                 </td>
                                 <td>
-                                  <Link
-                                    to={`/new-purchase-order/${order.id}`}
-                                    className="btn"
-                                  >
-                                    <FaEdit />
+                                  <Link to={`/EditPo/${order.id}`}>
+                                    <FaEdit style={{ color: "black", cursor: "pointer", fontSize: "18px" }} />
                                   </Link>
                                 </td>
                                 <td>
-                                  <Link
-                                    onClick={() => handleDelete(order.id)}
-                                    className="btn"
-                                  >
-                                    <MdDeleteForever />
-                                  </Link>
+                                  <MdDeleteForever onClick={() => handleDelete(order.id)} style={{ color: "red", cursor: "pointer", fontSize: "20px" }} />
                                 </td>
                               </tr>
                             ))}
@@ -277,22 +270,23 @@ const PoList = () => {
                     </div>
                   </div>
 
-                  {/* Pagination Controls */}
-                  <div className="d-flex justify-content-end mt-3 mb-3">
+                  {/* Custom Pagination */}
+                  <div className="d-flex justify-content-between align-items-center mt-3 p-3 bg-white shadow-sm rounded">
+                    <span className="text-muted fw-bold">
+                      Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, purchaseOrders.length)} of {purchaseOrders.length} entries
+                    </span>
                     <nav>
-                      <ul className="pagination mb-0">
-                        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                          <button className="page-link" onClick={handlePrevPage}>Previous</button>
+                      <ul className="pagination mb-0 gap-2">
+                        <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                          <button className="page-link rounded-circle shadow-sm fw-bold" onClick={handlePrevPage}>
+                            &laquo; Prev
+                          </button>
                         </li>
-                        {[...Array(totalPages).keys()].map((num) => (
-                          <li key={num + 1} className={`page-item ${currentPage === num + 1 ? 'active' : ''}`}>
-                            <button className="page-link" onClick={() => handlePageClick(num + 1)}>
-                              {num + 1}
-                            </button>
-                          </li>
-                        ))}
-                        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                          <button className="page-link" onClick={handleNextPage}>Next</button>
+                        
+                        <li className={`page-item ${currentPage === totalPages || totalPages === 0 ? "disabled" : ""}`}>
+                          <button className="page-link rounded-circle shadow-sm fw-bold" onClick={handleNextPage}>
+                            Next &raquo;
+                          </button>
                         </li>
                       </ul>
                     </nav>
@@ -308,6 +302,4 @@ const PoList = () => {
   )
 }
 
-export default PoList
-
-
+export default RecentApprovalPO;

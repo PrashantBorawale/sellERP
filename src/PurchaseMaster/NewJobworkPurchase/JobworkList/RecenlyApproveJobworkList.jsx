@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, IconButton, TextField, MenuItem, Tooltip, Select } from '@mui/material';
+import { Paper, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, IconButton, TextField, MenuItem, Tooltip } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -8,12 +8,10 @@ import SideNav from "../../../SideNav/SideNav.js";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import './JobworkList.css';
-import { fetchJobWorkPOList, deleteJobworkPO } from "../../../Service/PurchaseApi.jsx";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import * as XLSX from "xlsx";
 
-const JobworkList = () => {
+const RecenlyApproveJobworkList = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const toggleSideNav = () => setSideNavOpen(prev => !prev);
         
@@ -37,9 +35,27 @@ const JobworkList = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await fetchJobWorkPOList();
-        setJobWorkData(data.sort((a, b) => b.id - a.id));
-        setFilteredData(data.sort((a, b) => b.id - a.id));
+        const token = localStorage.getItem("token") || localStorage.getItem("accessToken") || localStorage.getItem("access_token");
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`; // Just in case it requires Bearer
+        }
+
+        const response = await fetch("https://sellerp-backend.onrender.com/Purchase/recently-approved-jobworkpo/", {
+          method: "GET",
+          headers: headers,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const sortedData = data.sort((a, b) => b.id - a.id);
+          setJobWorkData(sortedData);
+          setFilteredData(sortedData);
+        } else {
+          console.error("Failed to load Job Work PO List");
+        }
       } catch (error) {
         console.error("Failed to load Job Work PO List", error);
       } finally {
@@ -70,15 +86,18 @@ const JobworkList = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this PO?")) return;
-
-    const success = await deleteJobworkPO(id);
-
-    if (success) {
-      toast.success("Jobwork PO deleted successfully!");
-      setJobWorkData(prev => prev.filter(item => item.id !== id));
-      setFilteredData(prev => prev.filter(item => item.id !== id));
-    } else {
-      toast.error("Failed to delete. Please try again.");
+    try {
+      const { deleteJobworkPO } = await import("../../../Service/PurchaseApi.jsx");
+      const success = await deleteJobworkPO(id);
+      if (success) {
+        toast.success("Jobwork PO deleted successfully!");
+        setJobWorkData(prev => prev.filter(item => item.id !== id));
+        setFilteredData(prev => prev.filter(item => item.id !== id));
+      } else {
+        toast.error("Failed to delete. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Error deleting PO.");
     }
   };
 
@@ -96,19 +115,19 @@ const JobworkList = () => {
       "Po Type": item.PoType || "",
       "Supplier/Vendor Name": item.Supplier || item.Name || "",
       "Code No": item.code_no || item.SupplierCode || item.number || "",
-      "User": item.User || ""
+      "User": item.User || item.created_by || ""
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(exportData);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Jobwork Order List");
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Recently Approved Jobwork List");
 
     const wscols = Object.keys(exportData[0] || {}).map(key => ({
       wch: Math.max(key.length, ...exportData.map(row => row[key] ? row[key].toString().length : 0)) + 2
     }));
     worksheet["!cols"] = wscols;
 
-    XLSX.writeFile(workbook, "Jobwork_Order_List.xlsx");
+    XLSX.writeFile(workbook, "Recently_Approved_Jobwork_List.xlsx");
   };
 
   const handleViewPdf = (item) => {
@@ -151,12 +170,12 @@ const JobworkList = () => {
                     <div className="erp-header mb-4">
                       <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h5 className="header-title mb-0" style={{ fontWeight: 800, background: 'linear-gradient(to right, #6366f1, #4f46e5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.5px' }}>
-                          Jobwork Order List
+                          Recently Approved Jobwork List
                         </h5>
                         
                         <div className="d-flex gap-2 flex-wrap">
-                          <Button component={Link} to="/RecenlyApproveJobworkList" variant="contained" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
-                            <i className="fas fa-list-alt me-2"></i> Recently Po Approval List
+                          <Button component={Link} to="/jobwork-purchase-order-list" variant="contained" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #6366f1, #4f46e5)', boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.39)', '&:hover': { background: 'linear-gradient(to right, #4f46e5, #4338ca)', transform: 'translateY(-1px)' } }}>
+                            <i className="fas fa-list-alt me-2"></i> Jobwork Order List
                           </Button>
                           <Button variant="contained" onClick={handleExportExcel} sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #10b981, #059669)', boxShadow: '0 4px 14px 0 rgba(16, 185, 129, 0.39)', '&:hover': { background: 'linear-gradient(to right, #059669, #047857)', transform: 'translateY(-1px)' } }}>
                             <i className="fas fa-file-excel me-2"></i> Export Excel
@@ -291,7 +310,7 @@ const JobworkList = () => {
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoType || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.Supplier || item.Name || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.code_no || item.SupplierCode || item.number || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.User || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.User || item.created_by || "-"}</TableCell>
                                     
                                     <TableCell align="center" sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
                                       <Tooltip title="View">
@@ -360,4 +379,4 @@ const JobworkList = () => {
   );
 };
 
-export default JobworkList;
+export default RecenlyApproveJobworkList;

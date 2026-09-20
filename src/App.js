@@ -154,7 +154,7 @@ const PurchaseOrderPDF = React.lazy(() => import("./PurchaseMaster/NewPurchaseOr
 
 const ListIndent = React.lazy(() => import("./PurchaseMaster/Newindent/Indent/ListIndent.jsx"));
 const IndentStutasReport = React.lazy(() => import("./PurchaseMaster/Newindent/Indent/IndentStutasReport.jsx"));
-const RecentlyPoApprovalList = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/PoList/RecentlyPoApprovalList.jsx"));
+const RecentlyPoApprovalList = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/PoList/RecentApprovalPO.jsx"));
 const AMCPurchaseOrderList = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/PoList/AMCPurchaseOrderList.jsx"));
 const PurchaseQuerySummary = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/PoList/QueryList/PurchaseQuerySummary.jsx"));
 const PurchaseQuery = React.lazy(() => import("./PurchaseMaster/NewPurchaseOrder/PoList/QueryList/PurchaseQuery.jsx"));
@@ -162,6 +162,7 @@ const RFONew = React.lazy(() => import("./PurchaseMaster/QuotoComparison/RFo/RFO
 const QuoteStatementList = React.lazy(() => import("./PurchaseMaster/QuotoComparison/QuotoComparisonStatement/QuoteStatementList.jsx"));
 const JobworkPOSummary = React.lazy(() => import('./PurchaseMaster/Report/JobWorkPurchaseOrderList1/QueryJobworkList/JobworkPOSummary.jsx'));
 const JobworkQuery = React.lazy(() => import("./PurchaseMaster/Report/JobWorkPurchaseOrderList1/QueryJobworkList/JobworkQuery.jsx"));
+const RecenlyApproveJobworkList = React.lazy(() => import("./PurchaseMaster/NewJobworkPurchase/JobworkList/RecenlyApproveJobworkList.jsx"));
 
 const Importfile = React.lazy(() => import("./PurchaseMaster/Import/Importfile.jsx"));
 const ImportPO = React.lazy(() => import("./PurchaseMaster/Import/Transaction/ImportPO/ImportPO.jsx"));
@@ -670,6 +671,7 @@ function App() {
         <Route path="purchase-order-list" element={<PoList />} />
         {/* <Route path="jobwork-purchase-order-list" element={<JobWorkPurchseOrderList />} /> */}
         <Route path="jobwork-purchase-order-list" element={<JobworkList />} />
+        <Route path="/RecenlyApproveJobworkList" element={<RecenlyApproveJobworkList />} />
         <Route path="supplier-wise-list" element={<SupplierWiseList />} />
         <Route path="purchase-report" element={<PurchaseReport />} />
         <Route path="/EditPo/:id" element={<POEdit />} />
