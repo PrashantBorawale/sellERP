@@ -984,8 +984,14 @@ const NewSalesOrder = () => {
                                     </td>
                                     <td>
                                       {" "}
-                                      <select name="" id="">
-                                        <option value="">NOS</option>
+                                      <select 
+                                        name="uom" 
+                                        id="uom"
+                                        value={currentItem.uom}
+                                        onChange={(e) => setCurrentItem({...currentItem, uom: e.target.value})}
+                                      >
+                                        <option value="NOS">NOS</option>
+                                        <option value="KGS">KGS</option>
                                       </select>{" "}
                                       <br />{" "}
                                       <input

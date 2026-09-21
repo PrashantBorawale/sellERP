@@ -624,6 +624,11 @@ const ProductionEntry = () => {
     if (activeTab !== "toolDie") {
       return
     }
+
+    if (!formData.prod_qty || formData.prod_qty.toString().trim() === "") {
+      toast.error("Prod. Qty is mandatory!");
+      return;
+    }
     const postData = {
       ...formData,
       Prod_no: prodNo || "",
@@ -849,8 +854,8 @@ const ProductionEntry = () => {
       // --- LOGIC: First Operation (OP 10) ---
       const firstOperation = operationList[0]
 
-      // Parent Operation field shows: Scrap Qty | BOM Qty
-      parentOperationDisplay = `ScrapQty: ${firstOperation.ScrapQty || firstOperation.ScracpQty || "N/A"} | BOMQty: ${firstOperation.QtyKg || "N/A"}`
+      // Parent Operation field shows: bar | wire_rod
+      parentOperationDisplay = `bar: ${firstOperation.bar || "0.0000"} | wire_rod: ${firstOperation.wire_rod || "0.0000"}`
 
       const bomQty = parseFloat(firstOperation.QtyKg)
       if (!isNaN(bomQty) && bomQty > 0) {
@@ -1146,7 +1151,6 @@ const ProductionEntry = () => {
   return (
     // ProductionEntry Component UI
     <div className="ProductionEntryMaster">
-      <ToastContainer />
       <div className="container-fluid p-0">
         <div className="row m-0">
           <div className="col-md-12 p-0">
