@@ -1085,7 +1085,7 @@ const Dashboard = () => {
           safeFetchCount("https://sellerp-backend.onrender.com/Store/api/gate-inward/")
         ]);
 
-        const pendingPo = pendingPoRegular + pendingPoJw;
+        const pendingPo = pendingPoRegular;
 
         setDynamicAlerts([
           { id: 1, label: "Pending PO Approval", count: pendingPo, color: "#eff6ff" },

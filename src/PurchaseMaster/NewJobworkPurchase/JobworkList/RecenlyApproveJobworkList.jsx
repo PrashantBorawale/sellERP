@@ -35,7 +35,7 @@ const RecenlyApproveJobworkList = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const token = localStorage.getItem("token") || localStorage.getItem("accessToken") || localStorage.getItem("access_token");
+        const token = localStorage.getItem("accessToken") || localStorage.getItem("token") || localStorage.getItem("access_token");
         const headers = {
           "Content-Type": "application/json",
         };
@@ -49,12 +49,23 @@ const RecenlyApproveJobworkList = () => {
         });
 
         if (response.ok) {
-          const data = await response.json();
+                    let data = await response.json();
+          if (!Array.isArray(data)) {
+            if (Array.isArray(data.data)) {
+              data = data.data;
+            } else if (Array.isArray(data.results)) {
+              data = data.results;
+            } else {
+              console.warn("Unexpected response shape from recently-approved-jobworkpo:", data);
+              data = [];
+            }
+          }
           const sortedData = data.sort((a, b) => b.id - a.id);
           setJobWorkData(sortedData);
           setFilteredData(sortedData);
-        } else {
-          console.error("Failed to load Job Work PO List");
+          } else {
+          const errorText = await response.text();
+          console.error("Failed to load Job Work PO List — status:", response.status, "body:", errorText);
         }
       } catch (error) {
         console.error("Failed to load Job Work PO List", error);
@@ -309,8 +320,8 @@ const RecenlyApproveJobworkList = () => {
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoDate || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoType || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.Supplier || item.Name || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.code_no || item.SupplierCode || item.number || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.User || item.created_by || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.CodeNo || item.code_no || item.SupplierCode || item.number || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{localStorage.getItem("username") || item.User || item.created_by || "-"}</TableCell>
                                     
                                     <TableCell align="center" sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
                                       <Tooltip title="View">

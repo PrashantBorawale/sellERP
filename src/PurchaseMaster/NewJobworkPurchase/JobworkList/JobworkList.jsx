@@ -290,8 +290,8 @@ const JobworkList = () => {
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoDate || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PoType || "-"}</TableCell>
                                     <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.Supplier || item.Name || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.code_no || item.SupplierCode || item.number || "-"}</TableCell>
-                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.User || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', fontWeight: 600 }}>{item.CodeNo || item.code_no || item.SupplierCode || item.number || "-"}</TableCell>
+                                    <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{localStorage.getItem("username") || item.User || "-"}</TableCell>
                                     
                                     <TableCell align="center" sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', whiteSpace: 'nowrap' }}>
                                       <Tooltip title="View">

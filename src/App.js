@@ -1036,9 +1036,6 @@ function App() {
         <Route path="/machine-preventive-schedule" element={<MachinePreventiveSchedule />} />
         <Route path="/machine-preventive-setup" element={<MachinePreventiveSetUp />} />
         <Route path="/tool-management" element={<ToolManagement />} />
-
-
-
       </Routes>
     </React.Suspense>
       <Footer />

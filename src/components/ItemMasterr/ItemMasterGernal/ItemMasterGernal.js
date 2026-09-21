@@ -243,6 +243,8 @@ const ItemMasterGernal = () => {
     setShowNewCardParentFg(!showNewCardParentFg);
   };
 
+  const [isSaving, setIsSaving] = useState(false);
+
   // Gernal data
   const [formData, setFormData] = useState({
     main_group: "",
@@ -409,6 +411,7 @@ const ItemMasterGernal = () => {
     }
 
     try {
+      setIsSaving(true);
       console.log(`Attempting to ${isEditMode ? "update" : "save"} data...`);
       const result = await saveItemMaster(
         formData,
@@ -418,10 +421,21 @@ const ItemMasterGernal = () => {
         isEditMode ? id : null
       );
 
+      if (result.status === false) {
+        toast.error(result.message || "Failed to save data.");
+        return;
+      }
+
       toast.success(`Item ${isEditMode ? "Updated" : "Created"} Succesfully`, {
-        onClose: () => navigate("/item-master"), // ⬅️ Navigate after toast closes
-        autoClose: 2000, // Optional: auto close in 2 seconds
+        autoClose: 2000, 
       });
+      
+      if (!isEditMode) {
+        handleClear();
+      } else {
+        setTimeout(() => navigate("/item-master"), 2000);
+      }
+      
       console.log(
         `Item ${isEditMode ? "updated" : "saved"} successfully:`,
         result
@@ -437,6 +451,8 @@ const ItemMasterGernal = () => {
           stack: error.stack,
         }
       );
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -494,6 +510,9 @@ const ItemMasterGernal = () => {
       Note: "",
       KgMM3: "",
     });
+    setTechnicalSpecifications([]);
+    setNpdDetails([]);
+    setData2Fields({});
     setErrors({});
     console.log("data clear");
   };
@@ -682,6 +701,7 @@ const ItemMasterGernal = () => {
 
   return (
     <div className="Itemmastergernalpage erp-page">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="container-fluid p-0">
         <div className="row m-0">
           <div className="col-md-12 p-0">
@@ -2405,8 +2425,9 @@ const ItemMasterGernal = () => {
                                               <button
                                                 className="btn-save me-2"
                                                 onClick={handleSaveitem}
+                                                disabled={isSaving}
                                               >
-                                                {isEditMode ? "Update" : "Save"}
+                                                {isSaving ? "Saving..." : (isEditMode ? "Update" : "Save")}
                                               </button>
                                               <button
                                                 className="btn-clear"

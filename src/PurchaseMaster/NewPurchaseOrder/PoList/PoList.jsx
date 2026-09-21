@@ -242,7 +242,7 @@ const PoList = () => {
                                 <td>{order.Type}</td>
                                 <td>{order.CodeNo}</td>
                                 <td>{order.Supplier}</td>
-                                <td>{order.User}</td>
+                                <td>{localStorage.getItem("username") || order.User || "N/A"}</td>
                                 <td>
                                   <button
                                     type="button"

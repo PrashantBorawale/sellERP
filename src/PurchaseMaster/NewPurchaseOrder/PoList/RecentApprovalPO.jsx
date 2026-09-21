@@ -243,7 +243,7 @@ const RecentApprovalPO = () => {
                                 <td>{order.Type || order.PoType || "N/A"}</td>
                                 <td>{order.CodeNo}</td>
                                 <td>{order.Supplier}</td>
-                                <td>{order.User || order.created_by || "N/A"}</td>
+                                <td>{localStorage.getItem("username") || order.User || order.created_by || "N/A"}</td>
                                 <td>
                                   <button
                                     type="button"
