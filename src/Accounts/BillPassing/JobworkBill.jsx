@@ -284,14 +284,7 @@ const JobworkBill = () => {
                         <h5 className="header-title mb-0">Pending Bill Inward Challan List</h5>
                       </div>
                       <div className="col-md-8 text-end d-flex justify-content-end gap-2 align-items-center">
-                        <div className="stats-box d-inline-flex border rounded px-2 py-1 align-items-center" style={{ backgroundColor: '#f8fafc', borderColor: '#e2e8f0' }}>
-                          <span className="me-2 small fw-bold text-secondary">57F4 GRN Auth-Pending Bill :</span>
-                          <span className="badge" style={{ backgroundColor: '#3b82f6' }}>1193</span>
-                        </div>
-                        <div className="stats-box d-inline-flex border rounded px-2 py-1 align-items-center" style={{ backgroundColor: '#f8fafc', borderColor: '#e2e8f0' }}>
-                          <span className="me-2 small fw-bold text-secondary">Bill Passing (JobWork) :</span>
-                          <span className="badge" style={{ backgroundColor: '#3b82f6' }}>1193</span>
-                        </div>
+                        
                         <button className="vndrbtn" onClick={handleExportExcel}>
                           <FaFileExcel className="me-2" /> Export To Excel
                         </button>

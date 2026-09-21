@@ -665,13 +665,7 @@ const Poinfo = ({ updateFormData, paymentTermsFromSupplier ,poInfoData = {}, isE
                 ></textarea>
               </div>
             </div>
-            <div className="row text-end mt-3 mb-2">
-              <div className="col-md-12">
-                <button type="button" className="vndrbtn bg-secondary border-secondary" onClick={handleClear}>
-                  Cancel
-                </button>
-              </div>
-            </div>
+            
             {showCard && (
               <div
                 className="modal fade show d-block"

@@ -241,39 +241,47 @@ const GSTDetails = ({ updateFormData = () => {}, itemDetails = [], supplierState
         <div className="card-header bg-white border-bottom-0 pt-3 pb-0">
           <h6 className="mb-0 fw-bold text-secondary">GST Details</h6>
         </div>
-        <div className="card-body p-0">
-          <div className="table-responsive">
-            <table className="table table-bordered align-middle mb-0" style={{ minWidth: '1500px' }}>
+                <div className="card-body p-0">
+          <div
+            className="table-responsive"
+            style={{
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              paddingBottom: '10px', // keeps the scrollbar from hugging the table border
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            <table className="table table-bordered align-middle mb-0" style={{ width: '100%', minWidth: '1200px', tableLayout: 'fixed' }}>
               <thead className="table-light">
                 <tr>
                   {['Sr.', 'Item Code', 'HSN', 'Rate', 'Qty', 'Sub Total', 'Disc %', 'Disc Amt', 'Ass Value', 'CGST %', 'CGST Amt', 'SGST %', 'SGST Amt', 'IGST %', 'IGST Amt', 'Total', 'Action'].map((head, index) => (
-                    <th key={index} style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '6px 4px' }} className="text-center text-secondary text-uppercase">
+                    <th key={index} style={{ whiteSpace: 'nowrap', fontSize: '0.65rem', padding: '6px 3px', overflow: 'hidden', textOverflow: 'ellipsis' }} className="text-center text-secondary text-uppercase">
                       {head}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {gstDetails.map((detail, index) => (
+                                {gstDetails.map((detail, index) => (
                   <tr key={index}>
-                    <td className="text-center text-secondary" style={{ fontSize: '0.75rem', padding: '6px 4px' }}>{index + 1}</td>
-                    <td style={{ padding: '6px 4px' }}><input type="text" className="form-control form-control-sm" value={detail.ItemCode} onChange={(e) => handleInputChange(index, "ItemCode", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="text" className="form-control form-control-sm" value={detail.HSN} onChange={(e) => handleInputChange(index, "HSN", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm" value={detail.Rate} onChange={(e) => handleInputChange(index, "Rate", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm" value={detail.Qty} onChange={(e) => handleInputChange(index, "Qty", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.SubTotal} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm" value={detail.Discount} onChange={(e) => handleInputChange(index, "Discount", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.DiscountAmt} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.AssValue} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm" value={detail.CGST} onChange={(e) => handleInputChange(index, "CGST", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.CGSTAmt} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm" value={detail.SGST} onChange={(e) => handleInputChange(index, "SGST", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.SGSTAmt} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm" value={detail.IGST} onChange={(e) => handleInputChange(index, "IGST", e.target.value)} /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.IGSTAmt} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }}><input type="number" className="form-control form-control-sm bg-light" value={detail.Total} readOnly /></td>
-                    <td style={{ padding: '6px 4px' }} className="text-center">
-                      <button type="button" className="btn btn-sm text-success border-0 p-1" onClick={addNewRow}>
+                    <td className="text-center text-secondary" style={{ fontSize: '0.75rem', padding: '6px 3px' }}>{index + 1}</td>
+                    <td style={{ padding: '3px 2px' }}><input type="text" className="form-control form-control-sm" style={{ minWidth: '70px' }} value={detail.ItemCode} onChange={(e) => handleInputChange(index, "ItemCode", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="text" className="form-control form-control-sm" style={{ minWidth: '55px' }} value={detail.HSN} onChange={(e) => handleInputChange(index, "HSN", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm" style={{ minWidth: '55px' }} value={detail.Rate} onChange={(e) => handleInputChange(index, "Rate", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm" style={{ minWidth: '50px' }} value={detail.Qty} onChange={(e) => handleInputChange(index, "Qty", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '60px' }} value={detail.SubTotal} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm" style={{ minWidth: '50px' }} value={detail.Discount} onChange={(e) => handleInputChange(index, "Discount", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '55px' }} value={detail.DiscountAmt} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '60px' }} value={detail.AssValue} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm" style={{ minWidth: '50px' }} value={detail.CGST} onChange={(e) => handleInputChange(index, "CGST", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '55px' }} value={detail.CGSTAmt} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm" style={{ minWidth: '50px' }} value={detail.SGST} onChange={(e) => handleInputChange(index, "SGST", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '55px' }} value={detail.SGSTAmt} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm" style={{ minWidth: '50px' }} value={detail.IGST} onChange={(e) => handleInputChange(index, "IGST", e.target.value)} /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '55px' }} value={detail.IGSTAmt} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }}><input type="number" className="form-control form-control-sm bg-light" style={{ minWidth: '60px' }} value={detail.Total} readOnly /></td>
+                    <td style={{ padding: '3px 2px' }} className="text-center">
+                      <button type="button" className="btn btn-sm text-success border-0 p-0.5" onClick={addNewRow}>
                         <FaPlusCircle size={16} />
                       </button>
                     </td>
