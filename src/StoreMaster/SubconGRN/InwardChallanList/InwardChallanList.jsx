@@ -87,11 +87,7 @@ const InwardChallanList = () => {
                           Inward Challan List
                         </Typography>
                     </div>
-                    <div className="col-md-6 d-flex justify-content-end align-items-center gap-3">
-                      <Typography sx={{ fontWeight: 600, color: '#475569' }}>QC Pending:4 , Partial : 1</Typography>
-                      <Button variant="contained" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #3b82f6, #4f46e5)', color: 'white', boxShadow: '0 4px 14px 0 rgba(79, 70, 229, 0.39)' }}>GRN : Report</Button>
-                      <Button variant="contained" sx={{ borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: 'linear-gradient(to right, #3b82f6, #4f46e5)', color: 'white', boxShadow: '0 4px 14px 0 rgba(79, 70, 229, 0.39)' }}>57F4-Inward - Query</Button>
-                    </div>
+                    
                   </div>
                 </div>
 
