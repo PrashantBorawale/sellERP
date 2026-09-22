@@ -212,9 +212,7 @@ const GstMaster = () => {
                     <div className="d-flex justify-content-between align-items-center">
                       <h5 className="header-title mb-0">GST Rate Master</h5>
                       <div className="d-flex gap-2 flex-wrap justify-content-end">
-                        <Link to="/task-master" className="vndrbtn">Tax Code Master</Link>
-                        <Link to="/Cut-wise" className="vndrbtn">Cust-Wise GST Master</Link>
-                        <Link to="/Customer-Item-Wise-Gst" className="vndrbtn">Cut-Wise GST Rate - Excel Upload</Link>
+                        
                         <button className="vndrbtn" onClick={handleExportExcel}>Export To Excel</button>
                       </div>
                     </div>

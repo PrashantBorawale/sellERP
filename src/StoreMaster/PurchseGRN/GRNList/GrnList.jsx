@@ -163,8 +163,6 @@ const GrnList = () => {
                         <Link to={"/Purchase-Grn"} style={{ textDecoration: 'none' }}>
                           <button className="vndrbtn bg-primary border-primary"><AddIcon className="me-1" /> New Purchase GRN</button>
                         </Link>
-                        <button className="vndrbtn bg-primary border-primary"><ListAltIcon className="me-1" /> GRN Report</button>
-                        <button className="vndrbtn bg-primary border-primary"><ListAltIcon className="me-1" /> GRN - Query</button>
                         <button className="vndrbtn bg-success border-success" onClick={handleExportExcel}><DownloadIcon className="me-1" /> Export To Excel</button>
                       </div>
                     </div>

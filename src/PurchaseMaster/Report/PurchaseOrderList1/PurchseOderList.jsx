@@ -99,8 +99,6 @@ const PurchseOderList = () => {
                               </th>
                               <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>PO TYPE</th>
                               <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>SERIES</th>
-                              <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>ITEM GROUP</th>
-                              <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>PO STATUS</th>
                               <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>USER</th>
                               <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>SEARCH</th>
                               <th style={{ fontSize: '0.75rem', padding: '10px 8px', textAlign: 'center', whiteSpace: 'nowrap' }}>ACTION</th>
@@ -126,37 +124,24 @@ const PurchseOderList = () => {
                               </td>
                               <td style={{ padding: '8px', verticalAlign: 'middle' }}>
                                 <select className="form-select form-select-sm">
-                                  <option>All</option>
-                                  <option>Type 2</option>
-                                  <option>Type 3</option>
+                                  <option value="All">All</option>
+                                  <option value="Open">Open</option>
+                                  <option value="Close">Close</option>
                                 </select>
                               </td>
                               <td style={{ padding: '8px', verticalAlign: 'middle' }}>
                                 <select className="form-select form-select-sm">
-                                  <option>All</option>
-                                  <option>Status 2</option>
-                                  <option>Status 3</option>
+                                  <option value="RM">RM</option>
+                                  <option value="ASSET">ASSET</option>
+                                  <option value="SERVICE">SERVICE</option>
+                                  <option value="CONSUMABLE">CONSUMABLE</option>
                                 </select>
                               </td>
                               <td style={{ padding: '8px', verticalAlign: 'middle' }}>
                                 <select className="form-select form-select-sm">
-                                  <option>All</option>
-                                  <option>Status 2</option>
-                                  <option>Status 3</option>
-                                </select>
-                              </td>
-                              <td style={{ padding: '8px', verticalAlign: 'middle' }}>
-                                <select className="form-select form-select-sm">
-                                  <option>All</option>
-                                  <option>Approve 2</option>
-                                  <option>Approve 3</option>
-                                </select>
-                              </td>
-                              <td style={{ padding: '8px', verticalAlign: 'middle' }}>
-                                <select className="form-select form-select-sm">
-                                  <option>All</option>
-                                  <option>Approve 2</option>
-                                  <option>Approve 3</option>
+                                  <option value={localStorage.getItem("username") || ""}>
+                                    {localStorage.getItem("username") || "Select User"}
+                                  </option>
                                 </select>
                               </td>
                               <td style={{ padding: '8px', textAlign: 'center', verticalAlign: 'middle' }}>

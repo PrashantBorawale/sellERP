@@ -215,37 +215,45 @@ const JobworkList = () => {
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap' }}>PO Type</Typography>
-                          <TextField select size="small" defaultValue="all" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
-                            <MenuItem value="all">Select All</MenuItem>
+                          <TextField select size="small" defaultValue="All" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
+                            <MenuItem value="All">All</MenuItem>
+                            <MenuItem value="Open">Open</MenuItem>
+                            <MenuItem value="Close">Close</MenuItem>
                           </TextField>
                         </Box>
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap' }}>Series</Typography>
-                          <TextField select size="small" defaultValue="all" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
-                            <MenuItem value="all">Select All</MenuItem>
+                          <TextField select size="small" defaultValue="Jobwork" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
+                            <MenuItem value="Jobwork">Jobwork</MenuItem>
                           </TextField>
                         </Box>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
+                        {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap' }}>Item Group</Typography>
                           <TextField select size="small" defaultValue="all" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
                             <MenuItem value="all">Select All</MenuItem>
                           </TextField>
-                        </Box>
+                        </Box> */}
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
+                        {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap' }}>PO Status</Typography>
                           <TextField select size="small" defaultValue="all" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
                             <MenuItem value="all">Select All</MenuItem>
                           </TextField>
-                        </Box>
+                        </Box> */}
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap' }}>All User</Typography>
-                          <TextField select size="small" defaultValue="all" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
-                            <MenuItem value="all">Select All</MenuItem>
+                          <TextField select size="small" defaultValue={localStorage.getItem("username") || ""} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
+                            <MenuItem value={localStorage.getItem("username") || ""}>{localStorage.getItem("username") || "Select User"}</MenuItem>
                           </TextField>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
+                          <Button variant="contained" sx={{ width: '100%', borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: '#1976d2', boxShadow: '0 4px 14px 0 rgba(25, 118, 210, 0.39)', '&:hover': { background: '#1565c0', transform: 'translateY(-1px)' } }}>
+                            Search
+                          </Button>
                         </Box>
                       </Box>
                     </div>

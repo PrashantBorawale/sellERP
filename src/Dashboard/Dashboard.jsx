@@ -2006,10 +2006,18 @@ const Dashboard = () => {
                                     outerRadius={90}
                                       label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, index }) => {
                                         const RADIAN = Math.PI / 180;
-                                        const stagger = (index % 3) * 20; 
-                                        const radius = 40 + outerRadius + stagger;
+                                        
+                                        // Radially push each item further out
+                                        const radius = outerRadius + 30 + (index * 20);
                                         const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                        let y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                        
+                                        // Alternating vertical scatter to prevent ANY chance of overlap
+                                        // index 0: +15, index 1: -25, index 2: +35, index 3: -45, index 4: +55
+                                        const sign = index % 2 === 0 ? 1 : -1;
+                                        const yOffset = sign * (15 + (index * 10)); 
+                                        y += yOffset;
+
                                         const textAnchor = x > cx ? 'start' : 'end';
                                         const shortName = name.length > 25 ? name.substring(0, 25) + '..' : name;
                                         const labelText = `( ${(percent * 100).toFixed(2)}% ) ${shortName}`;
@@ -2027,10 +2035,14 @@ const Dashboard = () => {
                                       }}
                                       labelLine={({ cx, cy, midAngle, outerRadius, index }) => {
                                         const RADIAN = Math.PI / 180;
-                                        const stagger = (index % 3) * 20;
-                                        const radius = 40 + outerRadius + stagger;
+                                        const radius = outerRadius + 30 + (index * 20);
                                         const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                        let y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                        
+                                        const sign = index % 2 === 0 ? 1 : -1;
+                                        const yOffset = sign * (15 + (index * 10)); 
+                                        y += yOffset;
+
                                         const startX = cx + outerRadius * Math.cos(-midAngle * RADIAN);
                                         const startY = cy + outerRadius * Math.sin(-midAngle * RADIAN);
                                         return <line x1={startX} y1={startY} x2={x} y2={y} stroke="#94a3b8" strokeWidth={1} />;

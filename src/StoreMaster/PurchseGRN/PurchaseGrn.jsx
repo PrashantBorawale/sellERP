@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../NavBar/NavBar.js";
 import SideNav from "../../SideNav/SideNav.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./PurchaseGrn.css";
 import "../../styles/erp-global.css";
 import { toast, ToastContainer } from "react-toastify";
@@ -25,6 +25,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 const PurchaseGrn = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [isEditMode, setIsEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -234,6 +235,65 @@ const PurchaseGrn = () => {
   const [gstDetails, setGstDetails] = useState([]);
   // State to store the original, unmodified GST details from the PO
   const [originalGstDetails, setOriginalGstDetails] = useState([]);
+
+  // TDC (extra charges) state for GrnGstTDC
+  const [tdcState, setTdcState] = useState({
+    assessable_value: "",
+    packing_forwarding_charges: "",
+    transport_charges: "",
+    insurance: "",
+    installation_charges: "",
+    other_charges: "",
+    Tds: "",
+    cgst: "",
+    sgst: "",
+    igst: "",
+    vat: "",
+    cess_amount: "",
+    tcs_amount: "",
+    grand_total: "",
+  });
+
+  const handleTdcChange = (field, value) => {
+    setTdcState((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Auto-calculate grand_total: GST table Total + all TDC extra manual fields - TDS
+  useEffect(() => {
+    // Base = sum of all items' Total column from the GST details table
+    const gstTableTotal = gstDetails.reduce(
+      (acc, item) => acc + (parseFloat(item.Total) || 0),
+      0
+    );
+    // Add all manually entered extra charges (TDC Assessable Value → TCS)
+    const extraCharges = [
+      "assessable_value",
+      "packing_forwarding_charges",
+      "transport_charges",
+      "insurance",
+      "installation_charges",
+      "other_charges",
+      "vat",
+      "cess_amount",
+      "tcs_amount",
+    ].reduce((acc, key) => acc + (parseFloat(tdcState[key]) || 0), 0);
+    const tds = parseFloat(tdcState.Tds) || 0;
+    const total = (gstTableTotal + extraCharges - tds).toFixed(2);
+    setTdcState((prev) => ({ ...prev, grand_total: total }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    gstDetails,
+    tdcState.assessable_value,
+    tdcState.packing_forwarding_charges,
+    tdcState.transport_charges,
+    tdcState.insurance,
+    tdcState.installation_charges,
+    tdcState.other_charges,
+    tdcState.Tds,
+    tdcState.vat,
+    tdcState.cess_amount,
+    tdcState.tcs_amount,
+  ]);
 
   const [refTcDetails, setRefTcDetails] = useState([
     {
@@ -495,22 +555,20 @@ const PurchaseGrn = () => {
 
         GrnGstTDC: [
           {
-            assessable_value: gstDetails[0]?.TOC_AssableValue || "0.00",
-            packing_forwarding_charges:
-              gstDetails[0]?.TOC_PackCharges || "0.00",
-            transport_charges: gstDetails[0]?.TOC_TransportCost || "0.00",
-            insurance: gstDetails[0]?.TOC_Insurance || "0.00",
-            installation_charges:
-              gstDetails[0]?.TOC_InstallationCharges || "0.00",
-            other_charges: gstDetails[0]?.TOC_OtherCharges || "0.00",
-            Tds: gstDetails[0]?.TOC_TDS || "0.00",
-            cgst: gstDetails[0]?.TOC_CGST || "0.00",
-            sgst: gstDetails[0]?.TOC_SGST || "0.00",
-            igst: gstDetails[0]?.TOC_IGST || "0.00",
-            vat: gstDetails[0]?.TOC_VAT || "0.00",
-            cess_amount: gstDetails[0]?.TOC_CESS || "0.00",
-            tcs_amount: "0.00",
-            grand_total: gstDetails[0]?.GR_Total || "0.00",
+            assessable_value: tdcState.assessable_value || "0.00",
+            packing_forwarding_charges: tdcState.packing_forwarding_charges || "0.00",
+            transport_charges: tdcState.transport_charges || "0.00",
+            insurance: tdcState.insurance || "0.00",
+            installation_charges: tdcState.installation_charges || "0.00",
+            other_charges: tdcState.other_charges || "0.00",
+            Tds: tdcState.Tds || "0.00",
+            cgst: tdcState.cgst || "0.00",
+            sgst: tdcState.sgst || "0.00",
+            igst: tdcState.igst || "0.00",
+            vat: tdcState.vat || "0.00",
+            cess_amount: tdcState.cess_amount || "0.00",
+            tcs_amount: tdcState.tcs_amount || "0.00",
+            grand_total: tdcState.grand_total || "0.00",
           },
         ],
 
@@ -548,17 +606,38 @@ const PurchaseGrn = () => {
       };
 
       console.log("Payload to Submit:", payload); // Debug
-      
+
+      const resetForm = () => {
+        setFormData({
+          GrnNo: "", Series: "", GE_No: "", Supp_Cust: "", Select: "",
+          ChallanNo: "", ChallanDate: "", InvoiceNo: "", InvoiceDate: "",
+          EWayBillNo: "", EWayBillDate: "", VehicleNo: "", LrNo: "",
+          Transporter: "", Plant: "VISHWA S.I.", GrnDate: "", GrnTime: "",
+          PreparedBy: "", CheckedBy: "", TcNo: "", TcDate: "", Remark: "", PaymentTermDay: "30",
+        });
+        setItemDetails([]);
+        setGstDetails([]);
+        setOriginalGstDetails([]);
+        setRefTcDetails([{ ItemCode: "", ItemDesc: "", MillTcName: "", MillTcNo: "", MillTcDate: "", Location: "" }]);
+        setTdcState({ assessable_value: "", packing_forwarding_charges: "", transport_charges: "", insurance: "", installation_charges: "", other_charges: "", Tds: "", cgst: "", sgst: "", igst: "", vat: "", cess_amount: "", tcs_amount: "", grand_total: "" });
+        setGrnNo("");
+        setSearchTerm("");
+        setSuggestions([]);
+      };
+
       if (isEditMode && id) {
         // Update existing GRN
         const response = await updatePurchaseGRN(id, payload);
         console.log("Update Response:", response);
         toast.success("GRN updated successfully!");
+        setTimeout(() => navigate("/Grn-List"), 1000);
       } else {
         // Create new GRN
         const response = await postPurchaseGRN(payload);
         console.log("Success Response:", response);
         toast.success("GRN submitted successfully!");
+        resetForm();
+        setTimeout(() => navigate("/Grn-List"), 1000);
       }
     } catch (error) {
       console.error("GRN submission error:", error);
@@ -1539,29 +1618,25 @@ const PurchaseGrn = () => {
                                           <th>TDC Assessable Value:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]
-                                                  ?.TOC_AssableValue || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.assessable_value}
+                                              onChange={(e) => handleTdcChange("assessable_value", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
                                         <tr>
                                           <th className="col-md-4">
-                                            (TDC) Pack & Fwrd Charge:
+                                            (TDC) Pack &amp; Fwrd Charge:
                                           </th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]
-                                                  ?.TOC_PackCharges || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.packing_forwarding_charges}
+                                              onChange={(e) => handleTdcChange("packing_forwarding_charges", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1569,13 +1644,11 @@ const PurchaseGrn = () => {
                                           <th>TransPort Charges:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]
-                                                  ?.TOC_TransportCost || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.transport_charges}
+                                              onChange={(e) => handleTdcChange("transport_charges", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1583,13 +1656,11 @@ const PurchaseGrn = () => {
                                           <th>Insurance:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]?.TOC_Insurance ||
-                                                ""
-                                              }
-                                              readOnly
+                                              value={tdcState.insurance}
+                                              onChange={(e) => handleTdcChange("insurance", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1597,14 +1668,11 @@ const PurchaseGrn = () => {
                                           <th>Installation Charges:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]
-                                                  ?.TOC_InstallationCharges ||
-                                                ""
-                                              }
-                                              readOnly
+                                              value={tdcState.installation_charges}
+                                              onChange={(e) => handleTdcChange("installation_charges", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1612,13 +1680,11 @@ const PurchaseGrn = () => {
                                           <th>Other Charges:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]
-                                                  ?.TOC_OtherCharges || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.other_charges}
+                                              onChange={(e) => handleTdcChange("other_charges", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1626,12 +1692,11 @@ const PurchaseGrn = () => {
                                           <th>TDS:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[1]?.TOC_TDS || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.Tds}
+                                              onChange={(e) => handleTdcChange("Tds", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1646,57 +1711,28 @@ const PurchaseGrn = () => {
                                   <div className="table-responsive">
                                     <table className="table table-bordered">
                                       <tbody>
-                                        <tr>
+                                        {/* CGST, SGST, IGST commented out as per requirement */}
+                                        {/* <tr>
                                           <th>CGST: 00.00%</th>
-                                          <td>
-                                            <input
-                                              type="text"
-                                              className="form-control"
-                                              value={
-                                                gstDetails[0]?.TOC_CGST || ""
-                                              }
-                                              readOnly
-                                            />
-                                          </td>
+                                          <td><input type="number" className="form-control" value={tdcState.cgst} onChange={(e) => handleTdcChange("cgst", e.target.value)} placeholder="0.00" /></td>
                                         </tr>
                                         <tr>
-                                          <th className="col-md-4">
-                                            SGST: 00.00%
-                                          </th>
-                                          <td>
-                                            <input
-                                              type="text"
-                                              className="form-control"
-                                              value={
-                                                gstDetails[0]?.TOC_SGST || ""
-                                              }
-                                              readOnly
-                                            />
-                                          </td>
+                                          <th className="col-md-4">SGST: 00.00%</th>
+                                          <td><input type="number" className="form-control" value={tdcState.sgst} onChange={(e) => handleTdcChange("sgst", e.target.value)} placeholder="0.00" /></td>
                                         </tr>
                                         <tr>
                                           <th>IGST: 00.00%</th>
-                                          <td>
-                                            <input
-                                              type="text"
-                                              className="form-control"
-                                              value={
-                                                gstDetails[0]?.TOC_IGST || ""
-                                              }
-                                              readOnly
-                                            />
-                                          </td>
-                                        </tr>
+                                          <td><input type="number" className="form-control" value={tdcState.igst} onChange={(e) => handleTdcChange("igst", e.target.value)} placeholder="0.00" /></td>
+                                        </tr> */}
                                         <tr>
                                           <th>VAT Amt:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[0]?.TOC_VAT || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.vat}
+                                              onChange={(e) => handleTdcChange("vat", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1704,12 +1740,11 @@ const PurchaseGrn = () => {
                                           <th>Cess Amt:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[0]?.TOC_CESS || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.cess_amount}
+                                              onChange={(e) => handleTdcChange("cess_amount", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1717,12 +1752,11 @@ const PurchaseGrn = () => {
                                           <th>TCS:</th>
                                           <td>
                                             <input
-                                              type="text"
+                                              type="number"
                                               className="form-control"
-                                              value={
-                                                gstDetails[0]?.TOC_TDS || ""
-                                              }
-                                              readOnly
+                                              value={tdcState.tcs_amount}
+                                              onChange={(e) => handleTdcChange("tcs_amount", e.target.value)}
+                                              placeholder="0.00"
                                             />
                                           </td>
                                         </tr>
@@ -1731,11 +1765,10 @@ const PurchaseGrn = () => {
                                           <td>
                                             <input
                                               type="text"
-                                              className="form-control"
-                                              value={
-                                                gstDetails[0]?.GR_Total || ""
-                                              }
+                                              className="form-control fw-bold"
+                                              value={tdcState.grand_total}
                                               readOnly
+                                              style={{ backgroundColor: "#f0f4ff", fontWeight: "bold" }}
                                             />
                                           </td>
                                         </tr>

@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../NavBar/NavBar.js";
 import SideNav from "../../SideNav/SideNav.js";
 import "./PendingJobworkPORelease.css";
+import { Link } from "react-router-dom";
 
 const PendingJobworkPORelease = () => {
   // side‑nav
@@ -162,7 +163,7 @@ const PendingJobworkPORelease = () => {
 
   const handleViewPdf = (orderId, orderNo) => {
     if (orderId) {
-      window.open(`https://sellerp-backend.onrender.com/Purchase/PoOrder/pdf/${orderId}/`, "_blank", "noopener,noreferrer");
+      window.open(`https://sellerp-backend.onrender.com/Purchase/purchase-order/pdf/${orderId}/`, "_blank", "noopener,noreferrer");
     } else {
       alert(`No PDF available for PO: ${orderNo || "this order"}`);
     }
@@ -224,7 +225,7 @@ const PendingJobworkPORelease = () => {
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>FROM DATE</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>TO DATE</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>TYPE</th>
-                              <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CATEGORY</th>
+                              {/* <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CATEGORY</th> */}
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
                                 <div className="form-check d-flex justify-content-center mb-0">
                                   <input className="form-check-input me-2" type="checkbox" id="supplierNameCheck" />
@@ -244,14 +245,12 @@ const PendingJobworkPORelease = () => {
                           <tbody>
                             <tr>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
-                                <button className="btn btn-sm btn-light w-100 fw-bold text-secondary" style={{ fontSize: '0.75rem' }}>View All Purchase</button>
+                                <Link to="/JobworkList" className="btn btn-sm btn-light w-100 fw-bold text-secondary" style={{ fontSize: '0.75rem', textDecoration: 'none', display: 'block', textAlign: 'center' }}>View All Jobwork</Link>
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={plantFilter} onChange={(e) => setPlantFilter(e.target.value)}>
                                   <option value="">All Plants</option>
-                                  <option>Plant 1</option>
-                                  <option>Plant 2</option>
-                                  <option>Plant 3</option>
+                                  <option value="VISHWA S.I.">VISHWA S.I.</option>
                                 </select>
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
@@ -262,19 +261,18 @@ const PendingJobworkPORelease = () => {
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
-                                  <option value="">All Types</option>
-                                  <option>Type 1</option>
-                                  <option>Type 2</option>
-                                  <option>Type 3</option>
+                                  <option value="All">All</option>
+                                  <option value="Open">Open</option>
+                                  <option value="Close">Close</option>
                                 </select>
                               </td>
-                              <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
+                              {/* <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
                                   <option value="">All Categories</option>
                                   <option>Category 1</option>
                                   <option>Category 2</option>
                                 </select>
-                              </td>
+                              </td> */}
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <input type="text" className="form-control form-control-sm" placeholder="Supplier" value={supplierFilter} onChange={(e) => setSupplierFilter(e.target.value)} />
                               </td>
@@ -283,9 +281,7 @@ const PendingJobworkPORelease = () => {
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={crNameFilter} onChange={(e) => setCrNameFilter(e.target.value)}>
-                                  <option value="">All CR Names</option>
-                                  <option>CR Name 1</option>
-                                  <option>CR Name 2</option>
+                                  <option value="">All</option>
                                 </select>
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px', textAlign: 'center' }}>
@@ -338,7 +334,7 @@ const PendingJobworkPORelease = () => {
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.Supplier || "—"}</td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.DeliveryDate}</td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.PoDate}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.created_by_username}</td>
+                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.created_by_username || localStorage.getItem("username") || "—"}</td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
                                     {(po.item_details || [])
                                       .map((it) => `${it.Item} – ${it.ItemDescription}`)

@@ -4,7 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import NavBar from "../../NavBar/NavBar.js";
 import SideNav from "../../SideNav/SideNav.js";
 import "./PendingPo.css";
-
+import { Link } from "react-router-dom";
 const PendingPo = () => {
   // side‑nav
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -217,7 +217,7 @@ const PendingPo = () => {
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>FROM DATE</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>TO DATE</th>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>TYPE</th>
-                              <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CATEGORY</th>
+                              {/* <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>CATEGORY</th> */}
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
                                 <div className="form-check d-flex justify-content-center mb-0">
                                   <input className="form-check-input me-2" type="checkbox" id="supplierNameCheck" />
@@ -237,14 +237,12 @@ const PendingPo = () => {
                           <tbody>
                             <tr>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
-                                <button className="btn btn-sm btn-light w-100 fw-bold text-secondary" style={{ fontSize: '0.75rem' }}>View All Purchase</button>
+                                <Link to="/purchase-order-list" className="btn btn-sm btn-light w-100 fw-bold text-secondary" style={{ fontSize: '0.75rem', textDecoration: 'none', display: 'block', textAlign: 'center' }}>View All Purchase</Link>
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={plantFilter} onChange={(e) => setPlantFilter(e.target.value)}>
                                   <option value="">All Plants</option>
-                                  <option>Plant 1</option>
-                                  <option>Plant 2</option>
-                                  <option>Plant 3</option>
+                                  <option value="VISHWA S.I.">VISHWA S.I.</option>
                                 </select>
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
@@ -255,19 +253,18 @@ const PendingPo = () => {
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
-                                  <option value="">All Types</option>
-                                  <option>Type 1</option>
-                                  <option>Type 2</option>
-                                  <option>Type 3</option>
+                                  <option value="All">All</option>
+                                  <option value="Open">Open</option>
+                                  <option value="Close">Close</option>
                                 </select>
                               </td>
-                              <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
+                              {/* <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
                                   <option value="">All Categories</option>
                                   <option>Category 1</option>
                                   <option>Category 2</option>
                                 </select>
-                              </td>
+                              </td> */}
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <input type="text" className="form-control form-control-sm" placeholder="Supplier" value={supplierFilter} onChange={(e) => setSupplierFilter(e.target.value)} />
                               </td>
@@ -276,9 +273,7 @@ const PendingPo = () => {
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px' }}>
                                 <select className="form-select form-select-sm" value={crNameFilter} onChange={(e) => setCrNameFilter(e.target.value)}>
-                                  <option value="">All CR Names</option>
-                                  <option>CR Name 1</option>
-                                  <option>CR Name 2</option>
+                                  <option value="">All</option>
                                 </select>
                               </td>
                               <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  padding: '8px', textAlign: 'center' }}>

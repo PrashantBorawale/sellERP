@@ -151,8 +151,9 @@ const RecentApprovalPO = () => {
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>PO Type:</label>
                           <select className="form-select">
-                            <option>Select All</option>
-                            <option>Select All</option>
+                            <option value="All">All</option>
+                            <option value="Open">Open</option>
+                            <option value="Close">Close</option>
                           </select>
                         </div>
 
@@ -160,23 +161,10 @@ const RecentApprovalPO = () => {
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>Series:</label>
                           <select className="form-select">
-                            <option>Select All</option>
-                          </select>
-                        </div>
-
-                        {/* Item Group */}
-                        <div className="col-sm-6 col-md-2 col-lg-1">
-                          <label>Item Group:</label>
-                          <select className="form-select">
-                            <option>Select All</option>
-                          </select>
-                        </div>
-
-                        {/* Po Status */}
-                        <div className="col-sm-6 col-md-2 col-lg-1">
-                          <label>Po Status:</label>
-                          <select className="form-select">
-                            <option>Select All</option>
+                            <option value="RM">RM</option>
+                            <option value="ASSET">ASSET</option>
+                            <option value="SERVICE">SERVICE</option>
+                            <option value="CONSUMABLE">CONSUMABLE</option>
                           </select>
                         </div>
 
@@ -184,7 +172,9 @@ const RecentApprovalPO = () => {
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>All User:</label>
                           <select className="form-select">
-                            <option>Select All</option>
+                            <option value={localStorage.getItem("username") || ""}>
+                              {localStorage.getItem("username") || "Select User"}
+                            </option>
                           </select>
                         </div>
 

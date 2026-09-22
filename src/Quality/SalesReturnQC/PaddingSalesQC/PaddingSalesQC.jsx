@@ -168,7 +168,7 @@ const PaddingSalesQC = () => {
                           <div className="col-md-2">
                             <label className="form-label">Plant</label>
                             <select className="form-select" value={filters.plant} onChange={(e) => setFilters({ ...filters, plant: e.target.value })}>
-                              <option>SHARP</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                             </select>
                           </div>
   
