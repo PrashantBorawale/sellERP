@@ -29,6 +29,15 @@ const TaxInvoiceList = () => {
   const [invoiceList, setInvoiceList] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+  const totalPages = Math.ceil(invoiceList.length / itemsPerPage);
+  const currentInvoices = invoiceList.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   useEffect(() => {
     fetchInvoiceData();
   }, []);
@@ -38,11 +47,22 @@ const TaxInvoiceList = () => {
       setLoading(true);
       const res = await fetch("https://sellerp-backend.onrender.com/Sales/invoice/");
       const resData = await res.json();
+      
+      let fetchedList = [];
       if (Array.isArray(resData)) {
-        setInvoiceList(resData);
+        fetchedList = resData;
       } else if (resData.data && Array.isArray(resData.data)) {
-        setInvoiceList(resData.data);
+        fetchedList = resData.data;
       }
+
+      // Sort strictly by database ID descending (highest ID = most recently saved)
+      fetchedList.sort((a, b) => {
+        const idA = parseInt(a.id, 10) || 0;
+        const idB = parseInt(b.id, 10) || 0;
+        return idB - idA;
+      });
+
+      setInvoiceList(fetchedList);
     } catch (error) {
       console.error("Error fetching invoice data:", error);
     } finally {
@@ -51,8 +71,20 @@ const TaxInvoiceList = () => {
   };
 
   const calculateInvoiceTotal = (invoice) => {
-    if (!invoice.items || !Array.isArray(invoice.items)) return 0;
-    return invoice.items.reduce((acc, item) => acc + ((Number(item.inv_qty) || 0) * (Number(item.rate) || 0)), 0);
+    let total = 0;
+    if (invoice.GSTdetails && invoice.GSTdetails.length > 0) {
+      const gst = invoice.GSTdetails[0];
+      const assessable = parseFloat(gst.assessble_value || gst.assessable_value || 0);
+      const cgst = parseFloat(gst.cgst_amt || 0);
+      const sgst = parseFloat(gst.sgst_amt || 0);
+      const igst = parseFloat(gst.igst_amt || 0);
+      total = assessable + cgst + sgst + igst;
+    }
+    
+    if (total === 0 && invoice.items && Array.isArray(invoice.items)) {
+      total = invoice.items.reduce((acc, item) => acc + ((Number(item.inv_qty) || Number(item.qty) || 0) * (Number(item.rate) || 0)), 0);
+    }
+    return total;
   };
 
   const formatDate = (dateStr) => {
@@ -293,23 +325,23 @@ const TaxInvoiceList = () => {
                 </div>
               </td>
             </tr>
-          ) : invoiceList.length > 0 ? (
-            invoiceList.map((invoice, index) => (
-              <tr key={index}>
-                <td style={{ color: '#64748b', fontWeight: 500, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{index + 1}</td>
+          ) : currentInvoices.length > 0 ? (
+            currentInvoices.map((invoice, index) => (
+              <tr key={invoice.id || index}>
+                <td style={{ color: '#64748b', fontWeight: 500, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{getYear(invoice.invoice_no)}</td>
                 <td style={{ textAlign: 'center', padding: '4px 8px' }}><input type="checkbox" className="form-check-input" /></td>
                 <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{invoice.invoice_no || "-"}</td>
-                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{formatDate(invoice.invoice_date)}</td>
-                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{invoice.po_number || "-"}</td>
-                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{invoice.invoice_type || "-"}</td>
-                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{invoice.party_name || "-"}</td>
+                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{formatDate(invoice.invoice_Date || invoice.date_of_removal || invoice.invoice_date)}</td>
+                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{invoice.po_number || invoice.d_c_no || invoice.cust_po || "-"}</td>
+                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{invoice.series_type || invoice.invoice_type || "GST"}</td>
+                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{invoice.bill_to || invoice.party_name || invoice.customer || "-"}</td>
                 <td style={{ color: '#0f172a', fontWeight: 600, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'right' }}>{calculateInvoiceTotal(invoice).toFixed(2)}</td>
                 <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>
                   <button className="btn btn-sm btn-outline-primary" style={{ padding: '0px 6px', fontSize: '0.7rem' }}>Item Details</button>
                 </td>
                 <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>-</td>
-                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>prakash</td>
+                <td style={{ color: '#475569', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{invoice.user || invoice.created_by || localStorage.getItem("username") || "User"}</td>
                 <td style={{ textAlign: 'center', padding: '4px 8px' }}>
                   <FaEye 
                     className="text-primary" 
@@ -322,14 +354,38 @@ const TaxInvoiceList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan={13} className="text-center py-5 text-muted">
-                No invoices found.
-              </td>
+              <td colSpan={13} className="text-center text-muted py-4">No invoices found</td>
             </tr>
           )}
         </tbody>
       </table>
     </div>
+    {/* Pagination Controls */}
+    {totalPages > 1 && (
+      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2">
+        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+          Page {currentPage} of {totalPages}
+        </span>
+        <div className="btn-group shadow-sm">
+          <button
+            className="btn btn-light border"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-light border"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    )}
   </div>
                 </div>
               </main>

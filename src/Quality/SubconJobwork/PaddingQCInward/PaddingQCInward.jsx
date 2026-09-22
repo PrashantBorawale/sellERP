@@ -33,7 +33,14 @@ const PaddingQCInward = () => {
     setLoading(true);
     try {
       const response = await fetch("https://sellerp-backend.onrender.com/Quality/inward-pending-qc/");
-      const data = await response.json();
+      let data = await response.json();
+      if (Array.isArray(data)) {
+        data = data.sort((a, b) => {
+          const idA = parseInt(a.id || a.pk || a.InwardF4No || 0, 10);
+          const idB = parseInt(b.id || b.pk || b.InwardF4No || 0, 10);
+          return idB - idA;
+        });
+      }
       setPendingQcData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -41,6 +48,14 @@ const PaddingQCInward = () => {
       setLoading(false);
     }
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(pendingQcData.length / itemsPerPage);
+  const currentData = pendingQcData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath =
@@ -243,10 +258,10 @@ const PaddingQCInward = () => {
                                 Loading...
                               </td>
                             </tr>
-                          ) : pendingQcData.length > 0 ? (
-                            pendingQcData.map((item, index) => (
+                          ) : currentData.length > 0 ? (
+                            currentData.map((item, index) => (
                               <tr key={item.id || index}>
-                                <td>{index + 1}</td>
+                                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td>{item.InwardF4No}</td>
                                 <td>{item.InwardDate}</td>
                                 <td>{item.InwardDate} {item.InwardTime}</td>
@@ -282,8 +297,35 @@ const PaddingQCInward = () => {
                           )}
                         </tbody>
                       </table>
+                    </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
               </main>
             </div>
           </div>

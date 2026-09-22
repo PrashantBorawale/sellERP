@@ -228,6 +228,13 @@ const DabitNoteList = () => {
         // Combine the results
         const combined = [...list1, ...list2];
         
+        // Sort highest ID at the top
+        combined.sort((a, b) => {
+          const idA = parseInt(a.id || a.pk || 0, 10);
+          const idB = parseInt(b.id || b.pk || 0, 10);
+          return idB - idA;
+        });
+        
         console.log("Combined Debit Note Data:", combined);
         setDebitNoteData(combined);
         setFilteredData(combined);
@@ -240,6 +247,15 @@ const DabitNoteList = () => {
     };
     fetchDebitNoteData();
   }, []);
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const currentDebitNotes = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   // Handle search/filter
   const handleSearch = () => {
@@ -505,11 +521,12 @@ const DabitNoteList = () => {
                                             <th>Code No</th>
                                             <th>Cust. Name</th>
                                             <th>Total Amt</th>
+                                            <th>User</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          {filteredData && filteredData.length > 0 ? (
-                                            filteredData.map((item, index) => {
+                                          {currentDebitNotes && currentDebitNotes.length > 0 ? (
+                                            currentDebitNotes.map((item, index) => {
                                               // Calculate total amount from items
                                               const totalAmount = parseFloat(item.grand_total || item.total_amt || 0) || (item.items && item.items.length > 0 
                                                 ? item.items.reduce((sum, lineItem) => sum + parseFloat(lineItem.grand_total || lineItem.diff_amt || 0), 0)
@@ -519,27 +536,55 @@ const DabitNoteList = () => {
                                               const createdYear = (item.created_at || item.debit_note_date) ? new Date(item.created_at || item.debit_note_date).getFullYear() : "-";
                                               
                                               return (
-                                                <tr key={index}>
-                                                  <td>{index + 1}</td>
+                                                <tr key={item.id || item.pk || index}>
+                                                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                                   <td>{createdYear}</td>
                                                   <td>{item.plant || "VISHWA S.I."}</td>
                                                   <td>{item.debit_note_no || "-"}</td>
                                                   <td>{item.debit_note_date || "-"}</td>
                                                   <td>{item.notetype || item.type || (item.customer ? "Rate Diff." : "-")}</td>
                                                   <td>{item.po_no || item.invoice_no || "-"}</td>
-                                                                                                     <td>{item.party_name || item.customer || item.bill_to_cust || item.bill_to || item.vendor_name || item.supplier_name || item.cust_name || item.Customer || item.Name || item.party || item.vendor || item.supplier || item.customer_name || (item.items && item.items[0] ? (item.items[0].customer || item.items[0].bill_to_cust || item.items[0].party_name || item.items[0].party || "") : "") || "-"}</td>
+                                                  <td>{item.party_name || item.customer || item.bill_to_cust || item.bill_to || item.vendor_name || item.supplier_name || item.cust_name || item.Customer || item.Name || item.party || item.vendor || item.supplier || item.customer_name || (item.items && item.items[0] ? (item.items[0].customer || item.items[0].bill_to_cust || item.items[0].party_name || item.items[0].party || "") : "") || "-"}</td>
                                                   <td>{totalAmount.toFixed(2)}</td>
+                                                  <td>{item.user || item.created_by || localStorage.getItem("username") || "User"}</td>
                                                 </tr>
                                               );
                                             })
                                           ) : (
                                             <tr>
-                                              <td colSpan="9" className="text-center">No data found</td>
+                                              <td colSpan="10" className="text-center">No data found</td>
                                             </tr>
                                           )}
                                         </tbody>
                                  </table>
                      </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
                 </div>
               </main>
             </div>

@@ -842,7 +842,7 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                     </div>
                     <div className={`nested-dropdown-menu ${isDropdownOpen("storeReport") ? "show" : ""}`}>
                       {permissions.Store.includes("GRN List") && (
-                        <Link className="dropdown-item" to="/Report-Store">
+                        <Link className="dropdown-item" to="/Grn-List">
                           GRN List
                         </Link>
                       )}
@@ -876,11 +876,11 @@ const SideNav = ({ sideNavOpen, toggleSideNav }) => {
                           DC GRN List
                         </Link>
                       )} */}
-                      {permissions.Store.includes("Indent List") && (
+                      {/* {permissions.Store.includes("Indent List") && (
                         <Link className="dropdown-item" to="/IndentReport">
                           Indent List
                         </Link>
-                      )}
+                      )} */}
                       {/* {permissions.Store.includes("Indent Status") && (
                         <Link className="dropdown-item" to="/IndentStatus">
                           Indent Status

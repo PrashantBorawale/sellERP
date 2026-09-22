@@ -300,8 +300,8 @@ const ToolManagement = () => {
                     <div className="d-flex justify-content-between align-items-center">
                       <h5 className="header-title mb-0">Tool Management</h5>
                       <div className="d-flex gap-2">
-                        <button className="vndrbtn">Mould Life Report</button>
-                        <button className="vndrbtn">Tool Report</button>
+                        {/* <button className="vndrbtn">Mould Life Report</button>
+                        <button className="vndrbtn">Tool Report</button> */}
                       </div>
                     </div>
                   </div>

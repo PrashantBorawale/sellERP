@@ -42,17 +42,36 @@ const GSTSalesReturnList = () => {
       setLoading(true);
       const res = await fetch("https://sellerp-backend.onrender.com/Sales/Gstsalesretun/");
       const resData = await res.json();
+      let fetchedList = [];
       if (Array.isArray(resData)) {
-        setSalesReturns(resData);
+        fetchedList = resData;
       } else if (resData.data && Array.isArray(resData.data)) {
-        setSalesReturns(resData.data);
+        fetchedList = resData.data;
       }
+      
+      // Sort highest ID at the top
+      fetchedList.sort((a, b) => {
+        const idA = parseInt(a.id, 10) || 0;
+        const idB = parseInt(b.id, 10) || 0;
+        return idB - idA;
+      });
+      
+      setSalesReturns(fetchedList);
     } catch (error) {
       console.error("Error fetching GST sales returns:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(salesReturns.length / itemsPerPage);
+  const currentSalesReturns = salesReturns.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
@@ -322,16 +341,16 @@ const GSTSalesReturnList = () => {
                 </div>
               </td>
             </tr>
-          ) : salesReturns.length === 0 ? (
+          ) : currentSalesReturns.length === 0 ? (
             <tr>
               <td colSpan={11} className="text-center py-5 text-muted fw-bold">No Records Found</td>
             </tr>
           ) : (
-            salesReturns.map((row, index) => {
+            currentSalesReturns.map((row, index) => {
               const totalAmount = calculateTotalAmount(row.items);
               return (
                 <tr key={row.id || index}>
-                  <td style={{ color: '#64748b', fontWeight: 500, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{index + 1}</td>
+                  <td style={{ color: '#64748b', fontWeight: 500, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                   <td style={{ color: '#64748b', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{getYear(row.sales_return_no)}</td>
                   <td style={{ padding: '4px 8px', textAlign: 'center' }}>
                     <div style={{ backgroundColor: '#eff6ff', color: '#2563eb', padding: '2px 8px', borderRadius: '4px', display: 'inline-block', fontSize: '0.75rem', fontWeight: 600 }}>{row.series || "GST SALES RETURN"}</div>
@@ -354,7 +373,7 @@ const GSTSalesReturnList = () => {
                     )}
                   </td>
                   <td style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'right' }}>{totalAmount.toFixed(2)}</td>
-                  <td style={{ color: '#64748b', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>prakash</td>
+                  <td style={{ color: '#64748b', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{row.user || row.created_by || localStorage.getItem("username") || "User"}</td>
                   <td style={{ textAlign: 'center', padding: '4px 8px' }}>
                     <IconButton size="small" onClick={() => handleViewPdf(row)} sx={{ bgcolor: '#eff6ff', color: '#3b82f6', borderRadius: '8px', '&:hover': { bgcolor: '#dbeafe', transform: 'scale(1.05)' }, transition: 'all 0.2s' }}>
                       <VisibilityIcon fontSize="small" />
@@ -367,6 +386,33 @@ const GSTSalesReturnList = () => {
         </tbody>
       </table>
     </div>
+    
+    {/* Pagination Controls */}
+    {totalPages > 1 && (
+      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+          Page {currentPage} of {totalPages}
+        </span>
+        <div className="btn-group shadow-sm">
+          <button
+            className="btn btn-light border"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-light border"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    )}
     <div style={{ backgroundColor: '#f8fafc', padding: '16px', borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
       <Button 
         variant="contained" 

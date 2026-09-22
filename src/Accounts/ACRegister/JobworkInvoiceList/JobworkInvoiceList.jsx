@@ -42,17 +42,37 @@ const JobworkInvoiceList = () => {
       setLoading(true);
       const res = await fetch("https://sellerp-backend.onrender.com/Sales/gst-jobwork-invoice/");
       const resData = await res.json();
+      
+      let fetchedList = [];
       if (Array.isArray(resData)) {
-        setJobworkInvoices(resData);
+        fetchedList = resData;
       } else if (resData.data && Array.isArray(resData.data)) {
-        setJobworkInvoices(resData.data);
+        fetchedList = resData.data;
       }
+      
+      // Sort strict highest ID at the top
+      fetchedList.sort((a, b) => {
+        const idA = parseInt(a.id, 10) || 0;
+        const idB = parseInt(b.id, 10) || 0;
+        return idB - idA;
+      });
+      
+      setJobworkInvoices(fetchedList);
     } catch (error) {
       console.error("Error fetching job-work invoice data:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(jobworkInvoices.length / itemsPerPage);
+  const currentInvoices = jobworkInvoices.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
@@ -254,14 +274,6 @@ const JobworkInvoiceList = () => {
                         </Typography>
                       </div>
                       <div className="col-md-6 d-flex justify-content-end align-items-center gap-3 flex-wrap">
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Typography variant="caption" sx={{ fontWeight: 600, color: '#64748b' }}>Report :</Typography>
-                          <FormControl size="small">
-                            <Select defaultValue="Job-Work Sales Register" sx={{ height: '32px', borderRadius: '8px', fontSize: '13px', backgroundColor: '#fef9c3' }}>
-                              <MenuItem value="Job-Work Sales Register">Job-Work Sales Register</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </Box>
                         
                         <Button 
                           variant="contained" 
@@ -353,17 +365,17 @@ const JobworkInvoiceList = () => {
                               </div>
                             </TableCell>
                           </TableRow>
-                        ) : jobworkInvoices.length === 0 ? (
+                        ) : currentInvoices.length === 0 ? (
                           <TableRow>
                             <TableCell colSpan={13} align="center" sx={{ py: 5, color: '#64748b', fontWeight: 600 }}>No Data Found !!</TableCell>
                           </TableRow>
                         ) : (
-                          jobworkInvoices.map((row, index) => {
+                          currentInvoices.map((row, index) => {
                             const totalQty = calculateTotalQty(row.items);
                             const gst = row.gst_details || {};
                             return (
                               <TableRow key={row.id || index} sx={{ '&:hover': { backgroundColor: '#f8fafc' }, transition: 'background-color 0.2s ease' }}>
-                                <TableCell sx={{ color: '#64748b', fontWeight: 500, fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1 }}>{index + 1}</TableCell>
+                                <TableCell sx={{ color: '#64748b', fontWeight: 500, fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1 }}>{(currentPage - 1) * itemsPerPage + index + 1}</TableCell>
                                 <TableCell sx={{ fontWeight: 600, color: '#0f172a', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1 }}>{row.invoice_no || "-"}</TableCell>
                                 <TableCell sx={{ color: '#64748b', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1 }}>{formatDate(row.invoice_date)}</TableCell>
                                 <TableCell sx={{ color: '#334155', fontWeight: 500, fontSize: '10.5px', py: 1, px: 1, wordBreak: 'break-word', whiteSpace: 'normal', textAlign: 'left' }}>{row.bill_to_cust || "-"}</TableCell>
@@ -374,7 +386,7 @@ const JobworkInvoiceList = () => {
                                 <TableCell sx={{ color: '#64748b', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1, textAlign: 'right' }}>{Number(gst.igst_amt || 0).toFixed(2)}</TableCell>
                                 <TableCell sx={{ color: '#64748b', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1, textAlign: 'right' }}>{Number(gst.tcs_amt || 0).toFixed(2)}</TableCell>
                                 <TableCell sx={{ fontWeight: 700, color: '#0f172a', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1, textAlign: 'right' }}>{Number(gst.gr_total || 0).toFixed(2)}</TableCell>
-                                <TableCell sx={{ color: '#64748b', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1 }}>prakash</TableCell>
+                                <TableCell sx={{ color: '#64748b', fontSize: '10.5px', whiteSpace: 'normal', wordBreak: 'break-word', py: 1, px: 1 }}>{row.user || row.created_by || localStorage.getItem("username") || "User"}</TableCell>
                                 <TableCell align="center" sx={{ py: 1, px: 1, whiteSpace: 'normal', wordBreak: 'break-word' }}><FaEye size={18} color="#0d6efd" style={{ cursor: 'pointer' }} onClick={() => handleViewPdf(row)} title="View PDF" /></TableCell>
                               </TableRow>
                             );
@@ -403,6 +415,34 @@ const JobworkInvoiceList = () => {
                       </Box>
                     </Box>
                   </TableContainer>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2">
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               </main>
             </div>

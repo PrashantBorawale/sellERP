@@ -36,7 +36,11 @@ const DeliveryChlln = () => {
       const res = await getDeliveryChallans();
       const data = res?.data || res;
       if (Array.isArray(data)) {
-        setChallanList(data.sort((a, b) => b.id - a.id));
+        setChallanList(data.sort((a, b) => {
+          const idA = parseInt(a.id || a.pk || 0, 10);
+          const idB = parseInt(b.id || b.pk || 0, 10);
+          return idB - idA;
+        }));
       }
     } catch (error) {
       console.error("Error fetching delivery challans:", error);
@@ -44,6 +48,15 @@ const DeliveryChlln = () => {
       setLoading(false);
     }
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(challanList.length / itemsPerPage);
+  const currentChallanList = challanList.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath = item?.PDF_Link || item?.View || item?.pdf || item?.file || item?.document;
@@ -79,10 +92,10 @@ const DeliveryChlln = () => {
                 <div className="DeliveryChlln-header">
                   <div className="d-flex justify-content-between align-items-center">
                     <h5 className="header-title mb-0">Delivery Challan List</h5>
-                    <div className="d-flex gap-2">
+                    {/* <div className="d-flex gap-2">
                       <Link className="vndrbtn">DC - Report</Link>
                       <Link type="button" className="vndrbtn" to="/DeliveryQuery">Delivery Challan Query</Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -211,14 +224,14 @@ const DeliveryChlln = () => {
                               <tr>
                                 <td colSpan={15} className="text-center py-4 text-muted">Loading...</td>
                               </tr>
-                            ) : challanList.length === 0 ? (
+                            ) : currentChallanList.length === 0 ? (
                               <tr>
                                 <td colSpan={15} className="text-center py-4 text-muted">No Records Found</td>
                               </tr>
                             ) : (
-                              challanList.map((item, index) => (
+                              currentChallanList.map((item, index) => (
                                 <tr key={item.id || index}>
-                                  <td className="text-center">{index + 1}</td>
+                                  <td className="text-center">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                   <td>{item.ChallanDate ? new Date(item.ChallanDate).getFullYear() : "-"}</td>
                                   <td>{item.Plant || "-"}</td>
                                   <td className="text-center fw-bold">{item.DCNo || item.ChallanNo || "-"}</td>
@@ -227,7 +240,7 @@ const DeliveryChlln = () => {
                                   <td>{item.CustCode || item.Contractor || "-"}</td>
                                   <td>{item.CustName || item.Contractor || "-"}</td>
                                   <td>{item.Inventory || item.Department || "-"}</td>
-                                  <td>Admin</td>
+                                  <td>{item.user || item.created_by || localStorage.getItem("username") || "User"}</td>
                                   <td className="text-center">
                                     <Tooltip title="View Information">
                                       <IconButton size="small" sx={{ color: '#0ea5e9', '&:hover': { bgcolor: '#e0f2fe' } }}><FaInfoCircle size={16} /></IconButton>
@@ -261,6 +274,33 @@ const DeliveryChlln = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </main>
             </div>

@@ -38,17 +38,36 @@ const HSNSACSummary = () => {
       setLoading(true);
       const res = await fetch("https://sellerp-backend.onrender.com/Account/hsn-summary/");
       const resData = await res.json();
+      let fetchedList = [];
       if (Array.isArray(resData)) {
-        setHsnData(resData);
+        fetchedList = resData;
       } else if (resData.data && Array.isArray(resData.data)) {
-        setHsnData(resData.data);
+        fetchedList = resData.data;
       }
+      
+      // Sort highest ID at the top
+      fetchedList.sort((a, b) => {
+        const idA = parseInt(a.id || a.pk || 0, 10);
+        const idB = parseInt(b.id || b.pk || 0, 10);
+        return idB - idA;
+      });
+      
+      setHsnData(fetchedList);
     } catch (error) {
       console.error("Error fetching HSN summary:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+  const totalPages = Math.ceil(hsnData.length / itemsPerPage);
+  const currentHsnData = hsnData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const formatNum = (num) => new Intl.NumberFormat('en-IN', { minimumFractionDigits: 2 }).format(num || 0);
 
@@ -196,14 +215,14 @@ const HSNSACSummary = () => {
                                 </div>
                               </td>
                             </tr>
-                          ) : hsnData.length === 0 ? (
+                          ) : currentHsnData.length === 0 ? (
                             <tr>
                               <td colSpan={16} className="text-center py-5 text-muted fw-bold">No Records Found</td>
                             </tr>
                           ) : (
-                            hsnData.map((row, index) => (
-                              <tr key={index}>
-                                <td style={{ color: '#64748b', fontWeight: 600, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{index + 1}</td>
+                            currentHsnData.map((row, index) => (
+                              <tr key={row.id || index}>
+                                <td style={{ color: '#64748b', fontWeight: 600, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td style={{ color: '#0f172a', fontWeight: 600, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{row.hsn_sac}</td>
                                 <td style={{ color: '#64748b', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left', minWidth: '150px' }}>{row.description}</td>
                                 <td style={{ color: '#64748b', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{row.type_of_supply || "GST Sales"}</td>
@@ -242,6 +261,34 @@ const HSNSACSummary = () => {
                         )}
                       </table>
                     </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
                     <div style={{ backgroundColor: '#f8fafc', padding: '12px 16px', borderTop: '1px solid #e2e8f0', display: 'flex', alignItems: 'center' }}>
                       <Typography variant="body2" sx={{ fontWeight: 600, color: '#64748b' }}>Total Records : <Box component="span" sx={{ color: '#0f172a', ml: 1 }}>{hsnData.length}</Box></Typography>
                     </div>

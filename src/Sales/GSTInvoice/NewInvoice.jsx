@@ -809,13 +809,7 @@ const NewInvoice = () => {
                         >
                           InvoiceList
                         </button>
-                        <button
-                          type="button"
-                          className="vndrbtn mx-1"
-                          onClick={handleButtonClick}
-                        >
-                          Save Invoice
-                        </button>
+                        
                       </div>
                     </div>
 

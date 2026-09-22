@@ -19,15 +19,39 @@ const InwardChallanList = () => {
     try {
       setLoading(true);
       const response = await fetch('https://sellerp-backend.onrender.com/Store/InwardChallan/');
-      const data = await response.json();
-      console.log('Fetched data:', data);
-      setInwardChallanList(data);
+      let data = await response.json();
+      
+      let fetchedList = [];
+      if (Array.isArray(data)) {
+        fetchedList = data;
+      } else if (data.data && Array.isArray(data.data)) {
+        fetchedList = data.data;
+      }
+
+      // Sort highest ID at the top
+      fetchedList.sort((a, b) => {
+        const idA = parseInt(a.id || a.pk || 0, 10);
+        const idB = parseInt(b.id || b.pk || 0, 10);
+        return idB - idA;
+      });
+
+      console.log('Fetched data:', fetchedList);
+      setInwardChallanList(fetchedList);
     } catch (error) {
       console.error('Error fetching inward challan list:', error);
     } finally {
       setLoading(false);
     }
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(inwardChallanList.length / itemsPerPage);
+  const currentInwardChallanList = inwardChallanList.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const formatItemsDisplay = (inwardChallanTable) => {
     if (!inwardChallanTable || inwardChallanTable.length === 0) {
@@ -204,10 +228,10 @@ const InwardChallanList = () => {
                             <TableRow>
                               <TableCell colSpan={17} sx={{ textAlign: 'center', padding: '24px', color: '#94a3b8' }}>Loading...</TableCell>
                             </TableRow>
-                          ) : inwardChallanList.length > 0 ? (
-                            inwardChallanList.map((challan, index) => (
+                          ) : currentInwardChallanList.length > 0 ? (
+                            currentInwardChallanList.map((challan, index) => (
                               <TableRow key={challan.id || index} hover sx={{ "&:last-child td, &:last-child th": { border: 0 }, transition: "all 0.2s ease", "&:hover": { backgroundColor: "#f1f5f9" } }}>
-                                <TableCell sx={{ color: '#475569', fontSize: '0.65rem', wordBreak: 'break-word', whiteSpace: 'normal', padding: '2px 2px', textAlign: 'center', borderRight: '1px solid #f1f5f9' }}><div className="cell-clamp-f4">{index + 1}</div></TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '0.65rem', wordBreak: 'break-word', whiteSpace: 'normal', padding: '2px 2px', textAlign: 'center', borderRight: '1px solid #f1f5f9' }}><div className="cell-clamp-f4">{(currentPage - 1) * itemsPerPage + index + 1}</div></TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '0.65rem', wordBreak: 'break-word', whiteSpace: 'normal', padding: '2px 2px', textAlign: 'center', borderRight: '1px solid #f1f5f9' }}><div className="cell-clamp-f4">{challan.InwardF4No || 'N/A'}</div></TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '0.65rem', wordBreak: 'break-word', whiteSpace: 'normal', padding: '2px 2px', textAlign: 'center', borderRight: '1px solid #f1f5f9' }}><div className="cell-clamp-f4">{challan.InwardDate || 'N/A'}</div></TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '0.65rem', wordBreak: 'break-word', whiteSpace: 'normal', padding: '2px 2px', textAlign: 'center', borderRight: '1px solid #f1f5f9' }}><div className="cell-clamp-f4">{challan.InwardTime || 'N/A'}</div></TableCell>
@@ -241,6 +265,33 @@ const InwardChallanList = () => {
                       </Table>
                     </TableContainer>
                   </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="InwardList-bottom mt-3">
                     <div className="row text-end">

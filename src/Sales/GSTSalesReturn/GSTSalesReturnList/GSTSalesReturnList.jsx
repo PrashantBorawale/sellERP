@@ -41,7 +41,21 @@ const GSTSalesReturnList    = () => {
     const fetchSalesReturns = async () => {
       try {
         const response = await axios.get("https://sellerp-backend.onrender.com/Sales/Gstsalesretun/");
-        setSalesReturns(response.data);
+        let data = response.data;
+        if (data && data.data && Array.isArray(data.data)) {
+            data = data.data;
+        } else if (!Array.isArray(data)) {
+            data = [];
+        }
+        
+        // Sort highest ID at the top
+        data.sort((a, b) => {
+          const idA = parseInt(a.id, 10) || 0;
+          const idB = parseInt(b.id, 10) || 0;
+          return idB - idA;
+        });
+
+        setSalesReturns(data);
       } catch (error) {
         console.error("Error fetching sales returns:", error);
       } finally {
@@ -50,6 +64,15 @@ const GSTSalesReturnList    = () => {
     };
     fetchSalesReturns();
   }, []);
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(salesReturns.length / itemsPerPage);
+  const currentSalesReturns = salesReturns.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (id) => {
     const url = `https://sellerp-backend.onrender.com/Sales/sales-return-pdf/${id}/`;
@@ -186,10 +209,10 @@ const GSTSalesReturnList    = () => {
                           <tr>
                             <td colSpan="17" className="text-center">Loading...</td>
                           </tr>
-                        ) : salesReturns.length > 0 ? (
-                          salesReturns.map((item, index) => (
-                            <tr key={item.id}>
-                              <td>{index + 1}</td>
+                        ) : currentSalesReturns.length > 0 ? (
+                          currentSalesReturns.map((item, index) => (
+                            <tr key={item.id || index}>
+                              <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                               <td>24-25</td>
                               <td>{item.plant}</td>
                               <td>{item.sales_return_no}</td>
@@ -202,7 +225,7 @@ const GSTSalesReturnList    = () => {
                               <td>
                                 {item.items.reduce((sum, i) => sum + parseFloat(i.grand_total || 0), 0).toFixed(2)}
                               </td>
-                              <td> - </td>
+                              <td>{item.user || item.created_by || localStorage.getItem("username") || "User"}</td>
                               <td>{item.remark}</td>
                               <td>{item.for_e_invoice === "YES" ? "Yes" : "-"}</td>
                               <td> <MdCancel /> </td>
@@ -220,6 +243,33 @@ const GSTSalesReturnList    = () => {
                       </tbody>  
                     </table>
              </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                  Page {currentPage} of {totalPages}
+                </span>
+                <div className="btn-group shadow-sm">
+                  <button
+                    className="btn btn-light border"
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                  >
+                    Prev
+                  </button>
+                  <button
+                    className="btn btn-light border"
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
 
               </div>
             </main>

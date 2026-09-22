@@ -28,7 +28,22 @@ const IssueMaterial = () => {
     try {
       setLoading(true);
       const response = await axios.get(GET_API_URL); // Fetching data from API
-      setMaterialIssues(response.data);
+      
+      let fetchedData = [];
+      if (Array.isArray(response.data)) {
+        fetchedData = response.data;
+      } else if (response.data?.data && Array.isArray(response.data.data)) {
+        fetchedData = response.data.data;
+      }
+      
+      // Sort highest ID at the top
+      fetchedData.sort((a, b) => {
+        const idA = parseInt(a.id || a.pk || 0, 10);
+        const idB = parseInt(b.id || b.pk || 0, 10);
+        return idB - idA;
+      });
+
+      setMaterialIssues(fetchedData);
       setError(null);
     } catch (err) {
       setError("Error while fetching data. Please check the API server.");
@@ -41,6 +56,15 @@ const IssueMaterial = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(materialIssues.length / itemsPerPage);
+  const currentMaterialIssues = materialIssues.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   // --- Action Functions ---
 
@@ -98,10 +122,10 @@ const IssueMaterial = () => {
                 <div className="IssueMaterial-header">
                   <div className="d-flex justify-content-between align-items-center">
                     <h5 className="header-title mb-0">Material Issue List</h5>
-                    <div className="d-flex gap-2">
+                    {/* <div className="d-flex gap-2">
                       <Link className="vndrbtn">Report</Link>
                       <Link type="button" className="vndrbtn" to="/MaterialQuery">M-Issue Query</Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -174,16 +198,16 @@ const IssueMaterial = () => {
                                   {error}
                                 </td>
                               </tr>
-                            ) : materialIssues.length === 0 ? (
+                            ) : currentMaterialIssues.length === 0 ? (
                               <tr>
                                 <td colSpan="13" className="text-center">
                                   No records found.
                                 </td>
                               </tr>
                             ) : (
-                              materialIssues.map((issue, index) => (
+                              currentMaterialIssues.map((issue, index) => (
                                 <tr key={issue.id}>
-                                  <td>{index + 1}</td>
+                                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                   <td>{new Date(issue.MaterialIssueDate).getFullYear()}</td>
                                   <td>{issue.Plant || "VISHWA S.I."}</td>
                                   <td>{issue.ChallanNo}</td>
@@ -225,6 +249,33 @@ const IssueMaterial = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </main>
             </div>

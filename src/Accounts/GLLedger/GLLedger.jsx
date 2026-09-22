@@ -36,6 +36,17 @@ const GLLedger = () => {
     { id: 1, date: "08/05/2026", particular: "Cash Sale", voucherType: "Sales", voucherNo: "S/001", debit: "1500.00", credit: "0.00", balance: "1500.00 Dr" },
     { id: 2, date: "09/05/2026", particular: "Rent Payment", voucherType: "Payment", voucherNo: "P/005", debit: "0.00", credit: "5000.00", balance: "3500.00 Cr" },
   ];
+  
+  const sortedData = [...ledgerData].sort((a, b) => b.id - a.id);
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+  const currentLedgerData = sortedData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleExportExcel = () => {
     if (ledgerData.length === 0) {
@@ -192,19 +203,6 @@ const GLLedger = () => {
           </Button>
           <Button 
             variant="contained" 
-            startIcon={<DownloadIcon />}
-            onClick={handleExportExcel}
-            sx={{ 
-              height: '34px', borderRadius: '8px', textTransform: 'none', fontWeight: 600, 
-              background: 'linear-gradient(to right, #10b981, #059669)', color: 'white',
-              boxShadow: '0 4px 14px 0 rgba(16, 185, 129, 0.39)', transition: 'all 0.2s ease',
-              '&:hover': { background: 'linear-gradient(to right, #059669, #047857)', transform: 'translateY(-1px)' } 
-            }}
-          >
-            Export To Excel
-          </Button>
-          <Button 
-            variant="contained" 
             startIcon={<DescriptionIcon />}
             onClick={handleExportPdf}
             sx={{ 
@@ -235,8 +233,8 @@ const GLLedger = () => {
           </tr>
         </thead>
         <tbody>
-          {ledgerData.length > 0 ? (
-            ledgerData.map((row) => (
+          {currentLedgerData.length > 0 ? (
+            currentLedgerData.map((row) => (
               <tr key={row.id}>
                 <td style={{ color: '#64748b', fontWeight: 500, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{row.date}</td>
                 <td style={{ color: '#334155', fontWeight: 600, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}>{row.particular}</td>
@@ -255,6 +253,34 @@ const GLLedger = () => {
         </tbody>
       </table>
     </div>
+
+    {/* Pagination Controls */}
+    {totalPages > 1 && (
+      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+          Page {currentPage} of {totalPages}
+        </span>
+        <div className="btn-group shadow-sm">
+          <button
+            className="btn btn-light border"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-light border"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    )}
+
   </div>
                 </div>
               </main>

@@ -71,14 +71,27 @@ const WIPStock = () => {
 
       const exactItems = allItems.filter(
         (dataItem) => dataItem.part_no === item.part_no
-      );
+      ).sort((a, b) => {
+        const idA = parseInt(a.id || a.pk || 0, 10);
+        const idB = parseInt(b.id || b.pk || 0, 10);
+        return idB - idA;
+      });
       setItems(exactItems);
+      setCurrentPage(1);
 
       setTotals(res.data.totals || {});
     } catch (error) {
       console.error("Error fetching item details", error);
     }
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const currentItems = items.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewHeatDetails = async (item) => {
     if (!item) return;
@@ -207,8 +220,8 @@ const WIPStock = () => {
                     <h5 className="header-title mb-0">WIP Stock Report</h5>
                     <div className="d-flex gap-2">
                       <button type="button" className="vndrbtn" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center', border: 'none', cursor: 'pointer' }}>Export To Excel</button>
-                      <Link type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>WIP-Under Decaration Stock</Link>
-                      <Link type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>WIP Delewise Stock</Link>
+                      {/* <Link type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>WIP-Under Decaration Stock</Link>
+                      <Link type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>WIP Delewise Stock</Link> */}
                     </div>
                   </div>
                 </div>
@@ -356,11 +369,11 @@ const WIPStock = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {items.length > 0 ? (
+                            {currentItems.length > 0 ? (
                               <>
-                                {items.map((item, index) => (
+                                {currentItems.map((item, index) => (
                                   <tr key={index}>
-                                    <td>{index + 1}</td>
+                                    <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                     <td>{item.part_no}</td>
                                     <td>{item.part_code}</td>
                                     <td>{item.Name_Description}</td>
@@ -409,6 +422,33 @@ const WIPStock = () => {
                           </tbody>
                         </table>
                       </div>
+                      
+                      {/* Pagination Controls */}
+                      {totalPages > 1 && (
+                        <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                          <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                            Page {currentPage} of {totalPages}
+                          </span>
+                          <div className="btn-group shadow-sm">
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                              disabled={currentPage === 1}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Prev
+                            </button>
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                              disabled={currentPage === totalPages}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

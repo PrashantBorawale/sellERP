@@ -43,18 +43,26 @@ const InprocessInspectionList = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get("https://sellerp-backend.onrender.com/Quality/inprocess-inspection-list/");
+        let rawData = [];
         if (res.data && res.data.value && res.data.value.length > 0) {
-          setData([...res.data.value].reverse());
+          rawData = res.data.value;
         } else if (Array.isArray(res.data) && res.data.length > 0) {
-          setData([...res.data].reverse());
+          rawData = res.data;
+        }
+        if (rawData.length > 0) {
+          setData(rawData.sort((a, b) => (parseInt(b.id || 0) - parseInt(a.id || 0))));
         }
       } catch (err) {
         try {
           const fallbackRes = await axios.get("https://sellerp-backend.onrender.com/Production/api/production-entries/");
+          let rawData = [];
           if (fallbackRes.data && fallbackRes.data.value && fallbackRes.data.value.length > 0) {
-            setData([...fallbackRes.data.value].reverse());
+            rawData = fallbackRes.data.value;
           } else if (Array.isArray(fallbackRes.data) && fallbackRes.data.length > 0) {
-            setData([...fallbackRes.data].reverse());
+            rawData = fallbackRes.data;
+          }
+          if (rawData.length > 0) {
+            setData(rawData.sort((a, b) => (parseInt(b.id || 0) - parseInt(a.id || 0))));
           }
         } catch (e) {
           console.error("Error fetching list:", e);
@@ -63,6 +71,14 @@ const InprocessInspectionList = () => {
     };
     fetchData();
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath =
@@ -246,9 +262,9 @@ const InprocessInspectionList = () => {
                       </thead>
 
                       <tbody>
-                        {data.map((item, index) => (
+                        {currentData.map((item, index) => (
                           <tr key={item.id || index}>
-                            <td>{index + 1}</td>
+                            <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                             <td>{item.year || item.Series || "24-25"}</td>
                             <td>{item.qcNo || item.Prod_no || "-"}</td>
                             <td>{item.qcDate || item.date || "-"}</td>
@@ -282,7 +298,7 @@ const InprocessInspectionList = () => {
                             <td>{item.hk || "-"}</td>
                             <td>{item.user || "Anupam"}</td>
                             <td><FaEdit /></td>
-                            <td> <MdDeleteForever /> </td>
+                            <td><MdDeleteForever /></td>
                             <td className="text-center">
                               <FaEye
                                 size={18}
@@ -291,13 +307,44 @@ const InprocessInspectionList = () => {
                                 title="View PDF"
                               />
                             </td>
-                            <td><MdMarkEmailRead /></td>
+                            <td>
+                              <MdMarkEmailRead />
+                            </td>
+
                           </tr>
                         ))}
                       </tbody>
 
                     </table>
                       </div>
+                      
+                      {/* Pagination Controls */}
+                      {totalPages > 1 && (
+                        <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                          <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                            Page {currentPage} of {totalPages}
+                          </span>
+                          <div className="btn-group shadow-sm">
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                              disabled={currentPage === 1}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Prev
+                            </button>
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                              disabled={currentPage === totalPages}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
                     </div>
                   </div>
                 </div>

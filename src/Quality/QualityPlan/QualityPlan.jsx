@@ -47,9 +47,6 @@ const QualityPlan = () => {
                       <h5 className="header-title mb-0"> Quality Control Plan List </h5>
                     </div>
                     <div className="col-md-8 d-flex flex-wrap gap-2 justify-content-md-end mt-3 mt-md-0">
-                      <button type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
-                        New Plan
-                      </button>
                       <button type="button" className="vndrbtn" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center', border: 'none', cursor: 'pointer' }}>
                         Export Report
                       </button>

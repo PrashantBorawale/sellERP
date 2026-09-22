@@ -35,18 +35,7 @@ const ReworkReport = () => { const [sideNavOpen, setSideNavOpen] = useState(fals
                     <div className="row align-items-center">
                       <div className="col-md-4">
                         <h5 className="header-title mb-0">Process Defect - Rewok Report</h5>
-                      </div>
-                      <div className="col-md-8 text-end">
-                        <button type="button" className="vndrbtn me-2" to="/AddQuater">
-                          Process Defect Rework
-                        </button>
-                        <button type="button" className="vndrbtn me-2" to="#/">
-                          Print Format
-                        </button>
-                        <button type="button" className="vndrbtn" to="#/">
-                          Print Format 2
-                        </button>
-                      </div>
+                      </div>                   
                     </div>
                   </div>
   

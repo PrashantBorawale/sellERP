@@ -64,7 +64,7 @@ const SubcontractStock = () => {
   const allChallans = stockData.flatMap((challan) => {
     if (challan.type === "inward") {
       return challan.InwardChallanTable.map((item) => ({
-        id: challan.id || challan._id || parseInt(challan.ChallanNo || 0) || 0,
+        id: parseInt(challan.id || challan.pk || challan.ChallanNo || 0, 10),
         challanType: "inward",
         challanNo: challan.ChallanNo,
         supplier: challan.SupplierName,
@@ -74,7 +74,7 @@ const SubcontractStock = () => {
       }));
     } else if (challan.type === "outward") {
       return challan.items.map((item) => ({
-        id: challan.id || challan._id || parseInt(challan.challan_no || 0) || 0,
+        id: parseInt(challan.id || challan.pk || challan.challan_no || 0, 10),
         challanType: "outward",
         challanNo: challan.challan_no,
         supplier: challan.vendor,

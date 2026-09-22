@@ -82,7 +82,11 @@ const DailyDispatchPlan = () => {
       if (response.ok) {
         const result = await response.json();
         const data = Array.isArray(result) ? result : (result.data || result.results || []);
-        setPlanList(data);
+        if (data.length > 0) {
+          setPlanList(data.sort((a, b) => parseInt(b.id || b.pk || 0) - parseInt(a.id || a.pk || 0)));
+        } else {
+          setPlanList([]);
+        }
       } else {
         throw new Error("Failed to fetch");
       }
@@ -92,7 +96,7 @@ const DailyDispatchPlan = () => {
         if (searchCustName && custName && !row.customer_name.toLowerCase().includes(custName.toLowerCase())) return false;
         return true;
       });
-      setPlanList(filtered);
+      setPlanList(filtered.sort((a, b) => parseInt(b.id || b.pk || 0) - parseInt(a.id || a.pk || 0)));
     } finally {
       setLoadingList(false);
     }
@@ -101,6 +105,14 @@ const DailyDispatchPlan = () => {
   useEffect(() => {
     handleSearch();
   }, [fromDate, toDate]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(planList.length / itemsPerPage);
+  const currentPlanList = planList.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath =
@@ -386,9 +398,9 @@ const DailyDispatchPlan = () => {
                           <button className="vndrbtn border-0 d-flex align-items-center" onClick={handleExportExcel} style={{ height: '34px' }}>
                             Export Excel
                           </button>
-                          <button className="vndrbtn border-0 d-flex align-items-center" style={{ height: '34px' }}>
+                          {/* <button className="vndrbtn border-0 d-flex align-items-center" style={{ height: '34px' }}>
                             Dispatch Plan : Report
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>
@@ -473,14 +485,14 @@ const DailyDispatchPlan = () => {
                             <tr>
                               <td colSpan="6" className="text-center py-4">Loading...</td>
                             </tr>
-                          ) : planList.length === 0 ? (
+                          ) : currentPlanList.length === 0 ? (
                             <tr style={{ height: '200px' }}>
                               <td colSpan="6" className="text-muted align-middle">No records found. Use filters above to search.</td>
                             </tr>
                           ) : (
-                            planList.map((row, index) => (
-                              <tr key={index}>
-                                <td>{index + 1}</td>
+                            currentPlanList.map((row, index) => (
+                              <tr key={row.id || index}>
+                                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td>{row.plan_date || ""}</td>
                                 <td>{row.customer_name || ""}</td>
                                 <td>
@@ -504,6 +516,34 @@ const DailyDispatchPlan = () => {
                         </tbody>
                       </table>
                     </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
                   </div>
                 ) : (
                   <div className="DispatchPlanEntry">

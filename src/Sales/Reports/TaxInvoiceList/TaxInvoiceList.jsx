@@ -97,11 +97,19 @@ const TaxInvoiceList = () => {
   };
 
   const getTotal = (inv) => {
+    let total = 0;
     const assessable = getAssessableValue(inv);
-    const cgstAmt = inv.GSTdetails?.[0] ? parseFloat(inv.GSTdetails[0].cgst_amt || 0) : 0;
-    const sgstAmt = inv.GSTdetails?.[0] ? parseFloat(inv.GSTdetails[0].sgst_amt || 0) : 0;
-    const igstAmt = inv.GSTdetails?.[0] ? parseFloat(inv.GSTdetails[0].igst_amt || 0) : 0;
-    return assessable + cgstAmt + sgstAmt + igstAmt;
+    if (inv.GSTdetails && inv.GSTdetails.length > 0) {
+      const cgstAmt = parseFloat(inv.GSTdetails[0].cgst_amt || 0);
+      const sgstAmt = parseFloat(inv.GSTdetails[0].sgst_amt || 0);
+      const igstAmt = parseFloat(inv.GSTdetails[0].igst_amt || 0);
+      total = assessable + cgstAmt + sgstAmt + igstAmt;
+    }
+
+    if (total === 0 && inv.items && inv.items.length > 0) {
+      total = inv.items.reduce((acc, item) => acc + ((parseFloat(item.inv_qty) || parseFloat(item.qty) || 0) * (parseFloat(item.rate) || 0)), 0);
+    }
+    return total;
   };
 
   const getInvoiceDate = (inv) => {
@@ -136,6 +144,15 @@ const TaxInvoiceList = () => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+  const totalPages = Math.ceil(filteredInvoices.length / itemsPerPage);
+  const currentInvoices = filteredInvoices.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="TaxInvoiceListMaster">
@@ -318,10 +335,10 @@ const TaxInvoiceList = () => {
                           <tr>
                             <td colSpan="15" className="text-center">Loading invoices...</td>
                           </tr>
-                        ) : filteredInvoices.length > 0 ? (
-                          filteredInvoices.map((inv, index) => (
+                        ) : currentInvoices.length > 0 ? (
+                          currentInvoices.map((inv, index) => (
                             <tr key={inv.id || index}>
-                              <td>{index + 1}</td>
+                              <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                               <td>{getFinancialYear(inv)}</td>
                               <td>{inv.plant || inv.items?.[0]?.plant || "SHARP"}</td>
                               <td style={{ fontWeight: "600" }}>{inv.invoice_no || ""}</td>
@@ -334,7 +351,7 @@ const TaxInvoiceList = () => {
                               <td>{getInvoiceQty(inv)}</td>
                               <td>{getAssessableValue(inv).toFixed(2)}</td>
                               <td style={{ fontWeight: "600" }}>{getTotal(inv).toFixed(2)}</td>
-                              <td>{inv.user || inv.created_by || "sandeep"}</td>
+                              <td>{inv.user || inv.created_by || localStorage.getItem("username") || "User"}</td>
                               <td>
                                 <a 
                                   href={`https://sellerp-backend.onrender.com/Sales/invoice-pdf/${inv.id}/`} 
@@ -354,6 +371,33 @@ const TaxInvoiceList = () => {
                         )}
                       </tbody>
                     </table>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2">
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                 </div>

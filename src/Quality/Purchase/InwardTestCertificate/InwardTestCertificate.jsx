@@ -34,17 +34,29 @@ const InwardTestCertificate = () => {
     const fetchPurchasePoSearch = async () => {
       try {
         const response = await axios.get("https://sellerp-backend.onrender.com/Quality/purchase-po-search/");
-        if (response.data && response.data.results) {
-          setData(response.data.results);
-        } else {
-          setData(response.data);
+        let rawData = response.data?.results || response.data || [];
+        if (Array.isArray(rawData)) {
+          rawData = rawData.sort((a, b) => {
+            const idA = parseInt(a.id || a.pk || a.PoNo || 0, 10);
+            const idB = parseInt(b.id || b.pk || b.PoNo || 0, 10);
+            return idB - idA;
+          });
         }
+        setData(rawData);
       } catch (error) {
         console.error("Error fetching Quality/purchase-po-search:", error);
       }
     };
     fetchPurchasePoSearch();
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath =
@@ -116,15 +128,18 @@ const InwardTestCertificate = () => {
   
   
                   {/* Modal */}
+                  {showModal && (
+                    <div className="modal-backdrop fade show" style={{ zIndex: 1040 }} onClick={toggleModal}></div>
+                  )}
                   <div
-                    className={`modal ${showModal ? "show" : ""}`}
-                    style={{ display: showModal ? "block" : "none" }}
+                    className={`modal fade ${showModal ? "show d-flex align-items-center justify-content-center" : ""}`}
+                    style={{ display: showModal ? "flex" : "none", zIndex: 1050 }}
                     tabIndex="-1"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden={!showModal}
                   >
-                    <div className="modal-dialog modal-lg"> {/* Use modal-lg for larger modal */}
-                      <div className="modal-content">
+                    <div className="modal-dialog modal-lg modal-dialog-centered w-100" style={{ maxWidth: "800px" }}> 
+                      <div className="modal-content shadow-lg border-0" style={{ borderRadius: "12px" }}>
                         <div className="modal-header">
                           <h5 className="modal-title" id="exampleModalLabel">
                             Inward Test Certificate Query
@@ -134,7 +149,7 @@ const InwardTestCertificate = () => {
                             className="btn-close"
                             onClick={toggleModal} // Close the modal on button click
                             aria-label="Close"
-                          >X</button>
+                          ></button>
                         </div>
                         <div className="modal-body">
                           {/* Form content */}
@@ -382,8 +397,8 @@ const InwardTestCertificate = () => {
                       </thead>
 
                       <tbody>
-                        {data && data.length > 0 ? (
-                          data.map((item, index) => {
+                        {currentData && currentData.length > 0 ? (
+                          currentData.map((item, index) => {
                             const itemDetail = item.Item_Detail_Enter && item.Item_Detail_Enter.length > 0 ? item.Item_Detail_Enter[0] : {};
 
                             const formattedDate = item.PoDate
@@ -396,7 +411,7 @@ const InwardTestCertificate = () => {
 
                             return (
                               <tr key={item.id || index}>
-                                <td>{index + 1}</td>
+                                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td>{year}</td>
                                 <td>{item.Plant || "-"}</td>
                                 <td>{item.PoNo || "-"}</td>
@@ -431,9 +446,35 @@ const InwardTestCertificate = () => {
                           </tr>
                         )}
                       </tbody>
-
                     </table>
                   </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                 </div>
               </main>

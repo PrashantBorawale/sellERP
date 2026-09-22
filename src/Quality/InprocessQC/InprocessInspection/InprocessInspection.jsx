@@ -45,11 +45,15 @@ const InprocessInspection = () => {
     const fetchProductionEntries = async () => {
       try {
         const response = await axios.get("https://sellerp-backend.onrender.com/Quality/production/qc-entries/");
-        if (response.data && response.data.value) {
-          setData([...response.data.value].reverse());
-        } else if (Array.isArray(response.data)) {
-          setData([...response.data].reverse());
+        let rawData = response.data?.value || response.data || [];
+        if (Array.isArray(rawData)) {
+          rawData = rawData.sort((a, b) => {
+            const idA = parseInt(a.id || a.pk || a.Prod_no || 0, 10);
+            const idB = parseInt(b.id || b.pk || b.Prod_no || 0, 10);
+            return idB - idA;
+          });
         }
+        setData(rawData);
       } catch (error) {
         console.error("Error fetching production-entries:", error);
       }
@@ -325,30 +329,32 @@ const InprocessInspection = () => {
                           )}
                         </tbody>
                       </table>
-                    {data.length > itemsPerPage && (
-                      <nav aria-label="Page navigation" className="mt-3">
-                        <ul className="pagination justify-content-center">
-                          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                            <button className="page-link" onClick={() => paginate(currentPage - 1)} aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </button>
-                          </li>
-                          {[...Array(totalPages)].map((_, i) => (
-                            <li key={i + 1} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
-                              <button className="page-link" onClick={() => paginate(i + 1)}>
-                                {i + 1}
-                              </button>
-                            </li>
-                          ))}
-                          <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                            <button className="page-link" onClick={() => paginate(currentPage + 1)} aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </button>
-                          </li>
-                        </ul>
-                      </nav>
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
                     )}
-
                     <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
                       <div className="record-count fw-bold">
                         Total Record : <span className="badge bg-primary text-white fs-6">{data.length}</span>

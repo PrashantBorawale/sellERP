@@ -50,10 +50,14 @@ const SalesQCList = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get("https://sellerp-backend.onrender.com/Quality/sales-return-qc/");
+        let rawData = [];
         if (res.data && res.data.value && res.data.value.length > 0) {
-          setData(res.data.value);
+          rawData = res.data.value;
         } else if (Array.isArray(res.data) && res.data.length > 0) {
-          setData(res.data);
+          rawData = res.data;
+        }
+        if (rawData.length > 0) {
+          setData(rawData.sort((a, b) => (parseInt(b.id || b.pk || b.qcNo || 0) - parseInt(a.id || a.pk || a.qcNo || 0))));
         }
       } catch (err) {
         console.error("Error fetching sales return QC list:", err);
@@ -61,6 +65,14 @@ const SalesQCList = () => {
     };
     fetchData();
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath =
@@ -126,16 +138,16 @@ const SalesQCList = () => {
                         <h5 className="header-title mb-0"> Sales Return QC List </h5>
                       </div>
                       <div className="col-md-8 text-end d-flex justify-content-end align-items-center gap-3 mt-3 mt-md-0 flex-wrap">
-                        <div className="form-check mb-0">
+                        {/* <div className="form-check mb-0">
                           <input type="checkbox" className="form-check-input" id="WithCompanyHeader" />
                           <label htmlFor="WithCompanyHeader" className="form-check-label fw-bold" style={{ fontSize: "0.85rem", color: "#475569" }}> With Company Header </label>
-                        </div>
+                        </div> */}
                         <button type="button" className="vndrbtn border-0" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
                           Export Excel
                         </button>
-                        <button type="button" className="vndrbtn border-0" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
+                        {/* <button type="button" className="vndrbtn border-0" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
                           GST Sales Return QC-Query
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -220,7 +232,6 @@ const SalesQCList = () => {
                           <th>Rej Qty</th>
                           <th>Rew Qty</th>
                           <th>Reason</th>
-                          <th>Doc</th>
                           <th>User</th>
                           <th>View</th>
                           <th>Edit</th>
@@ -228,9 +239,9 @@ const SalesQCList = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.map((item, index) => (
+                        {currentData.map((item, index) => (
                           <tr key={item.id || index}>
-                            <td>{index + 1}</td>
+                            <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                             <td>{item.year || "24-25"}</td>
                             <td>{item.plant || "SHARP"}</td>
                             <td>{item.qcNo || item.sales_return_no || "SRQC001"}</td>
@@ -244,8 +255,7 @@ const SalesQCList = () => {
                             <td>{item.rejQty ?? 5}</td>
                             <td>{item.rewQty ?? 0}</td>
                             <td>{item.reason || "BURR"}</td>
-                            <td><MdMarkEmailRead /></td>
-                            <td>{item.user || "Anupam"}</td>
+                            <td>{localStorage.getItem("username") || item.user || "Anupam"}</td>
                             <td className="text-center">
                               <FaEye
                                 size={18}
@@ -261,6 +271,33 @@ const SalesQCList = () => {
                       </tbody>
                     </table>
                   </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </main>
             </div>

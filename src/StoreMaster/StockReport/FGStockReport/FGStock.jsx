@@ -155,13 +155,7 @@ const FGStock = () => {
                       >
                         Export To Excel
                       </button>
-                      <Link
-                        to="#/"
-                        className="vndrbtn"
-                        style={{ height: "34px", display: "flex", alignItems: "center" }}
-                      >
-                        FG DataWise Stock
-                      </Link>
+                      
                     </div>
                   </div>
                 </div>

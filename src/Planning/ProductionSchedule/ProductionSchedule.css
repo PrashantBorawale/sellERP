@@ -108,6 +108,15 @@
   margin-bottom: 0;
 }
 
+.ProductionScheduleMaster .edit-table-wrapper .table th,
+.ProductionScheduleMaster .edit-table-wrapper .table td {
+  font-size: 10px !important;
+  padding: 2px 2px !important;
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+
 .ProductionScheduleMaster .table th,
 .ProductionScheduleMaster .table td {
   white-space: normal !important; 
@@ -132,6 +141,15 @@
   color: #334155;
   border-bottom: 1px solid #f1f5f9;
 }
+
+.ProductionScheduleMaster .edit-table-wrapper .table th,
+.ProductionScheduleMaster .edit-table-wrapper .table td {
+  font-size: 11px !important;
+  padding: 4px 4px !important;
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
 
 .ProductionScheduleMaster label {
   font-size: 0.85rem;

@@ -28,17 +28,29 @@ const InwardQCList = () => {
     const fetchInwardQcList = async () => {
       try {
         const response = await axios.get("https://sellerp-backend.onrender.com/Quality/inward-qc-list/");
-        if (response.data && response.data.value) {
-          setData(response.data.value);
-        } else {
-          setData(response.data);
+        let rawData = response.data?.value || response.data || [];
+        if (Array.isArray(rawData)) {
+          rawData = rawData.sort((a, b) => {
+            const idA = parseInt(a.id || a.pk || a.GrnNo || 0, 10);
+            const idB = parseInt(b.id || b.pk || b.GrnNo || 0, 10);
+            return idB - idA;
+          });
         }
+        setData(rawData);
       } catch (error) {
         console.error("Error fetching Quality/inward-qc-list:", error);
       }
     };
     fetchInwardQcList();
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (item) => {
     const viewPath =
@@ -100,7 +112,7 @@ const InwardQCList = () => {
                         <h5 className="header-title mb-0">Inward 57F4 QC List </h5>
                       </div>
                       <div className="col-md-8 text-end">
-                        <button type="button" className="vndrbtn me-2" to="#/">
+                        {/* <button type="button" className="vndrbtn me-2" to="#/">
                           Jobwork QC Query
                         </button>
                         <button
@@ -109,7 +121,7 @@ const InwardQCList = () => {
                           to="/PaddingQCInward"
                         >
                           Padding QC List
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -251,8 +263,8 @@ const InwardQCList = () => {
                       </thead>
 
                       <tbody>
-                        {data && data.length > 0 ? (
-                          data.map((item, index) => {
+                        {currentData && currentData.length > 0 ? (
+                          currentData.map((item, index) => {
                             const inwardChallan = item.InwardChallanTable && item.InwardChallanTable.length > 0 ? item.InwardChallanTable[0] : {};
 
                             const formattedInwardDate = item.InwardDate
@@ -285,7 +297,7 @@ const InwardQCList = () => {
 
                             return (
                               <tr key={item.id || index}>
-                                <td>{index + 1}</td>
+                                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td>{year}</td>
                                 <td>
                                   <span className="ourf4"> Our_F4 </span>
@@ -354,6 +366,34 @@ const InwardQCList = () => {
                       </tbody>
                     </table>
                   </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               </main>
             </div>

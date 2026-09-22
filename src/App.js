@@ -751,7 +751,7 @@ function App() {
         <Route path="RMTOtherGroup" element={<RMTOtherGroup />} />
         <Route path="ShopFloor" element={<ShopFloor />} />
         <Route path="ShopFloorStock" element={<ShopFloorStock />} />
-        <Route path="Report-Store" element={<ReportStore />} />
+        {/* <Route path="Report-Store" element={<ReportStore />} /> */}
         <Route path="Stock-Report" element={<StockReport />} />
         {/* Inward Challan List */}
         <Route path="Inward-challan-list" element={<InwardChallanList />} />

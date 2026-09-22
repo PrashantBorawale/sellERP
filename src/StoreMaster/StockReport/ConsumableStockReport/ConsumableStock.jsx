@@ -22,6 +22,17 @@ const ConsumableStock = () => {
     }
   }, [sideNavOpen]);
 
+  const [rows, setRows] = useState([]);
+  
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(rows.length / itemsPerPage);
+  const currentRows = rows.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   const handleExportExcel = () => {
     // Currently no dynamic data array exists in this component.
     // When API fetching is implemented, map that data here instead.
@@ -45,7 +56,7 @@ const ConsumableStock = () => {
                     <h5 className="header-title mb-0">Consumable Stock Report</h5>
                     <div className="d-flex gap-2">
                       <button type="button" className="vndrbtn" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center', border: 'none', cursor: 'pointer' }}>Export To Excel</button>
-                      <Link type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>CON DataWise Stock</Link>
+                      {/* <Link type="button" className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>CON DataWise Stock</Link> */}
                     </div>
                   </div>
                 </div>
@@ -155,10 +166,57 @@ const ConsumableStock = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {/* Empty as in original */}
+                            {currentRows.length > 0 ? (
+                              currentRows.map((r, index) => (
+                                <tr key={r.id || index}>
+                                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                                  <td>{r.item_no}</td>
+                                  <td>{r.item_desc}</td>
+                                  <td>{r.item_size}</td>
+                                  <td>{r.group_name}</td>
+                                  <td>{r.unit_code}</td>
+                                  <td>{r.po_bal_qty}</td>
+                                  <td>{r.shopfloor}</td>
+                                  <td>{r.stock}</td>
+                                  <td>{r.rate}</td>
+                                  <td>{r.value}</td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan="11" className="text-center py-4 text-muted">No data available</td>
+                              </tr>
+                            )}
                           </tbody>
                         </table>
                       </div>
+                      
+                      {/* Pagination Controls */}
+                      {totalPages > 1 && (
+                        <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                          <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                            Page {currentPage} of {totalPages}
+                          </span>
+                          <div className="btn-group shadow-sm">
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                              disabled={currentPage === 1}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Prev
+                            </button>
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                              disabled={currentPage === totalPages}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

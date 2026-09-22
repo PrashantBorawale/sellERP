@@ -246,22 +246,7 @@ const ProductionReport = () => {
                               Daily Production Report
                             </h5>
                           </div>
-                          <div className="col-md-8 text-end">
-                            <button
-                              type="button"
-                              className={view === "report" ? "vndrbtn active me-2" : "vndrbtn me-2"}
-                              onClick={() => setView("report")}
-                            >
-                              Production Report
-                            </button>
-                            <button
-                              type="button"
-                              className={view === "query" ? "vndrbtn active" : "vndrbtn"}
-                              onClick={() => setView("query")}
-                            >
-                              Production - Query
-                            </button>
-                          </div>
+                          
                         </div>
                       </div>
 

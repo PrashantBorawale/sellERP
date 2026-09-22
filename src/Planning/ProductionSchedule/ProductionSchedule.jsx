@@ -97,6 +97,7 @@ const ProductionSchedule = () => {
   }, []);
 
   const [itemData, setItemData] = useState([]);
+  const [currentEditPage, setCurrentEditPage] = useState(1);
   const [loadingItems, setLoadingItems] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [itemList, setItemList] = useState([]);
@@ -219,7 +220,7 @@ const ProductionSchedule = () => {
         };
       });
 
-      setItemData(mergedItems);
+      setItemData(mergedItems.sort((a, b) => parseInt(b.id || b.pk || 0) - parseInt(a.id || a.pk || 0)));
     } catch (error) {
       console.error("Error fetching/merging data:", error);
     } finally {
@@ -537,13 +538,8 @@ const ProductionSchedule = () => {
                        <div className="d-flex justify-content-between align-items-center">
                           <div className="d-flex align-items-center">
                             <h5 className="header-title mb-0 me-2" style={{color: '#007bff'}}>Edit - Production Schedule</h5>
-                            <span className="fw-bold me-1">- Rev No :</span>
-                            <select className="form-select form-select-sm d-inline-block" style={{width: '70px'}}>
-                              <option>0</option>
-                            </select>
-                            <span className="ms-4 fw-bold" style={{fontSize: '14px', color: '#007bff'}}>Schedule Type : Sales Order</span>
                           </div>
-                          <button className="btn btn-sm btn-outline-secondary" onClick={() => setCurrentView("list")}>Back to List</button>
+                          <button className="vndrbtn border-0" style={{ height: '34px', display: 'flex', alignItems: 'center' }} onClick={() => setCurrentView("list")}>Back to List</button>
                        </div>
                     </div>
 
@@ -629,8 +625,8 @@ const ProductionSchedule = () => {
                     </div>
 
                     {/* Table View */}
-                    <div className="table-responsive edit-table-wrapper">
-                       <table className="table table-bordered table-striped table-sm text-center align-middle">
+                    <div className="table-responsive edit-table-wrapper" style={{ overflowX: 'hidden' }}>
+                       <table className="table table-bordered table-striped table-sm text-center align-middle" style={{ width: '100%' }}>
                           <thead className="ps-table-header">
                              <tr>
                                 <th rowSpan="2">Sr.</th>
@@ -657,9 +653,9 @@ const ProductionSchedule = () => {
                              </tr>
                           </thead>
                           <tbody>
-                             {itemData.length > 0 ? itemData.map((item, idx) => (
+                             {itemData.slice((currentEditPage - 1) * 10, currentEditPage * 10).length > 0 ? itemData.slice((currentEditPage - 1) * 10, currentEditPage * 10).map((item, idx) => (
                                <tr key={idx}>
-                                 <td>{idx + 1}</td>
+                                 <td>{(currentEditPage - 1) * 10 + idx + 1}</td>
                                  <td className="text-start">{item.customer_name}</td>
                                  <td>{item.so_no_date || "-"}</td>
                                  <td>{item.po_no_date || "-"}</td>
@@ -685,11 +681,37 @@ const ProductionSchedule = () => {
                           </tbody>
                        </table>
                     </div>
+                    
+                    {/* Pagination Controls */}
+                    {Math.ceil(itemData.length / 10) > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentEditPage} of {Math.ceil(itemData.length / 10)}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentEditPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentEditPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentEditPage(prev => Math.min(prev + 1, Math.ceil(itemData.length / 10)))}
+                            disabled={currentEditPage === Math.ceil(itemData.length / 10)}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Footer */}
-                    <div className="mt-3 d-flex justify-content-between align-items-center">
-                       <span className="text-primary fw-bold" style={{cursor: 'pointer', fontSize: '14px'}}>View All Item</span>
-                       <button className="btn btn-light btn-sm border shadow-sm"><FaTrash className="me-1" /> Delete Selected</button>
+                    <div className="mt-3 d-flex justify-content-end align-items-center">
+                       <button className="btn btn-danger border-0" style={{ height: '34px', display: 'flex', alignItems: 'center', fontSize: '0.85rem', fontWeight: 600, padding: '0 16px' }}><FaTrash className="me-1" /> Delete Selected</button>
                     </div>
                   </div>
                 )}

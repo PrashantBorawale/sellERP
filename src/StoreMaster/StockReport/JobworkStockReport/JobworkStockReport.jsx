@@ -38,6 +38,15 @@ const JobworkStockReport = () => {
   const [modalData, setModalData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(rows.length / itemsPerPage);
+  const currentRows = rows.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   const toggleSideNav = () => {
     setSideNavOpen((prev) => !prev);
   };
@@ -120,7 +129,14 @@ const JobworkStockReport = () => {
     const isItemAlreadyAdded = rows.some(row => row.item_code === item.item_code);
 
     if (!isItemAlreadyAdded) {
-      setRows(prevRows => [...prevRows, item]);
+      setRows(prevRows => {
+        const newRows = [item, ...prevRows];
+        return newRows.sort((a, b) => {
+          const idA = parseInt(a.id || a.pk || 0, 10);
+          const idB = parseInt(b.id || b.pk || 0, 10);
+          return idB - idA;
+        });
+      });
     } else {
       alert("This item is already in the table.");
     }
@@ -137,7 +153,12 @@ const JobworkStockReport = () => {
       const resp = await axios.get("https://sellerp-backend.onrender.com/Store/jobwork-inward/rm-items/").catch(() => ({ data: { status: false, data: [] } }));
 
       if (resp.data.status && resp.data.data) {
-        setRows(resp.data.data);
+        const sortedData = resp.data.data.sort((a, b) => {
+          const idA = parseInt(a.id || a.pk || 0, 10);
+          const idB = parseInt(b.id || b.pk || 0, 10);
+          return idB - idA;
+        });
+        setRows(sortedData);
       } else {
         alert("Could not fetch all data.");
         setRows([]);
@@ -229,7 +250,7 @@ const JobworkStockReport = () => {
                     <h5 className="header-title mb-0">Jobwork Stock Report</h5>
                     <div className="d-flex gap-2">
                       <button type="button" className="vndrbtn" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center', border: 'none', cursor: 'pointer' }}>Export To Excel</button>
-                      <Link className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>Jobwork DataWise Stock</Link>
+                      {/* <Link className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>Jobwork DataWise Stock</Link> */}
                     </div>
                   </div>
                 </div>
@@ -343,9 +364,9 @@ const JobworkStockReport = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {rows.map((r, index) => (
+                            {currentRows.map((r, index) => (
                               <tr key={r.item_code || index}>
-                                <td>{index + 1}</td>
+                                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td>{r.item_code}</td>
                                 <td>{r.item_no}</td>
                                 <td>{r.description}</td>
@@ -382,7 +403,7 @@ const JobworkStockReport = () => {
                                 
                               </tr>
                             ))}
-                            {rows.length === 0 && !loading && (
+                            {currentRows.length === 0 && !loading && (
                               <tr>
                                 <td colSpan="10" className="text-center py-4 text-muted">
                                   No data to display. Use 'View All' or search for an item.
@@ -397,6 +418,33 @@ const JobworkStockReport = () => {
                           </tbody>
                         </table>
                       </div>
+
+                      {/* Pagination Controls */}
+                      {totalPages > 1 && (
+                        <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                          <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                            Page {currentPage} of {totalPages}
+                          </span>
+                          <div className="btn-group shadow-sm">
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                              disabled={currentPage === 1}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Prev
+                            </button>
+                            <button
+                              className="btn btn-light border"
+                              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                              disabled={currentPage === totalPages}
+                              style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

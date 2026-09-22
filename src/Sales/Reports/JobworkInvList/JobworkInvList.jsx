@@ -52,10 +52,21 @@ const JobworkInvList = () => {
       const response = await fetch("https://sellerp-backend.onrender.com/Sales/gst-jobwork-invoice/");
       if (response.ok) {
         const data = await response.json();
+        let fetchedList = [];
         if (Array.isArray(data) && data.length > 0) {
-          setInvoiceData(data);
+          fetchedList = data;
         } else if (data && Array.isArray(data.value) && data.value.length > 0) {
-          setInvoiceData(data.value);
+          fetchedList = data.value;
+        }
+        
+        // Sort highest ID at the top
+        if (fetchedList.length > 0) {
+          fetchedList.sort((a, b) => {
+            const idA = parseInt(a.id, 10) || 0;
+            const idB = parseInt(b.id, 10) || 0;
+            return idB - idA;
+          });
+          setInvoiceData(fetchedList);
         }
       }
     } catch (error) {
@@ -64,6 +75,15 @@ const JobworkInvList = () => {
       setLoading(false);
     }
   };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(invoiceData.length / itemsPerPage);
+  const currentInvoices = invoiceData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewPdf = (inv) => {
     const targetId = inv?.id || inv?.pk || inv?.invoice_id || inv?.invoice_no || "1";
@@ -333,8 +353,8 @@ const JobworkInvList = () => {
                             <TableRow>
                               <TableCell colSpan={21} sx={{ textAlign: 'center', py: 4, color: '#475569' }}>Loading data...</TableCell>
                             </TableRow>
-                          ) : invoiceData.length > 0 ? (
-                            invoiceData.map((inv, index) => {
+                          ) : currentInvoices.length > 0 ? (
+                            currentInvoices.map((inv, index) => {
                               const firstItem = inv.items && inv.items.length > 0 ? inv.items[0] : null;
                               const itemDesc = firstItem 
                                 ? `${firstItem.item_code} | ${firstItem.description} | Rate : ${firstItem.jobwork_rate} | Qty : ${firstItem.invoice_qty_nos} ${firstItem.rate_type || 'NOS'}` 
@@ -342,7 +362,7 @@ const JobworkInvList = () => {
                                 
                               return (
                                 <TableRow hover key={inv.id || index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                  <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>{index + 1}</TableCell>
+                                  <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>{(currentPage - 1) * itemsPerPage + index + 1}</TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>25-26</TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>{inv.plant}</TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center', fontWeight: 600 }}>{inv.invoice_no}</TableCell>
@@ -355,7 +375,7 @@ const JobworkInvList = () => {
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center', fontWeight: 600 }}>{firstItem?.invoice_qty_nos || 0}</TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'right' }}>{inv.gst_details?.assessable_value || '0.00'}</TableCell>
                                   <TableCell sx={{ color: '#0f172a', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'right', fontWeight: 700 }}>{inv.gst_details?.gr_total || '0.00'}</TableCell>
-                                  <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>prakash</TableCell>
+                                  <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>{inv.user || inv.created_by || localStorage.getItem("username") || "User"}</TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}>True</TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }} className="text-danger"><i className="fas fa-times-circle"></i></TableCell>
                                   <TableCell sx={{ color: '#475569', fontSize: '10px', padding: '5px 3px', whiteSpace: 'normal', wordBreak: 'break-word', textAlign: 'center' }}><span className="text-primary fw-bold" style={{ fontSize: '10px' }}>www</span></TableCell>
@@ -374,6 +394,33 @@ const JobworkInvList = () => {
                         </TableBody>
                       </Table>
                     </TableContainer>
+                    
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2">
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="JobworkInvList-footer d-flex flex-wrap justify-content-between align-items-center gap-2" style={{ backgroundColor: '#f4f4f4', padding: '10px 15px', borderTop: '2px solid #ddd', fontSize: '12px', fontWeight: 'bold', marginTop: '10px' }}>

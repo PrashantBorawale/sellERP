@@ -33,12 +33,35 @@ const Challaninward = () => {
     try{
       const res = await fetch('https://sellerp-backend.onrender.com/Store/InwardChallan/');
       const resData = await res.json();
-      setAllData(resData);
-      setFilteredData(resData)
+      let fetchedList = [];
+      if (Array.isArray(resData)) {
+        fetchedList = resData;
+      } else if (resData.data && Array.isArray(resData.data)) {
+        fetchedList = resData.data;
+      }
+      
+      // Sort highest ID at the top
+      fetchedList.sort((a, b) => {
+        const idA = parseInt(a.id || a.pk || 0, 10);
+        const idB = parseInt(b.id || b.pk || 0, 10);
+        return idB - idA;
+      });
+
+      setAllData(fetchedList);
+      setFilteredData(fetchedList);
     }catch(err){
       console.log(err);
     }
   }
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const currentFilteredData = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
 
   const toggleSideNav = () => {
@@ -343,58 +366,88 @@ const Challaninward = () => {
                           </thead>
 
                           <tbody>
-                            {filteredData.map((item, index) => (
-                              <tr key={item.id}>
-                                <td>{index + 1}</td>
-                                <td>{new Date(item.InwardDate).getFullYear()}</td>
-                                <td>{item.Plant || 'N/A'}</td>
-                                <td>{item.InwardF4No}</td>
-                                <td>{item.InwardDate}</td>
-                                <td>Purchase</td>
-                                <td>{item.ChallanNo}</td>
-                                <td>{item.ChallanDate}</td>
-                                <td>{item.InwardChallanGSTDetails?.[0]?.ItemCode || 'N/A'}</td>
-                                <td>{item.SupplierName || 'N/A'}</td>
-                                <td>{item.InwardF4No}</td>
-                                <td>
-                                  {item.InwardChallanTable?.map((tableItem, idx) => (
-                                    <div key={idx}>
-                                      {tableItem.InQtyNOS} {tableItem.Unit} - {tableItem.ItemDescription}
-                                    </div>
-                                  ))}
-                                </td>
-                                <td>{item.PreparedBy}</td>
-                                <td>
-                                  <Tooltip title="Quality Control">
-                                    <IconButton size="small" sx={{ color: '#0ea5e9', '&:hover': { bgcolor: '#e0f2fe' } }}><FaCheckCircle size={16} /></IconButton>
-                                  </Tooltip>
-                                </td>
-                                <td>
-                                  <Tooltip title="Generate Bill">
-                                    <IconButton size="small" sx={{ color: '#10b981', '&:hover': { bgcolor: '#d1fae5' } }}><FaFileInvoiceDollar size={16} /></IconButton>
-                                  </Tooltip>
-                                </td>
-                                <td>
-                                  <Tooltip title="Send Email">
-                                    <IconButton size="small" sx={{ color: '#6366f1', '&:hover': { bgcolor: '#e0e7ff' } }}><FaEnvelope size={16} /></IconButton>
-                                  </Tooltip>
-                                </td>
-                                <td>
-                                  <Tooltip title="Edit Record">
-                                    <IconButton size="small" sx={{ color: '#f59e0b', '&:hover': { bgcolor: '#fef3c7' } }}><FaEdit size={16} /></IconButton>
-                                  </Tooltip>
-                                </td>
-                                <td>
-                                  <Tooltip title="View Document">
-                                    <IconButton size="small" onClick={() => window.open('https://sellerp-backend.onrender.com/Store/InwardChallan/pdf/' + item.id + '/', '_blank')} sx={{ color: '#64748b', '&:hover': { bgcolor: '#f1f5f9' } }}><FaEye size={16} /></IconButton>
-                                  </Tooltip>
-                                </td>
-                              </tr>
-                            ))}
+                            {currentFilteredData.length === 0 ? (
+                              <tr><td colSpan={18} className="text-center py-4">No data found</td></tr>
+                            ) : (
+                              currentFilteredData.map((item, index) => (
+                                <tr key={item.id || index}>
+                                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                                  <td>{new Date(item.InwardDate).getFullYear()}</td>
+                                  <td>{item.Plant || 'N/A'}</td>
+                                  <td>{item.InwardF4No}</td>
+                                  <td>{item.InwardDate}</td>
+                                  <td>Purchase</td>
+                                  <td>{item.ChallanNo}</td>
+                                  <td>{item.ChallanDate}</td>
+                                  <td>{item.InwardChallanGSTDetails?.[0]?.ItemCode || 'N/A'}</td>
+                                  <td>{item.SupplierName || 'N/A'}</td>
+                                  <td>{item.InwardF4No}</td>
+                                  <td>
+                                    {item.InwardChallanTable?.map((tableItem, idx) => (
+                                      <div key={idx}>
+                                        {tableItem.InQtyNOS} {tableItem.Unit} - {tableItem.ItemDescription}
+                                      </div>
+                                    ))}
+                                  </td>
+                                  <td>{item.PreparedBy}</td>
+                                  <td>
+                                    <Tooltip title="Quality Control">
+                                      <IconButton size="small" sx={{ color: '#0ea5e9', '&:hover': { bgcolor: '#e0f2fe' } }}><FaCheckCircle size={16} /></IconButton>
+                                    </Tooltip>
+                                  </td>
+                                  <td>
+                                    <Tooltip title="Generate Bill">
+                                      <IconButton size="small" sx={{ color: '#10b981', '&:hover': { bgcolor: '#d1fae5' } }}><FaFileInvoiceDollar size={16} /></IconButton>
+                                    </Tooltip>
+                                  </td>
+                                  <td>
+                                    <Tooltip title="Send Email">
+                                      <IconButton size="small" sx={{ color: '#6366f1', '&:hover': { bgcolor: '#e0e7ff' } }}><FaEnvelope size={16} /></IconButton>
+                                    </Tooltip>
+                                  </td>
+                                  <td>
+                                    <Tooltip title="Edit Record">
+                                      <IconButton size="small" sx={{ color: '#f59e0b', '&:hover': { bgcolor: '#fef3c7' } }}><FaEdit size={16} /></IconButton>
+                                    </Tooltip>
+                                  </td>
+                                  <td>
+                                    <Tooltip title="View Document">
+                                      <IconButton size="small" onClick={() => window.open('https://sellerp-backend.onrender.com/Store/InwardChallan/pdf/' + item.id + '/', '_blank')} sx={{ color: '#64748b', '&:hover': { bgcolor: '#f1f5f9' } }}><FaEye size={16} /></IconButton>
+                                    </Tooltip>
+                                  </td>
+                                </tr>
+                              ))
+                            )}
                           </tbody>
                         </table>
                       </div>
-                      
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}  
                       {filteredData.length === 0 && (
                         <div className="text-center mt-4">
                           <p>No data found matching the selected filters.</p>

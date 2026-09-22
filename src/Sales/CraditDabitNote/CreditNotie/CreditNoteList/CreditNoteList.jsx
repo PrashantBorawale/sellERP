@@ -17,7 +17,20 @@ const CreditNoteList = () => {
     const fetchCreditNotes = async () => {
       try {
         const response = await fetch("https://sellerp-backend.onrender.com/Sales/credit-note/");
-        const data = await response.json();
+        let data = await response.json();
+        if (data.data && Array.isArray(data.data)) {
+          data = data.data;
+        } else if (!Array.isArray(data)) {
+          data = [];
+        }
+        
+        // Sort highest ID at the top
+        data.sort((a, b) => {
+          const idA = parseInt(a.id, 10) || 0;
+          const idB = parseInt(b.id, 10) || 0;
+          return idB - idA;
+        });
+        
         setCreditNotes(data);
       } catch (error) {
         console.error("Error fetching credit notes:", error);
@@ -28,7 +41,16 @@ const CreditNoteList = () => {
     fetchCreditNotes();
   }, []);
 
-  const totalAmount = creditNotes.reduce((sum, note) => sum + (parseFloat(note.grand_total) || 0), 0).toFixed(2);
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(creditNotes.length / itemsPerPage);
+  const currentCreditNotes = creditNotes.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const totalAmount = currentCreditNotes.reduce((sum, note) => sum + (parseFloat(note.grand_total) || 0), 0).toFixed(2);
 
   const navigate = useNavigate();  
   
@@ -190,14 +212,14 @@ const CreditNoteList = () => {
                                                 <tr>
                                                     <td colSpan="16" className="text-center py-3">Loading...</td>
                                                 </tr>
-                                            ) : creditNotes.length === 0 ? (
+                                            ) : currentCreditNotes.length === 0 ? (
                                                 <tr>
                                                     <td colSpan="16" className="text-center py-3">No Data Found</td>
                                                 </tr>
                                             ) : (
-                                                creditNotes.map((note, idx) => (
-                                                    <tr key={note.id} style={{ textAlign: "center" }}>
-                                                        <td style={{ padding: "6px" }}>{idx + 1}</td>
+                                                currentCreditNotes.map((note, idx) => (
+                                                    <tr key={note.id || idx} style={{ textAlign: "center" }}>
+                                                        <td style={{ padding: "6px" }}>{(currentPage - 1) * itemsPerPage + idx + 1}</td>
                                                         <td style={{ padding: "6px" }}>{note.series || '-'}</td>
                                                         <td style={{ padding: "6px" }}>{note.plant || '-'}</td>
                                                         <td style={{ padding: "6px" }}>{note.credit_note_no}</td>
@@ -205,7 +227,7 @@ const CreditNoteList = () => {
                                                         <td style={{ padding: "6px" }}>{note.supp_Crdr_no || '-'}</td>
                                                         <td style={{ padding: "6px" }}>{note.party_name}</td>
                                                         <td style={{ padding: "6px" }}>{note.grand_total}</td>
-                                                        <td style={{ padding: "6px" }}>admin</td>
+                                                        <td style={{ padding: "6px" }}>{note.user || note.created_by || localStorage.getItem("username") || "User"}</td>
                                                         <td style={{ padding: "6px" }}>{note.for_e_invoice ? 'Yes' : ''}</td>
                                                         <td style={{ padding: "6px" }}><span className="badge bg-primary px-1">N</span></td>
                                                         <td style={{ padding: "6px" }}><i className="fa fa-info-circle text-info" style={{ cursor: "pointer" }}></i></td>
@@ -225,6 +247,34 @@ const CreditNoteList = () => {
                                         </tbody>
                                  </table>
                      </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                        <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <div className="btn-group shadow-sm">
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Prev
+                          </button>
+                          <button
+                            className="btn btn-light border"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
                                   <div className="d-flex justify-content-between align-items-center mt-3 p-2 bg-light border rounded">
                                         <div className="fw-bold">Total Record : {creditNotes.length < 10 ? `0${creditNotes.length}` : creditNotes.length}</div>
                                         <div className="d-flex align-items-center gap-3">
