@@ -26,6 +26,9 @@ const RecenlyApproveJobworkList = () => {
   const [jobWorkData, setJobWorkData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [poType, setPoType] = useState("All");
   const [loading, setLoading] = useState(true);
 
   // Pagination states
@@ -76,15 +79,44 @@ const RecenlyApproveJobworkList = () => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    const filtered = jobWorkData.filter(item =>
-      (item.PoNo || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (item.Supplier || item.Name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (item.code_no || item.SupplierCode || item.number || "").toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const handleSearch = () => {
+    const filtered = jobWorkData.filter(item => {
+      let match = true;
+      
+      if (searchTerm) {
+        const searchLower = searchTerm.toLowerCase();
+        if (
+          !(item.PoNo || "").toLowerCase().includes(searchLower) &&
+          !(item.Supplier || item.Name || "").toLowerCase().includes(searchLower) &&
+          !(item.code_no || item.SupplierCode || item.number || "").toLowerCase().includes(searchLower)
+        ) {
+          match = false;
+        }
+      }
+
+      if (fromDate) {
+        if (!item.PoDate || new Date(item.PoDate) < new Date(fromDate)) match = false;
+      }
+      
+      if (toDate) {
+        if (!item.PoDate || new Date(item.PoDate) > new Date(toDate)) match = false;
+      }
+
+      if (poType && poType !== "All") {
+        if (!item.PoType || item.PoType.toLowerCase() !== poType.toLowerCase()) match = false;
+      }
+
+      return match;
+    });
+    
     setFilteredData(filtered);
     setPage(1); // Reset to first page on search
-  }, [searchTerm, jobWorkData]);
+  };
+
+  useEffect(() => {
+    handleSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jobWorkData]);
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const currentData = filteredData.slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -216,6 +248,8 @@ const RecenlyApproveJobworkList = () => {
                           <TextField
                             type="date"
                             size="small"
+                            value={fromDate}
+                            onChange={(e) => setFromDate(e.target.value)}
                             InputLabelProps={{ shrink: true }}
                             sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}
                           />
@@ -226,6 +260,8 @@ const RecenlyApproveJobworkList = () => {
                           <TextField
                             type="date"
                             size="small"
+                            value={toDate}
+                            onChange={(e) => setToDate(e.target.value)}
                             InputLabelProps={{ shrink: true }}
                             sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}
                           />
@@ -245,7 +281,7 @@ const RecenlyApproveJobworkList = () => {
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap' }}>PO Type</Typography>
-                          <TextField select size="small" defaultValue="All" sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
+                          <TextField select size="small" value={poType} onChange={(e) => setPoType(e.target.value)} sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '8px', backgroundColor: '#fff' } }}>
                             <MenuItem value="All">All</MenuItem>
                             <MenuItem value="Open">Open</MenuItem>
                             <MenuItem value="Close">Close</MenuItem>
@@ -281,7 +317,7 @@ const RecenlyApproveJobworkList = () => {
                         </Box>
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: 1, minWidth: '120px' }}>
-                          <Button variant="contained" sx={{ width: '100%', borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: '#1976d2', boxShadow: '0 4px 14px 0 rgba(25, 118, 210, 0.39)', '&:hover': { background: '#1565c0', transform: 'translateY(-1px)' } }}>
+                          <Button variant="contained" onClick={handleSearch} sx={{ width: '100%', borderRadius: '8px', textTransform: 'none', fontWeight: 600, background: '#1976d2', boxShadow: '0 4px 14px 0 rgba(25, 118, 210, 0.39)', '&:hover': { background: '#1565c0', transform: 'translateY(-1px)' } }}>
                             Search
                           </Button>
                         </Box>

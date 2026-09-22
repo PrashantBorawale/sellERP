@@ -49,13 +49,39 @@ const RecentApprovalPO = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // Set number of items per page
 
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [supplierName, setSupplierName] = useState("");
+  const [poType, setPoType] = useState("All");
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [fromDate, toDate, supplierName, poType]);
+
+  const filteredOrders = purchaseOrders.filter(order => {
+    let match = true;
+    if (fromDate) {
+      if (!order.PoDate || new Date(order.PoDate) < new Date(fromDate)) match = false;
+    }
+    if (toDate) {
+      if (!order.PoDate || new Date(order.PoDate) > new Date(toDate)) match = false;
+    }
+    if (supplierName) {
+      if (!order.Supplier || !order.Supplier.toLowerCase().includes(supplierName.toLowerCase())) match = false;
+    }
+    if (poType && poType !== "All") {
+      if (!order.Type || order.Type.toLowerCase() !== poType.toLowerCase()) match = false;
+    }
+    return match;
+  });
+
   // Calculate indexes for slicing
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = purchaseOrders.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredOrders.slice(indexOfFirstItem, indexOfLastItem);
 
   // Pagination handlers
-  const totalPages = Math.ceil(purchaseOrders.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -132,25 +158,25 @@ const RecentApprovalPO = () => {
                         {/* From Date */}
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>From:</label>
-                          <input type="date" className="form-control" />
+                          <input type="date" className="form-control" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
                         </div>
 
                         {/* To Date */}
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>To Date:</label>
-                          <input type="date" className="form-control" />
+                          <input type="date" className="form-control" value={toDate} onChange={(e) => setToDate(e.target.value)} />
                         </div>
 
                         {/* Supplier Name */}
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>Supplier Name:</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control" placeholder="Supplier Name" value={supplierName} onChange={(e) => setSupplierName(e.target.value)} />
                         </div>
 
                         {/* PO Type */}
                         <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>PO Type:</label>
-                          <select className="form-select">
+                          <select className="form-select" value={poType} onChange={(e) => setPoType(e.target.value)}>
                             <option value="All">All</option>
                             <option value="Open">Open</option>
                             <option value="Close">Close</option>
@@ -230,27 +256,35 @@ const RecentApprovalPO = () => {
                                 <td>{order.Plant}</td>
                                 <td>{order.PoNo}</td>
                                 <td>{order.PoDate}</td>
-                                <td>{order.Type || order.PoType || "N/A"}</td>
+                                <td>{order.Type}</td>
                                 <td>{order.CodeNo}</td>
                                 <td>{order.Supplier}</td>
-                                <td>{localStorage.getItem("username") || order.User || order.created_by || "N/A"}</td>
+                                <td>{localStorage.getItem("username") || order.User || "N/A"}</td>
                                 <td>
                                   <button
                                     type="button"
                                     onClick={() => handleViewPdf(order)}
                                     className="vndrbtn border-0"
-                                    style={{ fontSize: "12px", padding: "4px 10px" }}
+                                    style={{ fontSize: '12px', padding: '4px 10px' }}
                                   >
                                     View
                                   </button>
                                 </td>
                                 <td>
-                                  <Link to={`/EditPo/${order.id}`}>
-                                    <FaEdit style={{ color: "black", cursor: "pointer", fontSize: "18px" }} />
+                                  <Link
+                                    to={`/new-purchase-order/${order.id}`}
+                                    className="btn"
+                                  >
+                                    <FaEdit />
                                   </Link>
                                 </td>
                                 <td>
-                                  <MdDeleteForever onClick={() => handleDelete(order.id)} style={{ color: "red", cursor: "pointer", fontSize: "20px" }} />
+                                  <Link
+                                    onClick={() => handleDelete(order.id)}
+                                    className="btn"
+                                  >
+                                    <MdDeleteForever />
+                                  </Link>
                                 </td>
                               </tr>
                             ))}
@@ -260,27 +294,33 @@ const RecentApprovalPO = () => {
                     </div>
                   </div>
 
-                  {/* Custom Pagination */}
-                  <div className="d-flex justify-content-between align-items-center mt-3 p-3 bg-white shadow-sm rounded">
-                    <span className="text-muted fw-bold">
-                      Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, purchaseOrders.length)} of {purchaseOrders.length} entries
-                    </span>
-                    <nav>
-                      <ul className="pagination mb-0 gap-2">
-                        <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                          <button className="page-link rounded-circle shadow-sm fw-bold" onClick={handlePrevPage}>
-                            &laquo; Prev
-                          </button>
-                        </li>
-                        
-                        <li className={`page-item ${currentPage === totalPages || totalPages === 0 ? "disabled" : ""}`}>
-                          <button className="page-link rounded-circle shadow-sm fw-bold" onClick={handleNextPage}>
-                            Next &raquo;
-                          </button>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2" style={{ backgroundColor: '#fff' }}>
+                      <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <div className="btn-group shadow-sm">
+                        <button
+                          className="btn btn-light border"
+                          onClick={handlePrevPage}
+                          disabled={currentPage === 1}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Prev
+                        </button>
+                        <button
+                          className="btn btn-light border"
+                          onClick={handleNextPage}
+                          disabled={currentPage === totalPages}
+                          style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
 
                 </div>
               </main>

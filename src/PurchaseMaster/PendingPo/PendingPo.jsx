@@ -286,6 +286,18 @@ const PendingPo = () => {
                     </div>
                   </div>
 
+                  {/* Color Legend */}
+                  <div className="d-flex justify-content-end mb-2 gap-3" style={{ fontSize: '0.85rem' }}>
+                    <div className="d-flex align-items-center gap-1">
+                      <div style={{ width: '16px', height: '16px', backgroundColor: '#e8f5e9', border: '1px solid #c8e6c9', borderRadius: '3px' }}></div>
+                      <span className="text-muted fw-bold">New Today</span>
+                    </div>
+                    <div className="d-flex align-items-center gap-1">
+                      <div style={{ width: '16px', height: '16px', backgroundColor: '#fff3cd', border: '1px solid #ffe69c', borderRadius: '3px' }}></div>
+                      <span className="text-muted fw-bold">Updated/Edited</span>
+                    </div>
+                  </div>
+
                   {/* Data Table Section */}
                   <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
                     <div className="card-body p-0">
@@ -316,8 +328,22 @@ const PendingPo = () => {
                                 </td>
                               </tr>
                             ) : (
-                              paginatedList.map((po) => (
-                                <tr key={po.id}>
+                              paginatedList.map((po) => {
+                                const getRowStyle = (order) => {
+                                  const isEdited = order.is_edited || order.isEdited || (order.updated_at && order.created_at && order.updated_at !== order.created_at);
+                                  const today = new Date().toISOString().split("T")[0];
+                                  const isToday = order.PoDate === today || (order.created_at && order.created_at.startsWith(today)) || (order.createdAt && order.createdAt.startsWith(today));
+                                  
+                                  if (isEdited) {
+                                    return { backgroundColor: '#fff3cd' }; // Highlight updated/edited
+                                  } else if (isToday) {
+                                    return { backgroundColor: '#e8f5e9' }; // Highlight new today
+                                  }
+                                  return {};
+                                };
+
+                                return (
+                                  <tr key={po.id} style={getRowStyle(po)}>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.PoNo}</td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.EnquiryNo}</td>
                                   <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.Type}</td>
@@ -360,8 +386,9 @@ const PendingPo = () => {
                                       <i className="fas fa-times-circle" style={{ fontSize: '1.25rem' }}></i>
                                     </button>
                                   </td>
-                                </tr>
-                              ))
+                                  </tr>
+                                );
+                              })
                             )}
                           </tbody>
                         </table>
