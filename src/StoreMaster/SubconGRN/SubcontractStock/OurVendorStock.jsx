@@ -201,9 +201,9 @@ const OurVendorStock = () => {
 
   return (
     <div className="RMStock">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-12">
+      <div className="container-fluid p-0">
+        <div className="row m-0">
+          <div className="col-md-12 p-0">
             <div className="Main-NavBar">
               <NavBar toggleSideNav={toggleSideNav} />
               <SideNav
@@ -218,23 +218,25 @@ const OurVendorStock = () => {
                         Vendor (Our) Stock Report
                       </h5>
                     </div>
-                    <div className="col-md-9 text-end">
-                      <Link className="vndrbtn">Item Unit Code Setting</Link>
-                      <Link className="vndrbtn">Sub-Con Stock Report</Link>
-                      <Link className="vndrbtn me-2">Export To Excel</Link>
+                    <div className="col-md-9 text-end d-flex gap-2 justify-content-md-end mt-3 mt-md-0">
+                      <Link className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>Item Unit Code Setting</Link>
+                      <Link className="vndrbtn" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>Sub-Con Stock Report</Link>
+                      <Link className="vndrbtn me-2" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>Export To Excel</Link>
                     </div>
                   </div>
                 </div>
 
                 <div className="RMStock-main mt-3">
-                  <div className="container-fluid">
-                    <form
-                      className="row g-3 text-start"
-                      onSubmit={handleSearch}
-                    >
-                      {/* From Date */}
-                      <div className="col-md-2 col-sm-6">
-                        <label className="form-label">From :</label>
+                  <div className="container-fluid p-0">
+                    <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                      <div className="card-body">
+                        <form
+                          className="row g-3 text-start align-items-end"
+                          onSubmit={handleSearch}
+                        >
+                          {/* From Date */}
+                          <div className="col-md-2 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>From :</label>
                         <input
                           type="date"
                           className="form-control"
@@ -245,7 +247,7 @@ const OurVendorStock = () => {
 
                       {/* To Date */}
                       <div className="col-md-2 col-sm-6">
-                        <label className="form-label">TO :</label>
+                        <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>TO :</label>
                         <input
                           type="date"
                           className="form-control"
@@ -256,7 +258,7 @@ const OurVendorStock = () => {
 
                       {/* ✅ COMPLETELY FIXED: Vendor Name dropdown */}
                       <div className="col-md-3 col-sm-6" ref={dropdownRef}>
-                        <label className="form-label">Vendor Name :</label>
+                        <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Vendor Name :</label>
                         <div style={{ position: "relative" }}>
                           <input
                             ref={inputRef}
@@ -373,7 +375,7 @@ const OurVendorStock = () => {
 
                       {/* Item Desc */}
                       <div className="col-md-2 col-sm-6">
-                        <label className="form-label">Item Desc</label>
+                        <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Item Desc</label>
                         <input
                           type="text"
                           className="form-control"
@@ -385,18 +387,21 @@ const OurVendorStock = () => {
                       <div className="col-md-2 col-sm-6 align-self-end mt-1">
                         <button
                           type="submit"
-                          className="vndrbtn"
+                          className="vndrbtn w-100"
                           disabled={loading}
+                          style={{ height: "34px", display: "flex", alignItems: "center", justifyContent: "center" }}
                         >
                           {loading ? "Loading..." : "Challan Wise"}
                         </button>
                       </div>
-                    </form>
+                        </form>
+                      </div>
+                    </div>
                   </div>
 
                   {/* ✅ Table with detailed logging */}
-                  <div className="StoreRMStock">
-                    <div className="container-fluid mt-4 text-start">
+                  <div className="StoreRMStock mt-4">
+                    <div className="container-fluid p-0 text-start">
                       <div className="table-responsive">
                         <table className="table table-bordered">
                           <thead>

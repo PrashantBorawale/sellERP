@@ -475,9 +475,7 @@ const MaterialIssueChallan = () => {
       <Link className="btn btn-primary btn-sm" to="/Work-Order-Material" style={{ background: 'linear-gradient(to right, #3b82f6, #4f46e5)', border: 'none' }}>
         WorkOrder Material Issue Report
       </Link>
-      <Link className="btn btn-primary btn-sm" to="/Material-Issue" style={{ background: 'linear-gradient(to right, #3b82f6, #4f46e5)', border: 'none' }}>
-        Material Issue WorkOrder Only
-      </Link>
+      
     </div>
   </div>
   <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>

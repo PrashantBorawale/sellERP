@@ -13,6 +13,8 @@ const FGStock = () => {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
   const [filters, setFilters] = useState({
     location: "VISHWA S.I.",
     store: "Main Store",
@@ -119,6 +121,15 @@ const FGStock = () => {
 
     XLSX.writeFile(workbook, "FG_Stock_Report.xlsx");
   };
+
+  const sortedRows = [...rows].sort((a, b) => {
+    const idA = a?.id || a?._id || parseInt(a?.item_no || 0) || 0;
+    const idB = b?.id || b?._id || parseInt(b?.item_no || 0) || 0;
+    return idB - idA;
+  });
+
+  const totalPages = Math.ceil(sortedRows.length / itemsPerPage);
+  const currentRows = sortedRows.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="FGStock">
@@ -261,15 +272,15 @@ const FGStock = () => {
                                   </div>
                                 </td>
                               </tr>
-                            ) : rows && rows.length > 0 ? (
-                              rows.map((item, index) => {
+                            ) : currentRows && currentRows.length > 0 ? (
+                              currentRows.map((item, index) => {
                                 const stockQty = getTotalStock(item);
                                 const rateVal = parseFloat(item?.rate || 0);
                                 const valueVal = parseFloat(item?.amount || (stockQty * rateVal).toFixed(2));
 
                                 return (
                                   <tr key={item?.id || item?.item_code || index}>
-                                    <td>{index + 1}</td>
+                                    <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                     <td>{item?.item_no || item?.id || "-"}</td>
                                     <td>{item?.item_code || "-"}</td>
                                     <td>{item?.description || "-"}</td>
@@ -291,6 +302,31 @@ const FGStock = () => {
                             )}
                           </tbody>
                         </table>
+                        {totalPages > 1 && (
+                          <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2">
+                            <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                              Page {currentPage} of {totalPages}
+                            </span>
+                            <div className="btn-group shadow-sm">
+                              <button
+                                className="btn btn-light border"
+                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                                style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                              >
+                                Prev
+                              </button>
+                              <button
+                                className="btn btn-light border"
+                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                                style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

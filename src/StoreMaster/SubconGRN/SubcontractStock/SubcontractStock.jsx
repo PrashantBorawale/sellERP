@@ -57,10 +57,14 @@ const SubcontractStock = () => {
     fetchStock(query);
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   // ✅ Merge inward + outward challans
   const allChallans = stockData.flatMap((challan) => {
     if (challan.type === "inward") {
       return challan.InwardChallanTable.map((item) => ({
+        id: challan.id || challan._id || parseInt(challan.ChallanNo || 0) || 0,
         challanType: "inward",
         challanNo: challan.ChallanNo,
         supplier: challan.SupplierName,
@@ -70,6 +74,7 @@ const SubcontractStock = () => {
       }));
     } else if (challan.type === "outward") {
       return challan.items.map((item) => ({
+        id: challan.id || challan._id || parseInt(challan.challan_no || 0) || 0,
         challanType: "outward",
         challanNo: challan.challan_no,
         supplier: challan.vendor,
@@ -79,7 +84,7 @@ const SubcontractStock = () => {
       }));
     }
     return [];
-  });
+  }).sort((a, b) => b.id - a.id);
 
   // ✅ Supplier list (unique)
   const supplierList = [...new Set(allChallans.map((c) => c.supplier))];
@@ -88,6 +93,13 @@ const SubcontractStock = () => {
   const filteredChallans = selectedSupplier
     ? allChallans.filter((c) => c.supplier === selectedSupplier)
     : allChallans;
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredChallans.length / itemsPerPage);
+  const currentChallans = filteredChallans.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleExportExcel = () => {
     if (filteredChallans.length === 0) {
@@ -235,10 +247,10 @@ const SubcontractStock = () => {
                               </tr>
                             </thead>
                             <tbody>
-                              {filteredChallans.length > 0 ? (
-                                filteredChallans.map((row, index) => (
+                              {currentChallans.length > 0 ? (
+                                currentChallans.map((row, index) => (
                                   <tr key={index}>
-                                    <td>{index + 1}</td>
+                                    <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                     <td>{row.challanType}</td>
                                     <td>{row.challanNo}</td>
                                     <td>{row.itemCode}</td>
@@ -277,6 +289,31 @@ const SubcontractStock = () => {
                               )}
                             </tbody>
                           </table>
+                        )}
+                        {totalPages > 1 && (
+                          <div className="d-flex justify-content-end align-items-center mt-3 mb-2 px-2">
+                            <span className="me-3" style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>
+                              Page {currentPage} of {totalPages}
+                            </span>
+                            <div className="btn-group shadow-sm">
+                              <button
+                                className="btn btn-light border"
+                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                                style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                              >
+                                Prev
+                              </button>
+                              <button
+                                className="btn btn-light border"
+                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                                style={{ padding: "4px 12px", fontSize: "0.85rem", fontWeight: 600 }}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>

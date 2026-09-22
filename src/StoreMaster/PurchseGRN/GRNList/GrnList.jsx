@@ -154,112 +154,118 @@ const GrnList = () => {
                   {/* Header Section */}
                   <div className="erp-header mb-4">
                     <div className="row align-items-center">
-                      <div className="col-md-4 d-flex justify-content-start align-items-center">
-                        <Typography variant="h4" sx={{ fontWeight: 800, background: 'linear-gradient(to right, #2563eb, #4f46e5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.025em', m: 0 }}>
+                      <div className="col-md-3">
+                        <h5 className="header-title text-start">
                           Purchase GRN List
-                        </Typography>
+                        </h5>
                       </div>
-                      <div className="col-md-8 d-flex justify-content-end gap-2 flex-wrap">
+                      <div className="col-md-9 d-flex justify-content-end gap-2 flex-wrap">
                         <Link to={"/Purchase-Grn"} style={{ textDecoration: 'none' }}>
-                          <button className="vndrbtn bg-primary border-primary"><AddIcon className="me-1" /> New Purchase GRN</button>
+                          <button className="vndrbtn bg-primary border-primary text-white" style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
+                            <AddIcon className="me-1" /> New Purchase GRN
+                          </button>
                         </Link>
-                        <button className="vndrbtn bg-success border-success" onClick={handleExportExcel}><DownloadIcon className="me-1" /> Export To Excel</button>
+                        <button className="vndrbtn bg-success border-success text-white me-2" onClick={handleExportExcel} style={{ height: '34px', display: 'flex', alignItems: 'center' }}>
+                          <DownloadIcon className="me-1" /> Export To Excel
+                        </button>
                       </div>
                     </div>
                   </div>
 
                   {/* Filter Section */}
                   <div className="centerMain mt-4">
-                    <form>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, alignItems: 'flex-end', mb: 4, width: '100%' }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 120px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>From Date</Typography>
-                          <TextField
-                            type="date"
-                            size="small"
-                            value={fromDate}
-                            onChange={(e) => setFromDate(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                            InputLabelProps={{ shrink: true }}
-                          />
-                        </Box>
+                    <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
+                      <div className="card-body">
+                        <form className="row g-3 text-start align-items-end">
+                          
+                          <div className="col-md-2 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>From Date</label>
+                            <input
+                              type="date"
+                              className="form-control"
+                              value={fromDate}
+                              onChange={(e) => setFromDate(e.target.value)}
+                            />
+                          </div>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 120px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>To Date</Typography>
-                          <TextField
-                            type="date"
-                            size="small"
-                            value={toDate}
-                            onChange={(e) => setToDate(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                            InputLabelProps={{ shrink: true }}
-                          />
-                        </Box>
+                          <div className="col-md-2 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>To Date</label>
+                            <input
+                              type="date"
+                              className="form-control"
+                              value={toDate}
+                              onChange={(e) => setToDate(e.target.value)}
+                            />
+                          </div>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 110px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>Plant</Typography>
-                          <TextField
-                            select
-                            size="small"
-                            value={plant}
-                            onChange={(e) => setPlant(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' } }}
-                          >
-                            <MenuItem value="VISHWA S.I." sx={{ fontSize: '0.75rem' }}>VISHWA S.I.</MenuItem>
-                          </TextField>
-                        </Box>
+                          <div className="col-md-2 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Plant</label>
+                            <select
+                              className="form-select"
+                              value={plant}
+                              onChange={(e) => setPlant(e.target.value)}
+                            >
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
+                            </select>
+                          </div>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 130px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>Supplier Name</Typography>
-                          <TextField
-                            size="small"
-                            placeholder="Supplier Name"
-                            value={supplierName}
-                            onChange={(e) => setSupplierName(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                          />
-                        </Box>
+                          <div className="col-md-2 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Supplier Name</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Supplier Name"
+                              value={supplierName}
+                              onChange={(e) => setSupplierName(e.target.value)}
+                            />
+                          </div>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 130px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>Item Name</Typography>
-                          <TextField
-                            size="small"
-                            placeholder="Item Name"
-                            value={itemName}
-                            onChange={(e) => setItemName(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                          />
-                        </Box>
+                          <div className="col-md-2 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Item Name</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Item Name"
+                              value={itemName}
+                              onChange={(e) => setItemName(e.target.value)}
+                            />
+                          </div>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 110px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>GRN No.</Typography>
-                          <TextField
-                            size="small"
-                            placeholder="GRN No."
-                            value={grnNo}
-                            onChange={(e) => setGrnNo(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                          />
-                        </Box>
+                          <div className="col-md-1 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>GRN No.</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="GRN No."
+                              value={grnNo}
+                              onChange={(e) => setGrnNo(e.target.value)}
+                            />
+                          </div>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 110px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>PO No.</Typography>
-                          <TextField
-                            size="small"
-                            placeholder="PO No."
-                            value={poNo}
-                            onChange={(e) => setPoNo(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                          />
-                        </Box>
+                          <div className="col-md-1 col-sm-6">
+                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>PO No.</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="PO No."
+                              value={poNo}
+                              onChange={(e) => setPoNo(e.target.value)}
+                            />
+                          </div>
 
-                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.2 }}>
-                          <button type="button" className="vndrbtn bg-primary border-primary" style={{ padding: '4px 16px', height: '32px' }}>
-                            <FaSearch className="me-1" /> Search
-                          </button>
-                        </Box>
-                      </Box>
-                    </form>
+                          <div className="col-md-1 col-sm-6 align-self-end mt-1">
+                            <button
+                              type="button"
+                              className="vndrbtn w-100 bg-primary border-primary text-white"
+                              style={{ height: "34px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                            >
+                              <FaSearch className="me-1" /> Search
+                            </button>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Table Section */}

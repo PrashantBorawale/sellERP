@@ -115,15 +115,8 @@ const JobworkInwardChallanList = () => {
                                                 Jobwork List
                                             </h5>
                                         </div>
-                                        <div className="col-md-4 text-end">
-                                            <div className="row justify-content-end">
-                                                <label>QC PEnding:4 , Partial : 1</label>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4 text-end">
-                                            <button className="btn btn-primary me-2" style={{ fontSize: "0.85rem", padding: "6px 12px" }}>GRN : Report</button>
-                                            <button className="btn btn-primary" style={{ fontSize: "0.85rem", padding: "6px 12px" }}>57F4-Inward - Query</button>
-                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
 
