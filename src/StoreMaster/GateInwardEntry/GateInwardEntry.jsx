@@ -36,6 +36,7 @@ const GateInwardEntry = () => {
   const itemsPerPage = 10;
 
   const [gateInwardData, setGateInwardData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [grnDataMap, setGrnDataMap] = useState({});
 
   // Filter States
@@ -43,9 +44,7 @@ const GateInwardEntry = () => {
   const [toDate, setToDate] = useState("");
   const [plant, setPlant] = useState("VISHWA S.I.");
   const [type, setType] = useState("");
-  const [status, setStatus] = useState("");
   const [supplierName, setSupplierName] = useState("");
-  const [itemName, setItemName] = useState("");
   const [gateEntryNo, setGateEntryNo] = useState("");
 
   useEffect(() => {
@@ -55,7 +54,9 @@ const GateInwardEntry = () => {
 
   const fetchGateInward = async () => {
     const data = await getgateInward();
-    setGateInwardData(data.sort((a, b) => b.id - a.id));
+    const sorted = data.sort((a, b) => b.id - a.id);
+    setGateInwardData(sorted);
+    setFilteredData(sorted);
   };
 
   const fetchGrnData = async () => {
@@ -156,6 +157,29 @@ const GateInwardEntry = () => {
     }
   };
 
+  const handleSearchClick = () => {
+    let filtered = gateInwardData;
+
+    if (fromDate) {
+      filtered = filtered.filter(item => item.GE_Date && item.GE_Date >= fromDate);
+    }
+    if (toDate) {
+      filtered = filtered.filter(item => item.GE_Date && item.GE_Date <= toDate);
+    }
+    if (type) {
+      filtered = filtered.filter(item => item.Type && item.Type === type);
+    }
+    if (supplierName) {
+      filtered = filtered.filter(item => item.Supp_Cust && item.Supp_Cust.toLowerCase().includes(supplierName.toLowerCase()));
+    }
+    if (gateEntryNo) {
+      filtered = filtered.filter(item => item.GE_No && item.GE_No.toString().toLowerCase().includes(gateEntryNo.toLowerCase()));
+    }
+
+    setFilteredData(filtered);
+    setCurrentPage(1);
+  };
+
   return (
     <div className="NewStoreGateInward1">
       <ToastContainer position="top-right" autoClose={3000} />
@@ -253,20 +277,6 @@ const GateInwardEntry = () => {
                           </TextField>
                         </Box>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 120px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>Status</Typography>
-                          <TextField
-                            select
-                            size="small"
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%', display: 'flex', alignItems: 'center' } }}
-                          >
-                            <MenuItem value="" sx={{ fontSize: '0.75rem' }}>Select Status</MenuItem>
-                            <MenuItem value="Pending" sx={{ fontSize: '0.75rem' }}>Pending</MenuItem>
-                          </TextField>
-                        </Box>
-
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 150px', minWidth: 0 }}>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>Supplier Name</Typography>
                           <TextField
@@ -274,17 +284,6 @@ const GateInwardEntry = () => {
                             placeholder="Supplier Name"
                             value={supplierName}
                             onChange={(e) => setSupplierName(e.target.value)}
-                            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
-                          />
-                        </Box>
-
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5, flex: '1 1 150px', minWidth: 0 }}>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', whiteSpace: 'nowrap', fontSize: '0.7rem', textAlign: 'left', width: '100%' }}>Item Name</Typography>
-                          <TextField
-                            size="small"
-                            placeholder="Item Name"
-                            value={itemName}
-                            onChange={(e) => setItemName(e.target.value)}
                             sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderRadius: '6px', backgroundColor: '#fff', fontSize: '0.75rem', height: '32px' }, '& .MuiOutlinedInput-input': { padding: '0 8px', height: '100%' } }}
                           />
                         </Box>
@@ -301,7 +300,7 @@ const GateInwardEntry = () => {
                         </Box>
 
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.2 }}>
-                          <button type="button" className="vndrbtn bg-primary border-primary" style={{ padding: '4px 16px', height: '32px' }}>
+                          <button type="button" className="vndrbtn bg-primary border-primary" style={{ padding: '4px 16px', height: '32px' }} onClick={handleSearchClick}>
                             <FaSearch className="me-1" /> Search
                           </button>
                         </Box>
@@ -329,12 +328,12 @@ const GateInwardEntry = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {gateInwardData.length === 0 ? (
+                          {filteredData.length === 0 ? (
                             <tr>
                               <td colSpan={16} className="text-center py-5 text-muted fw-bold">No Data Found !!</td>
                             </tr>
                           ) : (
-                            gateInwardData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item, index) => (
+                            filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item, index) => (
                               <tr key={item.id}>
                                 <td style={{ color: '#64748b', fontWeight: 600, fontSize: '0.75rem', padding: '4px 8px', textAlign: 'center' }}>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td style={{ color: '#64748b', fontSize: '0.75rem', padding: '4px 8px', textAlign: 'left' }}><div className="cell-clamp">{new Date(item.GE_Date).getFullYear()}</div></td>
@@ -379,10 +378,10 @@ const GateInwardEntry = () => {
                   </div>
 
                   {/* Pagination Section */}
-                  {gateInwardData.length > 0 && (
+                  {filteredData.length > 0 && (
                     <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
                       <Pagination 
-                        count={Math.ceil(gateInwardData.length / itemsPerPage)} 
+                        count={Math.ceil(filteredData.length / itemsPerPage)} 
                         page={currentPage} 
                         onChange={(e, value) => setCurrentPage(value)} 
                         color="primary" 
@@ -393,7 +392,7 @@ const GateInwardEntry = () => {
                   
                   <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
                     <div className="record-count fw-bold" style={{ marginLeft: "15px" }}>
-                      Total Record : <span className="badge bg-primary text-white fs-6" style={{ padding: "0.35em 0.65em" }}>{gateInwardData.length}</span>
+                      Total Record : <span className="badge bg-primary text-white fs-6" style={{ padding: "0.35em 0.65em" }}>{filteredData.length}</span>
                     </div>
                   </div>
 

@@ -302,7 +302,7 @@ const PendingPo = () => {
                   <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
                     <div className="card-body p-0">
                       <div className="table-responsive" style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                        <table className="table table-bordered table-striped table-hover align-middle mb-0">
+                        <table className="table table-bordered table-hover align-middle mb-0">
                           <thead className="table-primary sticky-top" style={{ zIndex: 1 }}>
                             <tr>
                               <th style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>PO NO.</th>
@@ -329,36 +329,29 @@ const PendingPo = () => {
                               </tr>
                             ) : (
                               paginatedList.map((po) => {
-                                const getRowStyle = (order) => {
-                                  const isEdited = order.is_edited || order.isEdited || (order.updated_at && order.created_at && order.updated_at !== order.created_at);
-                                  const today = new Date().toISOString().split("T")[0];
-                                  const isToday = order.PoDate === today || (order.created_at && order.created_at.startsWith(today)) || (order.createdAt && order.createdAt.startsWith(today));
-                                  
-                                  if (isEdited) {
-                                    return { backgroundColor: '#fff3cd' }; // Highlight updated/edited
-                                  } else if (isToday) {
-                                    return { backgroundColor: '#e8f5e9' }; // Highlight new today
-                                  }
-                                  return {};
-                                };
+                                const cellStyle = (extra) => ({
+                                  whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px", fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center',
+                                  backgroundColor: '#fff3cd',
+                                  ...extra
+                                });
 
                                 return (
-                                  <tr key={po.id} style={getRowStyle(po)}>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.PoNo}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.EnquiryNo}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.Type}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.Plant}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.Series}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.Supplier || "—"}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.DeliveryDate}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.PoDate}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>{po.created_by_username}</td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                  <tr key={po.id}>
+                                  <td style={cellStyle()}>{po.PoNo}</td>
+                                  <td style={cellStyle()}>{po.EnquiryNo}</td>
+                                  <td style={cellStyle()}>{po.Type}</td>
+                                  <td style={cellStyle()}>{po.Plant}</td>
+                                  <td style={cellStyle()}>{po.Series}</td>
+                                  <td style={cellStyle()}>{po.Supplier || "—"}</td>
+                                  <td style={cellStyle()}>{po.DeliveryDate}</td>
+                                  <td style={cellStyle()}>{po.PoDate}</td>
+                                  <td style={cellStyle()}>{po.created_by_username}</td>
+                                  <td style={cellStyle()}>
                                     {(po.item_details || [])
                                       .map((it) => `${it.Item} – ${it.ItemDescription}`)
                                       .join(", ")}
                                   </td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                  <td style={cellStyle()}>
                                     <button
                                       type="button"
                                       className="btn btn-sm btn-outline-info border-0"
@@ -368,7 +361,7 @@ const PendingPo = () => {
                                       <i className="fas fa-eye" style={{ fontSize: '1.25rem' }}></i>
                                     </button>
                                   </td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                  <td style={cellStyle()}>
                                     <button 
                                       className="btn btn-sm btn-outline-success border-0" 
                                       title="Approve PO" 
@@ -377,7 +370,7 @@ const PendingPo = () => {
                                       <i className="fas fa-check-circle" style={{ fontSize: '1.25rem' }}></i>
                                     </button>
                                   </td>
-                                  <td style={{ whiteSpace: "normal", wordWrap: "break-word", minWidth: "80px", maxWidth: "150px",  fontSize: '0.75rem', padding: '12px 16px', textAlign: 'center' }}>
+                                  <td style={cellStyle()}>
                                     <button 
                                       className="btn btn-sm btn-outline-danger border-0" 
                                       title="Reject PO" 

@@ -115,3 +115,13 @@
   max-width: 150px; min-width: 80px; /* Provides a limit to force wrapping */
 }
 
+/* Force full row highlight overriding Bootstrap striped backgrounds */
+tr.highlight-newest td {
+  background-color: #e8f5e9 !important;
+  box-shadow: none !important;
+}
+
+tr.highlight-edited td {
+  background-color: #fff3cd !important;
+  box-shadow: none !important;
+}

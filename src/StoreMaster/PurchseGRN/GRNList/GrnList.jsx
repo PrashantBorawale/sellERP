@@ -33,6 +33,7 @@ const GrnList = () => {
   }, [sideNavOpen]);
 
   const [grnData, setGrnData] = useState([]);
+  const [filteredGrnData, setFilteredGrnData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -41,8 +42,6 @@ const GrnList = () => {
   const [toDate, setToDate] = useState("");
   const [plant, setPlant] = useState("VISHWA S.I.");
   const [supplierName, setSupplierName] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [mainGroup, setMainGroup] = useState("");
   const [grnNo, setGrnNo] = useState("");
   const [poNo, setPoNo] = useState("");
 
@@ -54,7 +53,9 @@ const GrnList = () => {
     try {
       const data = await getGrnDetails();
       if (Array.isArray(data)) {
-        setGrnData(data.sort((a, b) => b.id - a.id));
+        const sorted = data.sort((a, b) => b.id - a.id);
+        setGrnData(sorted);
+        setFilteredGrnData(sorted);
       }
     } catch (err) {
       console.error("Failed to load GRN data:", err);
@@ -132,10 +133,33 @@ const GrnList = () => {
     XLSX.writeFile(workbook, "Purchase_GRN_List.xlsx");
   };
 
+  const handleSearchClick = () => {
+    let filtered = grnData;
+
+    if (fromDate) {
+      filtered = filtered.filter(item => item.GrnDate && item.GrnDate >= fromDate);
+    }
+    if (toDate) {
+      filtered = filtered.filter(item => item.GrnDate && item.GrnDate <= toDate);
+    }
+    if (supplierName) {
+      filtered = filtered.filter(item => item.SelectSupplier && item.SelectSupplier.toLowerCase().includes(supplierName.toLowerCase()));
+    }
+    if (grnNo) {
+      filtered = filtered.filter(item => item.GrnNo && item.GrnNo.toLowerCase().includes(grnNo.toLowerCase()));
+    }
+    if (poNo) {
+      filtered = filtered.filter(item => item.SelectPO && item.SelectPO.toLowerCase().includes(poNo.toLowerCase()));
+    }
+
+    setFilteredGrnData(filtered);
+    setCurrentPage(1);
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = grnData.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(grnData.length / itemsPerPage);
+  const currentItems = filteredGrnData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredGrnData.length / itemsPerPage);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
@@ -221,17 +245,6 @@ const GrnList = () => {
                           </div>
 
                           <div className="col-md-2 col-sm-6">
-                            <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>Item Name</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Item Name"
-                              value={itemName}
-                              onChange={(e) => setItemName(e.target.value)}
-                            />
-                          </div>
-
-                          <div className="col-md-1 col-sm-6">
                             <label className="form-label mb-1" style={{ fontSize: '0.85rem' }}>GRN No.</label>
                             <input
                               type="text"
@@ -258,6 +271,7 @@ const GrnList = () => {
                               type="button"
                               className="vndrbtn w-100 bg-primary border-primary text-white"
                               style={{ height: "34px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                              onClick={handleSearchClick}
                             >
                               <FaSearch className="me-1" /> Search
                             </button>

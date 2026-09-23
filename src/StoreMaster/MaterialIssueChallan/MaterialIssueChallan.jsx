@@ -471,12 +471,6 @@ const MaterialIssueChallan = () => {
     <h5 className="header-title text-start mb-0" style={{ fontWeight: 800, fontSize: '1.8rem', background: 'linear-gradient(90deg, #2563eb, #4f46e5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
       New Material Issue
     </h5>
-    <div className="d-flex gap-2">
-      <Link className="btn btn-primary btn-sm" to="/Work-Order-Material" style={{ background: 'linear-gradient(to right, #3b82f6, #4f46e5)', border: 'none' }}>
-        WorkOrder Material Issue Report
-      </Link>
-      
-    </div>
   </div>
   <div className="card shadow-sm border-0 mb-4" style={{ borderRadius: '12px' }}>
     <div className="card-body">

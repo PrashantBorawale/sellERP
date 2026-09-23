@@ -9,7 +9,15 @@ import { Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHe
 const InwardChallanList = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [inwardChallanList, setInwardChallanList] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Filter States
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [series, setSeries] = useState("");
+  const [supplierName, setSupplierName] = useState("");
+  const [itemCodeNo, setItemCodeNo] = useState("");
 
   const toggleSideNav = () => {
     setSideNavOpen((prevState) => !prevState);
@@ -37,6 +45,7 @@ const InwardChallanList = () => {
 
       console.log('Fetched data:', fetchedList);
       setInwardChallanList(fetchedList);
+      setFilteredData(fetchedList);
     } catch (error) {
       console.error('Error fetching inward challan list:', error);
     } finally {
@@ -44,11 +53,42 @@ const InwardChallanList = () => {
     }
   };
 
+  const handleSearchClick = () => {
+    let filtered = inwardChallanList;
+
+    if (fromDate) {
+      filtered = filtered.filter(item => item.InwardDate && item.InwardDate >= fromDate);
+    }
+    if (toDate) {
+      filtered = filtered.filter(item => item.InwardDate && item.InwardDate <= toDate);
+    }
+    if (series) {
+      filtered = filtered.filter(item => item.Series && item.Series.toLowerCase().includes(series.toLowerCase()));
+    }
+    if (supplierName) {
+      filtered = filtered.filter(item => item.SupplierName && item.SupplierName.toLowerCase().includes(supplierName.toLowerCase()));
+    }
+    if (itemCodeNo) {
+      filtered = filtered.filter(item => {
+        if (item.InwardChallanTable && Array.isArray(item.InwardChallanTable)) {
+          return item.InwardChallanTable.some(row => 
+            (row.ItemCodeNo && row.ItemCodeNo.toLowerCase().includes(itemCodeNo.toLowerCase())) ||
+            (row.ItemDescription && row.ItemDescription.toLowerCase().includes(itemCodeNo.toLowerCase()))
+          );
+        }
+        return false;
+      });
+    }
+
+    setFilteredData(filtered);
+    setCurrentPage(1);
+  };
+
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(inwardChallanList.length / itemsPerPage);
-  const currentInwardChallanList = inwardChallanList.slice(
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const currentInwardChallanList = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -118,88 +158,70 @@ const InwardChallanList = () => {
                 <div className="InwardList-main">
                   <Paper elevation={0} sx={{ mb: 4, p: 3, borderRadius: '16px', border: '1px solid #e2e8f0', bgcolor: 'white' }}>
                   <div className="container-fluid text-start px-0">
-                    <div className="row mt-2 mb-3">
+                    <div className="row mt-2 mb-3 align-items-end">
                       <div className="col-12 col-md">
                         <label className="form-label mb-1" htmlFor="fromDate">From Date</label>
                         <input
                           type="date"
-                          className="form-control"
+                          className="form-control form-control-sm"
                           id="fromDate"
+                          value={fromDate}
+                          onChange={(e) => setFromDate(e.target.value)}
                         />
                       </div>
                       <div className="col-12 col-md">
                         <label className="form-label mb-1" htmlFor="toDate">To Date</label>
                         <input
                           type="date"
-                          className="form-control"
+                          className="form-control form-control-sm"
                           id="toDate"
+                          value={toDate}
+                          onChange={(e) => setToDate(e.target.value)}
                         />
                       </div>
                       <div className="col-12 col-md">
                         <label className="form-label mb-1" htmlFor="plant">Plant</label>
-                        <select className="form-control" id="plant">
+                        <select className="form-control form-control-sm" id="plant">
                           <option>VISHWA S.I.</option>
                         </select>
                       </div>
                       <div className="col-12 col-md">
-                        <label className="form-label mb-1" htmlFor="type">Type</label>
-                        <select className="form-control" id="type">
-                          <option>ALL</option>
-                        </select>
-                      </div>
-                      <div className="col-12 col-md">
                         <label className="form-label mb-1" htmlFor="series">Series</label>
-                        <select className="form-control" id="series">
-                          <option>Select</option>
-                          <option>57F4 Inward</option>
-                          <option>57F4 Return</option>
-                          <option>Jobwork 57F4 Inward</option>
-                          <option>Non Returnable Inward</option>
-                          <option>Vendor Scrap Inward</option>
-                          <option>Inward Tool</option>
-                          <option>Cust Rework</option>
+                        <select className="form-control form-control-sm" id="series" value={series} onChange={(e) => setSeries(e.target.value)}>
+                          <option value="">Select</option>
+                          <option value="57F4 Inward">57F4 Inward</option>
+                          <option value="57F4 Return">57F4 Return</option>
+                          <option value="Jobwork 57F4 Inward">Jobwork 57F4 Inward</option>
+                          <option value="Non Returnable Inward">Non Returnable Inward</option>
+                          <option value="Vendor Scrap Inward">Vendor Scrap Inward</option>
+                          <option value="Inward Tool">Inward Tool</option>
+                          <option value="Cust Rework">Cust Rework</option>
                         </select>
                       </div>
                       <div className="col-12 col-md">
-                        <label className="form-label mb-1" htmlFor="f4Status">F4 Status</label>
-                        <select className="form-control" id="f4Status">
-                          <option>ALL</option>
-                        </select>
-                      </div>
-                      <div className="col-12 col-md">
-                        <label className="form-label mb-1" htmlFor="vendorCustomerName">V Name</label>
+                        <label className="form-label mb-1" htmlFor="supplierName">Supplier</label>
                         <input
                           type="text"
-                          className="form-control"
-                          id="vendorCustomerName"
+                          className="form-control form-control-sm"
+                          id="supplierName"
+                          placeholder="Supplier"
+                          value={supplierName}
+                          onChange={(e) => setSupplierName(e.target.value)}
                         />
                       </div>
                       <div className="col-12 col-md">
-                        <label className="form-label mb-1" htmlFor="itemCodeNo">ItemCodeNo:</label>
+                        <label className="form-label mb-1" htmlFor="itemCodeNo">ItemCodeNo</label>
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control form-control-sm"
                           id="itemCodeNo"
+                          placeholder="ItemCodeNo"
+                          value={itemCodeNo}
+                          onChange={(e) => setItemCodeNo(e.target.value)}
                         />
                       </div>
-                      <div className="col-12 col-md">
-                        <label className="form-label mb-1" htmlFor="partCode">Part Code:</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="partCode"
-                        />
-                      </div>
-                      <div className="col-12 col-md">
-                        <label className="form-label mb-1" htmlFor="inward">Inward</label>
-                        <select className="form-control" id="inward">
-                          <option>Select Inward</option>
-                        </select>
-                      </div>
-                      <div className="col-12 col-md text-start">
-                        <label className="form-label mb-1" htmlFor="critical">Is Critical</label>
-                        <br />
-                        <button type="button" className="btn btn-primary btn-sm">
+                      <div className="col-12 col-md-auto">
+                        <button type="button" className="btn btn-primary btn-sm w-100" onClick={handleSearchClick}>
                           Search
                         </button>
                       </div>
@@ -296,7 +318,7 @@ const InwardChallanList = () => {
                   <div className="InwardList-bottom mt-3">
                     <div className="row text-end">
                       <div className="col-md-12">
-                        <Typography sx={{ fontWeight: 600, color: '#475569' }}>Total Records: {inwardChallanList.length}</Typography>
+                        <Typography sx={{ fontWeight: 600, color: '#475569' }}>Total Records: {filteredData.length}</Typography>
                       </div>
                     </div>
                   </div>

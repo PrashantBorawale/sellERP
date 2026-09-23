@@ -717,7 +717,7 @@ const PurchaseGrn = () => {
                             Series:
                           </label>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-3">
                           <select
                             id="seriesSelect"
                             className="form-select"
