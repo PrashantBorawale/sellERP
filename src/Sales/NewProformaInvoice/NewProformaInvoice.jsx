@@ -626,7 +626,7 @@ const NewProformaInvoice = () => {
                             name="plant"
                             style={{ width: "95px" }}
                           >
-                            <option value="SHARP">SHARP</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
 

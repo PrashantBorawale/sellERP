@@ -171,7 +171,7 @@ const SalesQCList = () => {
                           <div className="col-md-2">
                             <label className="form-label">Plant</label>
                             <select className="form-select">
-                              <option value="SHARP">SHARP</option>
+                              <option value="VISHWA S.I.">VISHWA S.I.</option>
                               {/* Add more options as needed */}
                             </select>
                           </div>

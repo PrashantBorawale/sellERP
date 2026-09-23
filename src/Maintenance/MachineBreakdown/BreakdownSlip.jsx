@@ -41,7 +41,7 @@ const BreakdownSlip = () => {
                         <div className="d-flex align-items-center gap-2">
                           <label className="form-label mb-0 fw-bold">Plant :</label>
                           <select className="form-select form-select-sm" style={{ width: "120px" }}>
-                            <option>SHARP</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
                       </div>

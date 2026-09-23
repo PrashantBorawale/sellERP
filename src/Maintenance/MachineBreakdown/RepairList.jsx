@@ -53,7 +53,7 @@ const RepairList = () => {
                     <div className="filter-row-flex">
                       <div className="filter-item">
                         <label>Plant :</label>
-                        <select className="form-select" style={{ width: "100px" }}><option>SHARP</option></select>
+                        <select className="form-select" style={{ width: "100px" }}><option>VISHWA S.I.</option></select>
                       </div>
                       <div className="filter-item">
                         <label>Series :</label>

@@ -217,7 +217,7 @@ const AddWipStock = () => {
                             </div>
                             <div className="col-12 col-sm-9">
                               <select className="form-select form-select-sm shadow-none" style={{ maxWidth: '250px' }} name="plant" value={formData.plant} onChange={handleChange}>
-                                <option value="SHARP">SHARP</option>
+                                <option value="VISHWA S.I.">VISHWA S.I.</option>
                               </select>
                             </div>
                           </div>

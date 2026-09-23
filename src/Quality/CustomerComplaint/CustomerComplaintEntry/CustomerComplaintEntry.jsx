@@ -47,7 +47,7 @@ const CustomerComplaintEntry = () => {
                       </div>
                       <div className="col-md-1">
                             <select name="" id="">
-                                <option value="">SHARP</option>
+                                <option value="">VISHWA S.I.</option>
                             </select>
                       </div>
                      

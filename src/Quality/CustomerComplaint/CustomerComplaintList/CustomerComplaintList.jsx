@@ -85,7 +85,7 @@ const CustomerComplaintList = () => {
                       <div className="col-md-1">
                             <label htmlFor="">Plant :</label>
                             <select name="" id="" className="form-control">
-                                <option value="">Sharp</option>
+                                <option value="">VISHWA S.I.</option>
                             </select>
                       </div>
                       <div className="col-md-1">

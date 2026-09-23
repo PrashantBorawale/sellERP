@@ -161,7 +161,7 @@ const InwardTestCertificate = () => {
                                   Plant:
                                 </label>
                                 <select className="form-select" id="plant">
-                                  <option>SHARP</option>
+                                  <option>VISHWA S.I.</option>
                                 </select>
                               </div>
   
@@ -276,7 +276,7 @@ const InwardTestCertificate = () => {
                           <div className="col-md-2">
                             <label htmlFor="plantMain" className="form-label">Plant :</label>
                             <select id="plantMain" className="form-select">
-                              <option>SHARP</option>
+                              <option>VISHWA S.I.</option>
                             </select>
                           </div>
   

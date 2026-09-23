@@ -156,7 +156,7 @@ const InprocessInspectionList = () => {
                         <div style={{ flex: "0 0 auto", width: "110px" }}>
                           <label className="form-label mb-1 text-nowrap d-block" style={{ fontSize: "0.85rem" }}>Plant :</label>
                           <select className="form-select form-select-sm" style={{ height: "34px" }}>
-                            <option>SHARP</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
 

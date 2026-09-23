@@ -167,7 +167,7 @@ const CreditNoteList = () => {
                           <div className="d-flex align-items-center me-3 mb-2 flex-shrink-0">
                              <label htmlFor="" className="mb-0 me-2 text-nowrap">Plant:</label>
                              <select className="form-control" style={{ width: "auto" }}>
-                                <option value="">SHARP</option>
+                                <option value="">VISHWA S.I.</option>
                              </select>         
                           </div>
                           <div className="d-flex align-items-center me-3 mb-2 flex-shrink-0">

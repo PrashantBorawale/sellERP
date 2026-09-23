@@ -92,7 +92,7 @@ const PurchaseOrderSummary = () => {
                                                         </div> 
                                                         <div className="col-md-3">
                                                         <select className="w-full border rounded p-1">
-                                                     <option>SHARP</option>
+                                                     <option>VISHWA S.I.</option>
                                                    </select>
                                                         </div> 
                                                 

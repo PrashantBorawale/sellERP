@@ -82,7 +82,7 @@ const ItemAssetMaster = () => {
                     {/* Row 1 */}
                     <div className="row mb-3 align-items-center">
                       <div className="col-md-2 text-end"><label className="form-label mb-0">Plant :</label></div>
-                      <div className="col-md-3"><select className="form-select"><option>Sharp</option></select></div>
+                      <div className="col-md-3"><select className="form-select"><option>VISHWA S.I.</option></select></div>
                       <div className="col-md-2 text-end"></div>
                       <div className="col-md-3"></div>
                     </div>

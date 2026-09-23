@@ -57,7 +57,7 @@ const BreakdownAuthorisation = () => {
                       <div className="d-flex align-items-center gap-2">
                         <label className="form-label fw-bold">Plant :</label>
                         <select className="form-select form-select-sm" style={{ width: "120px" }}>
-                          <option>SHARP</option>
+                          <option>VISHWA S.I.</option>
                         </select>
                       </div>
 

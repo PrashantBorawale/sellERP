@@ -103,7 +103,7 @@ const OpeningWIPReport = () => {
                         <div className="col-12 col-sm-6 col-md-4 col-lg-2">
                           <label className="fw-medium text-secondary d-block mb-1 text-start" style={{ fontSize: "14px" }}>##. :</label>
                           <select className="form-select form-select-sm shadow-none">
-                            <option>SHARP</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
 

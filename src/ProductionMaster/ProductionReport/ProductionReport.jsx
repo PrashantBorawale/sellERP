@@ -475,7 +475,7 @@ const ProductionReport = () => {
                                   </div>
                                   <div className="col-md-3">
                                     <select className="form-select form-select-sm">
-                                      <option value="SHARP">SHARP</option>
+                                      <option value="VISHWA S.I.">VISHWA S.I.</option>
                                     </select>
                                   </div>
                                 </div>

@@ -57,7 +57,7 @@ content = content.replace(
                       <div className="col-md-2">
                         <label className="form-label mb-1 small fw-bold">Plant :</label>
                         <select className="form-select form-select-sm" style={{ height: '38px', borderRadius: '8px' }}>
-                            <option value="SHARP">SHARP</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                         </select>
                       </div>
 

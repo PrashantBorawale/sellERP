@@ -312,7 +312,7 @@ const JobworkInvoiceList = () => {
                         <div className="col-md-2">
                           <label className="form-label mb-1">Plant</label>
                           <select className="form-select form-select-sm" defaultValue="SHARP">
-                            <option value="SHARP">SHARP</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="col-md-2">

@@ -143,7 +143,7 @@ const InwardQCList = () => {
                           <div className="col-md-2">
                             <label className="form-label">Plant :</label>
                             <select className="form-select">
-                              <option>SHARP</option>
+                              <option>VISHWA S.I.</option>
                             </select>
                           </div>
   

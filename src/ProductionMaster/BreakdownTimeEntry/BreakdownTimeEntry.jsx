@@ -52,7 +52,7 @@ const BreakdownTimeEntry = () => {
                                              <div className="col-sm-6 col-md-2 col-lg-1">
                           <label>Plant :</label>
                           <select className="form-select">
-                            <option>Sharp</option>
+                            <option>VISHWA S.I.</option>
                             <option>Select All</option>
                             <option>Select All</option>
                             <option>Select All</option>

@@ -76,6 +76,7 @@ const NewSalesOrder = () => {
     project_name: "",
     delivery_al: " ",
     terms: "",
+    series: "",
   });
 
   // 1. Fetch Customers and Items on Load
@@ -527,6 +528,7 @@ const NewSalesOrder = () => {
           project_name: "",
           delivery_al: " ",
           terms: "",
+          series: "",
         });
         setOrderItems([]);
         navigate("/CustomerSalesOrderList");
@@ -713,7 +715,7 @@ const NewSalesOrder = () => {
                           className="form-control"
                         >
                           <option value="">Select</option>
-                          <option value="">SOD</option>
+                          <option value="SOD">SOD</option>
                         </select>
                       </div>
                       <div className="col-md-3">
@@ -1417,6 +1419,7 @@ const NewSalesOrder = () => {
                                         marginLeft: "5px",
                                       }}
                                     >
+                                      <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
                                         id=""
@@ -1426,7 +1429,7 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />
-                                      (TOC)
+                                      <span className="text-nowrap mx-1">(TOC)</span>
                                       <input
                                         type="text"
                                         placeholder="Pack & Frwd Charges"
@@ -1443,7 +1446,8 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />{" "}
-                                      %
+                                      <span className="ms-1">%</span>
+                                      </div>
                                     </td>
 
                                     <td
@@ -1503,6 +1507,7 @@ const NewSalesOrder = () => {
                                         marginLeft: "5px",
                                       }}
                                     >
+                                      <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
                                         id=""
@@ -1512,7 +1517,7 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />
-                                      (TOC)
+                                      <span className="text-nowrap mx-1">(TOC)</span>
                                       <input
                                         type="text"
                                         placeholder="Pack & Frwd Charges"
@@ -1529,7 +1534,8 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />{" "}
-                                      %
+                                      <span className="ms-1">%</span>
+                                      </div>
                                     </td>
 
                                     <td
@@ -1589,6 +1595,7 @@ const NewSalesOrder = () => {
                                         marginLeft: "5px",
                                       }}
                                     >
+                                      <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
                                         id=""
@@ -1598,7 +1605,7 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />
-                                      (TOC)
+                                      <span className="text-nowrap mx-1">(TOC)</span>
                                       <input
                                         type="text"
                                         placeholder="Pack & Frwd Charges"
@@ -1615,7 +1622,8 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />{" "}
-                                      %
+                                      <span className="ms-1">%</span>
+                                      </div>
                                     </td>
 
                                     <td
@@ -1689,6 +1697,7 @@ const NewSalesOrder = () => {
                                         marginLeft: "5px",
                                       }}
                                     >
+                                      <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
                                         id=""
@@ -1698,7 +1707,7 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />
-                                      (TOC)
+                                      <span className="text-nowrap mx-1">(TOC)</span>
                                       <input
                                         type="text"
                                         placeholder="Other Charges"
@@ -1715,7 +1724,8 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />{" "}
-                                      %
+                                      <span className="ms-1">%</span>
+                                      </div>
                                     </td>
 
                                     <td
@@ -1758,6 +1768,7 @@ const NewSalesOrder = () => {
                                         marginLeft: "5px",
                                       }}
                                     >
+                                      <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
                                         id=""
@@ -1767,7 +1778,8 @@ const NewSalesOrder = () => {
                                           marginLeft: "5px",
                                         }}
                                       />
-                                      Ref. Cust :
+                                      <span className="text-nowrap mx-1">Ref. Cust :</span>
+                                      </div>
                                     </td>
                                     <td
                                       style={{

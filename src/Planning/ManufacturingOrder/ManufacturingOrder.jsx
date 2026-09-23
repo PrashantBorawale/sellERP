@@ -59,7 +59,7 @@ const ManufacturingOrder = () => {
           <div className="d-flex align-items-center gap-1">
             <label className="filter-label whitespace-nowrap">Plant:</label>
             <select className="form-select form-select-xs" style={{ width: '80px' }} value={plant} onChange={(e) => setPlant(e.target.value)}>
-              <option value="SHARP">SHARP</option>
+              <option value="VISHWA S.I.">VISHWA S.I.</option>
             </select>
           </div>
           <div className="d-flex align-items-center gap-1">
@@ -183,7 +183,7 @@ const ManufacturingOrder = () => {
           <div className="col-auto">
             <label className="filter-label">Plant :</label>
             <select className="form-select form-select-xs d-inline-block ms-1" style={{ width: '100px' }} value={plant} onChange={(e) => setPlant(e.target.value)}>
-              <option value="SHARP">SHARP</option>
+              <option value="VISHWA S.I.">VISHWA S.I.</option>
             </select>
           </div>
           <div className="col-auto">
@@ -248,7 +248,7 @@ const ManufacturingOrder = () => {
                     <td className="bg-light fw-bold" style={{ width: '150px' }}>Plant :</td>
                     <td>
                       <select className="form-select form-select-sm border-0 shadow-none">
-                        <option value="SHARP">SHARP</option>
+                        <option value="VISHWA S.I.">VISHWA S.I.</option>
                       </select>
                     </td>
                   </tr>

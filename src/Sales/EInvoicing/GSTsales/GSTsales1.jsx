@@ -298,7 +298,7 @@ const GSTsales1 = () => {
                       <div className="col-sm-6 col-md-2 col-lg-2">
                             <label className="small fw-bold text-secondary text-nowrap mb-1">Plant:</label>
                             <select name="" id="" className="form-select form-select-sm">
-                               <option value="">Sharp</option>
+                               <option value="VISHWA S.I.">VISHWA S.I.</option>
                            </select>
                       </div> 
                       <div className="col-sm-6 col-md-2 col-lg-2">

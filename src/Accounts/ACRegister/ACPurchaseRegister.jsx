@@ -75,7 +75,7 @@ const ACPurchaseRegister = () => {
                         onChange={(e) => setPlant(e.target.value)}
                         style={{ width: "120px" }}
                       >
-                        <option value="SHARP">SHARP</option>
+                        <option value="VISHWA S.I.">VISHWA S.I.</option>
                       </select>
                     </div>
 

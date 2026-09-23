@@ -17,7 +17,7 @@ content = content.replace(
                         <div className="d-flex align-items-center gap-2">
                           <label className="form-label mb-0 text-nowrap small fw-bold">Plant :</label>
                           <select className="form-select form-select-sm" style={{ width: '110px', height: '38px', borderRadius: '8px' }}>
-                            <option>SHARP</option>
+                            <option>VISHWA S.I.</option>
                           </select>
                         </div>
                         <div className="d-flex align-items-center gap-2">

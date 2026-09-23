@@ -86,7 +86,7 @@ const WorkOrderReportV2 = () => {
                       <div className="d-flex align-items-center gap-1">
                         <label className="mb-0">Plant:</label>
                         <select className="form-select form-select-xs" style={{ width: '70px' }}>
-                          <option>SHARP</option>
+                          <option>VISHWA S.I.</option>
                         </select>
                       </div>
 

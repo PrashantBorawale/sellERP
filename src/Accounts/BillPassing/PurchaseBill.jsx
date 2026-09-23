@@ -303,7 +303,7 @@ const PurchaseBill = () => {
                       <div className="col-md-2">
                         <label className="form-label mb-1 small fw-bold text-start d-block">Plant :</label>
                         <select className="form-select form-select-sm" >
-                            <option value="SHARP">SHARP</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                         </select>
                       </div>
 

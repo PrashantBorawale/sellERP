@@ -767,7 +767,7 @@ const ProductionEntryAss = () => {
                             onChange={handleInputChange}
                           >
                             <option value="">Select</option>
-                            <option value="sharp">Sharp</option>
+                            <option value="VISHWA S.I.">VISHWA S.I.</option>
                           </select>
                         </div>
 

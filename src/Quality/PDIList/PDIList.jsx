@@ -91,7 +91,7 @@ const PDIList = () => {
                 Plant:
               </label>
               <select className="form-select" id="plant">
-                <option>SHARP</option>
+                <option>VISHWA S.I.</option>
               </select>
             </div>
 
@@ -166,7 +166,7 @@ const PDIList = () => {
                       <div className="col-md-1 margin-5">
                         <label>Plant</label>
                         <select className="form-select">
-                          <option value="SHARP">SHARP</option>
+                          <option value="VISHWA S.I.">VISHWA S.I.</option>
                           {/* Add more options as needed */}
                         </select>
                       </div>

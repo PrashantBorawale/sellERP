@@ -50,7 +50,7 @@ const RepairEntry = () => {
                           <div className="d-flex align-items-center gap-2">
                             <label className="mb-0 fw-bold">Plant :</label>
                             <select className="form-select form-select-sm" style={{ width: "100px" }}>
-                              <option>SHARP</option>
+                              <option>VISHWA S.I.</option>
                             </select>
                           </div>
                         </div>
