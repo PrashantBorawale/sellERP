@@ -72,7 +72,8 @@ const CustomerSalesOrderList = () => {
       const response = await fetch(url + params.toString());
       if (response.ok) {
         const result = await response.json();
-        const sorted = result.sort((a, b) => b.id - a.id);
+        const dataArray = Array.isArray(result) ? result : (result.data || result.results || []);
+        const sorted = dataArray.sort((a, b) => parseInt(b.id || 0) - parseInt(a.id || 0));
         setData(sorted);
       } else {
         console.error("Failed to fetch data");
@@ -111,6 +112,21 @@ const CustomerSalesOrderList = () => {
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
+
+  // Totals calculations
+  const totalGlobalAmount = data.reduce((sum, row) => {
+    const rowAmount = row.item && Array.isArray(row.item) 
+      ? row.item.reduce((s, it) => s + parseFloat(it.gr_total || 0), 0) 
+      : 0;
+    return sum + rowAmount;
+  }, 0);
+  
+  const totalGlobalQty = data.reduce((sum, row) => {
+    const rowQty = row.item && Array.isArray(row.item) 
+      ? row.item.reduce((s, it) => s + parseFloat(it.qty || 0), 0) 
+      : 0;
+    return sum + rowQty;
+  }, 0);
 
   return (
     <div className="CustomerSalesOrderList">
@@ -278,19 +294,30 @@ const CustomerSalesOrderList = () => {
                     </table>
                   </div>
 
-                  <div className="footer-section">
+                  <div className="d-flex justify-content-between align-items-center mt-3">
                     <div>
-                      <span className="border p-1 px-2 bg-light text-primary fw-bold me-2">{currentPage}</span>
-                      <span className="text-primary" style={{cursor: 'pointer', marginRight: '10px'}} onClick={handlePrev}>Previous</span>
-                      <span className="text-primary" style={{cursor: 'pointer'}} onClick={handleNext}>Next</span>
+                      Showing {indexOfFirstRow + 1} to {Math.min(indexOfLastRow, totalRecords)} of {totalRecords} entries
                     </div>
+                    <nav>
+                      <ul className="pagination mb-0">
+                        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                          <button className="page-link shadow-none" onClick={handlePrev}>Previous</button>
+                        </li>
+                        <li className="page-item active">
+                          <button className="page-link shadow-none">{currentPage}</button>
+                        </li>
+                        <li className={`page-item ${currentPage >= totalPages ? 'disabled' : ''}`}>
+                          <button className="page-link shadow-none" onClick={handleNext}>Next</button>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
                   
                   <div className="footer-section" style={{backgroundColor: '#e0e7ff', padding: '5px 15px', border: '1px solid #93c5fd'}}>
                     <div style={{textAlign: 'center'}}>Total Records : <strong>{totalRecords}</strong></div>
                     <div className="d-flex gap-4 align-items-center">
-                      <div style={{textAlign: 'center'}}>Qty : <strong>19,582.00</strong></div>
-                      <div style={{textAlign: 'center'}}>Amount : <strong>505,278.12</strong></div>
+                      <div style={{textAlign: 'center'}}>Qty : <strong>{totalGlobalQty.toFixed(2)}</strong></div>
+                      <div style={{textAlign: 'center'}}>Amount : <strong>{totalGlobalAmount.toFixed(2)}</strong></div>
                     </div>
                   </div>
 

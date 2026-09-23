@@ -94,11 +94,32 @@ const CustSalesOrderList = () => {
       if (custName) params.customer_name = custName;
       if (userSelect !== "All User") params.username = userSelect;
 
-      const response = await axios.get("https://sellerp-backend.onrender.com/Sales/newsalesorder/", { params });
-      const data = Array.isArray(response.data) ? response.data : (response.data.data || []);
-      setOrderList(data);
-    } catch (error) {
+            const token = localStorage.getItem("accessToken") || localStorage.getItem("token") || localStorage.getItem("access_token");
+      const response = await axios.get("https://sellerp-backend.onrender.com/Sales/newsalesorder/", {
+        params,
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      console.log("Sales order API response:", response.data); // temp debug — safe to remove later
+
+      // Handle plain array, {data: [...]}, or DRF-style {results: [...]}
+      let data = [];
+      if (Array.isArray(response.data)) {
+        data = response.data;
+      } else if (Array.isArray(response.data.data)) {
+        data = response.data.data;
+      } else if (Array.isArray(response.data.results)) {
+        data = response.data.results;
+      }
+
+      // Highest id first
+      const sortedData = [...data].sort((a, b) => (b.id || 0) - (a.id || 0));
+      console.log(`Fetched ${sortedData.length} sales orders. Top id: ${sortedData[0]?.id}`); // temp debug
+      setOrderList(sortedData);
+        } catch (error) {
       console.error("Error fetching customer sales orders:", error);
+      if (error.response) {
+        console.error("Status:", error.response.status, "Data:", error.response.data);
+      }
       const filtered = defaultOrderList.filter(row => {
         if (custName && !row.cust_name.toLowerCase().includes(custName.toLowerCase())) return false;
         if (soType !== "All" && row.so_type !== soType) return false;
@@ -110,9 +131,25 @@ const CustSalesOrderList = () => {
     }
   };
 
-  useEffect(() => {
+    useEffect(() => {
     handleSearch();
   }, []);
+
+  // "customer" comes back as a combined "Name | Code" string (e.g. "DEEP ENGIEERS | C007")
+  const splitCustomer = (customerStr) => {
+    if (!customerStr) return { name: "", code: "" };
+    const parts = customerStr.split("|").map((p) => p.trim());
+    return { name: parts[0] || "", code: parts[1] || "" };
+  };
+
+  // There's no top-level amount field — it has to be summed from each row's item[] array
+  const getRowAmount = (row) => {
+    if (row.amount || row.grand_total) return row.amount || row.grand_total;
+    if (Array.isArray(row.item)) {
+      return row.item.reduce((sum, it) => sum + (parseFloat(it.gr_total) || 0), 0).toFixed(2);
+    }
+    return 0;
+  };
 
   const handleExportExcel = () => {
     if (orderList.length === 0) {
@@ -120,22 +157,25 @@ const CustSalesOrderList = () => {
       return;
     }
 
-    const exportData = orderList.map((row, index) => ({
-      "Sr.": index + 1,
-      "Year": row.year || row.Year || "",
-      "Plant": row.plant || row.Plant || "",
-      "SO No": row.so_no || row.so_number || "",
-      "SO Date": row.so_date || "",
-      "Cust PO No": row.cust_po_no || "",
-      "Cust PO Dt": row.cust_po_date || "",
-      "Type": row.so_type || "",
-      "Code": row.cust_code || "",
-      "Cust Name": row.cust_name || row.customer_name || "",
-      "Amount": row.amount || row.grand_total || 0,
-      "PO Status": row.po_status || "",
-      "Auth": row.auth || "",
-      "User": row.user || row.username || ""
-    }));
+        const exportData = orderList.map((row, index) => {
+      const { name: custName, code: custCode } = splitCustomer(row.customer);
+      return {
+        "Sr.": index + 1,
+        "Year": row.year || row.Year || (row.cust_date ? row.cust_date.slice(0, 4) : ""),
+        "Plant": row.plant || "",
+        "SO No": row.so_no || "",
+        "SO Date": row.so_date || "",
+        "Cust PO No": row.cust_po || "",
+        "Cust PO Dt": row.po_rec_date || "",
+        "Type": row.order_type || "",
+        "Code": custCode,
+        "Cust Name": custName,
+        "Amount": getRowAmount(row),
+        "PO Status": row.po_status || "",
+        "Auth": row.auth || "",
+        "User": row.user || row.username || ""
+      };
+    });
 
     const worksheet = XLSX.utils.json_to_sheet(exportData);
     const workbook = XLSX.utils.book_new();
@@ -253,8 +293,22 @@ const CustSalesOrderList = () => {
                     </div>
                   </div>
                
-                  <div className="table-responsive search-results-table mt-2">
-                    <TableContainer component={Paper} elevation={0} sx={{ borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden', mb: 2 }}>
+                                        <div className="search-results-table mt-2">
+                    <TableContainer
+                      component={Paper}
+                      elevation={0}
+                      sx={{
+                        borderRadius: '16px',
+                        border: '1px solid #e2e8f0',
+                        overflowY: 'scroll',
+                        overflowX: 'auto',
+                        maxHeight: '600px',
+                        mb: 2,
+                        '&::-webkit-scrollbar': { width: 10 },
+                        '&::-webkit-scrollbar-thumb': { backgroundColor: '#94a3b8', borderRadius: 4 },
+                        '&::-webkit-scrollbar-track': { backgroundColor: '#f1f5f9' },
+                      }}
+                    >
                       <Table size="small" stickyHeader sx={{ tableLayout: 'auto', width: '100%' }}>
                         <TableHead>
                           <TableRow>
@@ -275,19 +329,21 @@ const CustSalesOrderList = () => {
                               <TableCell colSpan={20} sx={{ textAlign: 'center', py: 3, color: '#475569', fontSize: '12px' }}>No records found</TableCell>
                             </TableRow>
                           ) : (
-                            orderList.map((row, index) => (
-                              <TableRow key={index} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                              orderList.map((row, index) => {
+                              const { name: rowCustName, code: rowCustCode } = splitCustomer(row.customer);
+                              return (
+                              <TableRow key={row.id || index} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{index + 1}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.year || row.Year || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.plant || row.Plant || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.so_no || row.so_number || ""}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.year || row.Year || (row.cust_date ? row.cust_date.slice(0, 4) : "")}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.plant || ""}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.so_no || ""}</TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.so_date || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.cust_po_no || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.cust_po_date || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.so_type || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.cust_code || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.cust_name || row.customer_name || ""}</TableCell>
-                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.amount || row.grand_total || 0}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.cust_po || ""}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.po_rec_date || ""}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.order_type || ""}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{rowCustCode}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{rowCustName}</TableCell>
+                                <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{getRowAmount(row)}</TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.po_status || ""}</TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.auth || ""}</TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}>{row.user || row.username || ""}</TableCell>
@@ -298,7 +354,8 @@ const CustSalesOrderList = () => {
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}></TableCell>
                                 <TableCell sx={{ color: '#475569', fontSize: '12px', padding: '4px 8px', whiteSpace: 'normal', textAlign: 'center' }}></TableCell>
                               </TableRow>
-                            ))
+                              );
+                            })
                           )}
                         </TableBody>
                       </Table>

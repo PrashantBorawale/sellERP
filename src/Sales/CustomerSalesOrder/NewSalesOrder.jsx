@@ -61,6 +61,7 @@ const NewSalesOrder = () => {
     so_no: "",
     po_rec_date: "",
     incoterms: "",
+    bill_to: "",
     ship_to: "",
     ship_to_add_code: "",
     ccn_no: "",
@@ -119,6 +120,7 @@ const NewSalesOrder = () => {
               so_no: data.so_no || "",
               po_rec_date: data.po_rec_date || "",
               incoterms: data.incoterms || "",
+              bill_to: data.bill_to || "",
               ship_to: data.ship_to || "",
               ship_to_add_code: data.ship_to_add_code || "",
               ccn_no: data.ccn_no || "",
@@ -402,17 +404,6 @@ const NewSalesOrder = () => {
 
   const handleSaveOrder = async () => {
     try {
-      // Validate required fields
-      if (!formData.customer) {
-        toast.error("Please select a customer!");
-        return;
-      }
-
-      if (orderItems.length === 0) {
-        toast.error("Please add at least one item!");
-        return;
-      }
-
       // Calculate Top Level Totals
       const totalSubtotal = orderItems.reduce((acc, item) => acc + parseFloat(item.subtotal || 0), 0);
       const totalCgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.cgst_amt || 0), 0);
@@ -421,8 +412,18 @@ const NewSalesOrder = () => {
       const totalUtgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.utgst_amt || 0), 0);
       const totalGrTotal = orderItems.reduce((acc, item) => acc + parseFloat(item.gr_total || 0), 0);
 
+      const sanitizeDate = (val) => (val === "" ? null : val);
+
       const payload = {
         ...formData,
+        l_c_no: formData.lc_no,
+        cust_date: sanitizeDate(formData.cust_date),
+        so_date: sanitizeDate(formData.so_date),
+        po_rec_date: sanitizeDate(formData.po_rec_date),
+        valid_up: sanitizeDate(formData.valid_up),
+        delivery_date: sanitizeDate(formData.delivery_date),
+        plan_date: sanitizeDate(formData.plan_date),
+        shift: sanitizeDate(formData.shift),
         // Top-level tax summaries
         subtotal: totalSubtotal.toFixed(2),
         cgst: orderItems[0]?.cgst || "0.00",
@@ -467,6 +468,10 @@ const NewSalesOrder = () => {
         }))
       };
 
+      // Remove file from payload because it's a JSON request
+      delete payload.file;
+      delete payload.lc_no; // Using l_c_no instead
+
       console.log("Sending Payload:", JSON.stringify(payload, null, 2));
 
       const url = isEditing
@@ -507,6 +512,7 @@ const NewSalesOrder = () => {
           so_no: "",
           po_rec_date: "",
           incoterms: "",
+          bill_to: "",
           ship_to: "",
           ship_to_add_code: "",
           ccn_no: "",
@@ -523,6 +529,7 @@ const NewSalesOrder = () => {
           terms: "",
         });
         setOrderItems([]);
+        navigate("/CustomerSalesOrderList");
       }, 1500);
 
     } catch (err) {
@@ -854,6 +861,18 @@ const NewSalesOrder = () => {
                         <li className="nav-item" role="presentation">
                           <button
                             className="nav-link"
+                            id="address-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#address"
+                            type="button"
+                            role="tab"
+                          >
+                            Bill to/Ship to Address
+                          </button>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                          <button
+                            className="nav-link"
                             id="taxes-tab"
                             data-bs-toggle="tab"
                             data-bs-target="#taxes"
@@ -1137,6 +1156,15 @@ const NewSalesOrder = () => {
                                 </tbody>
                               </table>
                             </div>
+                            <div className="d-flex justify-content-end mt-3">
+                              <button
+                                type="button"
+                                className="vndrbtn mx-1"
+                                onClick={() => document.getElementById('terms-conditions-tab').click()}
+                              >
+                                Next
+                              </button>
+                            </div>
                           </div>
                         </div>
 
@@ -1153,6 +1181,58 @@ const NewSalesOrder = () => {
                               <div className="col-md-2">
                                 <h5 className="header-title">Refresh List</h5>
                               </div>
+                            </div>
+                          </div>
+                          <div className="d-flex justify-content-between mt-3">
+                            <button
+                              type="button"
+                              className="vndrbtn mx-1"
+                              onClick={() => document.getElementById('item-details-tab').click()}
+                            >
+                              Previous
+                            </button>
+                            <button
+                              type="button"
+                              className="vndrbtn mx-1"
+                              onClick={() => document.getElementById('address-tab').click()}
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+
+                        <div
+                          className="tab-pane fade"
+                          id="address"
+                          role="tabpanel"
+                        >
+                          <div className="NewSalesOrder-main">
+                            <h5 className="text-start mb-3">Bill to/Ship to Address</h5>
+                            <div className="row text-start">
+                              <div className="col-md-6">
+                                <label>Bill To Address:</label>
+                                <textarea name="bill_to" value={formData.bill_to} onChange={handleChange} className="form-control mt-1" rows="3" placeholder="Enter billing address..."></textarea>
+                              </div>
+                              <div className="col-md-6">
+                                <label>Ship To Address:</label>
+                                <textarea name="ship_to" value={formData.ship_to} onChange={handleChange} className="form-control mt-1" rows="3" placeholder="Enter shipping address..."></textarea>
+                              </div>
+                            </div>
+                            <div className="d-flex justify-content-between mt-4">
+                              <button
+                                type="button"
+                                className="vndrbtn mx-1"
+                                onClick={() => document.getElementById('terms-conditions-tab').click()}
+                              >
+                                Previous
+                              </button>
+                              <button
+                                type="button"
+                                className="vndrbtn mx-1"
+                                onClick={() => document.getElementById('taxes-tab').click()}
+                              >
+                                Next
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -1778,7 +1858,14 @@ const NewSalesOrder = () => {
                             </div>
 
                             <div className="row mt-3">
-                              <div className="col-md-12 d-flex justify-content-end">
+                              <div className="col-md-12 d-flex justify-content-between">
+                                <button
+                                  type="button"
+                                  className="vndrbtn mx-1"
+                                  onClick={() => document.getElementById('address-tab').click()}
+                                >
+                                  Previous
+                                </button>
                                 <button
                                   type="button"
                                   onClick={handleSaveOrder}
@@ -1796,18 +1883,6 @@ const NewSalesOrder = () => {
                 </div>
               </main>
             </div>
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
           </div>
         </div>
       </div>
