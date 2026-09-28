@@ -145,10 +145,17 @@ const CustSalesOrderList = () => {
   // There's no top-level amount field — it has to be summed from each row's item[] array
   const getRowAmount = (row) => {
     if (row.amount || row.grand_total) return row.amount || row.grand_total;
+    
+    let itemTotal = 0;
     if (Array.isArray(row.item)) {
-      return row.item.reduce((sum, it) => sum + (parseFloat(it.gr_total) || 0), 0).toFixed(2);
+      itemTotal = row.item.reduce((sum, it) => sum + (parseFloat(it.gr_total) || 0), 0);
     }
-    return 0;
+    const extras = (parseFloat(row.pack_forward_charges) || 0) + 
+                   (parseFloat(row.transport_charges) || 0) + 
+                   (parseFloat(row.freight_charges) || 0) + 
+                   (parseFloat(row.other_charges) || 0);
+                   
+    return (itemTotal + extras).toFixed(2);
   };
 
   const handleExportExcel = () => {

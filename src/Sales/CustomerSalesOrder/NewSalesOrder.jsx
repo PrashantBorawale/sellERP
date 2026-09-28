@@ -53,6 +53,13 @@ const NewSalesOrder = () => {
 
   const [customerTaxType, setCustomerTaxType] = useState("INTERSTATE");
 
+  const [extraCharges, setExtraCharges] = useState([
+    { isChecked: false, name: "Pack Forward Charges", percent: "", amount: "" },
+    { isChecked: false, name: "Transport Charges", percent: "", amount: "" },
+    { isChecked: false, name: "Freight Charges", percent: "", amount: "" },
+    { isChecked: false, name: "Other_ Charges", percent: "", amount: "" },
+  ]);
+
   // API  state
   const [formData, setFormData] = useState({
     cust_date: "",
@@ -466,7 +473,8 @@ const NewSalesOrder = () => {
       const totalSgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.sgst_amt || 0), 0);
       const totalIgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.igst_amt || 0), 0);
       const totalUtgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.utgst_amt || 0), 0);
-      const totalGrTotal = orderItems.reduce((acc, item) => acc + parseFloat(item.gr_total || 0), 0);
+      const currentExtraChargesTotal = extraCharges.reduce((sum, charge) => charge.isChecked ? sum + (parseFloat(charge.amount) || 0) : sum, 0);
+      const totalGrTotal = orderItems.reduce((acc, item) => acc + parseFloat(item.gr_total || 0), 0) + currentExtraChargesTotal;
 
       const sanitizeDate = (val) => (val === "" ? null : val);
 
@@ -490,6 +498,10 @@ const NewSalesOrder = () => {
         sgst_amt: totalSgstAmt.toFixed(2),
         igst_amt: totalIgstAmt.toFixed(2),
         utgst_amt: totalUtgstAmt.toFixed(2),
+        pack_forward_charges: extraCharges[0].isChecked && extraCharges[0].amount ? extraCharges[0].amount : null,
+        transport_charges: extraCharges[1].isChecked && extraCharges[1].amount ? extraCharges[1].amount : null,
+        freight_charges: extraCharges[2].isChecked && extraCharges[2].amount ? extraCharges[2].amount : null,
+        other_charges: extraCharges[3].isChecked && extraCharges[3].amount ? extraCharges[3].amount : null,
         gr_total: totalGrTotal.toFixed(2),
 
         item: orderItems.map(item => ({
@@ -616,7 +628,25 @@ const NewSalesOrder = () => {
   const totalSgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.sgst_amt || 0), 0);
   const totalIgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.igst_amt || 0), 0);
   const totalUtgstAmt = orderItems.reduce((acc, item) => acc + parseFloat(item.utgst_amt || 0), 0);
-  const totalGrTotal = orderItems.reduce((acc, item) => acc + parseFloat(item.gr_total || 0), 0);
+  const extraChargesTotal = extraCharges.reduce((sum, charge) => {
+    return charge.isChecked ? sum + (parseFloat(charge.amount) || 0) : sum;
+  }, 0);
+  const totalGrTotal = orderItems.reduce((acc, item) => acc + parseFloat(item.gr_total || 0), 0) + extraChargesTotal;
+
+  const handleExtraChargeChange = (index, field, value) => {
+    setExtraCharges((prev) => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      
+      if (field === "percent") {
+        const pct = parseFloat(value) || 0;
+        updated[index].amount = ((totalSubtotal * pct) / 100).toFixed(2);
+      } else if (field === "amount") {
+        updated[index].percent = "";
+      }
+      return updated;
+    });
+  };
   const gstAmount = totalCgstAmt + totalSgstAmt + totalIgstAmt + totalUtgstAmt;
 
   const navigate = useNavigate();
@@ -1496,8 +1526,8 @@ const NewSalesOrder = () => {
                                       <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
-                                        id=""
-                                        name=""
+                                        checked={extraCharges[0].isChecked}
+                                        onChange={(e) => handleExtraChargeChange(0, 'isChecked', e.target.checked)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1507,6 +1537,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="Pack & Frwd Charges"
+                                        value={extraCharges[0].name}
+                                        readOnly
                                         style={{
                                           width: "150px",
                                           marginLeft: "5px",
@@ -1515,6 +1547,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[0].percent}
+                                        onChange={(e) => handleExtraChargeChange(0, 'percent', e.target.value)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1533,6 +1567,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[0].amount}
+                                        onChange={(e) => handleExtraChargeChange(0, 'amount', e.target.value)}
                                         style={{
                                           width: "100px",
                                           marginLeft: "5px",
@@ -1584,8 +1620,8 @@ const NewSalesOrder = () => {
                                       <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
-                                        id=""
-                                        name=""
+                                        checked={extraCharges[1].isChecked}
+                                        onChange={(e) => handleExtraChargeChange(1, 'isChecked', e.target.checked)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1595,6 +1631,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="Pack & Frwd Charges"
+                                        value={extraCharges[1].name}
+                                        readOnly
                                         style={{
                                           width: "150px",
                                           marginLeft: "5px",
@@ -1603,6 +1641,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[1].percent}
+                                        onChange={(e) => handleExtraChargeChange(1, 'percent', e.target.value)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1621,6 +1661,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[1].amount}
+                                        onChange={(e) => handleExtraChargeChange(1, 'amount', e.target.value)}
                                         style={{
                                           width: "100px",
                                           marginLeft: "5px",
@@ -1672,8 +1714,8 @@ const NewSalesOrder = () => {
                                       <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
-                                        id=""
-                                        name=""
+                                        checked={extraCharges[2].isChecked}
+                                        onChange={(e) => handleExtraChargeChange(2, 'isChecked', e.target.checked)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1683,6 +1725,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="Pack & Frwd Charges"
+                                        value={extraCharges[2].name}
+                                        readOnly
                                         style={{
                                           width: "150px",
                                           marginLeft: "5px",
@@ -1691,6 +1735,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[2].percent}
+                                        onChange={(e) => handleExtraChargeChange(2, 'percent', e.target.value)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1709,6 +1755,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[2].amount}
+                                        onChange={(e) => handleExtraChargeChange(2, 'amount', e.target.value)}
                                         style={{
                                           width: "100px",
                                           marginLeft: "5px",
@@ -1774,8 +1822,8 @@ const NewSalesOrder = () => {
                                       <div className="d-flex align-items-center">
                                       <input
                                         type="checkbox"
-                                        id=""
-                                        name=""
+                                        checked={extraCharges[3].isChecked}
+                                        onChange={(e) => handleExtraChargeChange(3, 'isChecked', e.target.checked)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1785,6 +1833,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="Other Charges"
+                                        value={extraCharges[3].name}
+                                        readOnly
                                         style={{
                                           width: "150px",
                                           marginLeft: "5px",
@@ -1793,6 +1843,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[3].percent}
+                                        onChange={(e) => handleExtraChargeChange(3, 'percent', e.target.value)}
                                         style={{
                                           width: "50px",
                                           marginLeft: "5px",
@@ -1811,6 +1863,8 @@ const NewSalesOrder = () => {
                                       <input
                                         type="text"
                                         placeholder="0"
+                                        value={extraCharges[3].amount}
+                                        onChange={(e) => handleExtraChargeChange(3, 'amount', e.target.value)}
                                         style={{
                                           width: "100px",
                                           marginLeft: "5px",

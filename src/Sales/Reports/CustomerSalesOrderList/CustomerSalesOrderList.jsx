@@ -115,10 +115,9 @@ const CustomerSalesOrderList = () => {
 
   // Totals calculations
   const totalGlobalAmount = data.reduce((sum, row) => {
-    const rowAmount = row.item && Array.isArray(row.item) 
-      ? row.item.reduce((s, it) => s + parseFloat(it.gr_total || 0), 0) 
-      : 0;
-    return sum + rowAmount;
+    const itemTotal = row.item && Array.isArray(row.item) ? row.item.reduce((s, it) => s + parseFloat(it.gr_total || 0), 0) : 0;
+    const extras = (parseFloat(row.pack_forward_charges) || 0) + (parseFloat(row.transport_charges) || 0) + (parseFloat(row.freight_charges) || 0) + (parseFloat(row.other_charges) || 0);
+    return sum + itemTotal + extras;
   }, 0);
   
   const totalGlobalQty = data.reduce((sum, row) => {
@@ -255,7 +254,9 @@ const CustomerSalesOrderList = () => {
                           const nextYear = year !== "-" ? parseInt(year) + 1 : "-";
                           const yearStr = year !== "-" ? `${year}-${nextYear}` : "-";
                           
-                          const totalAmount = row.item && Array.isArray(row.item) ? row.item.reduce((sum, it) => sum + parseFloat(it.gr_total || 0), 0) : 0;
+                          const itemTotal = row.item && Array.isArray(row.item) ? row.item.reduce((sum, it) => sum + parseFloat(it.gr_total || 0), 0) : 0;
+                          const extras = (parseFloat(row.pack_forward_charges) || 0) + (parseFloat(row.transport_charges) || 0) + (parseFloat(row.freight_charges) || 0) + (parseFloat(row.other_charges) || 0);
+                          const totalAmount = itemTotal + extras;
 
                           let customerName = row.customer || "-";
                           let customerCode = "-";

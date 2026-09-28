@@ -10,6 +10,22 @@ import "./NewInvoice.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const getTodayDateStr = () => {
+  const today = new Date();
+  // Adjust to local timezone explicitly to avoid UTC shift
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const getCurrentTimeStr = () => {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  return `${hours}:${minutes}`;
+};
+
 const NewInvoice = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const navigate = useNavigate();
@@ -32,12 +48,12 @@ const NewInvoice = () => {
     invoice_no: "",
     series_type: "",
     invoice_type: "GST",
-    invoice_Date: "",        // ✅ was: invoice_date
-    invoice_time: "",
+    invoice_Date: getTodayDateStr(),        // ✅ was: invoice_date
+    invoice_time: getCurrentTimeStr(),
     payment_Date: "",        // ✅ was: payment_date
     note: "",
     date_of_removal: "",
-    time: "",
+    time: getCurrentTimeStr(),
     mode_of_trans: "By Road",
     freight: "",
     vehical_no: "",
@@ -1795,7 +1811,7 @@ const NewInvoice = () => {
                           </div>
                         </div>
 
-                        <div className="row mt-2">
+                        <div className="row mt-2 mb-5 pb-5">
                           <div className="col-md-2">
                             <button
                               className="vndrbtn w-100 mt-3"
