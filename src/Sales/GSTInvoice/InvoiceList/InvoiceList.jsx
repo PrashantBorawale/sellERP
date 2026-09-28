@@ -305,13 +305,7 @@ const InvoiceList = () => {
                         >
                           + New Invoice
                         </button>
-                        <button
-                          type="button"
-                          className="vndrbtn"
-                          onClick={() => navigate("/TaxInvoiceList")}
-                        >
-                          Invoice - Report
-                        </button>
+                        
                         <button
                           type="button"
                           className="vndrbtn"

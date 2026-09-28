@@ -8,6 +8,7 @@ import "./NewSalesOrder.css";
 // import Cached from "@mui/icons-material/Cached.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const NewSalesOrder = () => {
   const location = useLocation();
@@ -42,6 +43,12 @@ const NewSalesOrder = () => {
     assessable_value: "0.0000",
     subtotal: "0.00",
     gr_total: "0.00",
+    discount: "",
+    pkg_trans: "",
+    plan_date_item: "",
+    due_date_item: "",
+    type_item: "",
+    remark_item: "",
   });
 
   const [customerTaxType, setCustomerTaxType] = useState("INTERSTATE");
@@ -364,11 +371,13 @@ const NewSalesOrder = () => {
       line_no: "",
       pr_no: "",
       rm_type: "",
-      pkg_trans: "",
-      due_date: null,
-      type: "",
+      pkg_trans: currentItem.pkg_trans || "",
+      due_date: currentItem.due_date_item || null,
+      plan_date_item: currentItem.plan_date_item || "",
+      type: currentItem.type_item || "",
       item_category: "",
-      remark: "",
+      remark: currentItem.remark_item || "",
+      discount: currentItem.discount || "",
       hsn_code: currentItem.hsn_code || null,
       assessable_value: subtotal.toFixed(2),
       subtotal: subtotal.toFixed(2),
@@ -397,7 +406,43 @@ const NewSalesOrder = () => {
       assessable_value: "0.0000",
       subtotal: "0.00",
       gr_total: "0.00",
+      discount: "",
+      pkg_trans: "",
+      plan_date_item: "",
+      due_date_item: "",
+      type_item: "",
+      remark_item: "",
     });
+  };
+
+  const handleEditItem = (item) => {
+    setCurrentItem({
+      selectedSearch: `${item.part_no} | ${item.part_code} | ${item.description}`,
+      part_no: item.part_no || "",
+      item_no: item.item_no || "",
+      part_code: item.part_code || item.item_code || "",
+      description: item.description || item.item_description || "",
+      rate: item.rate || "",
+      qty: item.qty || "",
+      uom: item.uom || "NOS",
+      hsn: item.hsn || "",
+      cgst: item.cgst || "",
+      sgst: item.sgst || "",
+      igst: item.igst || "",
+      utgst: item.utgst || "",
+      item_wt: item.item_wt || "",
+      hsn_code: item.hsn_code || null,
+      assessable_value: item.assessable_value || "0.0000",
+      subtotal: item.subtotal || "0.00",
+      gr_total: item.gr_total || "0.00",
+      discount: item.discount || "",
+      pkg_trans: item.pkg_trans || "",
+      plan_date_item: item.plan_date_item || "",
+      due_date_item: item.due_date || "",
+      type_item: item.type || "",
+      remark_item: item.remark || "",
+    });
+    setOrderItems(orderItems.filter(i => i.id !== item.id));
   };
 
 
@@ -604,13 +649,6 @@ const NewSalesOrder = () => {
                         <h5 className="header-title mb-0">{isEditing ? "Edit Sales Order" : "New Sales Order"}</h5>
                       </div>
                       <div className="col-md-6 text-end">
-                        <button
-                          type="button"
-                          className="vndrbtn mx-1"
-                          onClick={togglePackMast}
-                        >
-                          Packing Master
-                        </button>
                         <button
                           type="button"
                           className="vndrbtn mx-1"
@@ -903,7 +941,8 @@ const NewSalesOrder = () => {
                                     <th>Select Item.</th>
                                     <th>Cust Item Code</th>
                                     <th>Item Desc</th>
-                                    <th>Rate | Desc</th>
+                                    <th>Rate</th>
+                                    <th>Discount</th>
                                     <th> Qty | UOM</th>
                                     <th>RM Type| Item Wt.</th>
                                     <th>Pkg. Trans </th>
@@ -965,7 +1004,7 @@ const NewSalesOrder = () => {
                                     <td>
                                       <input
                                         type="number"
-                                        className="form-control"
+                                        className="form-control form-control-sm"
                                         value={currentItem.rate}
                                         onChange={(e) =>
                                           setCurrentItem({
@@ -973,14 +1012,22 @@ const NewSalesOrder = () => {
                                             rate: e.target.value,
                                           })
                                         }
+                                        placeholder="Rate"
                                       />
-                                      <br />{" "}
+                                    </td>
+                                    <td>
                                       <input
                                         type="text"
-                                        className="w-50 mt-2 form-control"
-                                        placeholder=" "
-                                      />{" "}
-                                      %
+                                        className="form-control form-control-sm"
+                                        value={currentItem.discount}
+                                        onChange={(e) =>
+                                          setCurrentItem({
+                                            ...currentItem,
+                                            discount: e.target.value,
+                                          })
+                                        }
+                                        placeholder="Discount"
+                                      />
                                     </td>
 
                                     <td>
@@ -1028,50 +1075,48 @@ const NewSalesOrder = () => {
                                       />
                                     </td>
                                     <td>
-                                      {" "}
                                       <input
                                         type="text"
-                                        className="w-60 mt-2 form-control"
-                                        placeholder=" 0 "
-                                      />{" "}
-                                      <br />{" "}
-                                      <input
-                                        type="text"
-                                        className="w-60 mt-2 form-control"
-                                        placeholder=" 0 "
+                                        className="form-control form-control-sm"
+                                        placeholder="Pkg Trans"
+                                        value={currentItem.pkg_trans}
+                                        onChange={(e) => setCurrentItem({...currentItem, pkg_trans: e.target.value})}
                                       />
                                     </td>
                                     <td>
-                                      {" "}
                                       <input
                                         type="date"
-                                        className="w-60 mt-2 form-control"
-                                        placeholder=" "
-                                      />{" "}
-                                      <br />{" "}
+                                        className="form-control form-control-sm"
+                                        value={currentItem.plan_date_item}
+                                        onChange={(e) => setCurrentItem({...currentItem, plan_date_item: e.target.value})}
+                                      />
                                       <input
                                         type="date"
-                                        className="w-60 mt-2 form-control"
-                                        placeholder=" "
+                                        className="form-control form-control-sm mt-1"
+                                        value={currentItem.due_date_item}
+                                        onChange={(e) => setCurrentItem({...currentItem, due_date_item: e.target.value})}
                                       />
                                     </td>
                                     <td>
-                                      <select name="" id="">
+                                      <select
+                                        className="form-select form-select-sm"
+                                        value={currentItem.type_item}
+                                        onChange={(e) => setCurrentItem({...currentItem, type_item: e.target.value})}
+                                      >
                                         <option value="">Select</option>
-                                      </select>{" "}
-                                      <br />
-                                      <label htmlFor="">Item Category</label>
-                                      <select name="" id="">
-                                        <option value="">RUGEL</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Sample">Sample</option>
+                                        <option value="FOC">FOC</option>
                                       </select>
                                     </td>
                                     <td>
-                                      {" "}
-                                      <textarea name="" id=""></textarea>
-                                      <br />
-                                      <select name="" id="">
-                                        <option value="">Select</option>
-                                      </select>
+                                      <textarea
+                                        className="form-control form-control-sm"
+                                        rows="2"
+                                        placeholder="Remark"
+                                        value={currentItem.remark_item}
+                                        onChange={(e) => setCurrentItem({...currentItem, remark_item: e.target.value})}
+                                      ></textarea>
                                     </td>
                                     <td>
                                       <button
@@ -1089,31 +1134,31 @@ const NewSalesOrder = () => {
 
                           <div className="NewSalesOrder-Main">
                             <div className="table-responsive">
-                              <table className="table table-bordered">
+                              <table className="table table-bordered" style={{ fontSize: '0.8rem' }}>
                                 <thead>
                                   <tr>
-                                    <th>Sr.</th>
-                                    <th>Item No </th>
-                                    <th>Item Code</th>
-                                    <th>Description</th>
-                                    <th>Rate | Desc</th>
-                                    <th>Amort Cost </th>
-                                    <th>PO Qty | UOM</th>
-                                    <th>Rate Type| Item Wt.</th>
-                                    <th>Sub Total</th>
-                                    <th>Pkg. Trans Changes</th>
-                                    <th>Plan | Due Date</th>
-                                    <th>Type</th>
-                                    <th>GST</th>
-                                    <th>Remark</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th style={{ width: '3%', textAlign: 'center' }}>Sr.</th>
+                                    <th style={{ width: '8%' }}>Item No</th>
+                                    <th style={{ width: '7%' }}>Item Code</th>
+                                    <th style={{ width: '12%' }}>Description</th>
+                                    <th style={{ width: '6%' }}>Rate</th>
+                                    <th style={{ width: '6%' }}>Discount</th>
+                                    <th style={{ width: '8%' }}>PO Qty | UOM</th>
+                                    <th style={{ width: '8%' }}>Rate Type| Item Wt.</th>
+                                    <th style={{ width: '7%' }}>Sub Total</th>
+                                    <th style={{ width: '7%' }}>Pkg. Trans</th>
+                                    <th style={{ width: '9%' }}>Plan | Due Date</th>
+                                    <th style={{ width: '5%' }}>Type</th>
+                                    <th style={{ width: '10%' }}>GST</th>
+                                    <th style={{ width: '7%' }}>Remark</th>
+                                    <th style={{ width: '3%', textAlign: 'center' }}>Edit</th>
+                                    <th style={{ width: '3%', textAlign: 'center' }}>Delete</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   {orderItems.map((item, index) => (
                                     <tr key={item.id}>
-                                      <td>{index + 1}</td>
+                                      <td style={{ textAlign: 'center' }}>{index + 1}</td>
                                       <td>
                                         {item.part_no}
                                         <br /> Line No :
@@ -1128,20 +1173,20 @@ const NewSalesOrder = () => {
                                         <br /> HSN/SAC : {item.hsn}
                                       </td>
                                       <td>{item.rate}</td>
-                                      <td></td>
+                                      <td>{item.discount || '-'}</td>
                                       <td>{item.qty} | {item.uom}</td>
 
                                       <td>
                                         Rate Type: <br />
-                                        Item Wt. : <br />
+                                        Item Wt. : {item.item_wt || ''}<br />
                                         Per Unit:{" "}
                                       </td>
 
                                       <td>{(item.rate * item.qty).toFixed(2)}</td>
 
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
+                                      <td>{item.pkg_trans || '-'}</td>
+                                      <td>{item.plan_date_item || '-'} <br /> {item.due_date || '-'}</td>
+                                      <td>{item.type || '-'}</td>
 
                                       <td>
                                         CGST ({item.cgst}%): {item.cgst_amt}<br />
@@ -1150,9 +1195,26 @@ const NewSalesOrder = () => {
                                         UTGST ({item.utgst}%): {item.utgst_amt}<br />
                                         <strong>Total: {item.gr_total}</strong>
                                       </td>
-                                      <td>{item.CGST}</td>
-                                      <td>Edit</td>
-                                      <td><button className="btn btn-danger btn-sm" onClick={() => setOrderItems(orderItems.filter(i => i.id !== item.id))}>Delete</button></td>
+                                      <td>{item.remark || '-'}</td>
+                                      <td style={{ textAlign: 'center' }}>
+                                        <button
+                                          className="btn btn-sm btn-outline-primary border-0"
+                                          title="Edit Item"
+                                          onClick={() => handleEditItem(item)}
+                                        >
+                                          <FaEdit />
+                                        </button>
+                                      </td>
+                                      <td style={{ textAlign: 'center' }}>
+                                        <button
+                                          className="btn btn-sm border-0"
+                                          style={{ color: '#dc3545' }}
+                                          title="Delete Item"
+                                          onClick={() => setOrderItems(orderItems.filter(i => i.id !== item.id))}
+                                        >
+                                          <FaTrash />
+                                        </button>
+                                      </td>
                                     </tr>
                                   ))}
                                 </tbody>

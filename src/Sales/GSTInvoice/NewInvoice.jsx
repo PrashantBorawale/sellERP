@@ -580,10 +580,10 @@ const NewInvoice = () => {
         dis: Number(row.desc_percent || row.discount_percent || 0), // ✅ Ensure Number
         po_qty: String(row.po_qty || row.qty || 0),
         assessable_value: String(row.assessable_value || 0),
-        bal_qty: null,
+        bal_qty: String(row.bal_qty !== undefined ? row.bal_qty : (row.po_qty || row.qty || 0)),
         inv_qty: String(row.inv_qty || row.qty || row.po_qty || 0),
-        pkg_qty: null,
-        type_of_packing: "",
+        pkg_qty: row.pkg_qty ? String(row.pkg_qty) : null,
+        type_of_packing: row.type_of_packing || "",
         hsn_code: row.HSN_SAC_Code || row.hsn_code || "",
         item_code: row.item_code || "",
         part_code: row.last_operation?.part_code || row.Part_Code || row.part_code || row.Item_Code || row.hsn_code || "1",
@@ -1111,13 +1111,13 @@ const NewInvoice = () => {
                                         <br /> Amort Rate :
                                       </td>
                                       <td>{row.po_qty || row.qty || 0}</td>
-                                      <td>{/* Bal Qty */}</td>
+                                      <td>{row.bal_qty !== undefined ? row.bal_qty : (row.po_qty || row.qty || 0)}</td>
                                       <td>
                                         <input
-                                          type="text"
-                                          className="w-100"
+                                          type="number"
+                                          className="form-control form-control-sm w-100"
                                           placeholder="Qty"
-                                          defaultValue={row.qty || row.po_qty || 0}
+                                          value={row.inv_qty !== undefined ? row.inv_qty : (row.qty || row.po_qty || 0)}
                                           onChange={(e) => {
                                             let newQty = e.target.value;
                                             const prodQty = parseFloat(row.last_operation?.prod_qty || 0);
@@ -1125,7 +1125,6 @@ const NewInvoice = () => {
                                             if (newQty !== "" && parseFloat(newQty) > prodQty) {
                                               toast.error("Quantity cannot be higher than Production Qty.");
                                               newQty = prodQty.toString();
-                                              e.target.value = newQty;
                                             }
 
                                             const updatedData = tableData.map((item, i) => {
@@ -1134,6 +1133,7 @@ const NewInvoice = () => {
                                                 const itemTotal = parseFloat(newQty || 0) * rate;
                                                 return { 
                                                   ...item, 
+                                                  inv_qty: newQty,
                                                   qty: newQty, 
                                                   assessable_value: itemTotal.toFixed(2) 
                                                 };
@@ -1143,24 +1143,52 @@ const NewInvoice = () => {
                                             setTableData(updatedData);
                                           }}
                                         />
-                                        <br />
-                                        Per Pcs Wt: <br />
+                                        <div className="mt-1" style={{ fontSize: "11px" }}>
+                                          Per Pcs Wt:
+                                        </div>
                                         <input
-                                          type="text"
-                                          className="w-100"
+                                          type="number"
+                                          className="form-control form-control-sm w-100"
                                           placeholder="Weight"
-                                          defaultValue={row.Finish_Weight}
+                                          value={row.Finish_Weight || ""}
+                                          onChange={(e) => {
+                                            const updatedData = tableData.map((item, i) => 
+                                              i === index ? { ...item, Finish_Weight: e.target.value } : item
+                                            );
+                                            setTableData(updatedData);
+                                          }}
                                         />
-                                        <br />
-                                        <span style={{ color: "blue" }}>
-                                          Per Unit: {row.Unit_Code}
-                                        </span>
+                                        <div className="mt-1" style={{ fontSize: "11px", color: "blue" }}>
+                                          Per Unit: {row.Unit_Code || "NOS"}
+                                        </div>
                                       </td>
                                       <td>
-                                        <input type="text" className="w-100" />
+                                        <input 
+                                          type="number" 
+                                          className="form-control form-control-sm w-100" 
+                                          placeholder="Pkg Qty"
+                                          value={row.pkg_qty || ""}
+                                          onChange={(e) => {
+                                            const updatedData = tableData.map((item, i) => 
+                                              i === index ? { ...item, pkg_qty: e.target.value } : item
+                                            );
+                                            setTableData(updatedData);
+                                          }}
+                                        />
                                       </td>
                                       <td>
-                                        <textarea className="w-100"></textarea>
+                                        <textarea 
+                                          className="form-control form-control-sm w-100"
+                                          rows="2"
+                                          placeholder="Type of Packing"
+                                          value={row.type_of_packing || ""}
+                                          onChange={(e) => {
+                                            const updatedData = tableData.map((item, i) => 
+                                              i === index ? { ...item, type_of_packing: e.target.value } : item
+                                            );
+                                            setTableData(updatedData);
+                                          }}
+                                        ></textarea>
                                       </td>
                                       <td>
                                         <button
