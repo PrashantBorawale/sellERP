@@ -291,8 +291,16 @@ const NewSalesOrder = () => {
 
     const rate = parseFloat(currentItem.rate) || 0;
     const qty = parseFloat(currentItem.qty) || 0;
-    const subtotal = rate * qty;
+    const rawSubtotal = rate * qty;
     
+    // Discount Calculation (Assuming currentItem.discount is a percentage)
+    const discountPercent = parseFloat(currentItem.discount) || 0;
+    const descAmt = (rawSubtotal * discountPercent) / 100;
+    const discountedSubtotal = rawSubtotal - descAmt;
+    
+    // Subtotal and assessable value are now based on discounted amount
+    const subtotal = discountedSubtotal;
+
     // Percentages - Fetch exactly from the item's HSN data
     const rawCgst = parseFloat(currentItem.cgst) || 0;
     const rawSgst = parseFloat(currentItem.sgst) || 0;
@@ -378,6 +386,8 @@ const NewSalesOrder = () => {
       item_category: "",
       remark: currentItem.remark_item || "",
       discount: currentItem.discount || "",
+      desc: currentItem.discount || null,
+      desc_amt: descAmt.toFixed(2),
       hsn_code: currentItem.hsn_code || null,
       assessable_value: subtotal.toFixed(2),
       subtotal: subtotal.toFixed(2),
@@ -488,6 +498,8 @@ const NewSalesOrder = () => {
           item_code: item.item_code,
           item_description: item.item_description,
           rate: parseFloat(item.rate) || 0,
+          desc: item.desc || null,
+          desc_amt: item.desc_amt || "0.00",
           qty: parseFloat(item.qty) || 0,
           uom: item.uom,
           item_wt: item.item_wt || "",
@@ -1182,7 +1194,7 @@ const NewSalesOrder = () => {
                                         Per Unit:{" "}
                                       </td>
 
-                                      <td>{(item.rate * item.qty).toFixed(2)}</td>
+                                      <td>{item.subtotal}</td>
 
                                       <td>{item.pkg_trans || '-'}</td>
                                       <td>{item.plan_date_item || '-'} <br /> {item.due_date || '-'}</td>
