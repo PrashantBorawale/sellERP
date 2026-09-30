@@ -947,7 +947,13 @@ const JobworkInwardChallan = () => {
                                         <tr>
                                           <th className="col-md-4">Clearing Status:</th>
                                           <td>
-                                            <select className="form-select" name="ClearingStatus" value={formData.ClearingStatus} onChange={handleInputChange}>
+                                            <select 
+                                              className="form-select" 
+                                              name="ClearingStatus" 
+                                              value={formData.ClearingStatus} 
+                                              onChange={handleInputChange}
+                                              style={{ minHeight: "34px", padding: "6px 30px 6px 12px", fontSize: "13px" }}
+                                            >
                                               <option value="">Select</option>
                                               <option value="Pending">Pending</option>
                                               <option value="yes">Yes</option>
