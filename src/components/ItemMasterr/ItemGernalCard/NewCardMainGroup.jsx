@@ -157,29 +157,35 @@ const NewCardMainGroup = () => {
     <div className="container-fluid p-0">
       
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          {["prefix", "subgroup_code", "subgroup_name"].map((field) => (
-            <div className="col-md-2 text-start" key={field}>
-              <label className="col-form-label text-nowrap" style={{ fontSize: "0.82rem" }}>{field.replace("_", " ").toUpperCase()}</label>
+        <div className="row g-3 align-items-end mb-3">
+          {[
+            { id: "prefix", colClass: "col-12 col-md-2" },
+            { id: "subgroup_code", colClass: "col-12 col-md-3" },
+            { id: "subgroup_name", colClass: "col-12 col-md-3" }
+          ].map((field) => (
+            <div className={`${field.colClass} text-start`} key={field.id}>
+              <label className="form-label p-0 mb-1" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#475569" }}>
+                {field.id.replace("_", " ").toUpperCase()}
+              </label>
               <input
                 type="text"
-                name={field}
-                className={`form-control ${
-                  errors[field] ? "is-invalid" : ""
+                name={field.id}
+                className={`form-control form-control-sm ${
+                  errors[field.id] ? "is-invalid" : ""
                 }`}
-                value={formData[field]}
+                value={formData[field.id]}
                 onChange={handleChange}
               />
-              {errors[field] && (
-                <div className="invalid-feedback">{errors[field]}</div>
+              {errors[field.id] && (
+                <div className="invalid-feedback">{errors[field.id]}</div>
               )}
             </div>
           ))}
-          <div className="col-md-2">
-            <label className="col-form-label text-nowrap" style={{ fontSize: "0.82rem" }}>Inventory</label>
+          <div className="col-12 col-md-2 text-start">
+            <label className="form-label p-0 mb-1" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#475569" }}>INVENTORY</label>
             <select
               name="inventory"
-              className="form-select"
+              className="form-select form-select-sm"
               value={formData.inventory}
               onChange={handleChange}
             >
@@ -187,53 +193,55 @@ const NewCardMainGroup = () => {
               <option value="NO">NO</option>
             </select>
           </div>
-          <div className="col-md-2 d-flex align-items-end">
-            <button type="submit" className="btn-save w-100">
+          <div className="col-12 col-md-2 d-flex align-items-end text-start">
+            <button type="submit" className="btn-save w-100" style={{ height: "32px", padding: "0" }}>
               {editId ? "Update" : "Save"}
             </button>
           </div>
         </div>
       </form>
 
-      <table className="table table-bordered mt-3">
-        <thead>
-          <tr>
-            <th>Prefix</th>
-            <th>Subgroup Code</th>
-            <th>Subgroup Name</th>
-            <th>Inventory</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.length > 0 ? (
-            currentItems.map((item) => (
-              <tr key={item.id}>
-                <td>{item.prefix}</td>
-                <td>{item.subgroup_code}</td>
-                <td>{item.subgroup_name}</td>
-                <td>{item.inventory}</td>
-                <td>
-                  <FaEdit
-                    className="text-primary me-2"
-                    onClick={() => handleEdit(item)}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <FaTrash
-                    className="text-danger"
-                    onClick={() => handleDelete(item.id)}
-                    style={{ cursor: "pointer" }}
-                  />
-                </td>
-              </tr>
-            ))
-          ) : (
+      <div className="table-responsive">
+        <table className="table table-bordered mt-3">
+          <thead className="table-light">
             <tr>
-              <td colSpan="5" className="text-center">No Data Available</td>
+              <th style={{ fontSize: "0.8rem", color: "#475569" }}>Prefix</th>
+              <th style={{ fontSize: "0.8rem", color: "#475569" }}>Subgroup Code</th>
+              <th style={{ fontSize: "0.8rem", color: "#475569" }}>Subgroup Name</th>
+              <th style={{ fontSize: "0.8rem", color: "#475569" }}>Inventory</th>
+              <th style={{ fontSize: "0.8rem", color: "#475569" }}>Actions</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentItems.length > 0 ? (
+              currentItems.map((item) => (
+                <tr key={item.id}>
+                  <td style={{ fontSize: "0.8rem" }}>{item.prefix}</td>
+                  <td style={{ fontSize: "0.8rem" }}>{item.subgroup_code}</td>
+                  <td style={{ fontSize: "0.8rem" }}>{item.subgroup_name}</td>
+                  <td style={{ fontSize: "0.8rem" }}>{item.inventory}</td>
+                  <td style={{ fontSize: "0.8rem" }}>
+                    <FaEdit
+                      className="text-primary me-2"
+                      onClick={() => handleEdit(item)}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <FaTrash
+                      className="text-danger"
+                      onClick={() => handleDelete(item.id)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center" style={{ fontSize: "0.8rem" }}>No Data Available</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {/* Pagination */}
       {totalPages > 1 && (

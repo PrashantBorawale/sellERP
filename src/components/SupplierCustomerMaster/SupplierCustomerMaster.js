@@ -895,7 +895,7 @@ const SupplierCustomerMaster = () => {
                                               <option value="">Select ..</option>
 
                                               {paymentTerms.map((term) => (
-                                                <option key={term.id} value={term.id}>
+                                                <option key={term.id} value={term.Days}>
                                                   {term.Days}
                                                 </option>
                                               ))}

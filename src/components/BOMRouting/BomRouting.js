@@ -69,8 +69,8 @@ const BomRouting = () => {
       try {
         // 2. API Call
         const url = type === 'child' 
-          ? `https://sellerp-backend.onrender.com/All_Masters/bom/delete/${id}`
-          : `https://sellerp-backend.onrender.com/All_Masters/item/delete/${id}/`;
+          ? `https://sellerp-backend.onrender.com/All_Masters/bom/delete/${id}/`
+          : `https://sellerp-backend.onrender.com/All_Masters/api/bom/delete/${id}/`;
 
         const response = await fetch(url, {
           method: 'DELETE',
@@ -452,11 +452,11 @@ const BomRouting = () => {
       <TableRow key={`new-detail-${partNumber}-${item.id}`} sx={{ backgroundColor: '#f8fafc' }}>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px', paddingLeft: '32px' }}>└─ {index + 1}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BomPartCode || "-"}</TableCell>
-        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.item || "-"}</TableCell>
+        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PartCode || item.item || "-"}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BomPartDesc || "-"}</TableCell>
         {/* <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.QC || "-"}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.BOMPartType || "-"}</TableCell> */}
-        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.PartCode || "-"}</TableCell>
+        <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>{item.User || "-"}</TableCell>
         <TableCell sx={{ color: '#475569', fontSize: '0.85rem', padding: '12px 16px' }}>
           <IconButton size="small" onClick={() => window.open(`https://sellerp-backend.onrender.com/All_Masters/api/bom_pdf/${item.item || item.id}`, "_blank")} sx={{ color: '#3b82f6', '&:hover': { background: '#dbeafe' } }}><i className="fas fa-eye" style={{ fontSize: '16px' }}></i></IconButton>
         </TableCell>

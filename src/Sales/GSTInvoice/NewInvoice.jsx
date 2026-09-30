@@ -1380,8 +1380,8 @@ const NewInvoice = () => {
                                     type="date"
                                     name="invoice_Date"
                                     value={formData.invoice_Date}
-                                    onChange={handleChange}
-                                    className="form-control"
+                                    className="form-control bg-light"
+                                    readOnly
                                   />
                                 </div>
                               </div>

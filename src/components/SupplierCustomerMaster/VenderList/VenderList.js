@@ -7,7 +7,7 @@ import SideNav from "../../../SideNav/SideNav";
 import "./VenderList.css";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
-import { getSupplierList, deleteSupplier } from "../../../Service/Api.jsx"; 
+import { getSupplierList, deleteSupplier, fetchPaymentTerms } from "../../../Service/Api.jsx"; 
 import { MdDeleteForever } from "react-icons/md";
 
 const VenderList = () => {
@@ -32,6 +32,8 @@ const VenderList = () => {
     }
   }, [sideNavOpen]);
 
+  const [paymentTerms, setPaymentTerms] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +45,17 @@ const VenderList = () => {
       }
     };
 
+    const fetchTerms = async () => {
+      try {
+        const terms = await fetchPaymentTerms();
+        setPaymentTerms(terms);
+      } catch (error) {
+        console.error("Error fetching payment terms:", error);
+      }
+    };
+
     fetchData();
+    fetchTerms();
   }, []);
 
   const handleSearch = () => {
@@ -226,7 +238,7 @@ const VenderList = () => {
                                   {item.Email_Id ? (item.Email_Id.match(/\[(.*?)\]/) ? item.Email_Id.match(/\[(.*?)\]/)[1] : item.Email_Id) : ""}
                                 </td>
                                 <td>{item.Vendor_Code}</td>
-                                <td>{item.Payment_Term}</td>
+                                <td>{paymentTerms.find((pt) => String(pt.id) === String(item.Payment_Term))?.Days || item.Payment_Term}</td>
                                 <td>{item.GST_No}</td>
                                 <td>{item.GST_No2}</td>
                                 <td>{item.GST_Tax_Code}</td>

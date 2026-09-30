@@ -312,7 +312,7 @@ const NewGateInward = () => {
       Description: item.Name_Description,
       // Unit_Code: item.Unit_Code,
     })
-    setSearchQuery("") // Clear search input
+    setSearchQuery(item.part_no) // Display selected item
     setSearchResults([]) // Hide dropdown
   }
 
@@ -336,6 +336,7 @@ const NewGateInward = () => {
       Unit_Code: "",
       Remark: "",
     })
+    setSearchQuery("")
   }
 
   // Delete item from table
@@ -569,7 +570,7 @@ const NewGateInward = () => {
                               <Box sx={{ position: 'relative' }}>
                                 <input type="text" className="form-control form-control-sm" placeholder="Search Item..." value={searchQuery} onChange={handleSearchChange} />
                                 {searchResults.length > 0 && (
-                                  <Box sx={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 10, bgcolor: '#fff', border: '1px solid #ccc', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto', mt: 0.5, boxShadow: 3 }}>
+                                  <Box sx={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 9999, bgcolor: '#fff', border: '1px solid #ccc', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto', mt: 0.5, boxShadow: 3 }}>
                                     {searchResults.map((item, index) => (
                                       <Box key={index} onClick={() => handleSelectItem(item)} sx={{ p: 1, '&:hover': { bgcolor: '#f1f5f9' }, cursor: 'pointer', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between' }}>
                                         <Typography variant="body2">{item.part_no}</Typography>
