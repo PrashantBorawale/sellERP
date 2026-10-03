@@ -1799,8 +1799,16 @@ const NewInvoice = () => {
                               <div className="col-md-3 d-flex justify-content-between">
                                 <label className="fw-bold mb-0 text-nowrap" style={{ fontSize: "12px" }}>Grand Total</label>
                                 <input
-                                  className="form-control form-control-sm w-50"
+                                  className="form-control form-control-sm w-50 bg-light"
                                   placeholder="0"
+                                  value={Math.round(
+                                    parseFloat(taxData.assessable_value || 0) +
+                                    Number(taxData.cgst_amt || 0) +
+                                    Number(taxData.sgst_amt || 0) +
+                                    Number(taxData.igst_amt || 0) +
+                                    Number(taxData.utgst_amt || 0)
+                                  )}
+                                  readOnly
                                 />
                               </div>
 
