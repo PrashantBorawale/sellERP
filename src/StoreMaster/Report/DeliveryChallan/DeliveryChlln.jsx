@@ -33,8 +33,8 @@ const DeliveryChlln = () => {
   const fetchDeliveryChallans = async () => {
     try {
       setLoading(true);
-      const res = await getDeliveryChallans();
-      const data = res?.data || res;
+      const response = await fetch("https://sellerp-backend.onrender.com/Store/api/delivery-challans/");
+      const data = await response.json();
       if (Array.isArray(data)) {
         setChallanList(data.sort((a, b) => {
           const idA = parseInt(a.id || a.pk || 0, 10);
@@ -51,7 +51,7 @@ const DeliveryChlln = () => {
 
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 15;
   const totalPages = Math.ceil(challanList.length / itemsPerPage);
   const currentChallanList = challanList.slice(
     (currentPage - 1) * itemsPerPage,
@@ -59,19 +59,8 @@ const DeliveryChlln = () => {
   );
 
   const handleViewPdf = (item) => {
-    const viewPath = item?.PDF_Link || item?.View || item?.pdf || item?.file || item?.document;
-    if (viewPath && viewPath !== "null" && viewPath !== "undefined" && viewPath !== "") {
-      let url = viewPath;
-      if (viewPath.startsWith("http://") || viewPath.startsWith("https://")) {
-        url = viewPath;
-      } else if (viewPath.startsWith("/")) {
-        url = `https://sellerp-backend.onrender.com${viewPath}`;
-      } else {
-        url = `https://sellerp-backend.onrender.com/${viewPath}`;
-      }
-      window.open(url, "_blank", "noopener,noreferrer");
-    } else if (item?.id) {
-      window.open(`https://sellerp-backend.onrender.com/Store/DeliveryChallan/pdf/${item.id}/`, "_blank", "noopener,noreferrer");
+    if (item?.id) {
+      window.open(`https://sellerp-backend.onrender.com/Store/delivery-challans/pdf/${item.id}/`, "_blank", "noopener,noreferrer");
     } else {
       alert(`No PDF attached or generated for Delivery Challan: ${item?.DCNo || item?.ChallanNo || "this record"}`);
     }
